@@ -1,0 +1,63 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="ffmpeg-reader" type="ffmpeg-reader" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$1" />
+		<param name="loop" type="int" val="$2" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="dts-start" type="int" val="1000" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="false" />
+		<param name="seek" type="int" val="$3" />
+		<param name="add-parameter-sets" type="bool" val="true" />
+		<param name="repeat-parameter-sets" type="bool" val="false" />
+		<param name="mov-frame" type="bool" val="false" />
+		<param name="sdp" type="bool" val="false" />
+		<gfx x="40.0" y="169.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="window-scheduler" type="window-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1100" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<param name="window" type="int" val="1000" />
+		<gfx x="434.0" y="168.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="fake-transmitter" type="dummy" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<gfx x="624.0" y="168.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="out" type="out" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="url" type="string" val="" />
+		<gfx x="807.0" y="168.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="sirannon-packetizer" type="sirannon-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<gfx x="218.0" y="169.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="window-scheduler" to="fake-transmitter" xroute="0"/>
+
+	<route from="fake-transmitter" to="out" xroute="0"/>
+
+	<route from="ffmpeg-reader" to="sirannon-packetizer" xroute="0"/>
+
+	<route from="sirannon-packetizer" to="window-scheduler" xroute="0"/>
+
+</config>

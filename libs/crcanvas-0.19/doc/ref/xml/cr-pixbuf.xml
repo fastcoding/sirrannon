@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrPixbuf">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrPixbuf.top_of_page">CrPixbuf</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrPixbuf</refname>
+<refpurpose>A item for rendering <link linkend="GdkPixbuf"><type>GdkPixbuf</type></link>, png files, or
+a cairo image surface.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrPixbuf.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrPixbuf-struct">CrPixbuf</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-pixbuf-new">cr_pixbuf_new</link>                       (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrPixbuf.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----CrPixbuf
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrPixbuf.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrPixbuf--anchor">anchor</link>&quot;                   <link linkend="GtkAnchorType">GtkAnchorType</link>         : Read / Write
+  &quot;<link linkend="CrPixbuf--height">height</link>&quot;                   <link linkend="gdouble">gdouble</link>               : Read
+  &quot;<link linkend="CrPixbuf--pattern">pattern</link>&quot;                  <link linkend="CrPattern">CrPattern</link>*            : Read
+  &quot;<link linkend="CrPixbuf--pixbuf">pixbuf</link>&quot;                   <link linkend="GdkPixbuf">GdkPixbuf</link>*            : Read / Write
+  &quot;<link linkend="CrPixbuf--png">png</link>&quot;                      <link linkend="gchar">gchar</link>*                : Write
+  &quot;<link linkend="CrPixbuf--scaleable">scaleable</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPixbuf--surface">surface</link>&quot;                  <link linkend="CrSurface">CrSurface</link>*            : Write
+  &quot;<link linkend="CrPixbuf--test-fill">test-fill</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPixbuf--width">width</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read
+  &quot;<link linkend="CrPixbuf--x-offset">x-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrPixbuf--y-offset">y-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrPixbuf.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This canvas item is capable of rendering a <link linkend="GdkPixbuf"><type>GdkPixbuf</type></link>, a png file, or
+any cairo image surface by setting either of the <link linkend="CrPixbuf--pixbuf"><type>"pixbuf"</type></link>,
+<link linkend="CrPixbuf--png"><type>"png"</type></link>, or <link linkend="CrPixbuf--surface"><type>"surface"</type></link> properties.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrPixbuf.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrPixbuf-struct" role="struct">
+<title>CrPixbuf</title>
+<indexterm zone="CrPixbuf-struct"><primary sortas="CrPixbuf">CrPixbuf</primary></indexterm><programlisting>typedef struct _CrPixbuf CrPixbuf;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-pixbuf-new" role="function">
+<title>cr_pixbuf_new ()</title>
+<indexterm zone="cr-pixbuf-new"><primary sortas="cr_pixbuf_new">cr_pixbuf_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_pixbuf_new                       (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience constructor for creating an pixbuf and adding it to 
+an item group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> X position of the pixbuf.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> Y position of the pixbuf.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrPixbuf.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrPixbuf--anchor" role="property"><title>The <literal>&quot;anchor&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--anchor"><primary sortas="CrPixbuf:anchor">CrPixbuf:anchor</primary></indexterm><programlisting>  &quot;anchor&quot;                   <link linkend="GtkAnchorType">GtkAnchorType</link>         : Read / Write</programlisting>
+<para>The part of the pixbuf that is referenced to the item's x, y coordinates.</para><para>Default value: GTK_ANCHOR_NORTH_WEST</para>
+</refsect2>
+<refsect2 id="CrPixbuf--height" role="property"><title>The <literal>&quot;height&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--height"><primary sortas="CrPixbuf:height">CrPixbuf:height</primary></indexterm><programlisting>  &quot;height&quot;                   <link linkend="gdouble">gdouble</link>               : Read</programlisting>
+<para>Height of the pixbuf in device units.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrPixbuf--pattern" role="property"><title>The <literal>&quot;pattern&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--pattern"><primary sortas="CrPixbuf:pattern">CrPixbuf:pattern</primary></indexterm><programlisting>  &quot;pattern&quot;                  <link linkend="CrPattern">CrPattern</link>*            : Read</programlisting>
+<para>Access to the #cairo_pattern_t that is used to render this image.</para></refsect2>
+<refsect2 id="CrPixbuf--pixbuf" role="property"><title>The <literal>&quot;pixbuf&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--pixbuf"><primary sortas="CrPixbuf:pixbuf">CrPixbuf:pixbuf</primary></indexterm><programlisting>  &quot;pixbuf&quot;                   <link linkend="GdkPixbuf">GdkPixbuf</link>*            : Read / Write</programlisting>
+<para>The GDK Pixbuf to draw. For images that are in other formats it may be more convenient to use the #CrPixbuf:png or #CrPixbuf:surface properties directly.</para></refsect2>
+<refsect2 id="CrPixbuf--png" role="property"><title>The <literal>&quot;png&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--png"><primary sortas="CrPixbuf:png">CrPixbuf:png</primary></indexterm><programlisting>  &quot;png&quot;                      <link linkend="gchar">gchar</link>*                : Write</programlisting>
+<para>A png file to convert to a cairo_pattern_t for drawing.  This can be set as an alternative to creating a #GdkPixbuf first.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrPixbuf--scaleable" role="property"><title>The <literal>&quot;scaleable&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--scaleable"><primary sortas="CrPixbuf:scaleable">CrPixbuf:scaleable</primary></indexterm><programlisting>  &quot;scaleable&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the pixbuf should scale and rotate to conform to item units.  Setting this to FALSE will cause the image to always be the same size.  See also #CrInverse for another way to achieve the same effect.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrPixbuf--surface" role="property"><title>The <literal>&quot;surface&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--surface"><primary sortas="CrPixbuf:surface">CrPixbuf:surface</primary></indexterm><programlisting>  &quot;surface&quot;                  <link linkend="CrSurface">CrSurface</link>*            : Write</programlisting>
+<para>A #cairo_surface_t may be specified directly in lieu of using a #GdkPixbuf.  The surface must be of type CAIRO_SURFACE_TYPE_IMAGE.</para></refsect2>
+<refsect2 id="CrPixbuf--test-fill" role="property"><title>The <literal>&quot;test-fill&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--test-fill"><primary sortas="CrPixbuf:test-fill">CrPixbuf:test-fill</primary></indexterm><programlisting>  &quot;test-fill&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the whole rectangular area should be grabbable by the  pointer regardless of if it is filled. This is for pixbufs that have alpha transparency.  when this flag is FALSE, parts of the pixbuf with alpha &lt; 128 will test negative.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrPixbuf--width" role="property"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--width"><primary sortas="CrPixbuf:width">CrPixbuf:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gdouble">gdouble</link>               : Read</programlisting>
+<para>Width of the pixbuf in device units.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrPixbuf--x-offset" role="property"><title>The <literal>&quot;x-offset&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--x-offset"><primary sortas="CrPixbuf:x-offset">CrPixbuf:x-offset</primary></indexterm><programlisting>  &quot;x-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrPixbuf--y-offset" role="property"><title>The <literal>&quot;y-offset&quot;</literal> property</title>
+<indexterm zone="CrPixbuf--y-offset"><primary sortas="CrPixbuf:y-offset">CrPixbuf:y-offset</primary></indexterm><programlisting>  &quot;y-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

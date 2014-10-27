@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrZoomer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrPanner.html" title="CrPanner">
+<link rel="next" href="crcanvas-cr-types.html" title="cr-types">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrPanner.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="crcanvas-cr-types.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrZoomer.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrZoomer.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrZoomer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrZoomer.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#CrZoomer.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrZoomer">
+<a name="CrZoomer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrZoomer.top_of_page"></a>CrZoomer</span></h2>
+<p>CrZoomer — A object for setting up box zooming on a 
+<a class="link" href="CrCanvas.html" title="CrCanvas"><span class="type">CrCanvas</span></a> widget.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrZoomer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrZoomer.html#CrZoomer-struct" title="CrZoomer">CrZoomer</a>;
+<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *          <a class="link" href="CrZoomer.html#cr-zoomer-new" title="cr_zoomer_new ()">cr_zoomer_new</a>                       (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrZoomer.html#cr-zoomer-activate" title="cr_zoomer_activate ()">cr_zoomer_activate</a>                  (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer);
+void                <a class="link" href="CrZoomer.html#cr-zoomer-deactivate" title="cr_zoomer_deactivate ()">cr_zoomer_deactivate</a>                (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrZoomer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----CrZoomer
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrZoomer.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrZoomer.html#CrZoomer--active" title='The "active" property'>active</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--canvas" title='The "canvas" property'>canvas</a>"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--corner-to-corner" title='The "corner-to-corner" property'>corner-to-corner</a>"         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--cursor" title='The "cursor" property'>cursor</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--fill-color" title='The "fill-color" property'>fill-color</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--fill-color-rgba" title='The "fill-color-rgba" property'>fill-color-rgba</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--line-width" title='The "line-width" property'>line-width</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--maintain-aspect" title='The "maintain-aspect" property'>maintain-aspect</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--outline-color" title='The "outline-color" property'>outline-color</a>"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrZoomer.html#CrZoomer--outline-color-rgba" title='The "outline-color-rgba" property'>outline-color-rgba</a>"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="CrZoomer.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrZoomer.html#CrZoomer-activate" title='The "activate" signal'>activate</a>"                                       : Run First
+  "<a class="link" href="CrZoomer.html#CrZoomer-deactivate" title='The "deactivate" signal'>deactivate</a>"                                     : Run First
+  "<a class="link" href="CrZoomer.html#CrZoomer-select" title='The "select" signal'>select</a>"                                         : Run Last
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrZoomer.description"></a><h2>Description</h2>
+<p>
+By default <a class="link" href="CrZoomer.html#CrZoomer--fill-color" title='The "fill-color" property'><span class="type">"fill-color"</span></a> and <a class="link" href="CrZoomer.html#CrZoomer--outline-color" title='The "outline-color" property'><span class="type">"outline-color"</span></a> properties 
+are disabled.  These should be set
+at construction time in order to see the zoom box.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrZoomer.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrZoomer">
+<a name="CrZoomer-struct"></a><h3>CrZoomer</h3>
+<pre class="programlisting">typedef struct _CrZoomer CrZoomer;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_zoomer_new ()">
+<a name="cr-zoomer-new"></a><h3>cr_zoomer_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *          cr_zoomer_new                       (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A factory to create a CrZoomer object and connect it to a <a class="link" href="CrCanvas.html" title="CrCanvas"><span class="type">CrCanvas</span></a> in one
+step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td> The canvas widget to operate on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly created <a class="link" href="CrZoomer.html" title="CrZoomer"><span class="type">CrZoomer</span></a> object.  You must call g_object_unref when
+finished with it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_zoomer_activate ()">
+<a name="cr-zoomer-activate"></a><h3>cr_zoomer_activate ()</h3>
+<pre class="programlisting">void                cr_zoomer_activate                  (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>zoomer</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_zoomer_deactivate ()">
+<a name="cr-zoomer-deactivate"></a><h3>cr_zoomer_deactivate ()</h3>
+<pre class="programlisting">void                cr_zoomer_deactivate                (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>zoomer</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrZoomer.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "active" property'>
+<a name="CrZoomer--active"></a><h3>The <code class="literal">"active"</code> property</h3>
+<pre class="programlisting">  "active"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Active/Deactivate the zoomer object or check the activation status.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "canvas" property'>
+<a name="CrZoomer--canvas"></a><h3>The <code class="literal">"canvas"</code> property</h3>
+<pre class="programlisting">  "canvas"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write</pre>
+<p>Reference to CrCanvas widget.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "corner-to-corner" property'>
+<a name="CrZoomer--corner-to-corner"></a><h3>The <code class="literal">"corner-to-corner"</code> property</h3>
+<pre class="programlisting">  "corner-to-corner"         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the zoombox should be made by dragging from corner to corner.  The default is to drag from the center.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "cursor" property'>
+<a name="CrZoomer--cursor"></a><h3>The <code class="literal">"cursor"</code> property</h3>
+<pre class="programlisting">  "cursor"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>GDK Cursor to use when zoombox is selected.</p>
+<p>Allowed values: [0,153]</p>
+<p>Default value: 64</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color" property'>
+<a name="CrZoomer--fill-color"></a><h3>The <code class="literal">"fill-color"</code> property</h3>
+<pre class="programlisting">  "fill-color"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A string color such as 'red', or '#123456' to be used to fill the zoombox.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color-rgba" property'>
+<a name="CrZoomer--fill-color-rgba"></a><h3>The <code class="literal">"fill-color-rgba"</code> property</h3>
+<pre class="programlisting">  "fill-color-rgba"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Zoombox Fill Color RGBA.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "line-width" property'>
+<a name="CrZoomer--line-width"></a><h3>The <code class="literal">"line-width"</code> property</h3>
+<pre class="programlisting">  "line-width"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>Line width  in user units.</p>
+<p>Default value: 2</p>
+</div>
+<hr>
+<div class="refsect2" title='The "maintain-aspect" property'>
+<a name="CrZoomer--maintain-aspect"></a><h3>The <code class="literal">"maintain-aspect"</code> property</h3>
+<pre class="programlisting">  "maintain-aspect"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the aspect ratio of the rectangle should match the aspect of the canvas widget.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "outline-color" property'>
+<a name="CrZoomer--outline-color"></a><h3>The <code class="literal">"outline-color"</code> property</h3>
+<pre class="programlisting">  "outline-color"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A string color such as 'red', or '#123456' to be used to sroke the zoombox.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "outline-color-rgba" property'>
+<a name="CrZoomer--outline-color-rgba"></a><h3>The <code class="literal">"outline-color-rgba"</code> property</h3>
+<pre class="programlisting">  "outline-color-rgba"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Zoombox Outline Color RGBA.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="CrZoomer.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "activate" signal'>
+<a name="CrZoomer-activate"></a><h3>The <code class="literal">"activate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>  user_data)      : Run First</pre>
+<p>
+This signal is emitted whenever the zoombox is first activated.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>zoomer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "deactivate" signal'>
+<a name="CrZoomer-deactivate"></a><h3>The <code class="literal">"deactivate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>  user_data)      : Run First</pre>
+<p>
+This signal is emitted whenever the zoombox is deactivated.
+It can be used to get to a callback from a zoombox selection.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>zoomer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "select" signal'>
+<a name="CrZoomer-select"></a><h3>The <code class="literal">"select"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="CrZoomer.html" title="CrZoomer">CrZoomer</a> *zoomer,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>   cx,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>   cy,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>   w,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>   h,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>  user_data)      : Run Last</pre>
+<p>
+This signal is emitted just prior to zooming the canvas.  It can be
+intercepted and used to change the default behavior of the zoomer 
+to possibly do something other than zoom the canvas.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>zoomer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cx</code></em> :</span></p></td>
+<td> The selected area center x coordinate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cy</code></em> :</span></p></td>
+<td> The selected area center y coordinate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>w</code></em> :</span></p></td>
+<td> The selected area width.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>h</code></em> :</span></p></td>
+<td> The selected area height.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> True to stop the canvas from being zoomed.  False to allow
+the canvas to be zoomed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="streamer" type="streamer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$1" />
+		<param name="mode" type="string" val="default" />
+		<param name="loop" type="int" val="-1" />
+		<param name="seek" type="int" val="0" />
+		<param name="aggregate" type="bool" val="false" />
+		<param name="multiplexer-delay" type="int" val="0" />
+		<param name="scheduler" type="string" val="frame" />
+		<param name="scheduler-buffer" type="int" val="1000" />
+		<param name="scheduler-delay" type="int" val="0" />
+		<param name="loss" type="double" val="0.0" />
+		<param name="transmitter" type="string" val="RTP" />
+		<param name="port" type="int" val="4000" />
+		<param name="destination" type="string" val="$2" />
+		<param name="ts-mode" type="bool" val="true" />
+		<param name="RTMP-mode" type="bool" val="false" />
+		<param name="RTMP-streamID" type="int" val="1" />
+		<param name="RTMP-video-chunkID" type="int" val="7" />
+		<param name="RTMP-audio-chunkID" type="int" val="6" />
+		<param name="RTMP-chunk-size" type="int" val="4096" />
+		<gfx x="165.0" y="93.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="sink" type="sink" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="false" />
+		<param name="count" type="int" val="0" />
+		<gfx x="363.0" y="94.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="streamer" to="sink" xroute="0"/>
+
+</config>

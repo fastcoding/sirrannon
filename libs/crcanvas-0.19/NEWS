@@ -1,0 +1,343 @@
+release 0.19
+
+BUG FIXES
+- memory leak in cr-text set_property
+
+ENHANCEMENTS:
+- Redesigned cr-panner to better support button 1 panning.  Before it connected
+  to events from the cr-canvas widget which got emitted before item events
+  meaning that the panner would always steal the item events. Connecting the
+  panner to an item means that its return value decides on whether it takes the
+  event.
+
+release 0.18
+
+BUG FIXES
+- Fix compile problem for PyCairoPatter_FromPattern using hack to check for 
+  libcairo2 <= 1.8.6 as a method to see if it is the old API.
+
+release 0.17
+
+BUG FIXES
+- Fix cr-text always testing positive when "text" string = NULL.
+- Fix strange widget drawing outside boundaries seen on GTK 2.18/OS-X
+  implementation. This was caused by leaked cairo_t references.
+- Fixed flashing graphics seen on OS-X/GTK2.18.  This was caused by the use of
+  double expose events.  The new implementation ensures that only one expose
+  event occurs.  This involved re-arrangement of calling location for the
+  before-paint event.
+- Fix cr-vector not recreating path when "x2" or "y2" changed.
+- Prepend zeros in color strings when fill/outline color is returned
+  via get_property
+- Fix compile problem due to API change in PyCairo for PyCairoPatter_FromPattern
+- Fix memory leak in cr-blit
+
+ENHANCEMENTS:
+- Pass GdkWindow pointer as a dataset on the cairo_t that is passed through the
+  paint event.  This can be used by item implementation that wish to call gdk
+  drawing routines.
+- Added "test-fill" property to cr-pixbuf to enable testing of the whole 
+  rectangular area for cases where alpha < 128 is used.
+
+release 0.16
+
+BUGFIXES:
+- Fix cairo_t corruption bug found on Mac OS-X Imendio Framwork.
+- Changed cr-canvas::update to use the GdkWindow to make the cairo_t again.
+  The problem from release 0.14 was do to a bug in geoc I think.
+- Improved handling of ./configure when pygtk is not present
+- Made some minor improvements to the API documentaion
+- Fix x_root, y_root for item event enter/leave
+- Fix seg fault when closing python app with cr-zoomer.
+ENHANCEMENTS:
+- Added repaint-on-scroll property to cr-canvas.  This changes the default
+  behavior to repaint the whole canvas instead. This is needed for the
+  use case where something on the canvas will be changed immediately as a 
+  result of the scroll action.
+
+release 0.15
+
+BUGFIXES:
+- Fix bug where for very large world coordinate areas cr-ellipse would report 
+  zero bounds.  This problem first appears with the cairo-1.6.0 release.  
+  cr-ellipse worked fine with older releases.
+  (use cairo_path_extents vice stroke inside cr-path.c)
+- cr-blit fix test method (ajr4)
+- fix seg fault problem due to unannounced API change in pycairo-1.4.2.
+  pass &PycairoContext_Type to PycairoContext_FromContext
+
+
+release 0.14
+
+BUGFIXES:
+  Changed way of creating cairo_t during update to work-around clipping problem
+  in geoc.  For some reason, when cairo_t is created using gdk_window during an
+  expose event, the transformation does not work correctly.  This seen with
+  cairo 1.4, but not a problem with cairo 1.2.  Please post a bug to SF if this
+  changes causes problems.
+
+API CHANGES:
+  None.
+ENHANCEMENTS:
+  None.
+
+release 0.13
+
+This release contains minor corrections to better support newer
+distributions with cairo 1.4 and Python 2.5
+
+BUGFIXES:
+- Python 2.5 compatibility with new ssize_t type (PEP 353)
+  Python wrapper for argument parsing in Python 2.5 will not work on 
+  64 bit machines without this fix.
+- cairo 1.4 specific - fix test results for line.
+- Fix to properly install python into lib64 on 64 bit architectures.
+  (library still goes to wrong place unless libdir specified to configure)
+  (See comments inside crcanvas.spec file for more info).
+
+API CHANGES:
+  None.
+ENHANCEMENTS:
+  None.
+
+
+release 0.12
+
+BUGFIXES:
+- Seg fault on removal of group having leaf-node simultaneously attached to
+  multiple other groups.  The group was not disconnecting the child invalidate 
+  signal during a dispose.  This bug was very obscure.  Most use cases would 
+  not have exposed it.
+- Paths fix to fill then stroke.  Filling over stroke made paths outlines 
+  appear to be only half the specified width.
+- Made improvements to cr-arrow calculate-bounds device coordinate calculations
+  to make things work better with upcoming cairo 1.4 release.
+- Fixed rounding bug where lines < 1 pixel would leave traces on the canvas.
+- Fix GtkNotebook bug where canvas added initially into a notebook is unmapped
+  and update loop does not check for this case.
+- Fix some potential memory leaks in CrRectangle and CrPath.
+
+API CHANGES:
+- Added cr_arrow_connect_parent, to support connecting arrow to line 
+  when using language bindings.
+
+ENHANCEMENTS:
+- Added cr_item_set_z convenience function for setting absolute z-order.
+- Added cr_item_set_z_relative function for setting relative z-order.
+- Added rpm target to top level Makefile. Enter `make rpm' to get an RPM.
+- Made color text properties readable - (although "#nnnnnn" string comes back).
+
+--------------------------------------------------------------------------
+
+release 0.11
+
+NOTES:
+
+There have been changes to the event handling parameters and parameter lists
+for CrItem's.  If you have an application written prior to release 0.11,
+See the CHANGES REQUIRED section below for details on how to update the
+application.
+
+The coordinate system passed to canvas items during the event signal has been
+changed.  Prior to release 0.11 the event coordinates were in reference to the
+transformation available at the first button push.  From release 0.11 forward,
+the event coordinates will reflect the current transformation.
+
+This fixes problems seen when connecting to a non leaf-node item and
+manipulating leaf items.
+
+This BREAKS some previously written item event handlers.  Any event handler
+written prior to release 0.11 had to keep track of prior event coordinates to
+determine how much had changed since the last event.  Henceforth, event handlers
+wishing to position items with absolute coordinates are possible. Event handlers
+wishing to perform relative translations need to save off initial coordinates
+only.
+
+Addtionally, the actual picked item reference from the CrItem::test signal is
+now being passed as the last parameter in the CrItem::event signal.  This makes
+it easy to find the actual item that is being manipulated in cases where the
+event signal is connected higher up in the item tree.
+
+
+CHANGES REQUIRED TO APPLICATIONS CREATED PRIOR TO 0.11
+
+1.  The parameter list for event handlers needs to have an additional field
+added.  Add CrItem *pick_item to the end but before the user_data parameter.
+
+2. The mouse motion in event handler can be fixed to work with this release by
+removing the line in the motion event that saves off the previous x and y
+coordinates from the event structure.  Save the initial x and y in the button
+press and use this and the motion coordinates to translate the item.
+
+ENHANCEMENTS:
+A new directory "cross-build" is in the distribution.  This has some
+suggestions for cross compiling the python crcanvas module for WIN32.  See the
+README file in this directory.
+
+BUGFIXES:
+cr-item.c: fix 'event' signal matrix parameter for case where event handled is
+from a non-leaf item. Was not properly multiplying item matrices.
+
+API CHANGES:
+cr_item_find_child: new item method used internally by the canvas so that
+better coordinates can be passed to item events.
+
+
+--------------------------------------------------------------------------
+
+release 0.10
+
+NOTES: 
+
+This release takes advantage of some API additions in cairo 1.2.  Therefore,
+>= cairo 1.2 is required.  If you have a not so recent distribution, it may be
+ possible to install cairo 1.2.4 into /usr/local and compile this way.
+
+The python binding for this release requires pycairo 1.2 or greater
+due to some minor API changes in pycairo.
+
+ENHANCEMENTS:
+(none)
+API CHANGES:
+(none)
+BUGFIXES:
+* cr-canvas.c: fix for finite world canvas compensation problem on re-parent
+* cr-types.c: CrPoints not returning ref - causes CrLine to not work.
+* python wrapper: fix for API change to pycairo pattern and surface
+* python wrapper: fix to crcanvas.set_color to accept python long int
+
+
+release 0.9
+
+ENHANCEMENTS:
+* Allow NULL/None to be passed into CrPixbuf for surface and pixbuf properties.
+* CrBlit - added python wrapper for it.
+
+API CHANGES:
+(none)
+
+BUGFIXES:
+* CrCanvas - ensure items get a LEAVE_NOTIFY when the canvas window goes out of
+             focus
+* CrBlit - missing break after PROP_SCALE_FACTOR
+* CrVector - bad invalidate when x2,y2 are negative
+* all = minor improvements to class documentation
+
+
+release 0.8
+
+ENHANCEMENTS:
+
+* CrBlit created to improve CPU performance for complex renderings.
+   The Blit item is used to group any arbitrary item tree into an offscreen
+   memory surface.  The memory surface is then painted to the screen in a single
+   operation. It should be used in cases where the CPU time needed to paint the
+   item tree to the screen is greater than then frequency at which the tree
+   needs to be repainted. 
+
+* Some C convenience constructors added for consistency: cr_canvas_new,
+  cr_path_new
+
+* cr_item_calculate_bounds routine added for determining bounds prior to first
+  canvas update.  (python wrapper for this working as well).
+
+* CrPixbuf added surface property to allow a cairo_surface_t to be set directly
+  as the image to render.
+
+* cr_path_set_color: convenience function to put RGBA integer into cairo context
+
+* cr_path_setup_line: convenience function to set the line-width,
+  line-scaleable, and dash properties into the cairo context.
+
+
+API CHANGES:
+* Some C constructors changed to be more consistent: cr_line_new,
+  cr_pixbuf_new, cr_inverse_new
+* cr_path_make_temp_cairo moved to cr_item_make_temp_cairo.
+
+
+BUGFIXES:
+* 1531209 - remove python from subdirs when disabled.
+* 1531724 (psyeye) - fix C++ compilation problems.
+* CrPanner, CrRotator, CrZoomer: Cause canvas to skip testing items when these
+  are activated.  This prevents hanging when using complex renderings.
+* CrArrow: Fixed bug when not unhiding the arrow when parent line has data
+  available
+* CrCanvas: Fix so update is always complete before first expose (on realize)
+* CrCanvas: limit_scale getting confused by rotation.  Problem noticed in
+  inverse example program where rotation > 180 with fixed scroll_region.
+* CrVector: line-width ignored when line-scaleable is FALSE.
+* CrPixbuf: fix to be scaleable by default.
+
+------------------------------------------------------------------------------
+
+
+release 0.7
+
+BUGFIXES:
+
+* CrEllipse width too small.
+* CrCanvas button press not clearing if no release.
+* CrCanvas allow user to block default event behavior by returning TRUE.
+* CrCanvas clean up pick item after a reparent.
+* CrCanvas handle keyboard events.
+* CrCanvas handle scaling properly after a reparent.
+* CrCanvas eliminate gsignal warning from set_scroll_adjustments.
+* CrItem prevent update request when hide() is called and item already hidden.
+* CrPanner/Rotator/Zoomer put cursor selection on window not parent.
+* CrPath find stroke extents correctly for device line width when 
+  user width is zero.
+* CrPixbuf check for NULL device reference during test signal.
+* CrVector set color when scaleable.
+* custom-demo.py work-around gdk python event.time wrapper problem.
+
+ENHANCEMENTS:
+
+* CrPath added line-width-use-y property for the non-fixed aspect canvas.
+* CrZoomer added new "select" signal to allow default behavior to be modified.
+* CrZoomer added new corner-to-corner and mainain-aspect properties
+* CrCanvas added new pick-item property.
+
+
+
+
+release 0.6
+
+This release contains only minimal changes over the 0.5 release.
+
+* Changed cr-item so that child items draw on top of their parents.
+
+* Changed "viewport-changed" signal from cr-canvas to be a "before-paint" signal
+* with a viewport_changed flag. (API change.)
+
+* Found and fixed problems with several items not calling cairo_restore()
+
+* Fixed install problem with Python bindings.
+
+* Added "show-less" property to cr-canvas for finer control over resizing when
+  auto-scale and maintain-aspect are turned on.
+
+* Eliminated before-paint and after-paint signal emissions from cr-item.  These
+  are unnecessary as it is just as easy to connect to the paint signal at
+  different points in the tree.
+
+release 0.5
+
+* Added mostly complete Python language bindings with example programs.
+
+* Fixed problem of item causing extra repaints when it is placed on multiple
+  branches of the same tree and/or on multiple trees.
+
+* Changed calculate-bounds signal to pass a boxed structure for bounds.
+  (API: Any item overriding calculate-bounds needs to be changed to use
+   the new CrBounds structure.)
+
+* Added make-path signal to make it easier to design custom path items.
+
+* Moved test-rectangle property from pixbuf into Item class since it is useful
+  in a general sense.
+
+* Made Cairo matrix into an item property.
+
+* Added root item property to Canvas widget.
+-  

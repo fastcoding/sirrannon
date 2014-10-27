@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="40000" seed="0" simulation="100">
+	<component name="qmatch-buffer" type="dummy">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="983.0" y="367.5"/>
+	</component>
+	<component name="sink" type="sink">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="count" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="1164.0" y="367.5"/>
+	</component>
+	<component name="A 1" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="119.0" y="58.5"/>
+	</component>
+	<component name="A 2" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="196.0" y="181.5"/>
+	</component>
+	<component name="A 3" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="280.0" y="295.5"/>
+	</component>
+	<component name="A 4" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="360.0" y="54.5"/>
+	</component>
+	<component name="A 5" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="447.0" y="174.5"/>
+	</component>
+	<component name="A 6" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="534.0" y="292.5"/>
+	</component>
+	<component name="A 7" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="609.0" y="47.5"/>
+	</component>
+	<component name="A 8" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="706.0" y="168.5"/>
+	</component>
+	<component name="A 9" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="811.0" y="286.5"/>
+	</component>
+	<component name="A 10" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="119.0" y="689.5"/>
+	</component>
+	<component name="A 11" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="196.0" y="565.5"/>
+	</component>
+	<component name="A 12" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="279.0" y="453.5"/>
+	</component>
+	<component name="A 13" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="360.0" y="693.5"/>
+	</component>
+	<component name="A 14" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="447.0" y="569.5"/>
+	</component>
+	<component name="A 15" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="534.0" y="450.5"/>
+	</component>
+	<component name="A 16" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="608.0" y="692.5"/>
+	</component>
+	<component name="A 17" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="706.0" y="566.5"/>
+	</component>
+	<component name="A 18" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val=""/>
+		<param name="param1" type="string" val=""/>
+		<param name="param2" type="string" val=""/>
+		<param name="param3" type="string" val=""/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="811.0" y="447.5"/>
+	</component>
+	<route from="qmatch-buffer" to="sink" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="A 1" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 2" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 3" to="qmatch-buffer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="A 4" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 5" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 6" to="qmatch-buffer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="A 10" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 11" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 12" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 15" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 14" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 13" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 18" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 17" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 16" to="qmatch-buffer" xroute="0">
+		<gfx from="4" to="7"/>
+	</route>
+	<route from="A 9" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 8" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="A 7" to="qmatch-buffer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+</config>

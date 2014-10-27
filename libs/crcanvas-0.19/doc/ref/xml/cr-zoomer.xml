@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrZoomer">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrZoomer.top_of_page">CrZoomer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrZoomer</refname>
+<refpurpose>A object for setting up box zooming on a 
+<link linkend="CrCanvas"><type>CrCanvas</type></link> widget.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrZoomer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrZoomer-struct">CrZoomer</link>;
+<link linkend="CrZoomer">CrZoomer</link> *          <link linkend="cr-zoomer-new">cr_zoomer_new</link>                       (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-zoomer-activate">cr_zoomer_activate</link>                  (<link linkend="CrZoomer">CrZoomer</link> *zoomer);
+<link linkend="void">void</link>                <link linkend="cr-zoomer-deactivate">cr_zoomer_deactivate</link>                (<link linkend="CrZoomer">CrZoomer</link> *zoomer);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrZoomer.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----CrZoomer
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrZoomer.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrZoomer--active">active</link>&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrZoomer--canvas">canvas</link>&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write
+  &quot;<link linkend="CrZoomer--corner-to-corner">corner-to-corner</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrZoomer--cursor">cursor</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="CrZoomer--fill-color">fill-color</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrZoomer--fill-color-rgba">fill-color-rgba</link>&quot;          <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="CrZoomer--line-width">line-width</link>&quot;               <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrZoomer--maintain-aspect">maintain-aspect</link>&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrZoomer--outline-color">outline-color</link>&quot;            <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrZoomer--outline-color-rgba">outline-color-rgba</link>&quot;       <link linkend="guint">guint</link>                 : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="CrZoomer.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="CrZoomer-activate">activate</link>&quot;                                       : Run First
+  &quot;<link linkend="CrZoomer-deactivate">deactivate</link>&quot;                                     : Run First
+  &quot;<link linkend="CrZoomer-select">select</link>&quot;                                         : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="CrZoomer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+By default <link linkend="CrZoomer--fill-color"><type>"fill-color"</type></link> and <link linkend="CrZoomer--outline-color"><type>"outline-color"</type></link> properties 
+are disabled.  These should be set
+at construction time in order to see the zoom box.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrZoomer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrZoomer-struct" role="struct">
+<title>CrZoomer</title>
+<indexterm zone="CrZoomer-struct"><primary sortas="CrZoomer">CrZoomer</primary></indexterm><programlisting>typedef struct _CrZoomer CrZoomer;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-zoomer-new" role="function">
+<title>cr_zoomer_new ()</title>
+<indexterm zone="cr-zoomer-new"><primary sortas="cr_zoomer_new">cr_zoomer_new</primary></indexterm><programlisting><link linkend="CrZoomer">CrZoomer</link> *          cr_zoomer_new                       (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A factory to create a CrZoomer object and connect it to a <link linkend="CrCanvas"><type>CrCanvas</type></link> in one
+step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara> The canvas widget to operate on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A newly created <link linkend="CrZoomer"><type>CrZoomer</type></link> object.  You must call g_object_unref when
+finished with it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-zoomer-activate" role="function">
+<title>cr_zoomer_activate ()</title>
+<indexterm zone="cr-zoomer-activate"><primary sortas="cr_zoomer_activate">cr_zoomer_activate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_zoomer_activate                  (<link linkend="CrZoomer">CrZoomer</link> *zoomer);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>zoomer</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-zoomer-deactivate" role="function">
+<title>cr_zoomer_deactivate ()</title>
+<indexterm zone="cr-zoomer-deactivate"><primary sortas="cr_zoomer_deactivate">cr_zoomer_deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_zoomer_deactivate                (<link linkend="CrZoomer">CrZoomer</link> *zoomer);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>zoomer</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrZoomer.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrZoomer--active" role="property"><title>The <literal>&quot;active&quot;</literal> property</title>
+<indexterm zone="CrZoomer--active"><primary sortas="CrZoomer:active">CrZoomer:active</primary></indexterm><programlisting>  &quot;active&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Active/Deactivate the zoomer object or check the activation status.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrZoomer--canvas" role="property"><title>The <literal>&quot;canvas&quot;</literal> property</title>
+<indexterm zone="CrZoomer--canvas"><primary sortas="CrZoomer:canvas">CrZoomer:canvas</primary></indexterm><programlisting>  &quot;canvas&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write</programlisting>
+<para>Reference to CrCanvas widget.</para></refsect2>
+<refsect2 id="CrZoomer--corner-to-corner" role="property"><title>The <literal>&quot;corner-to-corner&quot;</literal> property</title>
+<indexterm zone="CrZoomer--corner-to-corner"><primary sortas="CrZoomer:corner-to-corner">CrZoomer:corner-to-corner</primary></indexterm><programlisting>  &quot;corner-to-corner&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the zoombox should be made by dragging from corner to corner.  The default is to drag from the center.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrZoomer--cursor" role="property"><title>The <literal>&quot;cursor&quot;</literal> property</title>
+<indexterm zone="CrZoomer--cursor"><primary sortas="CrZoomer:cursor">CrZoomer:cursor</primary></indexterm><programlisting>  &quot;cursor&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>GDK Cursor to use when zoombox is selected.</para><para>Allowed values: [0,153]</para>
+<para>Default value: 64</para>
+</refsect2>
+<refsect2 id="CrZoomer--fill-color" role="property"><title>The <literal>&quot;fill-color&quot;</literal> property</title>
+<indexterm zone="CrZoomer--fill-color"><primary sortas="CrZoomer:fill-color">CrZoomer:fill-color</primary></indexterm><programlisting>  &quot;fill-color&quot;               <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A string color such as 'red', or '#123456' to be used to fill the zoombox.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrZoomer--fill-color-rgba" role="property"><title>The <literal>&quot;fill-color-rgba&quot;</literal> property</title>
+<indexterm zone="CrZoomer--fill-color-rgba"><primary sortas="CrZoomer:fill-color-rgba">CrZoomer:fill-color-rgba</primary></indexterm><programlisting>  &quot;fill-color-rgba&quot;          <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>Zoombox Fill Color RGBA.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrZoomer--line-width" role="property"><title>The <literal>&quot;line-width&quot;</literal> property</title>
+<indexterm zone="CrZoomer--line-width"><primary sortas="CrZoomer:line-width">CrZoomer:line-width</primary></indexterm><programlisting>  &quot;line-width&quot;               <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Line width  in user units.</para><para>Default value: 2</para>
+</refsect2>
+<refsect2 id="CrZoomer--maintain-aspect" role="property"><title>The <literal>&quot;maintain-aspect&quot;</literal> property</title>
+<indexterm zone="CrZoomer--maintain-aspect"><primary sortas="CrZoomer:maintain-aspect">CrZoomer:maintain-aspect</primary></indexterm><programlisting>  &quot;maintain-aspect&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the aspect ratio of the rectangle should match the aspect of the canvas widget.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrZoomer--outline-color" role="property"><title>The <literal>&quot;outline-color&quot;</literal> property</title>
+<indexterm zone="CrZoomer--outline-color"><primary sortas="CrZoomer:outline-color">CrZoomer:outline-color</primary></indexterm><programlisting>  &quot;outline-color&quot;            <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A string color such as 'red', or '#123456' to be used to sroke the zoombox.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrZoomer--outline-color-rgba" role="property"><title>The <literal>&quot;outline-color-rgba&quot;</literal> property</title>
+<indexterm zone="CrZoomer--outline-color-rgba"><primary sortas="CrZoomer:outline-color-rgba">CrZoomer:outline-color-rgba</primary></indexterm><programlisting>  &quot;outline-color-rgba&quot;       <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>Zoombox Outline Color RGBA.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="CrZoomer.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="CrZoomer-activate" role="signal"><title>The <literal>&quot;activate&quot;</literal> signal</title>
+<indexterm zone="CrZoomer-activate"><primary sortas="CrZoomer::activate">CrZoomer::activate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrZoomer">CrZoomer</link> *zoomer,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted whenever the zoombox is first activated.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>zoomer</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrZoomer-deactivate" role="signal"><title>The <literal>&quot;deactivate&quot;</literal> signal</title>
+<indexterm zone="CrZoomer-deactivate"><primary sortas="CrZoomer::deactivate">CrZoomer::deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrZoomer">CrZoomer</link> *zoomer,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted whenever the zoombox is deactivated.
+It can be used to get to a callback from a zoombox selection.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>zoomer</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrZoomer-select" role="signal"><title>The <literal>&quot;select&quot;</literal> signal</title>
+<indexterm zone="CrZoomer-select"><primary sortas="CrZoomer::select">CrZoomer::select</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="CrZoomer">CrZoomer</link> *zoomer,
+                                                        <link linkend="gdouble">gdouble</link>   cx,
+                                                        <link linkend="gdouble">gdouble</link>   cy,
+                                                        <link linkend="gdouble">gdouble</link>   w,
+                                                        <link linkend="gdouble">gdouble</link>   h,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted just prior to zooming the canvas.  It can be
+intercepted and used to change the default behavior of the zoomer 
+to possibly do something other than zoom the canvas.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>zoomer</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cx</parameter>&#160;:</term>
+<listitem><simpara> The selected area center x coordinate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cy</parameter>&#160;:</term>
+<listitem><simpara> The selected area center y coordinate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>w</parameter>&#160;:</term>
+<listitem><simpara> The selected area width.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>h</parameter>&#160;:</term>
+<listitem><simpara> The selected area height.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> True to stop the canvas from being zoomed.  False to allow
+the canvas to be zoomed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

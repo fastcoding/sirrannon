@@ -1,0 +1,63 @@
+<!-- ##### SECTION Title ##### -->
+CrBlit
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrBlit ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrBlit:canvas ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrBlit:device-height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrBlit:device-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrBlit:scale-factor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrBlit:test-image ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_blit_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

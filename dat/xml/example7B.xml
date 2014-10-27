@@ -1,0 +1,97 @@
+<config quantum="40000" simulation="1000" seed="5000">
+	<component name="qmatch-buffer" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="100" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<gfx x="370.0" y="305.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="sink" type="sink" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="false" />
+		<param name="count" type="int" val="0" />
+		<gfx x="794.0" y="305.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="A" type="block" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="config" type="string" val="$1" />
+		<param name="param1" type="string" val="" />
+		<param name="param2" type="string" val="" />
+		<param name="param3" type="string" val="" />
+		<param name="param4" type="string" val="" />
+		<param name="param5" type="string" val="" />
+		<param name="param6" type="string" val="" />
+		<param name="param7" type="string" val="" />
+		<param name="param8" type="string" val="" />
+		<param name="param9" type="string" val="" />
+		<param name="param10" type="string" val="" />
+		<param name="param11" type="string" val="" />
+		<param name="param12" type="string" val="" />
+		<param name="param13" type="string" val="" />
+		<param name="param14" type="string" val="" />
+		<param name="param15" type="string" val="" />
+		<gfx x="150.0" y="83.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="B" type="block" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="config" type="string" val="$1" />
+		<param name="param1" type="string" val="" />
+		<param name="param2" type="string" val="" />
+		<param name="param3" type="string" val="" />
+		<param name="param4" type="string" val="" />
+		<param name="param5" type="string" val="" />
+		<param name="param6" type="string" val="" />
+		<param name="param7" type="string" val="" />
+		<param name="param8" type="string" val="" />
+		<param name="param9" type="string" val="" />
+		<param name="param10" type="string" val="" />
+		<param name="param11" type="string" val="" />
+		<param name="param12" type="string" val="" />
+		<param name="param13" type="string" val="" />
+		<param name="param14" type="string" val="" />
+		<param name="param15" type="string" val="" />
+		<gfx x="149.0" y="305.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="C" type="block" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="config" type="string" val="$1" />
+		<param name="param1" type="string" val="" />
+		<param name="param2" type="string" val="" />
+		<param name="param3" type="string" val="" />
+		<param name="param4" type="string" val="" />
+		<param name="param5" type="string" val="" />
+		<param name="param6" type="string" val="" />
+		<param name="param7" type="string" val="" />
+		<param name="param8" type="string" val="" />
+		<param name="param9" type="string" val="" />
+		<param name="param10" type="string" val="" />
+		<param name="param11" type="string" val="" />
+		<param name="param12" type="string" val="" />
+		<param name="param13" type="string" val="" />
+		<param name="param14" type="string" val="" />
+		<param name="param15" type="string" val="" />
+		<gfx x="195.0" y="553.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="A" to="qmatch-buffer" xroute="0"/>
+
+	<route from="C" to="qmatch-buffer" xroute="0"/>
+
+	<route from="B" to="qmatch-buffer" xroute="0"/>
+
+	<route from="qmatch-buffer" to="sink" xroute="0"/>
+
+</config>

@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrLine">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrLine.top_of_page">CrLine</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrLine</refname>
+<refpurpose>A polygon or polyline canvas item.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrLine.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrLine-struct">CrLine</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-line-new">cr_line_new</link>                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrLine.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----<link linkend="CrPath">CrPath</link>
+               +----CrLine
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrLine.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrLine--array">array</link>&quot;                    <link linkend="gpointer">gpointer</link>              : Write
+  &quot;<link linkend="CrLine--close">close</link>&quot;                    <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrLine--points">points</link>&quot;                   <link linkend="CrPoints">CrPoints</link>*             : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrLine.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This canvas item can render polygons or polylines.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrLine.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrLine-struct" role="struct">
+<title>CrLine</title>
+<indexterm zone="CrLine-struct"><primary sortas="CrLine">CrLine</primary></indexterm><programlisting>typedef struct _CrLine CrLine;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-line-new" role="function">
+<title>cr_line_new ()</title>
+<indexterm zone="cr-line-new"><primary sortas="cr_line_new">cr_line_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_line_new                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience function to create a polyline and add it to a canvas item
+parent group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to keep it around.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrLine.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrLine--array" role="property"><title>The <literal>&quot;array&quot;</literal> property</title>
+<indexterm zone="CrLine--array"><primary sortas="CrLine:array">CrLine:array</primary></indexterm><programlisting>  &quot;array&quot;                    <link linkend="gpointer">gpointer</link>              : Write</programlisting>
+<para>an array of doubleprecision x,y values. item takes ownership.</para></refsect2>
+<refsect2 id="CrLine--close" role="property"><title>The <literal>&quot;close&quot;</literal> property</title>
+<indexterm zone="CrLine--close"><primary sortas="CrLine:close">CrLine:close</primary></indexterm><programlisting>  &quot;close&quot;                    <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>True, if it is a polygon.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrLine--points" role="property"><title>The <literal>&quot;points&quot;</literal> property</title>
+<indexterm zone="CrLine--points"><primary sortas="CrLine:points">CrLine:points</primary></indexterm><programlisting>  &quot;points&quot;                   <link linkend="CrPoints">CrPoints</link>*             : Read / Write</programlisting>
+<para>a boxed array of double precision x,y values.</para></refsect2>
+</refsect1>
+
+
+
+
+</refentry>

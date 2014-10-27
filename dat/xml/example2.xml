@@ -1,0 +1,53 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="rtp-receiver" type="rtp-receiver" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="$1" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="buffer" type="int" val="8388608" />
+		<param name="extension" type="bool" val="false" />
+		<param name="multicast" type="bool" val="false" />
+		<param name="multicast-server" type="string" val="" />
+		<param name="tracefile" type="string" val="" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="85.0" y="38.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-scheduler" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1000" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<gfx x="278.0" y="38.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="avc-unpacketizer" type="avc-unpacketizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="startcodes" type="bool" val="true" />
+		<param name="strict-annex-b" type="bool" val="false" />
+		<gfx x="481.0" y="38.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-writer" type="basic-writer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$2" />
+		<param name="flush" type="bool" val="true" />
+		<param name="fragmented" type="bool" val="false" />
+		<gfx x="692.0" y="38.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="rtp-receiver" to="basic-scheduler" xroute="0"/>
+
+	<route from="basic-scheduler" to="avc-unpacketizer" xroute="0"/>
+
+	<route from="avc-unpacketizer" to="basic-writer" xroute="0"/>
+
+</config>

@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrBlit">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrBlit.top_of_page">CrBlit</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrBlit</refname>
+<refpurpose>A grouping item to improve performance by caching
+complex item trees off-screen.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrBlit.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrBlit-struct">CrBlit</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-blit-new">cr_blit_new</link>                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrBlit.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----CrBlit
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrBlit.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrBlit--canvas">canvas</link>&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write
+  &quot;<link linkend="CrBlit--device-height">device-height</link>&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrBlit--device-width">device-width</link>&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrBlit--scale-factor">scale-factor</link>&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrBlit--test-image">test-image</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrBlit.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The Blit item is used to group any arbitrary item tree into an offscreen
+memory surface.  The memory surface is then painted to the screen in a single
+operation. It should be used in cases where the CPU time needed to paint the
+item tree to the screen is greater than then frequency at which the tree
+needs to be repainted. 
+</para>
+<para>
+To use the item, either set a fixed memory size by setting the
+<link linkend="CrBlit--device-width"><type>"device_width"</type></link> and <link linkend="CrBlit--device-height"><type>"device_height"</type></link> properties explicitly,
+or allow it to automatically determine the best memory size by setting the
+<link linkend="CrBlit--canvas"><type>"canvas"</type></link> and <link linkend="CrBlit--scale-factor"><type>"scale-factor"</type></link> properties.  When using fixed memory
+sizing, the image will often look blurry.  When using automatic sizing, the
+image will be re-built each time the canvas is zoomed or panned.
+</para>
+<para>
+One example use is a detailed vector map with a moving animation over it.  
+As the animation moves rapidly over the map, there is no need to redraw the
+map vectors for each movement of the animation.  The Blit item can be used to
+rasterize the map so that only a single image will be repainted with each
+movement of the animation.
+</para>
+<para>
+Another example use is a very complex item tree that needs to be scaled or
+panned.  The operation may be sluggish if the amount of time required to
+render the vector graphics is greater than 0.1 seconds.  Because rendering an
+image is generally faster, using CrBlit during the scaling or panning
+operation will make the operation happen smoothly. 
+</para>
+<para>
+(<emphasis>BUGS:</emphasis> On some hardware, this item does not work
+properly and in some cases causes the window manager to crash.  On other
+hardware it works perfectly.  Suspect problem is in cairo library -- still
+investigating.)</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrBlit.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrBlit-struct" role="struct">
+<title>CrBlit</title>
+<indexterm zone="CrBlit-struct"><primary sortas="CrBlit">CrBlit</primary></indexterm><programlisting>typedef struct _CrBlit CrBlit;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-blit-new" role="function">
+<title>cr_blit_new ()</title>
+<indexterm zone="cr-blit-new"><primary sortas="cr_blit_new">cr_blit_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_blit_new                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience routine for creating a cr-blit item and adding it to an item
+group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrBlit.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrBlit--canvas" role="property"><title>The <literal>&quot;canvas&quot;</literal> property</title>
+<indexterm zone="CrBlit--canvas"><primary sortas="CrBlit:canvas">CrBlit:canvas</primary></indexterm><programlisting>  &quot;canvas&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write</programlisting>
+<para>Reference to CrCanvas widget which can be used in lieu of setting device-width/height explicitly.  Setting the canvas property will cause the blitted image to get periodically recalculated as the scale and size of the referenced canvas changes. In the event that the blitted image is added to the item tree of multiple canvasses, the recalulation will obviously only be triggered by changes to the canvas referenced here.</para></refsect2>
+<refsect2 id="CrBlit--device-height" role="property"><title>The <literal>&quot;device-height&quot;</literal> property</title>
+<indexterm zone="CrBlit--device-height"><primary sortas="CrBlit:device-height">CrBlit:device-height</primary></indexterm><programlisting>  &quot;device-height&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The pixel height dedicated to the blit surface. This property will get set automatically if the canvas property is set.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrBlit--device-width" role="property"><title>The <literal>&quot;device-width&quot;</literal> property</title>
+<indexterm zone="CrBlit--device-width"><primary sortas="CrBlit:device-width">CrBlit:device-width</primary></indexterm><programlisting>  &quot;device-width&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The pixel width dedicated to the blit surface.  This property will get set automatically if the canvas property is set.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrBlit--scale-factor" role="property"><title>The <literal>&quot;scale-factor&quot;</literal> property</title>
+<indexterm zone="CrBlit--scale-factor"><primary sortas="CrBlit:scale-factor">CrBlit:scale-factor</primary></indexterm><programlisting>  &quot;scale-factor&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A ratio that defines the maximum amount of memory that can be used to define the blit device-width and height when the canvas property is set.  i.e., If canvas is zoomed in to show only 10x10 user coordinates and the scale-factor=2, but the blitted image is 100x100 in user corrdinates, only a 20x20 fraction of the image will be stored.  This property has no-effect when the canvas property is not set.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 2</para>
+</refsect2>
+<refsect2 id="CrBlit--test-image" role="property"><title>The <literal>&quot;test-image&quot;</literal> property</title>
+<indexterm zone="CrBlit--test-image"><primary sortas="CrBlit:test-image">CrBlit:test-image</primary></indexterm><programlisting>  &quot;test-image&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If only the image should be tested rather than the individual child items.  For very complex item trees, this property will save cpu usage.  Set this to FALSE if you need to distinguish which part of the image is selected.</para><para>Default value: TRUE</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

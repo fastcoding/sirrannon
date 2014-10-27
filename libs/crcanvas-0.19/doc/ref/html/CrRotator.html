@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrRotator</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrBlit.html" title="CrBlit">
+<link rel="next" href="CrPanner.html" title="CrPanner">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrBlit.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrPanner.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrRotator.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrRotator.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrRotator.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrRotator.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrRotator">
+<a name="CrRotator"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrRotator.top_of_page"></a>CrRotator</span></h2>
+<p>CrRotator — A object for setting up mouse rotation on a <a class="link" href="CrCanvas.html" title="CrCanvas"><span class="type">CrCanvas</span></a>
+widget.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrRotator.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrRotator.html#CrRotator-struct" title="CrRotator">CrRotator</a>;
+<a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *         <a class="link" href="CrRotator.html#cr-rotator-new" title="cr_rotator_new ()">cr_rotator_new</a>                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrRotator.html#cr-rotator-activate" title="cr_rotator_activate ()">cr_rotator_activate</a>                 (<a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *panner);
+void                <a class="link" href="CrRotator.html#cr-rotator-deactivate" title="cr_rotator_deactivate ()">cr_rotator_deactivate</a>               (<a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *rotator);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrRotator.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----CrRotator
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrRotator.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrRotator.html#CrRotator--active" title='The "active" property'>active</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrRotator.html#CrRotator--canvas" title='The "canvas" property'>canvas</a>"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write
+  "<a class="link" href="CrRotator.html#CrRotator--cursor" title='The "cursor" property'>cursor</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrRotator.description"></a><h2>Description</h2>
+<p>
+</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrRotator.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrRotator">
+<a name="CrRotator-struct"></a><h3>CrRotator</h3>
+<pre class="programlisting">typedef struct _CrRotator CrRotator;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_rotator_new ()">
+<a name="cr-rotator-new"></a><h3>cr_rotator_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *         cr_rotator_new                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A factory method to create a new CrRotator and connect it to a canvas in one
+step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td> The canvas device that this panner will be used with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The newly created CrRotator object.  
+
+Unlike with the constructors for CrItem implementations, you own the returned
+reference.  You should call g_object_unref when you are finished with this
+object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_rotator_activate ()">
+<a name="cr-rotator-activate"></a><h3>cr_rotator_activate ()</h3>
+<pre class="programlisting">void                cr_rotator_activate                 (<a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *panner);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>panner</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_rotator_deactivate ()">
+<a name="cr-rotator-deactivate"></a><h3>cr_rotator_deactivate ()</h3>
+<pre class="programlisting">void                cr_rotator_deactivate               (<a class="link" href="CrRotator.html" title="CrRotator">CrRotator</a> *rotator);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>rotator</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrRotator.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "active" property'>
+<a name="CrRotator--active"></a><h3>The <code class="literal">"active"</code> property</h3>
+<pre class="programlisting">  "active"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Active/Deactivate the rotator object or check the activation status.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "canvas" property'>
+<a name="CrRotator--canvas"></a><h3>The <code class="literal">"canvas"</code> property</h3>
+<pre class="programlisting">  "canvas"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write</pre>
+<p>Reference to CrCanvas widget.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "cursor" property'>
+<a name="CrRotator--cursor"></a><h3>The <code class="literal">"cursor"</code> property</h3>
+<pre class="programlisting">  "cursor"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>GDK Cursor to use when rotator is selected.</p>
+<p>Allowed values: [0,153]</p>
+<p>Default value: 50</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

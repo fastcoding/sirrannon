@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrVector">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrVector.top_of_page">CrVector</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrVector</refname>
+<refpurpose>A simple two point line vector where the end point can be
+optionally drawn to device coordinates.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrVector.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrVector-struct">CrVector</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-vector-new">cr_vector_new</link>                       (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> x2,
+                                                         <link linkend="double">double</link> y2,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrVector.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----<link linkend="CrPath">CrPath</link>
+               +----CrVector
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrVector.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrVector--end-scaleable">end-scaleable</link>&quot;            <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrVector--x2">x2</link>&quot;                       <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrVector--y2">y2</link>&quot;                       <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrVector.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The is a simple way to create a two point line vector.  The only difference
+between this object and <link linkend="CrLine"><type>CrLine</type></link> is that the <link linkend="CrVector--x2"><type>"x2"</type></link> and <link linkend="CrVector--y2"><type>"y2"</type></link> 
+properties can be optionally referenced to device space.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrVector.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrVector-struct" role="struct">
+<title>CrVector</title>
+<indexterm zone="CrVector-struct"><primary sortas="CrVector">CrVector</primary></indexterm><programlisting>typedef struct _CrVector CrVector;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-vector-new" role="function">
+<title>cr_vector_new ()</title>
+<indexterm zone="cr-vector-new"><primary sortas="cr_vector_new">cr_vector_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_vector_new                       (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> x2,
+                                                         <link linkend="double">double</link> y2,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience function to create a simple line vector and add it to a canvas
+item parent group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The starting point of the vector.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The starting point of the vector.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> The relative ending point of the vector along the x-axis.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> The relative ending point of the vector along the y-axis.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrVector.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrVector--end-scaleable" role="property"><title>The <literal>&quot;end-scaleable&quot;</literal> property</title>
+<indexterm zone="CrVector--end-scaleable"><primary sortas="CrVector:end-scaleable">CrVector:end-scaleable</primary></indexterm><programlisting>  &quot;end-scaleable&quot;            <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>True if the end of the vector is tied to item coordinate space. FALSE if the end of the vector is tied to device coordinate space.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrVector--x2" role="property"><title>The <literal>&quot;x2&quot;</literal> property</title>
+<indexterm zone="CrVector--x2"><primary sortas="CrVector:x2">CrVector:x2</primary></indexterm><programlisting>  &quot;x2&quot;                       <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The length of the vector in the positive x-axis direction.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrVector--y2" role="property"><title>The <literal>&quot;y2&quot;</literal> property</title>
+<indexterm zone="CrVector--y2"><primary sortas="CrVector:y2">CrVector:y2</primary></indexterm><programlisting>  &quot;y2&quot;                       <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The length of the vector in the positive y-axis direction.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

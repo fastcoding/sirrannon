@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrEllipse">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrEllipse.top_of_page">CrEllipse</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrEllipse</refname>
+<refpurpose>A simple ellipse canvas item.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrEllipse.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrEllipse-struct">CrEllipse</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-ellipse-new">cr_ellipse_new</link>                      (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> width,
+                                                         <link linkend="double">double</link> height,
+                                                         <link linkend="double">double</link> orientation,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrEllipse.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----<link linkend="CrPath">CrPath</link>
+               +----CrEllipse
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrEllipse.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrEllipse--height">height</link>&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrEllipse--orientation">orientation</link>&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrEllipse--width">width</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrEllipse.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The ellipse is defined by its center point <link linkend="CrItem--x"><type>"x"</type></link>, <link linkend="CrItem--y"><type>"y"</type></link>,
+its <link linkend="CrEllipse--width"><type>"width"</type></link> half to either side of x, its <link linkend="CrEllipse--height"><type>"height"</type></link> half to 
+either side of y, and its <link linkend="CrEllipse--orientation"><type>"orientation"</type></link> measure clockwise 
+from the positive X axis.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrEllipse.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrEllipse-struct" role="struct">
+<title>CrEllipse</title>
+<indexterm zone="CrEllipse-struct"><primary sortas="CrEllipse">CrEllipse</primary></indexterm><programlisting>typedef struct _CrEllipse CrEllipse;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-ellipse-new" role="function">
+<title>cr_ellipse_new ()</title>
+<indexterm zone="cr-ellipse-new"><primary sortas="cr_ellipse_new">cr_ellipse_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_ellipse_new                      (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> width,
+                                                         <link linkend="double">double</link> height,
+                                                         <link linkend="double">double</link> orientation,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience constructor for creating an ellipse and adding it to an item
+group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> Center point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> Center point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&#160;:</term>
+<listitem><simpara> Width in item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&#160;:</term>
+<listitem><simpara> Height in item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>orientation</parameter>&#160;:</term>
+<listitem><simpara> Angle of ellipse in degrees counter-clockwise from the 
+positive X axis.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrEllipse.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrEllipse--height" role="property"><title>The <literal>&quot;height&quot;</literal> property</title>
+<indexterm zone="CrEllipse--height"><primary sortas="CrEllipse:height">CrEllipse:height</primary></indexterm><programlisting>  &quot;height&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Ellipse height axis length in item units. Note this is half above #CrItem:y and half below #CrItem:y.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrEllipse--orientation" role="property"><title>The <literal>&quot;orientation&quot;</literal> property</title>
+<indexterm zone="CrEllipse--orientation"><primary sortas="CrEllipse:orientation">CrEllipse:orientation</primary></indexterm><programlisting>  &quot;orientation&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Ellipse orientation angle in radians CW from the positive X axis.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrEllipse--width" role="property"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="CrEllipse--width"><primary sortas="CrEllipse:width">CrEllipse:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Ellipse width axis length in item units. Note this is half to the left of #CrItem:x and half to the right of #CrItem:x.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

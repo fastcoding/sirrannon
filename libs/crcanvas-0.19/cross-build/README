@@ -1,0 +1,125 @@
+I am using this directory to build a WIN32 Python installable package from a
+Linux platform.  The crcanvas library and the crcanvasmodule are both included
+in this package.
+
+The cross-compiler expects to be in /opt/target.  
+        (a)/opt/target is linked to /opt/cross-tools/i386-mingw32msvc
+        (b)Wants python headers to be in /opt/target/include/python2.4
+        (c)/opt/target/lib must contain libpython24.a and libpython24.def
+        To make these use a win machine and do:
+        pexports.exe python24.dll > libpython24.def
+        dlltool.exe --def libpython24.def --dllname python24.dll --output-lib
+                libpython24.a
+        
+        get python24.dll here: /c/WINNT/system32/python24.dll
+
+
+The whole package should be built with cross-configure and cross-make using the
+MinGW cross compiler.
+
+Information on setting up a cross-compiler is available at:
+http://members.lycos.co.uk/alexv6/
+
+The setup.py script expects the src and python directories to have already been
+built via normal cross-configure; cross-make methods.
+
+It simply grabs the relevant DLL's, and .py files and dumps them into the
+installer program. 
+
+To make the windows installer type:  python setup.py bdist_wininst
+
+STEPS TO MAKE A WINDOWS EXE
+
+1.  go to top directory
+2.  make clean
+3.  cross-configure \
+        PYTHON_INCLUDES=-I/opt/cross-tools/i386-mingw32msvc/include/python2.5 \
+        LIBS=-lpython25
+4.  cross-make
+6.  cd cross-build
+7.  python setup.py bdist_wininst
+8.  exe will go into dist subdirectory
+
+If you see this warning:
+"Warning: Can't read registry to find the necessary compiler setting ...."
+Ingnore it.
+
+
+----------------------------------------------------------------------
+Instructions for building a crcanvas/GTK based application for Windows under
+wine on a linux machine. This has not been successful as yet. Suspect problems 
+running py2exe under wine.
+
+(1) Use wine to install:
+wine msiexec /i python-2.5.msi
+cd ~/.wine/drive_c/
+ln -s /target GTK
+wine gtk-dev-2.10.7-win32-1.exe
+wine pygobject-2.12.3-1.win32-py2.5.exe
+wine pygtk-2.10.4-1.win32-py2.5.exe
+wine pycairo-1.2.6-1.win32-py2.5.exe
+ wine gtk-2.10.11-win32-1.exe (NAME IT C:\RTGTK)
+
+(2) build a pexports for linux
+see http://www.thescripts.com/forum/thread31441.html
+
+(3)
+Run pexports on any the necessary libraries.  It is only necessary to run this
+for python.  It has already been done for GTK
+
+
+./pexports.exe ~/.wine/drive_c/windows/system/python25.dll > libpython25.def
+
+/opt/cross-tools/i386-mingw32msvc/bin/dlltool --def libpython25.def --dllname
+~/.wine/drive_c/windows/system/python25.dll --output-lib libpython25.a
+
+sudo mv libpython25.def /opt/cross-tools/i386-mingw32msvc/lib
+sudo mv libpython25.a /opt/cross-tools/i386-mingw32msvc/lib
+
+sudo mkdir /opt/cross-tools/i386-mingw32msvc/include/python2.5
+sudo cp ~/.wine/drive_c/Python25/include/* /opt/cross-tools/i386-mingw32msvc/include/python2.5/
+
+(4)
+goto STEPS TO MAKE A WINDOWS EXE (above)
+
+(5)
+cd dist
+wine crcanvas-0.11.win32.exe (puts it into your .wine directory)
+
+hack #1 
+cd ~/.wine/drive_c/GTK
+ln -s . 2.0   (some type of path problem)
+
+hack #2
+cd ~/.wine/drive_c/Python25/Lib/site-packages/crcanvas
+mv crcanvas.dll crcanvas.pyd
+
+test it:
+cd ~/.wine/drive_c/Python25/crcanvas-examples
+wine ../python.exe mvc-demo.py
+
+(6) Get py2exe and install with wine
+
+(7)
+Get Inno Setup and install with wine
+
+(8)
+create a special setup.py python project for the sake of packaging for windows
+get imagecfg.dll from a windows machine or from ies4linux
+put it in ~/.wine/drive_c/windows/system
+then use winecfg to override the wine implementation
+
+Begin/EndUpdateResource function runtime error from py2exe - missing from wine
+modify py2exe file to pass on this exception
+
+(9)
+Alternative to 8.
+
+Download cx_freeze win32 exe
+wine FreezePython.exe --install-dir dist hello.py
+cp drive_c/windows/system/msvcr71.dll dist
+cp drive_c/RTGTK dist
+
+At top of main program
+os.environ['PATH'] = os.path.join(os.getcwd(), 'RTGTK', 'bin') + ';' + \
+                os.environ['PATH']

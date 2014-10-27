@@ -1,0 +1,888 @@
+\section{classifier}
+Classifiers add an offset to the xroute of a packet if it meets a certain condition. See section \ref{sec:diff} for an example. Several classifiers can be chained to obtain a more precision classification.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool discard: if true, delete the packet instead if the condition is met, default: false
+\item string sender-trace: if defined, the path where to log information about the packets entering the classifier, default: ""
+\item string receiver-trace: if defined, the path where to log information about the packets exiting the classifier, implies discard is true, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{avc-classifier}
+This components classifies the many different types of NAL units present in H264, far the beyond the common I, B and P frames.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int I: the offset if the media-packet is an I slice, default: 0
+\item int SI: the offset if the media-packet is an SI slice, default: 0
+\item int EI: the offset if the media-packet is an EI slice, default: 0
+\item int I(B): the offset if the media-packet is an I (data partition B) slice, default: 0
+\item int I(C): the offset if the media-packet is an I (data partition C) slice, default: 0
+\item int P: the offset if the media-packet is a P slice, default: 0
+\item int SP: the offset if the media-packet is an SP slice, default: 0
+\item int EP: the offset if the media-packet is an EP slice, default: 0
+\item int P(B): the offset if the media-packet is a P (data partition B) slice, default: 0
+\item int P(C): the offset if the media-packet is a P (data partition C) slice, default: 0
+\item int B: the offset if the media-packet is a B slice, default: 0
+\item int EB: the offset if the media-packet is an EB slice, default: 0
+\item int B(B): the offset if the media-packet is a B (data partition B) slice, default: 0
+\item int B(C): the offset if the media-packet is a B (data partition C) slice, default: 0
+\item int E: the offset if the media-packet is a prefix NAL, default: 0
+\item int PPS: the offset if the media-packet is a PPS unit, default: 0
+\item int SPS: the offset if the media-packet is an SPS unit, default: 0
+\item int ESPS: the offset if the media-packet is an extended SPS unit, default: 0
+\item int SEI: the offset if the media-packet is a SEI unit, default: 0
+\item int default: the offset if the packet does not belong to any of the above, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{count-classifier}
+This component classifies or discards every nth frame if 'n % cycle' is non zero. By setting discard to true, this component will essentially discard all but every nth frame.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int cycle: do not classify every 'cycle * n'th frame, e.g. if cycle is 10, do not classify frames 0, 10, 20, 30, etc., default: 10
+\end{itemize}
+\end{itemize}
+\subsection{fixed-classifier}
+Classifies the packets, slice or frames based on fixed indices provided by the user. CAVEAT: Indices must rise strict monotonously; Non slice NAL units such as PPS, SPS, SEI, E, are not counted as slices while different SVC layers are also counted as slices. For example an MVC stream with 4 slices and with 2 layers per frame will be counted as 8 slices.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string mode: whether the indices inputted in values or values-file specify packets, slices or frames, accepted values: frame, slice, packet, default: frame
+\item string values: if defined, a comma seperated string of indices, indicating which packet, slice or frame to classify counted from 0, default: ""
+\item string values-file: if defined, a file containing a new line seperated string of indices, indicating which packet, slice or frame to classify counted from 0, default: ""
+\item int xroute: offset added to the xroute of the packet if the packet is classified, default: 1
+\end{itemize}
+\end{itemize}
+\subsection{frame-classifier}
+Classifies packets based on the type of frame they belong to. The parameter I stands for all sort of I frames (I, IDR, EI, SI...), the same holds for other frame types.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int I: the offset if the media-packet is an I slice or frame, default: 0
+\item int B: the offset if the media-packet is an B slice or frame, default: 0
+\item int P: the offset if the media-packet is an P slice or frame, default: 0
+\item int default: the offset if the frame type is none of the above, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{gilbert-classifier}
+This component has a random chance of classifying a packet using the Gilbert method.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item double alpha: $\in[0,1]$, probability to transit from the GOOD to the BAD state, default: 0.01
+\item double beta: $\in[0,1]$, probability to transit from the BAD to the GOOD state, default: 0.1
+\item double gamma: $\in[0,1]$, probability to classify a packet in the BAD state, default: 0.75
+\item double delta: $\in[0,1]$, probability to classify a packet in the GOOD state, default: 0.01
+\item int xroute: offset if the condition is met, default: 1
+\end{itemize}
+\end{itemize}
+\subsection{nalu-drop-classifier}
+Drops specific NAL units from an H.264/AVC encoded video stream. The indices of the NAL units to drop are provided in a tracefile. The first NAL unit of the stream has index 1.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string drop-trace: path to file which contains information on which NAL units to drop. A sample drop-trace file is located in the src/Misc folder., default: ""
+\item bool udpmode: set to true in case a UDP receiver is used instead of an RTP receiver. Sequence numbers are retained in UDP mode whereas in case of an RTP receiver and transmitter new sequence numbers are generated., default: false
+\end{itemize}
+\end{itemize}
+\subsection{random-classifier}
+This component has a random chance of classifying a packet using a uniform distribution.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item double P(loss): $\in[0,1]$, probability to classify the packet, default: 0.01
+\item int xroute: offset if the condition is met, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{svc-classifier}
+This component classifies an SVC stream. The partitioning is defined by a series of $(T,D,Q)$ triplets. For each passing NAL unit this series is reverse iterated. If the NAL unit depends on the $n^{th}$ triplet then it is classified as $layer-{n}$. When it didn't depend on any layer it is classified as $layer-{0}$. The triplets are entered in the form of $'T,D,Q:offset'$, for example $'4,0,0:2'$, meaning \textit{'add offset 2 to packets of temporal layer (T) 4 or higher'}.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int layer: offset for layer 0, default: 0
+\item string layer-1: definintion and offset for layer 1, default: ""
+\item string layer-2: definintion and offset for layer 2, default: ""
+\item string layer-3: definintion and offset for layer 3, default: ""
+\item string layer-4: definintion and offset for layer 4, default: ""
+\item string layer-5: definintion and offset for layer 5, default: ""
+\item string layer-6: definintion and offset for layer 6, default: ""
+\item string layer-7: definintion and offset for layer 7, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{time-classifier}
+Basic classifier based solely on the real time interval, relative to the first packet. The four time parameters combine to create an interval of the form: $t\in[start,stop[$, when step is defined, it must also hold that: $$t\in\bigcup-{n=1}^{+\infty}[n\cdot step,n\cdot step+delta[$$.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int start: in ms, the minimum of the range, default: 0
+\item int stop: in ms, the maximum of the range, -1 being unlimited, default: -1
+\item int step: in ms, the time between two steps, -1 disabling the step effect, default: -1
+\item int delta: in ms, the duration of one step, -1 being unlimited, default: -1
+\item int xroute: offset if the condition is met, default: 1
+\end{itemize}
+\end{itemize}
+\subsection{timestamp-classifier}
+Basic classifier based solely on the decoding time stamp (DTS) interval, relative to the first packet.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int start: in DTS clock ($90kHz$), the minimum of the interval, default: 0
+\item int stop: in DTS clock ($90kHz$), the maximum of the interval, -1 being unlimited, default: -1
+\item int xroute: offset if the condition is met, default: 1
+\end{itemize}
+\end{itemize}
+\newpage
+\section{core}
+
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool debug: if true, print debug info for this component, default: false
+\item bool thread: if true, run the component in a seperate thread, default: false
+\end{itemize}
+\end{itemize}
+\newpage
+\section{demultiplexer}
+
+\subsection{FFMPEG-demultiplexer}
+This component is identical to the component FFMPEG-reader, with the exception that the source is not a file but a stream of chunks from a container.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string format: container format of the input, default: flv
+\item int chunk-size: amount of bytes fed to the FFMPEG IOContext each time, default: 32768
+\item int loop: the number of times to play the video, -1 being infinite, 0 interpreted as 1, default: 1
+\item int videoroute: the xroute that will be assigned to packets containing video, default: 100
+\item int audioroute: the xroute that will be assigned to packets containing audio, default: 200
+\item int dts-start: in ms, the timestamp that will be added to the DTS \& PTS of each frame, default: 1000
+\item bool video-mode: if true, video will be read from the container, if false video will be ignored, default: true
+\item bool audio-mode: if true, audio will be read from the container, if false audio will be ignored, default: true
+\item int seek: in ms, the timestamp to jump to into the stream, -1 implying no seek, default: -1
+\item int dts-start: in ms, specifies the value of the timestamp of the first frame, default: 1000
+\item bool add-parameter-sets: H.264/AVC only, if true, extract the parameter sets from the container and insert them into the stream, default: true
+\item bool repeat-parameter-sets: H.264/AVC only, if true, repeat the parameter sets before each IDR frame, default: false
+\item bool mov-frame: MOV/MP4/F4V container only, if true, keep frames in the format of the container, as opposed to annex-B H.264/AVC streams with start codes before each NAL unit, default: false
+\item bool skip-SEI: if true, remove SEI NALUs from the stream, default: false
+\item bool skip-AUD: if true, remove AUD NALUs from the stream, default: false
+\end{itemize}
+\end{itemize}
+\subsection{TS-demultiplexer}
+Unmultiplexes an MPEG Transport Stream into the original streams each consisting of series of PES-packets. It performs the reverse operation of ts-multiplexer. The MPEG Transport Stream can be as large as entire multi-channel stream.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int channel: the selected channel to extract, -1 being all channels, default: -1
+\item int video-route: the xroute that will be assigned to packets containing video, default: 100
+\item int audio-route: the xroute that will be assigned to packets containing audio, default: 100
+\end{itemize}
+\end{itemize}
+\newpage
+\section{high-level}
+
+\subsection{TS-segmenter}
+This component ingest a video container and generates a series of transport streams at varies bit rates
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string media: path of the folder in which to search for requested files, default: dat/media
+\item string filename: the path of the container to stream (relative to the folder specified by media), default: ""
+\item string target: string indicating the target display (iphone, ipad, youtube), default: ""
+\item int duration: in seconds the maximum duration of one segment, default: 10
+\item int bitrate-0: in kbps, the 1st bit rate set point, if 0, do not transcode and only segment and do not check for more bitrates, default: 0
+\item int width-0: the 1st width set point, default: 0
+\item int height-0: the 1st height set point, default: 0
+\item int bitrate-1: in kbps, the 2nd bit rate set point, if 0, do not transcode and only segment and do not check for more bitrates, default: 0
+\item int width-1: the 2nd width set point, default: 0
+\item int height-1: the 2nd height set point, default: 0
+\item int bitrate-2: in kbps, the 3rd bit rate set point, if 0, do not transcode and only segment and do not check for more bitrates, default: 0
+\item int width-2: the 3rd width set point, default: 0
+\item int height-2: the 3rd height set point, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{streamer}
+This component provides a streaming solution without having to construct a scheme of components. Its many parameters reflect the options of the hidden underlying components (delay, port, destination\textellipsis).
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string filename: the path of the container to stream, default: ""
+\item string mode: what content to read from the container (video, audio, default), default: default
+\item int loop: the number of times to play the stream, -1 being infinite, 0 interpreted as 1, default: 1
+\item int seek: the time index to seek to into the container, default: 0
+\item bool aggregate: option of some packetizers, default: false
+\item int multiplexer-delay: delay of the multiplexer, used for transport streams or RTMP, default: 0
+\item string scheduler: which sort of scheduler to use (basic, frame, gop, window), default: basic
+\item int scheduler-buffer: in ms, the buffer size in time of the scheduler, default: 1000
+\item int scheduler-delay: in ms, the delay of the scheduler, default: 0
+\item double loss: if larger than 0, randomly lose packets with the give chance, default: 0.0
+\item string transmitter: type of the transmitter(rtp, udp, tcp), default: rtp
+\item int port: source port of the transmitter, default: 4000
+\item string destination: destination of the transmitter, default: 127.0.0.1:5000
+\item bool ts-mode: if true, multiplex the streams into a transport stream, default: false
+\item bool RTMP-mode: if true, muliplex the streams into RTMP chunk streams as output from this component, default: false
+\item int RTMP-streamID: streamID used for each RTMP chunk stream, default: 1
+\item int RTMP-video-chunkID: RTMP chunk stream ID for video, default: 7
+\item int RTMP-audio-chunkID: RTMP chunk stream ID for audio, default: 6
+\item int RTMP-chunk-size: chunk size for the RTMP chunk streams, default: 4096
+\end{itemize}
+\end{itemize}
+\newpage
+\section{media-client}
+Media Clients connect to servers and retrieve a stream using a particular protocol. The component outputs frames just as would a a Reader component. In this way streams can be requested and captured (using for example \textit{FFMPEG-writer} or \textit{writer}) or resent using a different protocol (for example converting an RTMP stream to a HTTP stream). Proxy applications for Media Servers (RTMP-proxy, RTMPT-proxy, RTSP-proxy, HTTP-proxy) use this feature.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string url: the url to retrieve, default: ""
+\item bool auto-play: if true, instantly play the stream, default: true
+\end{itemize}
+\end{itemize}
+\subsection{HTTP-capture}
+Requests and receives a stream via HTTP. Keeps the container and generates chunks from it.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int chunk-size: in bytes, the size of the chunks from the container to generate, default: 65536
+\end{itemize}
+\end{itemize}
+\subsection{HTTP-client}
+Requests and receives a stream via HTTP. Demultiplexes the container and generates frames.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string format: the format of the container, if not defined, guess the format based on the extension in the URL, default: ""
+\item bool M3U: if true, the URL links to an extended M3U file used by Apple Live HTTP Streaming. The URLs contained in the M3U response will be contacted in turn., default: false
+\end{itemize}
+\end{itemize}
+\subsection{RTMP-client}
+Requests and receives a stream via RTMP. Generates audio and video frames.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool mov-frame: if true, keep the frames in MOV/MP4 structure for AVC and AAC, default: false
+\item int chunk-size: in bytes, the size of the chunks from the container to generate, default: 65536
+\end{itemize}
+\end{itemize}
+\subsection{RTMPT-client}
+Requests and receives a stream via RTMPT. Generates audio and video frames.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int polling: in ms, the time interval between two successive HTTP POSTs during play, default: 1000
+\end{itemize}
+\end{itemize}
+\subsection{RTSP-client}
+Requests and receives a stream via RTSP. Generates audio and video frames.
+\newpage
+\section{media-server}
+Media Servers are complex components, listening to a specific TCP port for incoming connections and dynamically creating a session as nested component for each new connection. URLs in the request should be of the form: \texttt{<protocol>://<server-address>/<application>/<media>}. For example \texttt{rtmpt://myserver.com/FILE/flash/example.flv} with server(\texttt{myserver.com}), application(\texttt{FILE}), media(\texttt{flash/example.flv}). Each session creates a nested component of the type \textit{application} given in the URL. Typical applications are FILE, HTTP, RTMP-proxy, RTMPT-proxy, RTSP-proxy, HTTP-proxy.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string interface: if defined, listen to incoming connections on this specific interface, default: ""
+\item string media: path of the folder in which to search for requested files, default: dat/media
+\end{itemize}
+\end{itemize}
+\subsection{HTTP-server}
+Listens for incoming HTTP connections. Does not support pausing or seeking. In the URL use application HTTP for file based transfer of requested file. Use the application FILE@FORMAT (eg. FILE@FLV, FILE@WEBM) to change the container type. Example URLs: \texttt{http://myserver.com/HTTP/demo.mov}, \texttt{http://192.168.1.3/FILE@FLV/demo.mov}
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: listen to this port for incoming connections, default: 80
+\item bool cache: if true, cache generated HLS segments, default: false
+\item bool cached: if true, used cached segments and playlists when available, default: false
+\item int segment: in seconds, the duration of one HLS segment, default: 10
+\item int high: in kbit/s, the bitrate of the high quality HLS encoding, default: 1000
+\item int medium: in kbit/s, the bit rate of the medium quality HLS encoding, default: 500
+\item int low: in kbits/s, the bit rate of low quality HLS encoding, default: 200
+\end{itemize}
+\end{itemize}
+\subsection{RTMP-server}
+Listens for incoming RTMP connections. Supports pausing and seeking. Performs a cryptographical handshake to enable Flash Player to play H.264/AVC and MPEG4-Audio.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: listen to this port for incoming connections, default: 1935
+\end{itemize}
+\end{itemize}
+\subsection{RTMPT-server}
+Listens for incoming RTMPT connections. This is the tunneled version of RTMP.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: listen to this port for incoming connections, default: 80
+\end{itemize}
+\end{itemize}
+\subsection{RTSP-server}
+Listens for RTSP connections. Supports pausing, but not seeking.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: listen to this port for incoming connections, default: 554
+\end{itemize}
+\end{itemize}
+\newpage
+\section{miscellaneous}
+
+\subsection{GOP-splitter}
+Cyclically classifies each GOP by increasing the original xroute, so that xroute cycles through [route,route+split[
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int split: in how many parts to split the stream, default: 1
+\item bool sync: if true, drop all frames until the first PPS/SPS/IDR packet, default: false
+\end{itemize}
+\end{itemize}
+\subsection{PCAP-writer}
+Captures packets using a filter and saves those to a file. Uses libpcap for capturing. Needs to have permission to access the interfaces (eg. sudo).
+\newline Availability: Unix\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string interface: the name of device on which to capture, default: eth0
+\item string filename: the path of the file where to write the captured packets, default: ""
+\item string filter: if defined, overwrite the built-in filter, default: ""
+\item int port: the UDP port on which to listen for traffic (when using the built-in filter), default: 1234
+\item int bitrate: in Mbps, estimated bitrate of stream which determines the underlying buffer size. When unsure of the bitrate, use a royal upper limit. If the debug reports dropped packets, increase this value., default: 20
+\end{itemize}
+\end{itemize}
+\subsection{YUV-display}
+Creates a rudimentary video player with no user controls save 'ESC' (which forcibly terminates the video). This component displays immediately any YUV frame it receives. Sirannon must be compiled with the option --with-libSDL to use this component.
+\newline WARNING: this component is in a beta version and might not function properly.\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int width: in pixels, if defined, the width of the video display, otherwise obtain the information from the MediaPackets containing the YUV frames (pPckt->desc->width), default: -1
+\item int height: in pixels, if defined, the width of the video display, otherwise obtain the information from the MediaPackets containing the YUV frames (pPckt->desc->height), default: -1
+\item bool full-screen: if true, display the video full screen, default: false
+\end{itemize}
+\end{itemize}
+\subsection{example}
+Example component demonstrating the basic API of a functional component
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int test: input variable, default: 5
+\item bool foo: an example flag, default: false
+\end{itemize}
+\end{itemize}
+\subsection{fake-reader}
+Generates random YUV frames with specified dimensions and/or targetted bitrate.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int width: the width of the fake frame, default: 1920
+\item int height: the height of the fake frame, default: 1080
+\item int bits-per-pixel: the number of bits per pixel of the fake frame, default: 12
+\item double fps: the number of frames per second, default: 25.
+\item int bitrate: if defined, overwrite the bitrate implied by the combination of fps and frame dimensions, default: -1
+\item int duration: in ms, if defined the duration of the sequence, otherwise generate frames indefinately, default: -1
+\item int mtu: if > 0, divide each frame into packets of maximum mtu size, default: -1
+\end{itemize}
+\end{itemize}
+\subsection{frame-analyzer}
+This component parses elementary MPEG-1, MPEG-2, MPEG-4 or H.264/AVC streams to determine the frame type.
+\subsection{gigabit-transmitter}
+
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string destination: the destination, default: 10.10.0.1:1234
+\item int port: the source port, default: 4000
+\item int mtu: the size of each generated packet (including headers), default: 1450
+\item int bitrate: in megabits per seconds, bitrate of the generated stream, default: 100
+\item int fps: number of frames per second, default: 25
+\end{itemize}
+\end{itemize}
+\subsection{live-reader}
+This component finds a component a runtime and creates a route from that component to this. It also buffers the received packets untill the component is scheduled. Using this technique a live captured stream can be tapped into and routed to this component.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string url: if defined, create a route from the component out which uses this url, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{restamp}
+This components buffers as many packets as the reordering delay and release them we correctly generated DTSs inferred from PTS only streams. This component is only useful when the DTS is corrupted or undefined. CAVEAT: Two packets with the same PTS will cause a RuntuimeError.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int delay: the maximal reordering delay in packets, default: 2
+\end{itemize}
+\end{itemize}
+\subsection{statistics}
+This component generates at regular intervals information about the passing stream
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int interval: in ms, the amount of time between two reports, -1 disables the reports, default: 5000
+\item string log: if defined, the path where to log information about the passing packets, default: ""
+\item string label: if defined, label used for each entry in the log, this is needed when sending multiple statistics output to one single file, default: ""
+\item bool append: if true, append data to the log, if false, overwrite the log, default: true
+\item int overhead: the amount of header overhead from network headers to add to the packet size, default: 0
+\item bool draw: if true, when an end-packet is received, draw a graph of the bandwidth, requires that \textit{log} is defined, default: false
+\end{itemize}
+\end{itemize}
+\subsection{svc-analyzer}
+This component constructs an inter layer bandwidth comparison at the end of a passing svc stream. A 3D graph is constructed with for each layer a cube scaled with the relative weight of the layer in the total bandwidth. The graph is generated as a maple worksheet (\url{www.maplesoft.com}).
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string filename: the path of the maple worksheet with extension .mws, default: ""
+\item int dimension: in how many dimensions to scale the cube (1, 2 or 3), default: 1
+\end{itemize}
+\end{itemize}
+\subsection{time-splitter}
+Cyclically classifies each time interval by increasing the original xroute, so that xroute cycles through [route,route+split[
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int split: in how many parts to split the stream, default: 1
+\item int interval: in ms, the duration of one part, default: 10000
+\item bool key: if true, split only if the frame is a keyframe, if false, omit this condition, default: false
+\end{itemize}
+\end{itemize}
+\newpage
+\section{multiplexer}
+Multiplexers buffer MediaPackets coming from different sources and multiplex those based on the DTS of each MediaPacket. Unmultiplexers perform the reverse operation and restore the original streams.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int delay: in ms, the minimal amount of data present for each stream of the multiplex before the next packet is released, default: 1000
+\item int streams: the number of different streams required before multiplexing, -1 omits this requirement, default: -1
+\end{itemize}
+\end{itemize}
+\subsection{FFMPEG-multiplexer}
+Joins packets from different source into a container (no file!) supported by FFMPEG (eg. FLV, WEBM, MP4). The container is released in a stream of MediaPackets containing chunks of the container.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int chunk-size: in bytes, the maximum size of each chunk, default: 262144
+\item string format: format of the container given as file extension (eg. flv, webm, mov, mp4, avi), default: flv
+\item bool streamed: if true, disables seeking backwards into the generated chunks, default: false
+\end{itemize}
+\end{itemize}
+\subsection{TS-multiplexer}
+Multiplexes audio and video into an MPEG Transport Stream (TS). CAVEAT: If the video or audio come from different readers, you must set the parameter streams or initial-delay, or the component will throw an error.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of an aggregated packet, typically for an iMTU of 1500 it means 7 Transport Stream packets (1370 bytes), default: 1500
+\item bool aggregate: if true, several transport stream packets will be aggregated until their size would exceed the iMTU, default: true
+\item int shape: in ms, the amount of media to multiplex each pass, this value overwrites the value of delay, default: 200
+\item int pcr-delay: in ms, how much the PCR is in advance of the DTS, the pcr-delay must be lower than the initial DTS of the reader component, default: 400
+\item int mux-rate: in kbps, if -1, no fixed multiplexing rate, if 0, the component will guess the mux rate based on the bitrate of the input, if > 0, use this value as mux-rate, default: -1
+\item bool continuous-timestamps: if true, use the PCR clock as timestamp for the transport stream, if false, use the timestamps of the PCR stream as timestamps for the transport stream, default: true
+\item bool interleave: if false, all transport stream packets belonging to one frame from a PID are consecutive, if true, they are interleaved with transport stream packets from other PIDs (e.g. audio), default: true
+\item bool psi-on-key: if true, generate an extra PSI triplet (SDT, PAT and PMT) before the start of every key frame of the PCR stream, default: false
+\end{itemize}
+\end{itemize}
+\subsection{std-multiplexer}
+Joins packets from different sources by only ensuring that the DTS and other timing information rise monotonely. This is a requirement for many protocols and containers.
+\subsection{unit-multiplexer}
+Joins packets from different sources by only ensuring that the unitnumber rises monotonely.
+\newpage
+\section{packetizer}
+
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string tracefile: if defined, the path of trace where to log information about the split packets, default: ""
+\item bool trace-pts: if true, write the PTS instead of the DTS in the log file, default: false
+\end{itemize}
+\end{itemize}
+\subsection{AC3-packetizer}
+Packetizes AC3 audio frames into packets suitable for RTP as defined in (draft) RFC 4184.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of a network packet, default: 1500
+\item bool draft: if true, fill out the header according to the draft version of RFC 4184; this is the version supported by live555/vlc/mplayer, default: true
+\end{itemize}
+\end{itemize}
+\subsection{AMR-packetizer}
+AMR and AMR-WB packets are aggregated into packets of (near) MTU size according to RFC 3267
+\newline WARNING: this component is in a beta version and might not function properly.\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of a network packet, default: 1500
+\item int maxptime: in milliseconds, if >= 0, the maximum duration of an aggregate frame, if < 0, omit this requirement, default: 200
+\end{itemize}
+\end{itemize}
+\subsection{AVC-packetizer}
+Packetizes H264 frames into packets suitable for the network as defined in RFC 3984.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int iMTU: in bytes, the maximum size of a network packet, default: 1500
+\item bool aggregate: if true, aggregate small packets into one network packet, default: false
+\end{itemize}
+\end{itemize}
+\subsection{MP2-packetizer}
+Packetizes MPEG1\&2 audio and video frames into packets suitable for the network as defined in RFC 2250.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of a network packet, default: 1500
+\end{itemize}
+\end{itemize}
+\subsection{MP4-packetizer}
+Packetizes MPEG4 audio and video frames into packets suitable for the network as defined in RFC 3640.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of a network packet, default: 1500
+\item bool aggregate: if true, aggregate small packets into one network packet, default: false
+\end{itemize}
+\end{itemize}
+\subsection{PES-packetizer}
+PES packetization is the required format for transport streams TS-multiplexer. All packets belonging to one frame are aggregated into one PES-packet. If the total size of the frame is larger than 65500 bytes two or more PES-packets are generated unless the option zero-length is set.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int delta: in ms, the amount of time to add to DTS/PTS to make sure is substractable by a PCR, default: 0
+\item bool insert-AUD: if true, add AUDs before each H.264 frame, default: false
+\item int audio-per-PES: number of audio frames per PES-packet, default: 1
+\item bool zero-length: video only, if true, set 0 as PES-packet-length and generate a single PES-packet per frame, default: true
+\end{itemize}
+\end{itemize}
+\subsection{RTMP-packetizer}
+This packetizer produces an RTMP chunk stream from the ingested MediaPackets. Such a stream can directly be sent to a Flash Media Server. Unpacketization of this stream is done by the component RMTP-client internally.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int chunk-ID: the identifier for this RTMP chunk stream, default: 5
+\item int stream-ID: the identifier to which global stream this RTMP chunk stream belongs, default: 1
+\item int chunk-size: in bytes, the maximum size of each RTMP chunk, default: 128
+\end{itemize}
+\end{itemize}
+\subsection{default-packetizer}
+For each new stream creates at runtime a fitting packetizer depending on the codec or the parameter type.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string type: if defined, force every packetizer to be of this type, useful for forcing PES-packetizer for example, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{sirannon-packetizer}
+This simple and generic packetizer can handle any content. However, this packetization is internal to Sirannon and is not recognized by other players. Use sirannon-unpacketizer to unpacketize this stream again.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int mtu: in bytes, the maximum size of a network packet, default: 1500
+\end{itemize}
+\end{itemize}
+\newpage
+\section{reader}
+Readers form the primary source of data in the sirannon. When the file reaches its end, a reader either closes the file, generating an end-packet or loops creating a reset-packet. A reader checks if no buffers downstream (typically a scheduler buffer) are full before processing the next frame.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string filename: the path of the file to open, default: ""
+\item int loop: the number of times to play the video, -1 being infinite, 0 interpreted as 1, default: 1
+\item int video-route: the xroute that will be assigned to packets containing video, default: 100
+\item int audio-route: the xroute that will be assigned to packets containing audio, default: 200
+\item int dts-start: in ms, the timestamp that will be added to the DTS \& PTS of each frame, default: 1000
+\end{itemize}
+\end{itemize}
+\subsection{avc-reader}
+Reads in a raw H264 video file. Each generated \textit{MediaPacket} contains one H.264 NAL-unit, possibly generating multiple \textit{MediaPackets} per frame.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool skip-SEI: if true, ignore the SEI NAL-units, default: false
+\item bool skip-AUD: if true, ignore the AUD NAL-units, default: false
+\item bool mov-frame: if true, convert NAL-units into MP4/MOV/F4V frames, default: false
+\end{itemize}
+\end{itemize}
+\subsection{basic-reader}
+Reads in any container in large chunks. Its main use is the HTTP transmission in chunks of a container.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int chunk-size: in bytes, the maximum size of a chunk, default: 64000
+\item int length: in ms, if > 0, provides the reader with the duration of the file so it can guess the DTS, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{ffmpeg-reader}
+Reads in a wide variety of containers supported by ffmpeg. Audio and video are put into different MediaPackets. Per cycle, the reader processes one video frame (if present) and associated audio, possibly generating multiple packets. A separate end- or reset-packet is generated for audio \& video. Note, ffmpeg-reader can also process audio only files.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool video-mode: if true, video will be read from the container, if false video will be ignored, default: true
+\item bool audio-mode: if true, audio will be read from the container, if false audio will be ignored, default: true
+\item int min-ts: in ms, the timestamp to jump to into the stream, -1 implying no seek, default: -1
+\item int max-ts: in ms, the maximum timestamp to read from the file, -1 implying no limit, default: -1
+\item int dts-start: in ms, specifies the value of the timestamp of the first frame, default: 1000
+\item bool add-parameter-sets: H.264/AVC only, if true, extract the parameter sets from the container and insert them into the stream, default: true
+\item bool repeat-parameter-sets: H.264/AVC only, if true, repeat the parameter sets before each IDR frame, default: false
+\item bool mov-frame: MOV/MP4/F4V container only, if true, keep frames in the format of the container, as opposed to annex-B H.264/AVC streams with start codes before each NAL unit, default: false
+\item bool skip-SEI: if true, remove SEI NALUs from the stream, default: false
+\item bool skip-AUD: if true, remove AUD NALUs from the stream, default: false
+\item bool fix-PTS: if true, parse H.264 frames to extract the POC from which to calculate the correct PTS, default: false
+\end{itemize}
+\end{itemize}
+\newpage
+\section{receiver}
+Receivers provide the interface from the network for the following protocols: UDP, TCP and RTP/UDP.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: reception port, default: 5000
+\item int video-route: the xroute that will be assigned to packets containing video, default: 100
+\item int audio-route: the xroute that will be assigned to packets containing audio, default: 200
+\item int buffer: if >0, the size of the protocol buffer, your OS must still accept this value, check 'UDP Buffer Sizing' in Google for more information, default: 0
+\item bool extension: if true, the additional sirannon header is parsed from the packet. Caveat, if the header was not present the stream will be corrupted except for RTP. Conversely, if the header was present and this value is false, the stream will be corrupted except for RTP, default: false
+\item bool multicast: if true, join a multicast address (not for TCP), default: false
+\item string multicast-server: multicast address (not for TCP), default: ""
+\end{itemize}
+\end{itemize}
+\subsection{RTP-receiver}
+Receives RTP streams using the open source library jrtplib. RTCP packets are automatically generated. The additional header is parsed from the RTP header extension if present.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string tracefile: if defined, the path of the trace where to log information about the received packets, default: ""
+\item int buffer: in bytes, the size of the underlyinhg UDP buffer, increase this value when receiving high bitrate streams, make sure yours OS accepts such large values (see \url{http://www.29west.com/docs/THPM/udp-buffer-sizing.html}), default: 8388608
+\item string hash-file: if defined, the path of a file in which the content of a header extension with ID(EXT-HASH: 0xB) is written, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{TCP-receiver}
+Provides a non-blocking TCP socket from the network.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool connect: if true, connect to the server, if false, listen for an incoming connection, default: false
+\end{itemize}
+\end{itemize}
+\subsection{UDP-receiver}
+Provides a non-blocking UDP socket from the network.
+\newpage
+\section{scheduler}
+Schedulers introduce real-time behavior to the stream (readers generate packets at an arbitrary speed). It also introduces correct real-time behavior to streams coming from several receivers. It buffers all incoming packets and releases them at the rate set by the packet's decoding time stamp (DTS). Some schedulers introduce shifts to these time stamps order to obtain for example a smoother bandwidth usage.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int delay: in ms, the scheduler starts working delay ms after the first packet, default: 100
+\item int buffer: in ms, the size in time of the buffer, default: 1000
+\item int absolute-delay: in ms, start scheduling absolule-delay ms after the start of Sirannon, 0 disables this, default: 0
+\item bool pause: if true, pause scheduling until the function play is called, default: false
+\item double speed: the factor at which to schedule slower or faster than real-time, default: 1.0
+\item bool precise: if true, run the scheduler in a seperate thread with a quantum of 1 ms for precise timings, default: false
+\end{itemize}
+\end{itemize}
+\subsection{basic-scheduler}
+Simplest form in which the packets are sent at the time solely indicated by the DTS. This leads to a burst of packets for each frame since all the packets have the same DTS.
+\subsection{frame-scheduler}
+The packets belonging to a frame are smoothed in time over the duration of the frame (instead of sending an entire frame in one burst). Caveat, make sure the delay is longer than the duration of one frame!
+\subsection{gop-scheduler}
+The packets belonging to a GOP are smoothed in time over the entire duration of that GOP. Caveat, make sure the delay is longer than the duration of one GOP!
+\subsection{svc-scheduler}
+The packets belonging to one temporal pyramid are smoothed in time over the entire duration of that pyramid. Caveat, make sure the delay is longer than the duration of one pyramid!
+\subsection{window-scheduler}
+The packets are smoothed in time over a fixed non-sliding window. Caveat, make sure the delay is longer than the duration of one window!
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int window: in ms, the size of the fixed window, default: 900
+\end{itemize}
+\end{itemize}
+\newpage
+\section{system}
+
+\subsection{block}
+This component takes Sirannon configuration and loads this configuration within itself. It allows grouping of components into one component that can be used in many configurations. Packets are sent to or received from the surrounding scope of the block using the \textit{in} component for input and \textit{out} component for output.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string config: path of the sirannon configuration file, default: ""
+\item string param1: if defined, command line parameter 1 for the configuration file, default: ""
+\item string param2: if defined, command line parameter 2 for the configuration file, default: ""
+\item string param3: if defined, command line parameter 3 for the configuration file, default: ""
+\item string param4: if defined, command line parameter 4 for the configuration file, default: ""
+\item string param5: if defined, command line parameter 5 for the configuration file, default: ""
+\item string param6: if defined, command line parameter 6 for the configuration file, default: ""
+\item string param7: if defined, command line parameter 7 for the configuration file, default: ""
+\item string param8: if defined, command line parameter 8 for the configuration file, default: ""
+\item string param9: if defined, command line parameter 9 for the configuration file, default: ""
+\item string param10: if defined, command line parameter 10 for the configuration file, default: ""
+\item string param11: if defined, command line parameter 11 for the configuration file, default: ""
+\item string param12: if defined, command line parameter 12 for the configuration file, default: ""
+\item string param13: if defined, command line parameter 13 for the configuration file, default: ""
+\item string param14: if defined, command line parameter 14 for the configuration file, default: ""
+\item string param15: if defined, command line parameter 15 for the configuration file, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{discard}
+Any received packet will be deleted.
+\subsection{dummy}
+This component does absolutely nothing!
+\subsection{in}
+This component finds a component a runtime and creates a route from that component to this. Using this technique a live captured stream can be tapped into and routed to this component.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string url: if defined, create a route from the component 'out' which uses this url, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{out}
+This component declares a url to be associated with this component and routes to components subscribing to this url
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string url: if defined, links this component with this url, when a new component 'in' is made, default: ""
+\end{itemize}
+\end{itemize}
+\subsection{sink}
+When this component receives an end-packet the program will terminate gracefully. In case of both an audio and a video stream, an end-packet for both audio and video needs to be received (if set).
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool video-mode: if true, a video end-packet must be received, default: true
+\item bool audio-mode: if true, an audio end-packet must be received, default: false
+\item int count: if larger than 0, the number of end-packets which must be received, default: 0
+\end{itemize}
+\end{itemize}
+\subsection{time-out}
+If this component does not receive any packet within a given interval after the last packet, forcibly terminate the program or generate an end-packet.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int time-out: in ms, the maximum interval in which no packets are received, default: 1000
+\item bool kill: if true, terminate the program, if false, generate an end-packet, default: true
+\end{itemize}
+\end{itemize}
+\newpage
+\section{transformer}
+These components transform the received frames for example by transcoding or changing the header format
+\subsection{ffmpeg-decoder}
+This components decodes a video sequence and generates a stream of YUV packets
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool reset-on-reset: if true, reset the decoder when a reset-packet is received, default: true
+\item bool frame-copy: if true, use frame copy as basic error concealment, default: false
+\end{itemize}
+\end{itemize}
+\subsection{frame-transformer}
+Handles the mess caused by the MP4 container that strips and merges MP4A and H.264 frames, while TSs and RTP keep the frames in the original format. Reconstructs the header based on the meta data.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool ES: if true, convert the packets to ES format, if false, convert to MP4 format, default: true
+\end{itemize}
+\end{itemize}
+\subsection{transcoder-audio}
+Decodes received packets and reencodes them using the specified settings. This component runs the transcoding in a seperate thread and may consume all CPU.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string output-codec: the target codec, default: mp4a
+\item int bitrate: the target bitrate, -1 implies maintaining the same bitrate, default: -1
+\item string target: if defined, use specific encoding settings for this target, values: iphone, ipad, youtube, default: ""
+\item int route: xroute assigned to the transcoded audio frames, default: 200
+\end{itemize}
+\end{itemize}
+\subsection{transcoder-video}
+Decodes received packets and reencodes them using the specified settings. This component runs the transcoding in a seperate thread and may consume all CPU. The component works best effort and can not garantee realtime transcoding.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string output-codec: the target codec, default: h264
+\item int bitrate: the target bitrate, -1 implies maintaining the same bitrate, default: -1
+\item int width: the target width, 0 implies maintaining the same width, default: 0
+\item int height: the target height, 0 implies maintaining the same height, default: 0
+\item int framerate: the new frame rate which must be less or equal to the current frame rate, -1 implies maintaning the same frame rate, default: -1
+\item bool mov-frame: if true, generate H.264 in MOV/MP4 frames, default: false
+\item string target: if defined, use specific encoding settings for this target, values: iphone, ipad, youtube, default: ""
+\end{itemize}
+\end{itemize}
+\newpage
+\section{transmitter}
+Transmitters provide the interface to the network for the following protocols: UDP, TCP and RTP/UDP. These components send the packets without any delay or buffering.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item int port: source port, default: 4000
+\item string destination: the IP address of the receiver, default: 127.0.0.1:5000
+\item int buffer: if >0, the size of the protocol buffer, your OS must still accept this value, check 'UDP Buffer Sizing' in Google for more information, default: 0
+\item bool extension: if true, add an additional header with sirannon frame numbers to the packet, although making it incompatible with a standard player (except for RTP), default: false
+\item int multicast-TTL: the TTL when sending to a multicast destination (not for TCP), -1 disables this, default: -1
+\end{itemize}
+\end{itemize}
+\subsection{RTP-transmitter}
+Provides the RTP/UDP protocol using the open source library jrtplib RTCP packets are automatically generated. The extra information of the sirannon (sirannon-extension) is added as a header extension in RTP packets and this keeps it compatible with a standard player.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool pts: if true, the streamer uses the PTS of a packet instead of the DTS as time stamp in the RTP header. This can solve the problem where VLC ometimes interprets the RTP timestamp as a PTS instead of a DTS, default: false
+\item int payload: payload type (PT) of the RTP packets, -1 means leaving the decision to the component, default: -1
+\item string tracefile: if defined, the path of the trace where to log information about the sent packets, default: ""
+\item int mtu: in bytes, the maximum packet size accepted by the RTP session, default: 1500
+\item bool force-sequence-number: if true, force the RTP sequence number to follow the unitnumber, hence if you remove packets beforehand, the sequence number will also have gaps, if false, use the default RTP implementation, default: false
+\end{itemize}
+\end{itemize}
+\subsection{TCP-transmitter}
+Provides a non-blocking TCP socket to the network.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool connect: if true, connect to the server, if false, listen for an incoming connection, default: true
+\end{itemize}
+\end{itemize}
+\subsection{UDP-transmitter}
+Provides a non-blocking UDP socket to the network.
+\newpage
+\section{unpacketizer}
+
+\subsection{AMR-unpacketizer}
+Unpacketizes an AMR-NB/-WB stream packed according to RFC 3267.
+\newline WARNING: this component is in a beta version and might not function properly.\subsection{AVC-unpacketizer}
+The fragmented or aggregated frames are transformed again into their original NAL units, as defined in RFC 3984. It performs the reverse operation of the AVC-packetizer.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool startcodes: if true, add startcodes to the unpacked NALs, default: true
+\item bool strict-annex-b: if false, all startcodes will be 4 bytes, default: true
+\end{itemize}
+\end{itemize}
+\subsection{MP2-unpacketizer}
+Unpacketizes a stream fragmented with MP2 packetization for RTP (RFC 2250) by for example (MP2-packetizer).
+\subsection{MP4-unpacketizer}
+Unpacketizes a stream fragmented with MP4 packetization for RTP (RFC 3640) by for example MP4-packetizer.
+\subsection{PES-unpacketizer}
+One or more PES-packets belonging to one frame are split again into the original parts. It performs the reverse operation of the PES-packetizer.
+\subsection{sirannon-unpacketizer}
+Unpacketizes a stream fragmented by the internal packetizer of Sirannon (sirannon-packetizer).
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item bool recover-frame: if true, unpacked parts of a damage frame instead of discarding the entire frame, default: false
+\item bool error-on-loss: if true, throw an exception when packet loss occurs, default: false
+\end{itemize}
+\end{itemize}
+\newpage
+\section{writer}
+
+\subsection{basic-writer}
+Writes the content of each received packet to a file and deletes the packet. When an end-packet is received, the file is closed.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string filename: the path of the file where to write to, default: ""
+\item bool flush: if true, flush the IO buffer after each write, default: false
+\item bool fragmented: if true, after each reset, close the container and open a new container with a name of the form e.g. demo-0.avi, demo-1.avi, demo-2.avi, etc., default: false
+\item bool complete: if true, if the file is not closed when entering the destructor, delete the file, default: false
+\end{itemize}
+\end{itemize}
+\subsection{ffmpeg-writer}
+Joins packets from different source into a container format supported by FFMPEG (eg. FLV, WEBM, MP4). The container is written to a file.
+\begin{itemize}
+\item Parameters:
+\begin{itemize}
+\item string filename: the path of the file where to write to, default: ""
+\item int initial-delay: in ms, the minimal delay between the first received packet and first multiplexed packet, default: 0
+\item int delay: in ms, the minimal amount of data present for each stream of the multiplex before the next packet is written, default: 1000
+\item int streams: the number of different streams required before multiplexing, -1 omits this requirement, default: -1
+\item string format: if defined, overrules the format determined by the extension in the filename, default: ""
+\item bool fragmented: if true, after each reset, close the container and open a new container with a name of the form e.g. demo-0.avi, demo-1.avi, demo-2.avi, etc., default: false
+\end{itemize}
+\end{itemize}
+\newpage

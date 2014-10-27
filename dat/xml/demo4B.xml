@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="40000" seed="0" simulation="0">
+	<component name="rtp-receiver" type="RTP-receiver">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="true"/>
+		<param name="port" type="int" val="5004"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="buffer" type="int" val="8388608"/>
+		<param name="extension" type="bool" val="true"/>
+		<param name="multicast" type="bool" val="false"/>
+		<param name="multicast-server" type="string" val=""/>
+		<param name="tracefile" type="string" val=""/>
+		<param name="hash-file" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="159.0" y="298.5"/>
+	</component>
+	<component name="udp-receiver" type="UDP-receiver">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="true"/>
+		<param name="port" type="int" val="5100"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="buffer" type="int" val="0"/>
+		<param name="extension" type="bool" val="true"/>
+		<param name="multicast" type="bool" val="false"/>
+		<param name="multicast-server" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="271.0" y="121.5"/>
+	</component>
+	<component name="tcp-receiver" type="TCP-receiver">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="true"/>
+		<param name="port" type="int" val="5006"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="buffer" type="int" val="0"/>
+		<param name="extension" type="bool" val="true"/>
+		<param name="multicast" type="bool" val="false"/>
+		<param name="multicast-server" type="string" val=""/>
+		<param name="connect" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="281.0" y="599.5"/>
+	</component>
+	<component name="udp-transmitter" type="UDP-transmitter">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="port" type="int" val="4000"/>
+		<param name="destination" type="string" val="$1:1234"/>
+		<param name="buffer" type="int" val="0"/>
+		<param name="extension" type="bool" val="false"/>
+		<param name="multicast-TTL" type="int" val="-1"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="669.0" y="378.5"/>
+	</component>
+	<component name="unit-multiplexer" type="unit-multiplexer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="delay" type="int" val="1000"/>
+		<param name="streams" type="int" val="3"/>
+		<gfx h="120.0" r="0.0" w="150.0" x="411.0" y="370.0"/>
+	</component>
+	<route from="udp-receiver" to="unit-multiplexer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="rtp-receiver" to="unit-multiplexer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="tcp-receiver" to="unit-multiplexer" xroute="0">
+		<gfx from="4" to="6"/>
+	</route>
+	<route from="unit-multiplexer" to="udp-transmitter" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+</config>

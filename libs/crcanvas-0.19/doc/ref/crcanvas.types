@@ -1,0 +1,38 @@
+#include "cr-canvas.h"
+#include "cr-item.h"
+#include "cr-types.h"
+#include "cr-path.h"
+#include "cr-line.h"
+#include "cr-ellipse.h"
+#include "cr-inverse.h"
+#include "cr-rectangle.h"
+#include "cr-text.h"
+#include "cr-pixbuf.h"
+#include "cr-vector.h"
+#include "cr-arrow.h"
+#include "cr-panner.h"
+#include "cr-rotator.h"
+#include "cr-zoomer.h"
+#include "cr-blit.h"
+
+cr_canvas_get_type
+cr_item_get_type
+cr_path_get_type
+cr_line_get_type
+cr_rectangle_get_type
+cr_ellipse_get_type
+cr_inverse_get_type
+cr_text_get_type
+cr_pixbuf_get_type
+cr_vector_get_type
+cr_arrow_get_type
+cr_panner_get_type
+cr_rotator_get_type
+cr_zoomer_get_type
+cr_bounds_get_type
+cr_device_bounds_get_type
+cr_points_get_type
+cr_pattern_get_type
+cr_context_get_type
+cr_matrix_get_type
+cr_blit_get_type

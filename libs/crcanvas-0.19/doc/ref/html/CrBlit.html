@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrBlit</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrInverse.html" title="CrInverse">
+<link rel="next" href="CrRotator.html" title="CrRotator">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrInverse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrRotator.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrBlit.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrBlit.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrBlit.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrBlit.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrBlit">
+<a name="CrBlit"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrBlit.top_of_page"></a>CrBlit</span></h2>
+<p>CrBlit — A grouping item to improve performance by caching
+complex item trees off-screen.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrBlit.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrBlit.html#CrBlit-struct" title="CrBlit">CrBlit</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrBlit.html#cr-blit-new" title="cr_blit_new ()">cr_blit_new</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrBlit.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----CrBlit
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrBlit.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrBlit.html#CrBlit--canvas" title='The "canvas" property'>canvas</a>"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write
+  "<a class="link" href="CrBlit.html#CrBlit--device-height" title='The "device-height" property'>device-height</a>"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrBlit.html#CrBlit--device-width" title='The "device-width" property'>device-width</a>"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrBlit.html#CrBlit--scale-factor" title='The "scale-factor" property'>scale-factor</a>"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrBlit.html#CrBlit--test-image" title='The "test-image" property'>test-image</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrBlit.description"></a><h2>Description</h2>
+<p>
+The Blit item is used to group any arbitrary item tree into an offscreen
+memory surface.  The memory surface is then painted to the screen in a single
+operation. It should be used in cases where the CPU time needed to paint the
+item tree to the screen is greater than then frequency at which the tree
+needs to be repainted. 
+</p>
+<p>
+To use the item, either set a fixed memory size by setting the
+<a class="link" href="CrBlit.html#CrBlit--device-width" title='The "device-width" property'><span class="type">"device_width"</span></a> and <a class="link" href="CrBlit.html#CrBlit--device-height" title='The "device-height" property'><span class="type">"device_height"</span></a> properties explicitly,
+or allow it to automatically determine the best memory size by setting the
+<a class="link" href="CrBlit.html#CrBlit--canvas" title='The "canvas" property'><span class="type">"canvas"</span></a> and <a class="link" href="CrBlit.html#CrBlit--scale-factor" title='The "scale-factor" property'><span class="type">"scale-factor"</span></a> properties.  When using fixed memory
+sizing, the image will often look blurry.  When using automatic sizing, the
+image will be re-built each time the canvas is zoomed or panned.
+</p>
+<p>
+One example use is a detailed vector map with a moving animation over it.  
+As the animation moves rapidly over the map, there is no need to redraw the
+map vectors for each movement of the animation.  The Blit item can be used to
+rasterize the map so that only a single image will be repainted with each
+movement of the animation.
+</p>
+<p>
+Another example use is a very complex item tree that needs to be scaled or
+panned.  The operation may be sluggish if the amount of time required to
+render the vector graphics is greater than 0.1 seconds.  Because rendering an
+image is generally faster, using CrBlit during the scaling or panning
+operation will make the operation happen smoothly. 
+</p>
+<p>
+(<span class="emphasis"><em>BUGS:</em></span> On some hardware, this item does not work
+properly and in some cases causes the window manager to crash.  On other
+hardware it works perfectly.  Suspect problem is in cairo library -- still
+investigating.)</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrBlit.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrBlit">
+<a name="CrBlit-struct"></a><h3>CrBlit</h3>
+<pre class="programlisting">typedef struct _CrBlit CrBlit;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_blit_new ()">
+<a name="cr-blit-new"></a><h3>cr_blit_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_blit_new                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience routine for creating a cr-blit item and adding it to an item
+group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrBlit.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "canvas" property'>
+<a name="CrBlit--canvas"></a><h3>The <code class="literal">"canvas"</code> property</h3>
+<pre class="programlisting">  "canvas"                   <a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>*             : Read / Write</pre>
+<p>Reference to CrCanvas widget which can be used in lieu of setting device-width/height explicitly.  Setting the canvas property will cause the blitted image to get periodically recalculated as the scale and size of the referenced canvas changes. In the event that the blitted image is added to the item tree of multiple canvasses, the recalulation will obviously only be triggered by changes to the canvas referenced here.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "device-height" property'>
+<a name="CrBlit--device-height"></a><h3>The <code class="literal">"device-height"</code> property</h3>
+<pre class="programlisting">  "device-height"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The pixel height dedicated to the blit surface. This property will get set automatically if the canvas property is set.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "device-width" property'>
+<a name="CrBlit--device-width"></a><h3>The <code class="literal">"device-width"</code> property</h3>
+<pre class="programlisting">  "device-width"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The pixel width dedicated to the blit surface.  This property will get set automatically if the canvas property is set.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "scale-factor" property'>
+<a name="CrBlit--scale-factor"></a><h3>The <code class="literal">"scale-factor"</code> property</h3>
+<pre class="programlisting">  "scale-factor"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>A ratio that defines the maximum amount of memory that can be used to define the blit device-width and height when the canvas property is set.  i.e., If canvas is zoomed in to show only 10x10 user coordinates and the scale-factor=2, but the blitted image is 100x100 in user corrdinates, only a 20x20 fraction of the image will be stored.  This property has no-effect when the canvas property is not set.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 2</p>
+</div>
+<hr>
+<div class="refsect2" title='The "test-image" property'>
+<a name="CrBlit--test-image"></a><h3>The <code class="literal">"test-image"</code> property</h3>
+<pre class="programlisting">  "test-image"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If only the image should be tested rather than the individual child items.  For very complex item trees, this property will save cpu usage.  Set this to FALSE if you need to distinguish which part of the image is selected.</p>
+<p>Default value: TRUE</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

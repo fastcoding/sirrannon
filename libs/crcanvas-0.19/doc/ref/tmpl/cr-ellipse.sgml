@@ -1,0 +1,58 @@
+<!-- ##### SECTION Title ##### -->
+CrEllipse
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrEllipse ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrEllipse:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrEllipse:orientation ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrEllipse:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_ellipse_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@width: 
+@height: 
+@orientation: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

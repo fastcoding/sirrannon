@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrArrow">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrArrow.top_of_page">CrArrow</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrArrow</refname>
+<refpurpose>An arrowhead that can be used to cap a line segment.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrArrow.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrArrow-struct">CrArrow</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-arrow-new">cr_arrow_new</link>                        (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="int">int</link> point_id,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-arrow-connect-parent">cr_arrow_connect_parent</link>             (<link linkend="CrArrow">CrArrow</link> *arrow,
+                                                         <link linkend="CrItem">CrItem</link> *parent);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrArrow.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----<link linkend="CrPath">CrPath</link>
+               +----CrArrow
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrArrow.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrArrow--angle">angle</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrArrow--depth">depth</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrArrow--fatness">fatness</link>&quot;                  <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrArrow--length">length</link>&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrArrow--point-id">point-id</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="CrArrow--scaleable">scaleable</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrArrow--x-offset">x-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrArrow--y-offset">y-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrArrow.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The arrow is typically used at the start or end of a line, but can be used
+independently or part of some other arrangement.  The <link linkend="cr-arrow-new"><type>cr_arrow_new</type></link>
+convenience constructor will automatically place the arrow on a point of the
+line segment if it is called with <link linkend="CrVector"><type>CrVector</type></link> or <link linkend="CrLine"><type>CrLine</type></link> as a parent group.
+</para>
+<para>
+When the convenience constructor <link linkend="cr-arrow-new"><type>cr_arrow_new</type></link> is used the <link linkend="CrArrow--angle"><type>"angle"</type></link>,
+<link linkend="CrArrow--scaleable"><type>"scaleable"</type></link>, <link linkend="CrArrow--x-offset"><type>"x_offset"</type></link>, <link linkend="CrArrow--y-offset"><type>"y_offset"</type></link>, <link linkend="CrItem--x"><type>"x"</type></link>, and
+<link linkend="CrItem--y"><type>"y"</type></link> properties are set and updated automatically.  When the arrow used
+in some other way, these properties need to be set-up by the user.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrArrow.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrArrow-struct" role="struct">
+<title>CrArrow</title>
+<indexterm zone="CrArrow-struct"><primary sortas="CrArrow">CrArrow</primary></indexterm><programlisting>typedef struct _CrArrow CrArrow;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-arrow-new" role="function">
+<title>cr_arrow_new ()</title>
+<indexterm zone="cr-arrow-new"><primary sortas="cr_arrow_new">cr_arrow_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_arrow_new                        (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="int">int</link> point_id,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience function to create an arrow-head and add it to a canvas
+item parent group in one step. If the item is added to a <parameter>CrVector</parameter> or a
+<parameter>CrLine</parameter> parent, then most set-up will be taken care of automatically by this
+constructor.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>point_id</parameter>&#160;:</term>
+<listitem><simpara> Negative values count from the back and point toward the end.
+Positive values count from the front and point toward the beginning.  Use 0
+for a 'start' arrow and -1 for an 'end' arrow. This is only valid when
+parented to a <link linkend="CrLine"><type>CrLine</type></link> or <link linkend="CrVector"><type>CrVector</type></link> item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-arrow-connect-parent" role="function">
+<title>cr_arrow_connect_parent ()</title>
+<indexterm zone="cr-arrow-connect-parent"><primary sortas="cr_arrow_connect_parent">cr_arrow_connect_parent</primary></indexterm><programlisting><link linkend="void">void</link>                cr_arrow_connect_parent             (<link linkend="CrArrow">CrArrow</link> *arrow,
+                                                         <link linkend="CrItem">CrItem</link> *parent);</programlisting>
+<para>
+Connects the arrow to a parent line or vector so it can automatically 
+align itself.  Normally, when using the C convenience constructor
+<link linkend="cr-arrow-new"><type>cr_arrow_new</type></link>, it is not necessary to call this. The routine is here for 
+language bindings or where <parameter>g_object_new</parameter> is used.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>arrow</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> Parent item.  Should be a <link linkend="CrLine"><type>CrLine</type></link> or <link linkend="CrVector"><type>CrVector</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrArrow.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrArrow--angle" role="property"><title>The <literal>&quot;angle&quot;</literal> property</title>
+<indexterm zone="CrArrow--angle"><primary sortas="CrArrow:angle">CrArrow:angle</primary></indexterm><programlisting>  &quot;angle&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The angle in radians to which the arrow points.  Zero points East.  Positive angles increase CW. When parented to #CrLine or  #CrVector, this property will be set automatically.</para><para>Allowed values: [-3.14159,6.28319]</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrArrow--depth" role="property"><title>The <literal>&quot;depth&quot;</literal> property</title>
+<indexterm zone="CrArrow--depth"><primary sortas="CrArrow:depth">CrArrow:depth</primary></indexterm><programlisting>  &quot;depth&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The concaveness or convexness if negative.</para><para>Default value: 3</para>
+</refsect2>
+<refsect2 id="CrArrow--fatness" role="property"><title>The <literal>&quot;fatness&quot;</literal> property</title>
+<indexterm zone="CrArrow--fatness"><primary sortas="CrArrow:fatness">CrArrow:fatness</primary></indexterm><programlisting>  &quot;fatness&quot;                  <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>How wide measured perpendicular to the pointing direction.</para><para>Default value: 7</para>
+</refsect2>
+<refsect2 id="CrArrow--length" role="property"><title>The <literal>&quot;length&quot;</literal> property</title>
+<indexterm zone="CrArrow--length"><primary sortas="CrArrow:length">CrArrow:length</primary></indexterm><programlisting>  &quot;length&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>How long from the tip to the end along the direction it is pointing.</para><para>Default value: 14</para>
+</refsect2>
+<refsect2 id="CrArrow--point-id" role="property"><title>The <literal>&quot;point-id&quot;</literal> property</title>
+<indexterm zone="CrArrow--point-id"><primary sortas="CrArrow:point-id">CrArrow:point-id</primary></indexterm><programlisting>  &quot;point-id&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>Negative values count from the back and point toward  the end.  Positive values count from the front and  point toward the beginning.  Use 0 for a 'start' arrow and -1 for an 'end' arrow.  This is only valid when parented to a #CrLine or #CrVector item.</para><para>Allowed values: &gt;= -2147483647</para>
+<para>Default value: -1</para>
+</refsect2>
+<refsect2 id="CrArrow--scaleable" role="property"><title>The <literal>&quot;scaleable&quot;</literal> property</title>
+<indexterm zone="CrArrow--scaleable"><primary sortas="CrArrow:scaleable">CrArrow:scaleable</primary></indexterm><programlisting>  &quot;scaleable&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the arrow should scale to conform to item units.  Setting this to FALSE will cause the arrow to always be the same size.  When using the arrow with #CrLine or #CrVector, this will be set automatically to conform to the 'line-scaleable' property. See also #CrInverse for another way to achieve ths same effect.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrArrow--x-offset" role="property"><title>The <literal>&quot;x-offset&quot;</literal> property</title>
+<indexterm zone="CrArrow--x-offset"><primary sortas="CrArrow:x-offset">CrArrow:x-offset</primary></indexterm><programlisting>  &quot;x-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the arrow's point.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrArrow--y-offset" role="property"><title>The <literal>&quot;y-offset&quot;</literal> property</title>
+<indexterm zone="CrArrow--y-offset"><primary sortas="CrArrow:y-offset">CrArrow:y-offset</primary></indexterm><programlisting>  &quot;y-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the arrow's point.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,118 @@
+<config quantum="0" simulation="40000" seed="0">
+	<component name="avc-reader" type="avc-reader" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$1" />
+		<param name="loop" type="int" val="1" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="dts-start" type="int" val="1000" />
+		<param name="skip-SEI" type="bool" val="false" />
+		<gfx x="51.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="frame-classifier" type="frame-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="false" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="I" type="int" val="0" />
+		<param name="B" type="int" val="0" />
+		<param name="P" type="int" val="0" />
+		<param name="default" type="int" val="0" />
+		<gfx x="237.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="avc-packetizer" type="avc-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="aggregate" type="bool" val="false" />
+		<gfx x="422.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="random-classifier 1" type="random-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="true" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="P(loss)" type="double" val="$3" />
+		<param name="xroute" type="int" val="1" />
+		<gfx x="670.0" y="10.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="random-classifier 2" type="random-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="true" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="P(loss)" type="double" val="$4" />
+		<param name="xroute" type="int" val="1" />
+		<gfx x="601.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="random-classifier 3" type="random-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="true" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="P(loss)" type="double" val="$5" />
+		<param name="xroute" type="int" val="1" />
+		<gfx x="665.0" y="253.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="avc-unpacketizer" type="avc-unpacketizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="startcodes" type="bool" val="true" />
+		<param name="strict-annex-b" type="bool" val="false" />
+		<gfx x="780.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-writer" type="basic-writer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$2" />
+		<param name="flush" type="bool" val="false" />
+		<param name="fragmented" type="bool" val="false" />
+		<gfx x="979.0" y="131.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="sink" type="sink" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="false" />
+		<param name="count" type="int" val="0" />
+		<gfx x="1186.0" y="132.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="avc-reader" to="frame-classifier" xroute="0"/>
+
+	<route from="frame-classifier" to="avc-packetizer" xroute="0"/>
+
+	<route from="avc-packetizer" to="random-classifier 2" xroute="101"/>
+
+	<route from="random-classifier 2" to="avc-unpacketizer" xroute="0"/>
+
+	<route from="avc-packetizer" to="random-classifier 1" xroute="100"/>
+
+	<route from="avc-packetizer" to="random-classifier 3" xroute="102"/>
+
+	<route from="random-classifier 3" to="avc-unpacketizer" xroute="0"/>
+
+	<route from="random-classifier 1" to="avc-unpacketizer" xroute="0"/>
+
+	<route from="avc-unpacketizer" to="basic-writer" xroute="0"/>
+
+	<route from="basic-writer" to="sink" xroute="0"/>
+
+</config>

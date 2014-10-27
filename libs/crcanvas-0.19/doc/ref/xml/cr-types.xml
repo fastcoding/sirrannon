@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="crcanvas-cr-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="crcanvas-cr-types.top_of_page">cr-types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>cr-types</refname>
+<refpurpose>#Gobject Boxed wrappers for passing data in signals and
+language wrapping.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="crcanvas-cr-types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="CR-TYPE-POINTS--CAPS">CR_TYPE_POINTS</link>
+                    <link linkend="CrPoints">CrPoints</link>;
+<link linkend="CrPoints">CrPoints</link> *          <link linkend="cr-points-new">cr_points_new</link>                       (void);
+<link linkend="GType">GType</link>               <link linkend="cr-points-get-type">cr_points_get_type</link>                  (void);
+<link linkend="CrPoints">CrPoints</link> *          <link linkend="cr-points-ref">cr_points_ref</link>                       (<link linkend="CrPoints">CrPoints</link> *);
+<link linkend="void">void</link>                <link linkend="cr-points-unref">cr_points_unref</link>                     (<link linkend="CrPoints">CrPoints</link> *);
+#define             <link linkend="CR-TYPE-BOUNDS--CAPS">CR_TYPE_BOUNDS</link>
+                    <link linkend="CrBounds">CrBounds</link>;
+<link linkend="CrBounds">CrBounds</link> *          <link linkend="cr-bounds-new">cr_bounds_new</link>                       (void);
+<link linkend="GType">GType</link>               <link linkend="cr-bounds-get-type">cr_bounds_get_type</link>                  (void);
+<link linkend="CrBounds">CrBounds</link> *          <link linkend="cr-bounds-ref">cr_bounds_ref</link>                       (<link linkend="CrBounds">CrBounds</link> *);
+<link linkend="void">void</link>                <link linkend="cr-bounds-unref">cr_bounds_unref</link>                     (<link linkend="CrBounds">CrBounds</link> *);
+#define             <link linkend="CR-TYPE-DEVICE-BOUNDS--CAPS">CR_TYPE_DEVICE_BOUNDS</link>
+                    <link linkend="CrDeviceBounds">CrDeviceBounds</link>;
+<link linkend="CrDeviceBounds">CrDeviceBounds</link> *    <link linkend="cr-device-bounds-new">cr_device_bounds_new</link>                (void);
+<link linkend="GType">GType</link>               <link linkend="cr-device-bounds-get-type">cr_device_bounds_get_type</link>           (void);
+<link linkend="CrDeviceBounds">CrDeviceBounds</link> *    <link linkend="cr-device-bounds-ref">cr_device_bounds_ref</link>                (<link linkend="CrDeviceBounds">CrDeviceBounds</link> *);
+<link linkend="void">void</link>                <link linkend="cr-device-bounds-unref">cr_device_bounds_unref</link>              (<link linkend="CrDeviceBounds">CrDeviceBounds</link> *);
+#define             <link linkend="CR-TYPE-PATTERN--CAPS">CR_TYPE_PATTERN</link>
+<link linkend="GType">GType</link>               <link linkend="cr-pattern-get-type">cr_pattern_get_type</link>                 (void);
+typedef             <link linkend="CrPattern">CrPattern</link>;
+#define             <link linkend="CR-TYPE-SURFACE--CAPS">CR_TYPE_SURFACE</link>
+<link linkend="GType">GType</link>               <link linkend="cr-surface-get-type">cr_surface_get_type</link>                 (void);
+typedef             <link linkend="CrSurface">CrSurface</link>;
+#define             <link linkend="CR-TYPE-MATRIX--CAPS">CR_TYPE_MATRIX</link>
+typedef             <link linkend="CrMatrix">CrMatrix</link>;
+<link linkend="GType">GType</link>               <link linkend="cr-matrix-get-type">cr_matrix_get_type</link>                  (void);
+#define             <link linkend="CR-TYPE-CONTEXT--CAPS">CR_TYPE_CONTEXT</link>
+typedef             <link linkend="CrContext">CrContext</link>;
+<link linkend="GType">GType</link>               <link linkend="cr-context-get-type">cr_context_get_type</link>                 (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="crcanvas-cr-types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="crcanvas-cr-types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CR-TYPE-POINTS--CAPS" role="macro">
+<title>CR_TYPE_POINTS</title>
+<indexterm zone="CR-TYPE-POINTS--CAPS"><primary sortas="CR_TYPE_POINTS">CR_TYPE_POINTS</primary></indexterm><programlisting>#define CR_TYPE_POINTS (cr_points_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CrPoints" role="struct">
+<title>CrPoints</title>
+<indexterm zone="CrPoints"><primary sortas="CrPoints">CrPoints</primary></indexterm><programlisting>typedef struct {
+        GArray *array;
+        int ref_count;
+} CrPoints;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-points-new" role="function">
+<title>cr_points_new ()</title>
+<indexterm zone="cr-points-new"><primary sortas="cr_points_new">cr_points_new</primary></indexterm><programlisting><link linkend="CrPoints">CrPoints</link> *          cr_points_new                       (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-points-get-type" role="function">
+<title>cr_points_get_type ()</title>
+<indexterm zone="cr-points-get-type"><primary sortas="cr_points_get_type">cr_points_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_points_get_type                  (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-points-ref" role="function">
+<title>cr_points_ref ()</title>
+<indexterm zone="cr-points-ref"><primary sortas="cr_points_ref">cr_points_ref</primary></indexterm><programlisting><link linkend="CrPoints">CrPoints</link> *          cr_points_ref                       (<link linkend="CrPoints">CrPoints</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-points-unref" role="function">
+<title>cr_points_unref ()</title>
+<indexterm zone="cr-points-unref"><primary sortas="cr_points_unref">cr_points_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cr_points_unref                     (<link linkend="CrPoints">CrPoints</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CR-TYPE-BOUNDS--CAPS" role="macro">
+<title>CR_TYPE_BOUNDS</title>
+<indexterm zone="CR-TYPE-BOUNDS--CAPS"><primary sortas="CR_TYPE_BOUNDS">CR_TYPE_BOUNDS</primary></indexterm><programlisting>#define CR_TYPE_BOUNDS (cr_bounds_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CrBounds" role="struct">
+<title>CrBounds</title>
+<indexterm zone="CrBounds"><primary sortas="CrBounds">CrBounds</primary></indexterm><programlisting>typedef struct {
+    double x1, y1, x2, y2;
+    int ref_count;
+} CrBounds;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-bounds-new" role="function">
+<title>cr_bounds_new ()</title>
+<indexterm zone="cr-bounds-new"><primary sortas="cr_bounds_new">cr_bounds_new</primary></indexterm><programlisting><link linkend="CrBounds">CrBounds</link> *          cr_bounds_new                       (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-bounds-get-type" role="function">
+<title>cr_bounds_get_type ()</title>
+<indexterm zone="cr-bounds-get-type"><primary sortas="cr_bounds_get_type">cr_bounds_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_bounds_get_type                  (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-bounds-ref" role="function">
+<title>cr_bounds_ref ()</title>
+<indexterm zone="cr-bounds-ref"><primary sortas="cr_bounds_ref">cr_bounds_ref</primary></indexterm><programlisting><link linkend="CrBounds">CrBounds</link> *          cr_bounds_ref                       (<link linkend="CrBounds">CrBounds</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-bounds-unref" role="function">
+<title>cr_bounds_unref ()</title>
+<indexterm zone="cr-bounds-unref"><primary sortas="cr_bounds_unref">cr_bounds_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cr_bounds_unref                     (<link linkend="CrBounds">CrBounds</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CR-TYPE-DEVICE-BOUNDS--CAPS" role="macro">
+<title>CR_TYPE_DEVICE_BOUNDS</title>
+<indexterm zone="CR-TYPE-DEVICE-BOUNDS--CAPS"><primary sortas="CR_TYPE_DEVICE_BOUNDS">CR_TYPE_DEVICE_BOUNDS</primary></indexterm><programlisting>#define CR_TYPE_DEVICE_BOUNDS (cr_device_bounds_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CrDeviceBounds" role="struct">
+<title>CrDeviceBounds</title>
+<indexterm zone="CrDeviceBounds"><primary sortas="CrDeviceBounds">CrDeviceBounds</primary></indexterm><programlisting>typedef struct {
+        double x1, y1, x2, y2;
+        GtkAnchorType anchor;
+        int ref_count;
+} CrDeviceBounds;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-device-bounds-new" role="function">
+<title>cr_device_bounds_new ()</title>
+<indexterm zone="cr-device-bounds-new"><primary sortas="cr_device_bounds_new">cr_device_bounds_new</primary></indexterm><programlisting><link linkend="CrDeviceBounds">CrDeviceBounds</link> *    cr_device_bounds_new                (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-device-bounds-get-type" role="function">
+<title>cr_device_bounds_get_type ()</title>
+<indexterm zone="cr-device-bounds-get-type"><primary sortas="cr_device_bounds_get_type">cr_device_bounds_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_device_bounds_get_type           (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-device-bounds-ref" role="function">
+<title>cr_device_bounds_ref ()</title>
+<indexterm zone="cr-device-bounds-ref"><primary sortas="cr_device_bounds_ref">cr_device_bounds_ref</primary></indexterm><programlisting><link linkend="CrDeviceBounds">CrDeviceBounds</link> *    cr_device_bounds_ref                (<link linkend="CrDeviceBounds">CrDeviceBounds</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-device-bounds-unref" role="function">
+<title>cr_device_bounds_unref ()</title>
+<indexterm zone="cr-device-bounds-unref"><primary sortas="cr_device_bounds_unref">cr_device_bounds_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cr_device_bounds_unref              (<link linkend="CrDeviceBounds">CrDeviceBounds</link> *);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CR-TYPE-PATTERN--CAPS" role="macro">
+<title>CR_TYPE_PATTERN</title>
+<indexterm zone="CR-TYPE-PATTERN--CAPS"><primary sortas="CR_TYPE_PATTERN">CR_TYPE_PATTERN</primary></indexterm><programlisting>#define CR_TYPE_PATTERN (cr_pattern_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-pattern-get-type" role="function">
+<title>cr_pattern_get_type ()</title>
+<indexterm zone="cr-pattern-get-type"><primary sortas="cr_pattern_get_type">cr_pattern_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_pattern_get_type                 (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CrPattern" role="typedef">
+<title>CrPattern</title>
+<indexterm zone="CrPattern"><primary sortas="CrPattern">CrPattern</primary></indexterm><programlisting>typedef cairo_pattern_t CrPattern;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CR-TYPE-SURFACE--CAPS" role="macro">
+<title>CR_TYPE_SURFACE</title>
+<indexterm zone="CR-TYPE-SURFACE--CAPS"><primary sortas="CR_TYPE_SURFACE">CR_TYPE_SURFACE</primary></indexterm><programlisting>#define CR_TYPE_SURFACE (cr_surface_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-surface-get-type" role="function">
+<title>cr_surface_get_type ()</title>
+<indexterm zone="cr-surface-get-type"><primary sortas="cr_surface_get_type">cr_surface_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_surface_get_type                 (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CrSurface" role="typedef">
+<title>CrSurface</title>
+<indexterm zone="CrSurface"><primary sortas="CrSurface">CrSurface</primary></indexterm><programlisting>typedef cairo_surface_t CrSurface;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CR-TYPE-MATRIX--CAPS" role="macro">
+<title>CR_TYPE_MATRIX</title>
+<indexterm zone="CR-TYPE-MATRIX--CAPS"><primary sortas="CR_TYPE_MATRIX">CR_TYPE_MATRIX</primary></indexterm><programlisting>#define CR_TYPE_MATRIX (cr_matrix_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CrMatrix" role="typedef">
+<title>CrMatrix</title>
+<indexterm zone="CrMatrix"><primary sortas="CrMatrix">CrMatrix</primary></indexterm><programlisting>typedef cairo_matrix_t CrMatrix;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-matrix-get-type" role="function">
+<title>cr_matrix_get_type ()</title>
+<indexterm zone="cr-matrix-get-type"><primary sortas="cr_matrix_get_type">cr_matrix_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_matrix_get_type                  (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CR-TYPE-CONTEXT--CAPS" role="macro">
+<title>CR_TYPE_CONTEXT</title>
+<indexterm zone="CR-TYPE-CONTEXT--CAPS"><primary sortas="CR_TYPE_CONTEXT">CR_TYPE_CONTEXT</primary></indexterm><programlisting>#define CR_TYPE_CONTEXT (cr_context_get_type())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="CrContext" role="typedef">
+<title>CrContext</title>
+<indexterm zone="CrContext"><primary sortas="CrContext">CrContext</primary></indexterm><programlisting>typedef cairo_t CrContext;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-context-get-type" role="function">
+<title>cr_context_get_type ()</title>
+<indexterm zone="cr-context-get-type"><primary sortas="cr_context_get_type">cr_context_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               cr_context_get_type                 (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

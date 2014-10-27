@@ -1,0 +1,81 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="qmatch-reader" type="avc-reader" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$6" />
+		<param name="loop" type="int" val="$2" />
+		<param name="video-route" type="int" val="$3" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="dts-start" type="int" val="1000" />
+		<param name="skip-SEI" type="bool" val="true" />
+		<gfx x="41.0" y="31.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="avc-packetizer" type="avc-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="aggregate" type="bool" val="true" />
+		<gfx x="234.0" y="31.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="svc-classifier" type="svc-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="false" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="layer" type="int" val="0" />
+		<param name="layer1" type="string" val="" />
+		<param name="layer2" type="string" val="" />
+		<param name="layer3" type="string" val="" />
+		<param name="layer4" type="string" val="" />
+		<param name="layer5" type="string" val="" />
+		<param name="layer6" type="string" val="" />
+		<param name="layer7" type="string" val="" />
+		<gfx x="432.0" y="31.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="out" type="out" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="url" type="string" val="" />
+		<gfx x="998.0" y="30.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="statistics" type="statistics" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interval" type="int" val="-1" />
+		<param name="log" type="string" val="" />
+		<param name="label" type="string" val="$4" />
+		<param name="append" type="bool" val="true" />
+		<param name="draw" type="bool" val="false" />
+		<gfx x="813.0" y="31.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="qmatch-scheduler" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="$5" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<gfx x="624.0" y="31.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="avc-packetizer" to="svc-classifier" xroute="0"/>
+
+	<route from="statistics" to="out" xroute="0"/>
+
+	<route from="svc-classifier" to="qmatch-scheduler" xroute="0"/>
+
+	<route from="qmatch-scheduler" to="statistics" xroute="0"/>
+
+	<route from="qmatch-reader" to="avc-packetizer" xroute="0"/>
+
+</config>

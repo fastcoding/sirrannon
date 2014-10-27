@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>cr-types</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrZoomer.html" title="CrZoomer">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrZoomer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td> </td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#crcanvas-cr-types.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#crcanvas-cr-types.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="cr-types">
+<a name="crcanvas-cr-types"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="crcanvas-cr-types.top_of_page"></a>cr-types</span></h2>
+<p>cr-types — #Gobject Boxed wrappers for passing data in signals and
+language wrapping.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="crcanvas-cr-types.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-POINTS--CAPS" title="CR_TYPE_POINTS">CR_TYPE_POINTS</a>
+                    <a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a>;
+<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *          <a class="link" href="crcanvas-cr-types.html#cr-points-new" title="cr_points_new ()">cr_points_new</a>                       (void);
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-points-get-type" title="cr_points_get_type ()">cr_points_get_type</a>                  (void);
+<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *          <a class="link" href="crcanvas-cr-types.html#cr-points-ref" title="cr_points_ref ()">cr_points_ref</a>                       (<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *);
+void                <a class="link" href="crcanvas-cr-types.html#cr-points-unref" title="cr_points_unref ()">cr_points_unref</a>                     (<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *);
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-BOUNDS--CAPS" title="CR_TYPE_BOUNDS">CR_TYPE_BOUNDS</a>
+                    <a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a>;
+<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *          <a class="link" href="crcanvas-cr-types.html#cr-bounds-new" title="cr_bounds_new ()">cr_bounds_new</a>                       (void);
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-bounds-get-type" title="cr_bounds_get_type ()">cr_bounds_get_type</a>                  (void);
+<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *          <a class="link" href="crcanvas-cr-types.html#cr-bounds-ref" title="cr_bounds_ref ()">cr_bounds_ref</a>                       (<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *);
+void                <a class="link" href="crcanvas-cr-types.html#cr-bounds-unref" title="cr_bounds_unref ()">cr_bounds_unref</a>                     (<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *);
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-DEVICE-BOUNDS--CAPS" title="CR_TYPE_DEVICE_BOUNDS">CR_TYPE_DEVICE_BOUNDS</a>
+                    <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a>;
+<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *    <a class="link" href="crcanvas-cr-types.html#cr-device-bounds-new" title="cr_device_bounds_new ()">cr_device_bounds_new</a>                (void);
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-device-bounds-get-type" title="cr_device_bounds_get_type ()">cr_device_bounds_get_type</a>           (void);
+<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *    <a class="link" href="crcanvas-cr-types.html#cr-device-bounds-ref" title="cr_device_bounds_ref ()">cr_device_bounds_ref</a>                (<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *);
+void                <a class="link" href="crcanvas-cr-types.html#cr-device-bounds-unref" title="cr_device_bounds_unref ()">cr_device_bounds_unref</a>              (<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *);
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-PATTERN--CAPS" title="CR_TYPE_PATTERN">CR_TYPE_PATTERN</a>
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-pattern-get-type" title="cr_pattern_get_type ()">cr_pattern_get_type</a>                 (void);
+typedef             <a class="link" href="crcanvas-cr-types.html#CrPattern" title="CrPattern">CrPattern</a>;
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-SURFACE--CAPS" title="CR_TYPE_SURFACE">CR_TYPE_SURFACE</a>
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-surface-get-type" title="cr_surface_get_type ()">cr_surface_get_type</a>                 (void);
+typedef             <a class="link" href="crcanvas-cr-types.html#CrSurface" title="CrSurface">CrSurface</a>;
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-MATRIX--CAPS" title="CR_TYPE_MATRIX">CR_TYPE_MATRIX</a>
+typedef             <a class="link" href="crcanvas-cr-types.html#CrMatrix" title="CrMatrix">CrMatrix</a>;
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-matrix-get-type" title="cr_matrix_get_type ()">cr_matrix_get_type</a>                  (void);
+#define             <a class="link" href="crcanvas-cr-types.html#CR-TYPE-CONTEXT--CAPS" title="CR_TYPE_CONTEXT">CR_TYPE_CONTEXT</a>
+typedef             <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a>;
+<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="crcanvas-cr-types.html#cr-context-get-type" title="cr_context_get_type ()">cr_context_get_type</a>                 (void);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="crcanvas-cr-types.description"></a><h2>Description</h2>
+<p>
+</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="crcanvas-cr-types.details"></a><h2>Details</h2>
+<div class="refsect2" title="CR_TYPE_POINTS">
+<a name="CR-TYPE-POINTS--CAPS"></a><h3>CR_TYPE_POINTS</h3>
+<pre class="programlisting">#define CR_TYPE_POINTS (cr_points_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CrPoints">
+<a name="CrPoints"></a><h3>CrPoints</h3>
+<pre class="programlisting">typedef struct {
+        GArray *array;
+        int ref_count;
+} CrPoints;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_points_new ()">
+<a name="cr-points-new"></a><h3>cr_points_new ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *          cr_points_new                       (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_points_get_type ()">
+<a name="cr-points-get-type"></a><h3>cr_points_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_points_get_type                  (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_points_ref ()">
+<a name="cr-points-ref"></a><h3>cr_points_ref ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *          cr_points_ref                       (<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_points_unref ()">
+<a name="cr-points-unref"></a><h3>cr_points_unref ()</h3>
+<pre class="programlisting">void                cr_points_unref                     (<a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_BOUNDS">
+<a name="CR-TYPE-BOUNDS--CAPS"></a><h3>CR_TYPE_BOUNDS</h3>
+<pre class="programlisting">#define CR_TYPE_BOUNDS (cr_bounds_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CrBounds">
+<a name="CrBounds"></a><h3>CrBounds</h3>
+<pre class="programlisting">typedef struct {
+    double x1, y1, x2, y2;
+    int ref_count;
+} CrBounds;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_bounds_new ()">
+<a name="cr-bounds-new"></a><h3>cr_bounds_new ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *          cr_bounds_new                       (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_bounds_get_type ()">
+<a name="cr-bounds-get-type"></a><h3>cr_bounds_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_bounds_get_type                  (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_bounds_ref ()">
+<a name="cr-bounds-ref"></a><h3>cr_bounds_ref ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *          cr_bounds_ref                       (<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_bounds_unref ()">
+<a name="cr-bounds-unref"></a><h3>cr_bounds_unref ()</h3>
+<pre class="programlisting">void                cr_bounds_unref                     (<a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_DEVICE_BOUNDS">
+<a name="CR-TYPE-DEVICE-BOUNDS--CAPS"></a><h3>CR_TYPE_DEVICE_BOUNDS</h3>
+<pre class="programlisting">#define CR_TYPE_DEVICE_BOUNDS (cr_device_bounds_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CrDeviceBounds">
+<a name="CrDeviceBounds"></a><h3>CrDeviceBounds</h3>
+<pre class="programlisting">typedef struct {
+        double x1, y1, x2, y2;
+        GtkAnchorType anchor;
+        int ref_count;
+} CrDeviceBounds;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_device_bounds_new ()">
+<a name="cr-device-bounds-new"></a><h3>cr_device_bounds_new ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *    cr_device_bounds_new                (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_device_bounds_get_type ()">
+<a name="cr-device-bounds-get-type"></a><h3>cr_device_bounds_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_device_bounds_get_type           (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_device_bounds_ref ()">
+<a name="cr-device-bounds-ref"></a><h3>cr_device_bounds_ref ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *    cr_device_bounds_ref                (<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_device_bounds_unref ()">
+<a name="cr-device-bounds-unref"></a><h3>cr_device_bounds_unref ()</h3>
+<pre class="programlisting">void                cr_device_bounds_unref              (<a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_PATTERN">
+<a name="CR-TYPE-PATTERN--CAPS"></a><h3>CR_TYPE_PATTERN</h3>
+<pre class="programlisting">#define CR_TYPE_PATTERN (cr_pattern_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_pattern_get_type ()">
+<a name="cr-pattern-get-type"></a><h3>cr_pattern_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_pattern_get_type                 (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CrPattern">
+<a name="CrPattern"></a><h3>CrPattern</h3>
+<pre class="programlisting">typedef cairo_pattern_t CrPattern;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_SURFACE">
+<a name="CR-TYPE-SURFACE--CAPS"></a><h3>CR_TYPE_SURFACE</h3>
+<pre class="programlisting">#define CR_TYPE_SURFACE (cr_surface_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_surface_get_type ()">
+<a name="cr-surface-get-type"></a><h3>cr_surface_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_surface_get_type                 (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CrSurface">
+<a name="CrSurface"></a><h3>CrSurface</h3>
+<pre class="programlisting">typedef cairo_surface_t CrSurface;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_MATRIX">
+<a name="CR-TYPE-MATRIX--CAPS"></a><h3>CR_TYPE_MATRIX</h3>
+<pre class="programlisting">#define CR_TYPE_MATRIX (cr_matrix_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CrMatrix">
+<a name="CrMatrix"></a><h3>CrMatrix</h3>
+<pre class="programlisting">typedef cairo_matrix_t CrMatrix;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_matrix_get_type ()">
+<a name="cr-matrix-get-type"></a><h3>cr_matrix_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_matrix_get_type                  (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="CR_TYPE_CONTEXT">
+<a name="CR-TYPE-CONTEXT--CAPS"></a><h3>CR_TYPE_CONTEXT</h3>
+<pre class="programlisting">#define CR_TYPE_CONTEXT (cr_context_get_type())
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="CrContext">
+<a name="CrContext"></a><h3>CrContext</h3>
+<pre class="programlisting">typedef cairo_t CrContext;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_context_get_type ()">
+<a name="cr-context-get-type"></a><h3>cr_context_get_type ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a>               cr_context_get_type                 (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

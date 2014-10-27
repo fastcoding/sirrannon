@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="40000" seed="0" simulation="1000">
+	<component name="block-1" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val="$2"/>
+		<param name="param1" type="string" val="$3"/>
+		<param name="param2" type="string" val="$6"/>
+		<param name="param3" type="string" val="$7"/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="301.0" y="56.5"/>
+	</component>
+	<component name="basic-buffer" type="basic-scheduler">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="delay" type="int" val="100"/>
+		<param name="buffer" type="int" val="$7"/>
+		<param name="absolute-delay" type="int" val="0"/>
+		<param name="pause" type="bool" val="false"/>
+		<param name="speed" type="double" val="1.0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="411.0" y="169.5"/>
+	</component>
+	<component name="statistics" type="statistics">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="interval" type="int" val="-1"/>
+		<param name="log" type="string" val=""/>
+		<param name="label" type="string" val=""/>
+		<param name="append" type="bool" val="false"/>
+		<param name="draw" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="603.0" y="169.5"/>
+	</component>
+	<component name="sink" type="sink">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="count" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="804.0" y="169.5"/>
+	</component>
+	<component name="block-2" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val="$2"/>
+		<param name="param1" type="string" val="$4"/>
+		<param name="param2" type="string" val="$6"/>
+		<param name="param3" type="string" val="$7"/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="216.0" y="169.5"/>
+	</component>
+	<component name="block-3" type="block">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="config" type="string" val="$2"/>
+		<param name="param1" type="string" val="$5"/>
+		<param name="param2" type="string" val="$6"/>
+		<param name="param3" type="string" val="$7"/>
+		<param name="param4" type="string" val=""/>
+		<param name="param5" type="string" val=""/>
+		<param name="param6" type="string" val=""/>
+		<param name="param7" type="string" val=""/>
+		<param name="param8" type="string" val=""/>
+		<param name="param9" type="string" val=""/>
+		<param name="param10" type="string" val=""/>
+		<param name="param11" type="string" val=""/>
+		<param name="param12" type="string" val=""/>
+		<param name="param13" type="string" val=""/>
+		<param name="param14" type="string" val=""/>
+		<param name="param15" type="string" val=""/>
+		<gfx h="75.0" r="0.0" w="130.0" x="301.0" y="300.5"/>
+	</component>
+	<route from="basic-buffer" to="statistics" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="statistics" to="sink" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="block-1" to="basic-buffer" xroute="0">
+		<gfx from="6" to="4"/>
+	</route>
+	<route from="block-2" to="basic-buffer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="block-3" to="basic-buffer" xroute="0">
+		<gfx from="4" to="6"/>
+	</route>
+</config>

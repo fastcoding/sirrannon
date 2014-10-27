@@ -1,0 +1,501 @@
+%%
+headers
+/* vim: syntax=c shiftwidth=4 softtabstop=4
+ */
+#include <Python.h>
+#define NO_IMPORT_PYGOBJECT
+#include <pycairo.h>
+#include <pygobject.h>
+#include <pygtk/pygtk.h>
+
+#include "libcrcanvas.h"
+
+/* Pre Python 2.5 backwards compatibility for PEP 353 */
+#if PY_VERSION_HEX < 0x02050000 && !defined(PY_SSIZE_T_MIN)
+typedef int Py_ssize_t;
+#define PY_SSIZE_T_MAX INT_MAX
+#define PY_SSIZE_T_MIN INT_MIN
+#endif
+
+extern Pycairo_CAPI_t *Pycairo_CAPI;
+extern PyTypeObject PyGdkCairoContext_Type;
+
+%%
+import gobject.GObject as PyGObject_Type
+import gtk._gtk.Adjustment as PyGtkAdjustment_Type
+import gtk._gtk.Widget as PyGtkWidget_Type
+%%
+modulename crcanvas
+%%
+ignore-glob
+  *_get_type
+  _*
+  cr_item_construct
+  cr_device_bounds_ref
+  cr_bounds_ref
+%%
+override cr_item_set kwargs
+static PyObject *
+_wrap_cr_item_set (PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GType              type;
+    CrItem   *item;
+    GObjectClass      *class;
+    Py_ssize_t        pos = 0;
+    PyObject          *value;
+    PyObject          *key;
+
+    item = CR_ITEM(self->obj);
+    type = G_OBJECT_TYPE(item);
+    class = G_OBJECT_GET_CLASS(item);
+    
+    g_object_freeze_notify (G_OBJECT(item));
+
+    while (kwargs && PyDict_Next (kwargs, &pos, &key, &value)) {
+	gchar *key_str = PyString_AsString (key);
+	GParamSpec *pspec;
+	GValue gvalue ={ 0, };
+
+	pspec = g_object_class_find_property (class, key_str);
+	if (!pspec) {
+	    gchar buf[512];
+
+	    g_snprintf(buf, sizeof(buf),
+		       "canvas item `%s' doesn't support property `%s'",
+		       g_type_name(type), key_str);
+	    PyErr_SetString(PyExc_TypeError, buf);
+	    g_object_thaw_notify (G_OBJECT(item));
+	    return NULL;
+	}
+
+	g_value_init(&gvalue, G_PARAM_SPEC_VALUE_TYPE(pspec));
+	if (pyg_value_from_pyobject(&gvalue, value)) {
+	    gchar buf[512];
+
+	    g_snprintf(buf, sizeof(buf),
+		       "could not convert value for property `%s'", key_str);
+	    PyErr_SetString(PyExc_TypeError, buf);
+	    g_object_thaw_notify (G_OBJECT(item));
+	    return NULL;
+	}
+	g_object_set_property(G_OBJECT(item), key_str, &gvalue);
+	g_value_unset(&gvalue);
+    }
+    g_object_thaw_notify (G_OBJECT(item));
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override-attr CrItem.items
+static PyObject *
+_wrap_cr_item__get_items(PyGObject *self, void *closure)
+{
+    CrItem *parent = CR_ITEM(self->obj);
+    PyObject         *list, *item;
+    GList            *l;
+
+    list = PyList_New(0);
+    for (l = parent->items; l != NULL; l = l->next) {
+        item = pygobject_new(G_OBJECT(l->data));
+        PyList_Append(list, item);
+        Py_DECREF(item);
+    }
+    return list;
+}
+%%
+override-attr CrItem.matrix
+static PyObject *
+_wrap_cr_item__get_matrix(PyGObject *self, void *closure)
+{
+    CrItem *item = CR_ITEM(self->obj);
+    cairo_matrix_t *matrix;
+    PyObject         *pyobject;
+
+    matrix = cr_item_get_matrix(item);
+
+    return PycairoMatrix_FromMatrix(matrix);
+}
+static int
+_wrap_cr_item__set_matrix(PyGObject *self, PyGObject *value, void *closure)
+{
+    cairo_matrix_t *matrix;
+
+    if (!pygobject_check(value, &PycairoMatrix_Type)) {
+        PyErr_SetString(PyExc_TypeError, "must be a cairo_matrix_t object");
+        return -1;
+    }
+    matrix = &((PycairoMatrix *)value)->matrix;
+    *cr_item_get_matrix(CR_ITEM(self->obj)) =  *matrix;
+    cr_item_request_update(CR_ITEM(self->obj));
+    return 0;
+}
+%%
+override cr_canvas_get_scroll_region noargs
+static PyObject *
+_wrap_cr_canvas_get_scroll_region(PyGObject *self, PyObject *args)
+{
+    double x1, y1, x2, y2;
+    
+    cr_canvas_get_scroll_region(CR_CANVAS(self->obj), &x1, &y1, &x2, &y2);
+    
+    return Py_BuildValue("(dddd)", x1, y1, x2, y2);
+}
+%%
+override cr_canvas_get_scroll_offsets noargs
+static PyObject *
+_wrap_cr_canvas_get_scroll_offsets(PyGObject *self, PyObject *args)
+{
+    double x, y;
+    
+    cr_canvas_get_scroll_offsets(CR_CANVAS(self->obj), &x, &y);
+    
+    return Py_BuildValue("(dd)", x, y);
+}
+%%
+override cr_canvas_get_center noargs
+static PyObject *
+_wrap_cr_canvas_get_center(PyGObject *self, PyObject *args)
+{
+    double x, y;
+    
+    cr_canvas_get_center(CR_CANVAS(self->obj), &x, &y);
+    
+    return Py_BuildValue("(dd)", x, y);
+}
+%%
+override cr_canvas_get_center_scale noargs
+static PyObject *
+_wrap_cr_canvas_get_center_scale(PyGObject *self, PyObject *args)
+{
+    double x, y, w, h;
+    
+    cr_canvas_get_center_scale(CR_CANVAS(self->obj), &x, &y, &w, &h);
+    
+    return Py_BuildValue("(dddd)", x, y, w, h);
+}
+%%
+override cr_canvas_get_viewport noargs
+static PyObject *
+_wrap_cr_canvas_get_viewport(PyGObject *self, PyObject *args)
+{
+    double x1, y1, x2, y2;
+    
+    cr_canvas_get_viewport(CR_CANVAS(self->obj), &x1, &y1, &x2, &y2);
+    
+    return Py_BuildValue("(dddd)", x1, y1, x2, y2);
+}
+%%
+override cr_item_get_bounds noargs
+static PyObject *
+_wrap_cr_item_get_bounds(PyGObject *self, PyObject *args)
+{
+    double x1, y1, x2, y2;
+
+    if (!cr_item_get_bounds(CR_ITEM(self->obj), &x1, &y1, &x2, &y2)) {
+        PyErr_SetString(PyExc_ValueError, "item has reported no bounds.");
+        return NULL;
+    }
+    
+    return Py_BuildValue("(dddd)", x1, y1, x2, y2);
+}
+%%
+override cr_item_get_device_bounds noargs
+static PyObject *
+_wrap_cr_item_get_device_bounds(PyGObject *self, PyObject *args)
+{
+    CrDeviceBounds bounds;
+    PyGBoxed *gboxed;
+
+    if (!cr_item_get_device_bounds(CR_ITEM(self->obj), &bounds)) {
+        PyErr_SetString(PyExc_ValueError, "item has reported no bounds.");
+        return NULL;
+    }
+    return pyg_boxed_new(CR_TYPE_DEVICE_BOUNDS, &bounds, TRUE, TRUE);
+}
+%%
+override cr_item_get_inverse_matrix noargs
+static PyObject *
+_wrap_cr_item_get_inverse_matrix(PyGObject *self, PyObject *args, 
+        PyObject *kwargs)
+{
+    cairo_matrix_t *matrix;
+
+    matrix = cr_item_get_inverse_matrix(CR_ITEM(self->obj));
+    return PycairoMatrix_FromMatrix(matrix);
+}
+%%
+override cr_item_make_temp_cairo
+static PyObject *
+_wrap_cr_item_make_temp_cairo(PyGObject *self)
+{
+    cairo_t *c;
+    PyObject *obj;
+
+    c = cr_item_make_temp_cairo();
+
+    return PycairoContext_FromContext(c, &PycairoContext_Type, NULL);
+}
+%%
+override cr_path_set_color
+static PyObject *
+_wrap_cr_path_set_color(PyGObject *self, PyObject *args)
+{
+    cairo_t *c;
+    PyObject *py_cairo;
+    guint32 rgba;
+
+    if (!PyArg_ParseTuple (args, "O!k:crcanvas.set_color",
+        &PycairoContext_Type, &py_cairo, &rgba)) {
+        return NULL;
+    }
+
+    c = PycairoContext_GET(py_cairo);
+    cr_path_set_color(c, rgba);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cr_path_setup_line
+static PyObject *
+_wrap_cr_path_setup_line(PyGObject *self, PyObject *args)
+{
+    cairo_t *c;
+    CrPath *path;
+    PyObject *py_cairo;
+
+    if (!PyArg_ParseTuple (args, "O!:crcanvas.set_color",
+        &PycairoContext_Type, &py_cairo)) {
+        return NULL;
+    }
+
+    path = CR_PATH(self->obj);
+    c = PycairoContext_GET(py_cairo);
+
+    cr_path_setup_line(path, c);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cr_item_invoke_event
+static PyObject *
+_wrap_cr_item_invoke_event(PyGObject *self, PyObject *args)
+{
+    int len;
+    PyObject *py_event, *py_matrix;
+    PyGObject *py_pick_item;
+    CrItem *pick_item;
+    cairo_matrix_t *matrix;
+    GdkEvent *event;
+
+    len = PyTuple_Size(args);
+    if (len < 3) {
+        PyErr_SetString(PyExc_TypeError, "invoke_event requires at least 3 "
+                "arguments");
+        return NULL;
+    }
+    if (!PyArg_ParseTuple (args, "OOO):Item.invoke_event", &py_event, 
+            &py_matrix, &py_pick_item)) {
+        return NULL;
+    }
+
+    event = pyg_boxed_get(self, GdkEvent);
+    matrix = &((PycairoMatrix *)py_matrix)->matrix;
+    pick_item = CR_ITEM(py_pick_item->obj);
+    cr_item_invoke_event(CR_ITEM(self->obj), event, matrix, pick_item);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cr_dash_new
+static int
+_wrap_cr_dash_new(PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+    CrDash *dash = cr_dash_new();
+
+    self->boxed =  g_boxed_copy(CR_TYPE_DASH, dash);
+    self->free_on_dealloc = TRUE;
+    self->gtype = CR_TYPE_DASH;
+
+    cr_dash_unref(dash);
+    return 0;
+}
+%%
+override-attr CrDash.dashes
+static PyObject *
+_wrap_cr_dash__get_dashes(PyGObject *self, void *closure)
+{
+    CrDash *dash = (CrDash*)(self->obj);
+    PyObject         *list, *item;
+    int i;
+
+    list = PyList_New(0);
+    for (i = 0; i < dash->array->len; i++) {
+        item = PyFloat_FromDouble(g_array_index(dash->array, double, i));
+        PyList_Append(list, item);
+        Py_DECREF(item);
+    }
+    return list;
+}
+static int
+_wrap_cr_dash__set_dashes(PyGBoxed *self, PyObject *object, void *closure)
+{
+    CrDash *dash = pyg_boxed_get(self, CrDash);
+    gint i, len;
+    double v;
+
+    if (!PySequence_Check(object))
+	return -1;
+    len = PySequence_Length(object);
+
+    g_array_set_size(dash->array, 0);
+    for (i = 0; i < len; i++) {
+	PyObject *item = PySequence_GetItem(object, i);
+
+        v = PyFloat_AsDouble(item);
+	g_array_append_val(dash->array, v);
+	if (PyErr_Occurred()) {
+	    PyErr_Clear();
+	    Py_DECREF(item);
+	    return -1;
+	}
+	Py_DECREF(item);
+    }
+    
+    return 0;
+}
+%%
+override-attr CrDash.offset
+static int
+_wrap_cr_dash__set_offset(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDash)->offset = val;
+    return 0;
+}
+%%
+override-attr CrDeviceBounds.x1
+static int
+_wrap_cr_device_bounds__set_x1(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDeviceBounds)->x1 = val;
+    return 0;
+}
+%%
+override-attr CrDeviceBounds.y1
+static int
+_wrap_cr_device_bounds__set_y1(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDeviceBounds)->y1 = val;
+    return 0;
+}
+%%
+override-attr CrDeviceBounds.x2
+static int
+_wrap_cr_device_bounds__set_x2(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDeviceBounds)->x2 = val;
+    return 0;
+}
+%%
+override-attr CrDeviceBounds.y2
+static int
+_wrap_cr_device_bounds__set_y2(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDeviceBounds)->y2 = val;
+    return 0;
+}
+%%
+override-attr CrDeviceBounds.anchor
+static int
+_wrap_cr_device_bounds__set_anchor(PyGBoxed *self, PyObject *value, 
+        void *closure)
+{
+    GtkAnchorType val;
+
+    val = (GtkAnchorType) PyInt_AsLong(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrDeviceBounds)->anchor = val;
+    return 0;
+}
+%%
+override-attr CrBounds.x1
+static int
+_wrap_cr_bounds__set_x1(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrBounds)->x1 = val;
+    return 0;
+}
+%%
+override-attr CrBounds.y1
+static int
+_wrap_cr_bounds__set_y1(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrBounds)->y1 = val;
+    return 0;
+}
+%%
+override-attr CrBounds.x2
+static int
+_wrap_cr_bounds__set_x2(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrBounds)->x2 = val;
+    return 0;
+}
+%%
+override-attr CrBounds.y2
+static int
+_wrap_cr_bounds__set_y2(PyGBoxed *self, PyObject *value, void *closure)
+{
+    gdouble val;
+
+    val = PyFloat_AsDouble(value);
+    if (PyErr_Occurred())
+        return -1;
+    pyg_boxed_get(self, CrBounds)->y2 = val;
+    return 0;
+}
+

@@ -1,0 +1,256 @@
+<!-- ##### SECTION Title ##### -->
+cr-types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO CR_TYPE_POINTS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT CrPoints ##### -->
+<para>
+
+</para>
+
+@array: 
+@ref_count: 
+
+<!-- ##### FUNCTION cr_points_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_points_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_points_ref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_points_unref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### MACRO CR_TYPE_BOUNDS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT CrBounds ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@ref_count: 
+
+<!-- ##### FUNCTION cr_bounds_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_bounds_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_bounds_ref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_bounds_unref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### MACRO CR_TYPE_DEVICE_BOUNDS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT CrDeviceBounds ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@anchor: 
+@ref_count: 
+
+<!-- ##### FUNCTION cr_device_bounds_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_device_bounds_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_device_bounds_ref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_device_bounds_unref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### MACRO CR_TYPE_PATTERN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cr_pattern_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### TYPEDEF CrPattern ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO CR_TYPE_SURFACE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cr_surface_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### TYPEDEF CrSurface ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO CR_TYPE_MATRIX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF CrMatrix ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION cr_matrix_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### MACRO CR_TYPE_CONTEXT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF CrContext ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION cr_context_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

@@ -1,0 +1,308 @@
+<!-- ##### SECTION Title ##### -->
+CrCanvas
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrCanvas ##### -->
+<para>
+
+</para>
+
+@flags: 
+
+<!-- ##### SIGNAL CrCanvas::before-paint ##### -->
+<para>
+
+</para>
+
+@crcanvas: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL CrCanvas::scroll-region-changed ##### -->
+<para>
+
+</para>
+
+@crcanvas: the object which received the signal.
+
+<!-- ##### SIGNAL CrCanvas::set-scroll-adjustments ##### -->
+<para>
+
+</para>
+
+@crcanvas: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### ARG CrCanvas:auto-scale ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:hadjustment ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:maintain-aspect ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:maintain-center ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:pick-item ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:repaint-mode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:repaint-on-scroll ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:root ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:show-less ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrCanvas:vadjustment ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_canvas_new ##### -->
+<para>
+
+</para>
+
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_scroll_region ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@scroll_x1: 
+@scroll_y1: 
+@scroll_x2: 
+@scroll_y2: 
+
+
+<!-- ##### FUNCTION cr_canvas_get_scroll_region ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@scroll_x1: 
+@scroll_y1: 
+@scroll_x2: 
+@scroll_y2: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_scroll_factor ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@scroll_factor_x: 
+@scroll_factor_y: 
+
+
+<!-- ##### FUNCTION cr_canvas_scroll_to ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cr_canvas_get_scroll_offsets ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cr_canvas_center_on ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cr_canvas_get_center ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cr_canvas_center_scale ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x: 
+@y: 
+@w: 
+@h: 
+
+
+<!-- ##### FUNCTION cr_canvas_get_center_scale ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@cx: 
+@cy: 
+@w: 
+@h: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_viewport ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+
+
+<!-- ##### FUNCTION cr_canvas_get_viewport ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+
+
+<!-- ##### FUNCTION cr_canvas_zoom ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x_factor: 
+@y_factor: 
+
+
+<!-- ##### FUNCTION cr_canvas_zoom_world ##### -->
+<para>
+
+</para>
+
+@canvas: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_repaint_mode ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@on: 
+
+
+<!-- ##### FUNCTION cr_canvas_queue_repaint ##### -->
+<para>
+
+</para>
+
+@canvas: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_max_scale_factor ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x_factor: 
+@y_factor: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_min_scale_factor ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@x_factor: 
+@y_factor: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_vadjustment ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@adjustment: 
+
+
+<!-- ##### FUNCTION cr_canvas_set_hadjustment ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@adjustment: 
+
+

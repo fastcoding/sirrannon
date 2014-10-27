@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrPanner">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrPanner.top_of_page">CrPanner</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrPanner</refname>
+<refpurpose>A object for setting up panning on a <link linkend="CrCanvas"><type>CrCanvas</type></link> widget.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrPanner.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrPanner-struct">CrPanner</link>;
+<link linkend="CrPanner">CrPanner</link> *          <link linkend="cr-panner-new">cr_panner_new</link>                       (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-panner-activate">cr_panner_activate</link>                  (<link linkend="CrPanner">CrPanner</link> *panner);
+<link linkend="void">void</link>                <link linkend="cr-panner-deactivate">cr_panner_deactivate</link>                (<link linkend="CrPanner">CrPanner</link> *panner);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrPanner.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----CrPanner
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrPanner.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrPanner--active">active</link>&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPanner--button">button</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="CrPanner--canvas">canvas</link>&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write
+  &quot;<link linkend="CrPanner--cursor">cursor</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="CrPanner--item">item</link>&quot;                     <link linkend="CrItem">CrItem</link>*               : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="CrPanner.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="CrPanner-activate">activate</link>&quot;                                       : Run First
+  &quot;<link linkend="CrPanner-deactivate">deactivate</link>&quot;                                     : Run First
+  &quot;<link linkend="CrPanner-pan">pan</link>&quot;                                            : Run First
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="CrPanner.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrPanner.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrPanner-struct" role="struct">
+<title>CrPanner</title>
+<indexterm zone="CrPanner-struct"><primary sortas="CrPanner">CrPanner</primary></indexterm><programlisting>typedef struct _CrPanner CrPanner;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-panner-new" role="function">
+<title>cr_panner_new ()</title>
+<indexterm zone="cr-panner-new"><primary sortas="cr_panner_new">cr_panner_new</primary></indexterm><programlisting><link linkend="CrPanner">CrPanner</link> *          cr_panner_new                       (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A factory method to create a new CrPanner and connect it to a canvas in one
+step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara> The canvas device that this panner will be used with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created CrPanner object.  Unlike with the constructors for
+CrItem implementations, you own the returned reference.  You should call 
+g_object_unref when you are finished with this object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-panner-activate" role="function">
+<title>cr_panner_activate ()</title>
+<indexterm zone="cr-panner-activate"><primary sortas="cr_panner_activate">cr_panner_activate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_panner_activate                  (<link linkend="CrPanner">CrPanner</link> *panner);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-panner-deactivate" role="function">
+<title>cr_panner_deactivate ()</title>
+<indexterm zone="cr-panner-deactivate"><primary sortas="cr_panner_deactivate">cr_panner_deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_panner_deactivate                (<link linkend="CrPanner">CrPanner</link> *panner);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrPanner.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrPanner--active" role="property"><title>The <literal>&quot;active&quot;</literal> property</title>
+<indexterm zone="CrPanner--active"><primary sortas="CrPanner:active">CrPanner:active</primary></indexterm><programlisting>  &quot;active&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Active/Deactivate the panner object or check the activation status.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrPanner--button" role="property"><title>The <literal>&quot;button&quot;</literal> property</title>
+<indexterm zone="CrPanner--button"><primary sortas="CrPanner:button">CrPanner:button</primary></indexterm><programlisting>  &quot;button&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>Mouse button implicitly activates the panner.</para><para>Allowed values: [0,10]</para>
+<para>Default value: 2</para>
+</refsect2>
+<refsect2 id="CrPanner--canvas" role="property"><title>The <literal>&quot;canvas&quot;</literal> property</title>
+<indexterm zone="CrPanner--canvas"><primary sortas="CrPanner:canvas">CrPanner:canvas</primary></indexterm><programlisting>  &quot;canvas&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write</programlisting>
+<para>Reference to CrCanvas widget.</para></refsect2>
+<refsect2 id="CrPanner--cursor" role="property"><title>The <literal>&quot;cursor&quot;</literal> property</title>
+<indexterm zone="CrPanner--cursor"><primary sortas="CrPanner:cursor">CrPanner:cursor</primary></indexterm><programlisting>  &quot;cursor&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>GDK Cursor to use when panner is selected.</para><para>Allowed values: [0,153]</para>
+<para>Default value: 60</para>
+</refsect2>
+<refsect2 id="CrPanner--item" role="property"><title>The <literal>&quot;item&quot;</literal> property</title>
+<indexterm zone="CrPanner--item"><primary sortas="CrPanner:item">CrPanner:item</primary></indexterm><programlisting>  &quot;item&quot;                     <link linkend="CrItem">CrItem</link>*               : Read / Write</programlisting>
+<para>Reference to CrItem from which to collect the button events. Usually this is the canvas root item.</para></refsect2>
+</refsect1>
+
+<refsect1 id="CrPanner.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="CrPanner-activate" role="signal"><title>The <literal>&quot;activate&quot;</literal> signal</title>
+<indexterm zone="CrPanner-activate"><primary sortas="CrPanner::activate">CrPanner::activate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrPanner">CrPanner</link> *panner,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted whenever the panner is first activated.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrPanner-deactivate" role="signal"><title>The <literal>&quot;deactivate&quot;</literal> signal</title>
+<indexterm zone="CrPanner-deactivate"><primary sortas="CrPanner::deactivate">CrPanner::deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrPanner">CrPanner</link> *panner,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted whenever the panner is deactivated.
+It can be used to get to a callback from a panning selection.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrPanner-pan" role="signal"><title>The <literal>&quot;pan&quot;</literal> signal</title>
+<indexterm zone="CrPanner-pan"><primary sortas="CrPanner::pan">CrPanner::pan</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrPanner">CrPanner</link> *panner,
+                                                        <link linkend="gdouble">gdouble</link>   dx,
+                                                        <link linkend="gdouble">gdouble</link>   dy,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted each time the canvas is panned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dx</parameter>&#160;:</term>
+<listitem><simpara> Device units moved in the X direction.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dy</parameter>&#160;:</term>
+<listitem><simpara> Device units moved in the Y direction.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrText</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrCanvas.html" title="CrCanvas">
+<link rel="next" href="CrLine.html" title="CrLine">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrCanvas.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrLine.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrText.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrText.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrText.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrText.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrText">
+<a name="CrText"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrText.top_of_page"></a>CrText</span></h2>
+<p>CrText — A text canvas item that uses <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a>.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrText.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrText.html#CrText-struct" title="CrText">CrText</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrText.html#cr-text-new" title="cr_text_new ()">cr_text_new</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         const char *text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrText.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----CrText
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrText.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrText.html#CrText--anchor" title='The "anchor" property'>anchor</a>"                   <a
+href="http://library.gnome.org/devel/gtk/unstable/gtk-Standard-Enumerations.html#GtkAnchorType"
+>GtkAnchorType</a>         : Read / Write
+  "<a class="link" href="CrText.html#CrText--fill-color" title='The "fill-color" property'>fill-color</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrText.html#CrText--fill-color-rgba" title='The "fill-color-rgba" property'>fill-color-rgba</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="CrText.html#CrText--font" title='The "font" property'>font</a>"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrText.html#CrText--scaleable" title='The "scaleable" property'>scaleable</a>"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrText.html#CrText--text" title='The "text" property'>text</a>"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrText.html#CrText--use-markup" title='The "use-markup" property'>use-markup</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrText.html#CrText--width" title='The "width" property'>width</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrText.html#CrText--x-offset" title='The "x-offset" property'>x-offset</a>"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrText.html#CrText--y-offset" title='The "y-offset" property'>y-offset</a>"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrText.description"></a><h2>Description</h2>
+<p>
+This canvas item can render <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a>.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrText.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrText">
+<a name="CrText-struct"></a><h3>CrText</h3>
+<pre class="programlisting">typedef struct _CrText CrText;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_text_new ()">
+<a name="cr-text-new"></a><h3>cr_text_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_text_new                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         const char *text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience constructor for creating an text string and adding it to 
+an item group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X position of the text.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y position of the text.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> The text string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrText.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "anchor" property'>
+<a name="CrText--anchor"></a><h3>The <code class="literal">"anchor"</code> property</h3>
+<pre class="programlisting">  "anchor"                   <a
+href="http://library.gnome.org/devel/gtk/unstable/gtk-Standard-Enumerations.html#GtkAnchorType"
+>GtkAnchorType</a>         : Read / Write</pre>
+<p>The part of the text that is referenced to the item's x, y coordinates.</p>
+<p>Default value: GTK_ANCHOR_NORTH_WEST</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color" property'>
+<a name="CrText--fill-color"></a><h3>The <code class="literal">"fill-color"</code> property</h3>
+<pre class="programlisting">  "fill-color"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A string color such as 'red', or '#123456'.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color-rgba" property'>
+<a name="CrText--fill-color-rgba"></a><h3>The <code class="literal">"fill-color-rgba"</code> property</h3>
+<pre class="programlisting">  "fill-color-rgba"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Text color, red,grn,blue,alpha.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "font" property'>
+<a name="CrText--font"></a><h3>The <code class="literal">"font"</code> property</h3>
+<pre class="programlisting">  "font"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A pango font description string of the form [FAMILY-LIST] [STYLE-OPTIONS] [SIZE].</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "scaleable" property'>
+<a name="CrText--scaleable"></a><h3>The <code class="literal">"scaleable"</code> property</h3>
+<pre class="programlisting">  "scaleable"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>When True the size  of the text is in item units.  When False, the size is in device/pixel units.  This effects x/y_offset as well.  See also @CrInverse for another way to achieve the same effect.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "text" property'>
+<a name="CrText--text"></a><h3>The <code class="literal">"text"</code> property</h3>
+<pre class="programlisting">  "text"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>The text to be drawn.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "use-markup" property'>
+<a name="CrText--use-markup"></a><h3>The <code class="literal">"use-markup"</code> property</h3>
+<pre class="programlisting">  "use-markup"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If html style markup language should be used.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "width" property'>
+<a name="CrText--width"></a><h3>The <code class="literal">"width"</code> property</h3>
+<pre class="programlisting">  "width"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>Width before line-wrap.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "x-offset" property'>
+<a name="CrText--x-offset"></a><h3>The <code class="literal">"x-offset"</code> property</h3>
+<pre class="programlisting">  "x-offset"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "y-offset" property'>
+<a name="CrText--y-offset"></a><h3>The <code class="literal">"y-offset"</code> property</h3>
+<pre class="programlisting">  "y-offset"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

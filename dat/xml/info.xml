@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="250" seed="0" simulation="0">
+	<component name="ffmpeg-reader" type="ffmpeg-reader">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="filename" type="string" val="$1"/>
+		<param name="loop" type="int" val="1"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="dts-start" type="int" val="1000"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="False"/>
+		<param name="add-parameter-sets" type="bool" val="true"/>
+		<param name="repeat-parameter-sets" type="bool" val="false"/>
+		<param name="mov-frame" type="bool" val="false"/>
+		<param name="skip-SEI" type="bool" val="false"/>
+		<param name="skip-AUD" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="131.0" x="170.0" y="184.5"/>
+		<param name="min-ts" type="int" val="-1"/>
+		<param name="max-ts" type="int" val="-1"/>
+		<param name="fix-PTS" type="bool" val="false"/>
+	</component>
+	<component name="sink" type="sink">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="count" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="608.0" y="183.5"/>
+	</component>
+	<component name="frame-analyzer" type="frame-analyzer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="139.0" x="384.0" y="185.5"/>
+	</component>
+	<route from="ffmpeg-reader" to="frame-analyzer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="frame-analyzer" to="sink" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<command binary="/home/arombaut/Projects/sirannon/build-static/src/sirannon" configuration="/home/arombaut/Projects/sirannon/dat/xml/info.xml" flags="-vv">
+		<arg pos="1" val="/home/arombaut/Projects/zeticon/work/52305/inter.flv"/>
+	</command>
+</config>

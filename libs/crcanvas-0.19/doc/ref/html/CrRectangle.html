@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrRectangle</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrPixbuf.html" title="CrPixbuf">
+<link rel="next" href="CrEllipse.html" title="CrEllipse">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrPixbuf.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrEllipse.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrRectangle.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrRectangle.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrRectangle.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrRectangle.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrRectangle">
+<a name="CrRectangle"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrRectangle.top_of_page"></a>CrRectangle</span></h2>
+<p>CrRectangle — A simple rectangle canvas item.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrRectangle.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrRectangle.html#CrRectangle-struct" title="CrRectangle">CrRectangle</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrRectangle.html#cr-rectangle-new" title="cr_rectangle_new ()">cr_rectangle_new</a>                    (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         double width,
+                                                         double height,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrRectangle.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----<a class="link" href="CrPath.html" title="CrPath">CrPath</a>
+               +----CrRectangle
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrRectangle.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrRectangle.html#CrRectangle--height" title='The "height" property'>height</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrRectangle.html#CrRectangle--width" title='The "width" property'>width</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrRectangle.description"></a><h2>Description</h2>
+<p>
+This is a simple rectangle path.  <span class="emphasis"><em>Note:</em></span> that the 
+<a class="link" href="CrItem.html#CrItem--x" title='The "x" property'><span class="type">"x"</span></a> and <a class="link" href="CrItem.html#CrItem--y" title='The "y" property'><span class="type">"y"</span></a> coordinates refer to the center of the 
+rectangle and the <a class="link" href="CrRectangle.html#CrRectangle--width" title='The "width" property'><span class="type">"width"</span></a> and <a class="link" href="CrRectangle.html#CrRectangle--height" title='The "height" property'><span class="type">"height"</span></a> properties
+are taken half to either side of the x, y position.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrRectangle.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrRectangle">
+<a name="CrRectangle-struct"></a><h3>CrRectangle</h3>
+<pre class="programlisting">typedef struct _CrRectangle CrRectangle;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_rectangle_new ()">
+<a name="cr-rectangle-new"></a><h3>cr_rectangle_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_rectangle_new                    (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         double width,
+                                                         double height,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience constructor for creating a rectangle and adding it to an item
+group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> Center X coordinate in item units
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Center Y coordinate in item units
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width in item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height in item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrRectangle.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "height" property'>
+<a name="CrRectangle--height"></a><h3>The <code class="literal">"height"</code> property</h3>
+<pre class="programlisting">  "height"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>Height of rectangle in item units. Note this is half above #CrItem:y and half below #CrItem:y.</p>
+<p>Default value: 2</p>
+</div>
+<hr>
+<div class="refsect2" title='The "width" property'>
+<a name="CrRectangle--width"></a><h3>The <code class="literal">"width"</code> property</h3>
+<pre class="programlisting">  "width"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>Width of rectangle in item units. Note this is half to the left of #CrItem:x and half to the right of #CrItem:x.</p>
+<p>Default value: 2</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

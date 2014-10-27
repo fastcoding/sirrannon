@@ -1,0 +1,1604 @@
+2010-04-07 Bob Gibbs <bgibbs@users.sourceforge.net> 
+
+	* crcanvas/cr-pixbuf.c: fix compile warning
+	* crcanvas/cr-text.c: (cr_text_finalize), (cr_text_set_property):
+	fix memory leak not releasing pango layout
+
+
+2010-03-31  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS: allow button 1 panning
+	* crcanvas/cr-panner.c: (activate), (on_event), (on_test),
+	(set_item), (set_canvas), (cr_panner_get_property),
+	(cr_panner_set_property), (cr_panner_class_init), (cr_panner_new):
+	redesign to connect to item events vice canvas events. allow button 1
+	panning.
+	* crcanvas/cr-panner.h: add item
+	* examples/blit.c: (main): use button 1 panning
+	* examples/custom-items.c: (main): use button 1 panning
+	* examples/view-demo.c: (setup_controls): use button 1 panning
+
+2010-01-07  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-18
+	* python/crcanvasmodule.c: (crpattern_from_value): attempt to fix
+	pycairo API change compile problem again.  This time check 
+	libcairo2 <= 1.8.6
+
+2009-12-27  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-17
+	* crcanvas/cr-canvas.c: (cr_canvas_init): Use no_window
+	old API to be back-compatible w/gtk2.14
+
+2009-12-27  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_set_property),
+	(cr_pixbuf_get_property), (test), (cr_pixbuf_class_init): Add test-fill
+	property
+	* crcanvas/cr-pixbuf.h: Add test-fill property
+	* crcanvas/cr-text.c: (calculate_bounds): return TRUE on calculate
+	* bounds to prevent NULL string from always 
+	returning a positive test
+	* doc/ref/crcanvas-docs.xml: vers 0.17
+
+2009-12-25  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (map), (cr_canvas_class_init): Use map instead
+	of map-event
+
+2009-12-24  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: next version # 0.17
+	* crcanvas/cr-canvas.c: (repaint_revert), (on_repaint_revert_idle),
+	(update), (on_item_request_update), (on_expose), (realize),
+	(map_event), (cr_canvas_class_init), (cr_canvas_queue_repaint): Fixed
+	cairo_destroy now called after expose event (this fixes widget overwrite
+	on GTK2.18/OS-X).  Moved before-paint outside
+	of expose (This fixes flickering on OS-X/GTK2.18)
+	* crcanvas/cr-canvas.h: add INSIDE_UPDATE recursion block flag
+	* python/crcanvasmodule.c: (crpattern_from_value): handle old version
+	of pycairo.h as well as new version 
+
+2009-12-23  Bob Gibbs <bgibbs@users.sourceforge.net>`
+
+	* autogen.sh: new version (don't remember where I got it)
+	* crcanvas/cr-path.c: (cr_path_get_property): prepend zeros in color str
+	* crcanvas/cr-text.c: (cr_text_get_property): prepend zeros in color str
+	* crcanvas/cr-vector.c: (cr_vector_set_property): reset path when x2 or
+	  y2 is modified.
+	* crcanvas/cr-zoomer.c: (cr_zoomer_get_property):prepend zeros in color
+
+2009-12-12  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* python/crcanvasmodule.c: (crpattern_from_value): compile problem
+	new version of PyCairo
+
+2009-04-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-blit.c: (on_before_paint), (create_pattern): Fixed big
+	memory leak.
+
+2009-04-03  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	- tag: release-0-16
+	* configure.in: v0.16
+	* crcanvas/cr-canvas.c: (motion_event): Fix x_root, y_root for item 
+	event enter/leave
+
+2009-03-16  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-zoomer.c: (set_canvas): Fix seg fault problem
+	in python demo for geoc caused by referencing canvas->root
+	during dispose.
+
+2009-03-02  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (on_expose): move cairo context ref
+	out of member space as late destruction of this seems to cause 
+	problems in imendio Mac GTK and is not needed.
+	* crcanvas/cr-canvas.h: remove cairo context member.
+
+2009-02-25  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: turned static back off
+	* crcanvas/cr-canvas.c: (update), (cr_canvas_set_property),
+	(cr_canvas_get_property), (on_expose), (cr_canvas_class_init),
+	(on_adjustment_value_changed): added new repaint-on-scroll property
+	* crcanvas/cr-canvas.h: added new repaint-on-scroll property
+	* crcanvas/cr-panner.c: (pan): comment
+
+2009-02-25  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: v..2 for testing
+	* crcanvas/cr-canvas.c: (update), (on_expose), (maintain_center):
+	comment cleanup
+	* crcanvas/cr-panner.c: (pan): comments
+
+2009-02-16  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (on_expose): keep canvas->cairo reference around
+	after expose-event to support geoc
+
+2009-02-12  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+
+	* configure.in: update for future .16 release
+	* crcanvas.spec: update for future .16 release
+	* crcanvas/cr-canvas.c: (update): Changed cr-canvas::update to use the
+	GdkWindow to make the cairo_t again.
+	* crcanvas/cr-item.h: doc cleanup
+	* crcanvas/cr-pixbuf.c: fix compile warning
+	* doc/ref/crcanvas-docs.xml: update for future .16 release
+
+2009-02-11  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.h: minor improv to API ref made struct public
+	* crcanvas/cr-item.h: made struct public
+
+2009-02-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (on_expose): add cairo_t back in as member
+	* crcanvas/cr-canvas.h: cairo_t member needed by geoc-canvas dataset.
+
+2009-02-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: nicer message when dependencies missing
+	* crcanvas/cr-canvas.c: (on_expose), (motion_event): fix for OS-X 
+	framework.  make a new cairo_t for each motion event
+	* crcanvas/cr-canvas.h: remove cairo context as member variable
+
+2008-06-13  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	- tag: release-0-15
+	* configure.in: release-0.15
+	* crcanvas.spec: release-0.15
+
+2008-06-13  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS: fix cr-ellipse bounds issue
+	* crcanvas/cr-path.c: (calculate_bounds): fix bounds 0 for cr-ellipse
+	when very large scale.  introduced with cairo-1.6.0
+
+2008-06-12  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS: fix python seg fault
+	* python/crcanvas.override: don't pass NULL to
+	PycairoContext_FromContext (api change to pycairo-1.4.2)
+	* python/crcanvasmodule.c: (crcontext_from_value): same fix
+
+2008-06-09  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas.spec: auto-detect x86_64 and set libdir appropriately
+
+2008-06-06  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS: for next rel notes
+	* README: bug notice about cr-text
+	* crcanvas/cr-blit.c: (test): use of uninitialized/improper casting
+	  fixes submitted by ajr4 [ 1934012 ]
+	* crcanvas/cr-canvas.c: (on_item_invalidated), (realize): fix warning
+
+2007-09-15 Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-14
+	* crcanvas/cr-canvas.c: (update): change method of creating cairo_t
+	during update to fix problem with geoc clipping.
+
+2007-06-06  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-13
+	* NEWS:
+	* configure.in: 0.13
+	* crcanvas.spec: 0.13
+	* cross-build/README: windows cross-build notes
+	* cross-build/setup.py: windows cross build notes
+	* doc/ref/crcanvas-docs.xml: 0.13
+	* python/crcanvas.override: fix for python ssize_t
+	* python/crcanvasmodule.c: (pycrcanvas_parse_vargs): fix for python
+	ssixe_t
+
+2007-04-14  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-path.c: (calculate_bounds): fix for cairo 1.4 for line.
+	* cross-build/README: notes for unsucessful build w/wine
+
+2007-02-16  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* Makefile.am: use * vice i386
+	* NEWS: x84_64 RPM fixes
+	* acinclude.m4: remove out-dated AM_PATH_PYTHON in favor of system one.
+	* crcanvas.spec: comment in spec file for building 64bit
+	* examples/blit.c: (on_timeout): fix 64 bit warning
+	* python/Makefile.am: use pyexecdir to put module into lib64 if rqrd
+
+2007-02-05  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-12
+	* configure.in: 0.12
+	* crcanvas/.cvsignore: quiet warnings
+	* crcanvas/cr-canvas.c: (update), (quick_update): (1) fix GtkNotebook
+	bug where widget is initially unmapped.  work-around for some cairo 1.3
+	issues
+	* crcanvas/cr-path.c: (calculate_bounds): fix potential leak
+	* crcanvas/cr-rectangle.c: (make_path): fix memory leak
+	* doc/ref/crcanvas-docs.xml: 0.12
+
+2007-01-07  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-path.c: (cr_path_get_property), (cr_path_class_init):
+	made fill_color/outline_color readable
+	* crcanvas/cr-text.c: (cr_text_get_property), (cr_text_class_init):
+	made fill_color readable
+	* crcanvas/cr-zoomer.c: (cr_zoomer_get_property),
+	(cr_zoomer_class_init): made fill_color/outline_color readable
+
+2007-01-07  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* examples/item-demo.c: (on_calculate_bounds): use correct line width
+	in calculate_bounds
+
+2007-01-07  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas.spec: new - for simple rpm creation
+	* crcanvas/.cvsignore: ignore cr-version.h generated file
+	* cross-build/.cvsignore: ignore stuff here
+	* old-tests/test-fill-extents.c: (make_path), (make_cairo),
+	(print_extents), (main): simple non-automated test programs
+	* old-tests/test-fill-extents.py: simple non-automated test programs
+	* old-tests/test-pattern.py: simple non-automated test programs
+	* old-tests/test-png.c: (create_surface), (do_blit), (paint),
+	(main): simple non-automated test programs
+	* old-tests/test-stroke.py: simple non-automated test programs
+	* old-tests/test-surface.c: (do_draw), (create_surface), (do_blit),
+	(paint), (main): simple non-automated test programs
+	* old-tests/test-surface.py: simple non-automated test programs
+
+2007-01-06  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (on_item_invalidated): fixes to rounding for 
+	lines < 1.0 pixels in width
+
+2007-01-06  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-arrow.c: (calculate_bounds): reduced manipulations.
+	Works better with cairo 1.3.x series
+	* crcanvas/cr-path.c: (calculate_bounds), (cr_path_class_init): changed
+	underscores in props to dashes, but no diff either way
+
+2006-12-31  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-path.c: (paint): fixed to fill then stroke.
+
+2006-12-26  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-item.c: (cr_item_set_z_relative), (cr_item_set_z): new
+	convenience functions
+	* crcanvas/cr-item.h: new z-order convenience functions
+	* doc/ref/crcanvas-sections.txt: docs for new funcs
+	* python/crcanvas.defs: python bindings for new funcs
+
+2006-12-26  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-item.c: (dispose_child), (cr_item_dispose): bugfix for 
+	seg-fault after dispose of group having common leaf-node.
+
+2006-12-17  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* Makefile.am: add rpm target.
+
+2006-12-10  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-arrow.c: (parent_request_update),
+	(cr_arrow_connect_parent): new method for lang binding
+	* crcanvas/cr-arrow.h: new method
+	* crcanvas/cr-item.c: (event): add pick_item to prevent compiler warning
+	* doc/ref/crcanvas-sections.txt: new method
+	* python/crcanvas.defs: new method
+
+2006-12-05  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-11
+	* crcanvas/cr-canvas.c: (key_event): fix problem with conditional
+
+2006-12-05  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* cross-build/setup.py: removed 'module' from .so name for WIN32 
+	* python/Makefile.am: removed 'module' from .so name for WIN32
+	* python/crcanvasmodule.c: (initcrcanvas): chngd import order-
+	doesn't matter though
+
+2006-12-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-item.c: fix documentation
+	* doc/ref/crcanvas-docs.xml: release 0.11
+	* doc/ref/crcanvas-sections.txt: fix documentation
+
+2006-12-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* Makefile.am: setup for cross-compiling WIN32
+	* configure.in: setup for cross-compiling WIN32
+	* cross-build/Makefile.am: setup for cross-compiling WIN32
+	* cross-build/README: setup for cross-compiling WIN32
+	* cross-build/crcanvas.pth: setup for cross-compiling WIN32
+	* cross-build/setup.py: setup for cross-compiling WIN32
+	* python/Makefile.am: setup for cross-compiling WIN32
+
+2006-12-03  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS: release notes
+	* configure.in: added version macros
+	* crcanvas/Makefile.am: added cr-version.h and .in
+	* crcanvas/cr-canvas.c: (motion_event), (button_event),
+	(key_event), (focus_out): passing pick_item in event signal
+	* crcanvas/cr-item.c: (item_event), (invoke_event),
+	(cr_item_class_init), (cr_item_invoke_event): passing pick_item in event
+	signal
+	* crcanvas/cr-item.h: passing pick_item in event signal
+	* crcanvas/cr-marshal.list: passing pick_item in event signal
+	* crcanvas/cr-version.h.in: new - can now detect version from code
+	* crcanvas/libcrcanvas.h: added cr-version.h
+	* examples/custom-items.c: (item_event): added pick_item to event handle
+	* examples/item-demo.c: (item_event): added pick_item to event handle
+	* examples/view-demo.c: (on_center_selected), (on_center_clicked):
+	fixed bug in handling of canvas picked coordinates
+	* python/crcanvas.defs: added pick_item to event
+	* python/crcanvas.override: added pick_item to event
+	* python/crcanvasmodule.c: (initcrcanvas): added version attribute
+	* python/custom-demo.py: added pick_item to event handle
+	* python/mvc-demo.py: added pick_item to event handle
+	* unit-test/test-canvas.c: (on_event): added pick_item to event handle
+	* unit-test/test-group.c: (TEST_NEW): added pick_item to event handle
+
+2006-12-01  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	- New event coordinate scheme.. see NEWS file.
+	* NEWS: **Important info on event coordinates change.
+	* crcanvas/cr-canvas.c: (cr_canvas_finalize), (cr_canvas_init),
+	(motion_event), (button_event), (key_event), (focus_out):
+	use temporary pick_matrix, updated it for the current transformation
+	for each event.
+	* crcanvas/cr-canvas.h: remove pick_matrix attribute
+	* crcanvas/cr-item.c: (cr_item_find_child): new routine to find current
+	item-to-child tranformation
+	* crcanvas/cr-item.h: new routine
+	* examples/custom-items.c: (item_event): update to new event coordinate
+	scheme
+	* examples/item-demo.c: (item_event):  update to new event coordinate
+	scheme
+	* python/custom-demo.py:  update to new event coordinate scheme
+	* python/mvc-demo.py:  update to new event coordinate scheme
+
+2006-11-25  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-item.c: (event): fix incorrect mutliplication of 
+	matrices when passing event from child to parent item,
+
+2006-11-09  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-10
+	* NEWS: 
+	* configure.in: require gtk 2.10 to get cairo 1.2
+	* doc/ref/crcanvas-docs.xml: release 0.10
+
+2006-11-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (update_adjustments): fix to rounding
+	problem on finite-world canvas reparent.
+
+2006-11-02  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* configure.in: require pycairo 1.2
+	* crcanvas/cr-types.c: (cr_points_ref), (cr_dash_ref): fix bug
+	not returning ref.
+	* python/crcanvasmodule.c: (crpattern_from_value),
+	(crsurface_from_value): changes to match new pycairo.
+
+2006-10-08  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* python/crcanvas.override: fix to crcanvas.set_color for long int
+
+2006-10-06  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-9
+	* NEWS: release 0.9
+	* configure.in: release 0.9
+	* crcanvas/cr-item.h: docs cleanup
+	* doc/ref/crcanvas-docs.xml: release 0.9
+
+2006-09-30  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-vector.c: (calculate_bounds): fix invalidate when x2/y2 
+	are negative
+
+2006-09-29  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-canvas.c: (focus_out), (enter_notify),
+	(cr_canvas_class_init): LEAVE_NOTIFY when canvas window out of focus
+	* crcanvas/cr-inverse.c: doc improvements
+	* crcanvas/cr-panner.h: doc improvements
+	* crcanvas/cr-path.c: (cr_path_class_init): doc improvements 
+	* crcanvas/cr-zoomer.c: (cr_zoomer_class_init): doc improvements
+
+2006-09-25  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-blit.c: (cr_blit_set_property): missing break
+	* crcanvas/cr-pixbuf.c: (pixbuf_to_pattern),
+	(cr_pixbuf_set_property), (paint), (cr_pixbuf_class_init):allow
+	None/NULL to be used for pattern/surface props.  added surface props
+	* doc/ref/crcanvas-sections.txt: update docs to include item move
+	* python/crcanvas.defs: added CrBlit wrapper
+	* python/crcanvasmodule.c: (crpattern_to_value), 
+	(crsurface_to_value): allow surface to be passed as property
+
+2006-09-04  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	tag: release-0-8
+	* NEWS:
+	* configure.in: release 0.8
+	* crcanvas/cr-ellipse.c: (cr_ellipse_class_init): documentation cleanup
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_set_property), (cr_pixbuf_init):
+	update after adding surface, make scaleable by default.
+	* crcanvas/cr-rectangle.c: (cr_rectangle_class_init): documentation
+	cleanup
+	* doc/ref/crcanvas-docs.xml: release-0.8
+
+2006-09-01  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/cr-arrow.c: documentation cleanup
+	* crcanvas/cr-blit.c: (on_before_paint), (invalidated),
+	(report_new_bounds), (_remove), (calculate_bounds),
+	(create_pattern), (invoke_paint): avoid setting update timer when 
+	scale is up to date, update in resize when auto-scale
+	* crcanvas/cr-blit.h: avoid setting update timer when
+	scale is up to date, update in resize when auto-scale
+	* crcanvas/cr-canvas.c: (limit_scale): bug scale limited incorrect when
+	rotated
+	* crcanvas/cr-inverse.c: documentation cleanup
+	* crcanvas/cr-item.c: (cr_item_make_temp_cairo),
+	(cr_item_calculate_bounds): new procedures.
+	* crcanvas/cr-item.h: new procedures
+	* crcanvas/cr-path.c: (cr_path_set_color), (cr_path_setup_line),
+	(calculate_bounds), (paint), (test): new procedures.
+	* crcanvas/cr-path.h: new procedures.
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_set_property),
+	(cr_pixbuf_get_property), (test), (cr_pixbuf_class_init): allow surface
+	to be set directly, allow pattern to be read.
+	* crcanvas/cr-rotator.c: (on_canvas_event),
+	(cr_rotator_deactivate): BUG  not clearing dragging flag properly
+	* crcanvas/cr-text.c: (cr_text_class_init): documentation cleanup
+	* crcanvas/cr-types.c: (cr_surface_get_type): added cairo_surface_t
+	wrapper
+	* crcanvas/cr-types.h: added cairo_surface_t wrapper
+	* crcanvas/cr-vector.c: (paint): BUG: line width not used when
+	line-scalable == FALSE
+	* crcanvas/cr-zoomer.c: documentation cleanup
+	* doc/ref/crcanvas-docs.xml: documentation cleanup
+	* doc/ref/crcanvas-sections.txt: documentation cleanup
+	* doc/ref/crcanvas.types: documentation cleanup
+	* examples/.cvsignore:
+	* examples/blit.c: documentation
+	* python/crcanvas.defs: wrapper for new procs
+	* python/crcanvas.override: wrapper for new procs
+	* python/crcanvasmodule.c: (crsurface_from_value),
+	(crsurface_to_value), (initcrcanvas): wrapper for cairo_surface_t
+
+2006-08-30  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* NEWS:
+	* crcanvas/Makefile.am: rem all-static commited by accident
+	* crcanvas/cr-arrow.c: (parent_request_update): bug not unhiding arrow
+	* crcanvas/cr-blit.c: (on_timeout), (on_before_paint),
+	(set_canvas), (cr_blit_dispose), (cr_blit_set_property),
+	(cr_blit_get_property), (cr_blit_init), (invalidated),
+	(report_new_bounds), (calculate_bounds), (create_pattern),
+	(invoke_paint), (paint), (test), (cr_blit_class_init): added canvas and
+	scale_factor properties - working.
+	* crcanvas/cr-blit.h: added canvas & scale_factor props
+	* crcanvas/cr-canvas.c: (realize): bug - ensure update is complete
+	before first expose
+	* crcanvas/cr-canvas.h: improved ref docs
+	* crcanvas/cr-pixbuf.c: (test): comments about png not testing alpha
+	* examples/blit.c: (create_walk), (on_timeout), (setup_tracer),
+	(main):
+
+2006-08-27  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	- C cr_xxx_new() convenience constructors modified to be more
+	consistent.
+	* crcanvas/cr-blit.c: (cr_blit_new): added convenience constr
+	* crcanvas/cr-blit.h: added convenience constr
+	* crcanvas/cr-canvas.c: (cr_canvas_new): added convenience constr
+	* crcanvas/cr-canvas.h: added convenience constr
+	* crcanvas/cr-line.c: (cr_line_new): (API CHANGE)
+	removed "points" sonce sometimes "array" is passed
+	* crcanvas/cr-line.h: removed points.
+	* crcanvas/cr-path.c: (cr_path_new): added convenience constructor
+	* crcanvas/cr-path.h: added convenience constructor
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_new): (API CHANGE) 
+	removed "pixbuf" as sometimes "png" is passed.
+	* crcanvas/cr-pixbuf.h: removed "pixbuf"
+	* examples/blit.c: (setup_tracer), (main): use updated constructors
+	* examples/custom-items.c: (add_pixbuf), (add_line), (add_arrow),
+	(create_extra_view), (main): use updated constructors
+	* examples/inverse.c: (make_items), (main): use updated constructors
+	* examples/item-demo.c: (main): use updated constructors
+	* examples/view-demo.c: (setup_canvas): use updated constructors
+
+2006-08-26  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-blit.c: (report_old_bounds), (report_new_bounds),
+	(paint), (test), (cr_blit_class_init): (1) do pixbuf style test by
+	default, (2) don't re-do pattern on zoom/scale operation
+	* crcanvas/cr-panner.c: (activate), (deactivate): make canvas skip test
+	during pan operation.
+	* crcanvas/cr-panner.h:  make canvas skip test during pan op
+	* crcanvas/cr-rotator.c: (cr_rotator_activate),
+	(cr_rotator_deactivate): make canvas skip test during rotate op
+	* crcanvas/cr-rotator.h: make canvas skip test during rotate op
+	* crcanvas/cr-zoomer.c: (activate), (deactivate): make canvas skip test
+	during zoom op
+	* crcanvas/cr-zoomer.h: make canvas skip test during zoom op
+	* examples/Makefile.am: added blit.c
+	* examples/blit.c: new - demonstrates performance improvement using blit
+
+2006-08-14  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* Makefile.am: bug 1531209
+	* crcanvas/cr-types.h: bug 1531724 (psyeye)
+
+2006-08-14  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/Makefile.am: added cr-blit
+	* crcanvas/cr-blit.c: (cr_blit_dispose), (cr_blit_finalize),
+	(cr_blit_set_property), (cr_blit_get_property), (cr_blit_init),
+	(remove_rotation), (report_old_bounds), (invalidated), (add),
+	(_remove), (calculate_bounds), (create_surface), (test_inside),
+	(invoke_paint), (paint), (cr_blit_class_init), (cr_blit_get_type): new -
+	not ready for use yet
+	* crcanvas/cr-blit.h: new
+	* crcanvas/cr-item.c: (invoke_paint), (report_new_bounds),
+	(cr_item_class_init): made invoke_calculate_bounds into a class method
+	so it can be overriden by cr-blit
+	* crcanvas/cr-item.h: made invoke_calculate_bounds into a class method
+	* crcanvas/cr-path.h: compiler fixes
+	* crcanvas/cr-types.h: compiler fixes
+	* crcanvas/libcrcanvas.h: add cr-blit
+
+2006-07-07  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: release 0.7
+	* crcanvas/cr-arrow.c: (parent_request_update), (connect_parent):
+	request_update api - remove visible flag
+	* doc/ref/crcanvas-docs.xml: release 0.7
+
+2006-07-01 Bob Gibbs <bgibbs@users.sourceforge.net> 
+
+	* NEWS: release info
+	* crcanvas/cr-item.c: (request_update), (cr_item_class_init),
+	(cr_item_request_update), (cr_item_hide), (cr_item_show):
+	* crcanvas/cr-item.h: BUGFIX: prevent update request when hide() is
+	called and item already hidden.
+
+2006-06-30  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (quick_update), (on_item_request_update),
+	(realize), (focus_in), (focus_out), (cr_canvas_class_init),
+	(get_size): fixed broken test case, prevent repaint on focus,
+	BUGFIX: segfault on hidden items before realize
+	* crcanvas/cr-canvas.h: docs
+	* crcanvas/cr-ellipse.c: (make_path), (apply_rotation),
+	(cr_ellipse_set_property): BUGFIX: height too short.
+	* crcanvas/cr-path.c: (calculate_bounds): re-arrange calc bounds logic
+	* crcanvas/cr-zoomer.c: (set_canvas), (cr_zoomer_init): use
+	non-scaleable line width by default
+
+2006-06-24  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (motion_event), (button_event),
+	(key_event), (cr_canvas_class_init): BUGFIX: (1) button not clearing if
+	no release (dnd case). (2) allow user to block canvas event by
+	connecting and returning true.
+
+2006-06-23  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (realize): BUGFIX: clean up pick item on
+	reparent.
+	* crcanvas/cr-panner.c: (activate), (deactivate),
+	(cr_panner_get_property), (cr_panner_set_property),
+	(cr_panner_class_init): put cursor on actual window only, add active
+	property
+	* crcanvas/cr-rotator.c: (cr_rotator_get_property),
+	(cr_rotator_set_property), (cr_rotator_class_init),
+	(cr_rotator_activate), (cr_rotator_deactivate): put cursor on actual
+	window only, add active property
+	* crcanvas/cr-zoomer.c: (cr_zoomer_get_property),
+	(cr_zoomer_set_property), (activate), (deactivate),
+	(cr_zoomer_class_init): put cursor on actual window only, add active
+	property
+
+2006-06-23  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (cr_canvas_init), (realize): BUG FIX:
+	handle keyboard/focus events.
+
+2006-06-22  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (size_allocate), (get_size): BUG FIX: handle
+	scaling after reparent properly
+	* crcanvas/cr-canvas.h: last_w/h values now kept.
+
+2006-06-21  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-canvas.c: (cr_canvas_class_init): Fixed gsignal warning
+	from set_scroll_adjustments
+	* crcanvas/cr-path.c: (calculate_bounds): Better fix for horiz/
+	vertical line extents bug.
+
+2006-06-19  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-path.c: (calculate_bounds): BUGFIX: finding stroke
+	extents incorrectly on device width line.  There may still be a problem
+	on fill extents
+
+2006-06-19  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-path.c: (cr_path_set_property),
+	(cr_path_get_property), (setup_line), (cr_path_class_init): added 
+	line-width-use-y property for non-fixed aspect canvas's
+	* crcanvas/cr-path.h: added line-width-use-y
+
+2006-06-16  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-marshal.list: select signal for zoomer
+	* crcanvas/cr-zoomer.c: (on_canvas_event),
+	(boolean_handled_accumulator), (cr_zoomer_class_init): added select
+	signal to allow interception and replacement of the zoom action
+	* crcanvas/cr-zoomer.h: added select signal
+	* python/custom-demo.py: work-around gdk python event.time wrapper
+	problem.
+
+2006-06-01  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-panner.h: add signal documentation
+	* crcanvas/cr-zoomer.h: add signal documentation
+	* unit-test/test-canvas.c: (on_paint), (TEST_NEW): update to cimpile on
+	win32 & linux.  conflict with _y2 and math lib.
+
+2006-05-29  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* configure.in: win32 compile
+	* crcanvas/Makefile.am: no-undefined for w32
+	* crcanvas/cr-canvas.c: (cr_canvas_event): remove '
+	* unit-test/test-canvas.c: (on_paint), (TEST_NEW): conflict global _y1
+
+2006-05-29  Bob Gibbs <bgibbs@users.sourceforge.net>
+
+	* crcanvas/cr-zoomer.c: (calculate_zoombox),
+	(cr_zoomer_get_property), (cr_zoomer_set_property),
+	(cr_zoomer_init), (cr_zoomer_class_init): added corner-to-corner
+	and mainain-aspect properties
+	* crcanvas/cr-zoomer.h: added corner-to-corner
+	and mainain-aspect properties
+
+2006-05-13  gibbs
+
+	* crcanvas/cr-canvas.c: (cr_canvas_get_property),
+	(cr_canvas_class_init): added pick-item as canvas property
+
+2006-04-17  gibbs
+
+	* crcanvas/cr-pixbuf.c: (calculate_bounds), (test): fix bug: need to
+	check for NULL device reference during test.
+	* crcanvas/cr-vector.c: (set_color), (paint): fix bug: not setting color
+	when end not scaleable.
+
+2006-04-13  gibbs
+
+	* trigger CVS sync at SF
+
+2006-04-10  gibbs
+
+	release-0-6
+	* README: Updated not to reflect viewport-changed to before-paint
+	* acinclude.m4: cvs add
+	* configure.in: release 0.6
+	* crcanvas/cr-canvas.c: (cr_canvas_set_property),
+	(cr_canvas_get_property), (calculate_scale_factors),
+	(cr_canvas_class_init): added show-less property for resize control
+	* crcanvas/cr-canvas.h: added show-less
+	* doc/ref/crcanvas-docs.xml: release 0.6, updated diffs list
+	* examples/view-demo.c: (setup_canvas): show-less to false by default
+	* python/crcanvas.defs: show-less
+	* python/crcanvasmodule.c: (crpoints_to_value): retab
+	* unit-test/test-canvas.c: (TEST_NEW): info on show-less
+
+2006-04-05  gibbs
+
+	* python/Makefile.am: added __init__
+	* python/__init__.py: needed to import from install directory
+
+2006-04-04  gibbs
+
+	* crcanvas/cr-arrow.c: (paint): fixed to restore cairo context 
+	when finished
+	* crcanvas/cr-item.c: (create_matrix), (destroy_matrix),
+	(invoke_paint), (report_new_bounds), (cr_item_class_init): removed
+	before/after paint signal emissions.  This is uneccessary since it is
+	possible to connect to paint at various nodes in the tree.
+	* crcanvas/cr-item.h: removed before/after paint.
+	* crcanvas/cr-vector.c: (paint): fixed to restore cairo context when
+	finished
+	* unit-test/test-group.c: (setup): removed unused counters.
+	* unit-test/test-item.c: (paint_count), (cr_test_item_init),
+	(setup), (TEST_NEW): remove tests for before/after paint
+
+2006-04-03  gibbs
+
+	* README: viewport_changed renamed to before_paint
+	* crcanvas/cr-canvas.c: (on_expose), (cr_canvas_class_init):
+	viewport_changed renamed to before_paint.  This allows the signal to be
+	used anytime.
+	* crcanvas/cr-canvas.h: viewport_changed renamed to before_paint
+	* crcanvas/cr-marshal.list: viewport_changed renamed to before_paint
+	* doc/ref/crcanvas-docs.xml: viewport_changed renamed to before_paint
+
+2006-03-28  gibbs
+
+	* crcanvas/cr-item.c: (invoke_paint): made child items draw on top of
+	parent.
+	* python/custom-demo.py: use test-fill not test-rectangle
+
+2006-03-27  gibbs
+
+	tag: release-0-5
+	* NEWS: release0.5 notes
+	* configure.in: 0.5
+	* crcanvas/cr-arrow.c: (calculate_bounds): API change
+	* crcanvas/cr-canvas.c: (on_item_invalidated): phase changed to mask
+	* crcanvas/cr-item.c: (invalidated), (cr_item_finalize),
+	(get_device_bounds), (in_bounds), (invoke_test), (is_inside),
+	(invoke_calculate_bounds), (_remove), (report_old_bounds),
+	(report_new_bounds), (cr_item_class_init), (cr_item_get_bounds): Changed
+	phase to mask.  Fix for problem ofunnecessary paints happening when same
+	item is on multiple branches of a tree or on multiple trees.
+	* crcanvas/cr-item.h: phase to mask
+	* crcanvas/cr-line.c: (calculate_bounds): API change
+	* crcanvas/cr-marshal.list: API change
+	* crcanvas/cr-path.c: (calculate_bounds): API change
+	* crcanvas/cr-pixbuf.c: (paint), (calculate_bounds), (test): API change
+	* crcanvas/cr-text.c: (report_new_bounds), (paint),
+	(calculate_bounds): API change
+	* crcanvas/cr-types.c: (cr_bounds_ref), (cr_bounds_unref),
+	(cr_bounds_new), (cr_bounds_get_type), (cr_device_bounds_ref): new
+	CrBounds type for calculate_bounds signal
+	* crcanvas/cr-types.h: new CrBounds type for calculate_bounds signal
+	* crcanvas/cr-vector.c: (calculate_bounds): API change
+	* doc/Makefile.am: added
+	* doc/ref/crcanvas-docs.xml: added CrBounds
+	* doc/ref/crcanvas-sections.txt: added CrBounds
+	* doc/ref/crcanvas.types: added CrBounds
+	* examples/item-demo.c: (on_calculate_bounds): API change
+	* python/Makefile.am: added new demo program
+	* python/crcanvas.defs: working
+	* python/crcanvas.override working:
+	* python/crcanvasmodule.c working:
+	* python/custom-demo.py: new - item demo program
+	* python/mvc-demo.py: working
+	* unit-test/test-canvas.c: (update_test_calculate_bounds),
+	(update_test_calculate_bounds_device): API change
+	* unit-test/test-group.c: (TEST_NEW): API change
+	* unit-test/test-item.c: (calculate_bounds), (calculate_bounds2): API
+	change
+
+2006-03-25  gibbs
+
+	* crcanvas/cr-item.c: Changed phase to mask.  Fix for problem of
+	unnecessary paints happening when same item is on multiple branches of a
+	tree or on multiple trees.
+	* crcanvas/cr-item.h:
+
+2006-03-24  gibbs
+
+	* crcanvas/cr-ellipse.c: (make_path), (cr_ellipse_class_init): using nw
+	make-path signal
+	* crcanvas/cr-item.c: (cr_item_set_property),
+	(cr_item_get_property), (invoke_test), (cr_item_class_init): added
+	test-rectangle property.  this was in cr-pixbuf
+	* crcanvas/cr-item.h: added test-rectangle
+	* crcanvas/cr-marshal.list: 
+	* crcanvas/cr-path.c: (calculate_bounds),
+	(boolean_handled_accumulator), (cr_path_class_init): addedmake-path
+	signal.  This makes it slightly easier to build custom path items.
+	* crcanvas/cr-path.h: added make-path
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_set_property),
+	(cr_pixbuf_get_property), (test), (cr_pixbuf_class_init): moved
+	test-rectangle property into parent cr-item
+	* crcanvas/cr-pixbuf.h: moved test-rectangle property
+	* crcanvas/cr-rectangle.c: (make_path), (cr_rectangle_class_init): using
+	new make-path signal
+	* python/crcanvas.defs: removed constructor definitions that are not
+	required.
+
+2006-03-23  gibbs
+
+	* python/crcanvas.defs: added CrDash
+	* python/crcanvas.override: overrides for CrDash
+	* python/crcanvasmodule.c: (crcontext_from_value),
+	(crcontext_to_value), (crmatrix_from_value), (crmatrix_to_value),
+	(crpattern_from_value), (crpattern_to_value), (initcrcanvas): solved
+	problem of passing cairo types as gboxed.
+	* python/mvc-demo.py:
+
+2006-03-20  gibbs
+
+	* Makefile.am: added python bindings
+	* configure.in: checks for python
+	* crcanvas/cr-canvas.c: (on_item_request_update),
+	(cr_canvas_set_property), (cr_canvas_get_property), (on_expose),
+	(cr_canvas_class_init):added root property, some profiling debug
+	* crcanvas/cr-item.c: (cr_item_print_stats),
+	(cr_item_set_property), (cr_item_get_property),
+	(invoke_calculate_bounds), (invoke_paint), (cr_item_class_init): added
+	matrix property + profiling debug
+	* crcanvas/cr-path.c: (cr_path_print_stats), (paint): profiling debug
+	* crcanvas/cr-zoomer.c: (cr_zoomer_get_property), 
+	(cr_zoomer_set_property), (cr_zoomer_init), (activate),
+	(cr_zoomer_class_init): added fill-color, outline-color properties
+	* crcanvas/cr-zoomer.h: properties
+	* python/.cvsignore: new
+	* python/Makefile.am: new
+	* python/crcanvas.defs: new
+	* python/crcanvas.override: new
+	* python/crcanvasmodule.c: (crpoints_from_value),
+	(crpoints_to_value), (initcrcanvas), (pycrcanvas_set_property),
+	(pycrcanvas_parse_vargs): new
+	* python/mvc-demo.py: new - model-view-controller demo program
+
+2006-03-13  gibbs
+
+	tag: release-0-4
+	* configure.in: release 0.4
+	* crcanvas/cr-canvas.c: (on_item_request_update), (on_expose): added
+	debug printing
+	* crcanvas/cr-item.c: (cr_item_print_stats),
+	(invoke_calculate_bounds), (invoke_paint): debug/profile statistics
+	* crcanvas/cr-path.c: (calculate_bounds): bug information
+	* doc/ref/crcanvas-docs.xml: increment release
+
+2006-03-10  gibbs
+
+	* crcanvas/cr-canvas.c: (on_update_idle), (update), (quick_update),
+	(on_item_request_update), (on_item_invalidated), (on_expose): debug
+	macros
+	* crcanvas/cr-item.c: (cr_item_move): added - new
+	* crcanvas/cr-item.h: added move
+
+2006-03-03  gibbs
+
+	* crcanvas/cr-canvas.c: (on_update_idle), (update),
+	(repaint_revert), (cr_canvas_dispose), (on_expose),
+	(cr_canvas_class_init): made it possible to override both update and
+	quick_update.  Fixed bug - not clearing idle handler in dispose.
+	* crcanvas/cr-canvas.h: made quick_update override-able.
+	* examples/custom-items.c: (main): turned on slave -view
+
+2006-03-01  gibbs,
+
+	* crcanvas/cr-canvas.c: (cr_canvas_event): #if 0 on event-after stuff.
+	This does not work right.
+	* crcanvas/cr-ellipse.c: (create_path), (cr_ellipse_set_property),
+	(cr_ellipse_get_property), (cr_ellipse_class_init),
+	(cr_ellipse_new): changed semi-major/minor to width/height to avoid
+	confusion with x/y-axis
+	* crcanvas/cr-ellipse.h: semi-major/minor to w/h
+	* crcanvas/cr-path.c: (setup_line): set line width explicitly when line
+	is not scaleable
+	* crcanvas/cr-rectangle.c: correct documentation error about center vs.
+	top-left
+	* examples/custom-items.c: (add_ellipse): change semi-major/minor to w/h
+
+2006-02-27  gibbs,,
+
+	tag: release-0-3-1
+	* configure.in: 0.3.1
+	* crcanvas/Makefile.am: added libcrcanvas.h
+	* crcanvas/cr-arrow.c: documentation
+	* crcanvas/cr-canvas.c: (do_item_added), (on_item_added),
+	(do_item_removed), (on_item_removed), (set_root), (on_expose): fixed
+	problem of adding a pre-loaded item tree.
+	* crcanvas/cr-ellipse.c: documentation
+	* crcanvas/cr-inverse.c: documentation
+	* crcanvas/cr-item.c: (cr_item_dispose), (add), (_remove): eliminated
+	weak_referencing.  decreasing ref count        to zero to destroy an
+	item is non-intuitive.  The only way to destroy the item will be to call
+	cr_item_remove from any node higher on the tree.
+	* crcanvas/cr-path.c: (cr_path_set_property),
+	(cr_path_get_property), (setup_line), (calculate_bounds), (paint),
+	(test), (cr_path_class_init):
+	* crcanvas/cr-path.h: added test-fill property to allow grabbing of
+	invisible items or items that are very small.  Made dash pay attention
+	to line-scaleable property.
+	* crcanvas/libcrcanvas.h: new
+
+2006-02-21  gibbs version 0.3 - (not commited)
+
+2006-02-21  gibbs
+
+	* config.h.in: new
+	* configure.in: AM_CONFIG_HEADER
+	* crcanvas/Makefile.am: addrd cr-arrow
+	* crcanvas/cr-arrow.c: (parent_request_update), (connect_parent),
+	(cr_arrow_dispose), (cr_arrow_finalize), (make_path),
+	(calculate_bounds), (paint), (test), (cr_arrow_set_property),
+	(cr_arrow_get_property), (cr_arrow_init), (cr_arrow_class_init),
+	(cr_arrow_get_type), (cr_arrow_new): new -arrowhead for lines
+	* crcanvas/cr-arrow.h: new
+	* crcanvas/cr-canvas.c: (maintain_center),
+	(on_adjustment_value_changed): fix problem not updating after
+	translating
+	* crcanvas/cr-inverse.c: (report_new_bounds), (cr_inverse_dispose),
+	(cr_inverse_set_property), (cr_inverse_get_property),
+	(cr_inverse_class_init): fixed to work with matrix as it sees it.
+	* crcanvas/cr-inverse.h: fixed
+	* crcanvas/cr-item.c: (invalidated), (child_unref),
+	(cr_item_dispose), (cr_item_finalize), (cr_item_set_property),
+	(cr_item_get_property), (cr_item_init), (invoke_test),
+	(invoke_paint), (_remove), (report_new_bounds), (request_update),
+	(cr_item_class_init), (cr_item_request_update), (cr_item_hide),
+	(cr_item_show): working on unref to zero issue - this still not right
+	* crcanvas/cr-item.h: changed hide property to "visible" to be
+	consistent with GTK
+	* crcanvas/cr-line.c: made scaleable the default for consistency. 
+	* crcanvas/cr-path.c: (cr_path_dispose), (cr_path_set_property),
+	(cr_path_get_property), (cr_path_init), (calculate_bounds),
+	(paint), (cr_path_class_init): Added most properties from Cairo
+	* crcanvas/cr-path.h:
+	* crcanvas/cr-text.c: (cr_text_set_property),
+	(cr_text_get_property), (cr_text_init), (cr_text_class_init): added
+	color string properties
+	* crcanvas/cr-types.c: (cr_dash_ref), (cr_dash_unref),
+	(cr_dash_new), (cr_dash_get_type), (cr_cap_get_type),
+	(cr_join_get_type), (cr_fill_rule_get_type): added additional cairo enum
+	wrappers
+	* crcanvas/cr-types.h:
+	* crcanvas/cr-vector.c: (paint): updated documentation
+	* crcanvas/cr-zoomer.c: (set_canvas), (activate), (deactivate): changed
+	'hide' to 'visible' 
+	* doc/ref/crcanvas-docs.xml: added arrow
+	* doc/ref/crcanvas-sections.txt:added arrow
+	* doc/ref/crcanvas.types:added arrow
+	* examples/Makefile.am: new inverse item demo
+	* examples/custom-items.c: (add_text), (add_arrow), (add_vector),
+	(_remove), (on_clear), (main): removed inverse, added clear
+	* examples/inverse.c: (make_items), (on_zoom_in), (on_zoom_out),
+	(main): new demo for inverse item
+	* unit-test/test-group.c: (setup), (invalidate_count), (TEST_NEW):
+	no longer request update on delete - instead report old bounds
+	* unit-test/test-item.c: (TEST_NEW):  changed hide to visible
+
+2006-02-17  gibbs
+
+	- crinverse working but want to change it to not require 
+	"other" property.
+	* crcanvas/cr-inverse.c: (on_other_changed), (set_other),
+	(cr_inverse_dispose), (cr_inverse_set_property),
+	(cr_inverse_get_property), (cr_inverse_class_init),
+	(cr_inverse_new): working by connecting to request update from other
+	item and inversing this one single matrix.
+	* crcanvas/cr-inverse.h: ditto
+	* crcanvas/cr-item.c: (invoke_paint), (boolean_accumulator),
+	(cr_item_class_init): separate accumulators so that calculate bounds
+	does not stop on first TRUE return.  This not needed at this moment
+	though.
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_class_init): doc update
+	* crcanvas/cr-text.c: (report_new_bounds), (cr_text_class_init): added
+	report_new_bounds to handles non-linear scaling of Pango fonts
+	* doc/ref/crcanvas-docs.xml: added cr-inverse
+	* doc/ref/crcanvas-sections.txt: added cr-inverse
+	* doc/ref/crcanvas.types: added cr-inverse
+	* examples/custom-items.c: (add_inverse), (main): demo for inverse
+
+2006-02-13  gibbs,,,
+
+	* crcanvas/cr-inverse.c: (cr_inverse_dispose),
+	(cr_inverse_finalize), (cr_inverse_set_property),
+	(cr_inverse_get_property), (cr_inverse_init), (invalidated),
+	(report_new_bounds), (add), (before_paint),
+	(cr_inverse_class_init), (cr_inverse_get_type): new
+	* crcanvas/cr-inverse.h: new - purpose is to reverse transformation and
+	cause an item to get drawn in device coordinates, but anchored to
+	pre-transformed coordinate. Not working yet.
+	* crcanvas/cr-vector.c: (cr_vector_dispose), (cr_vector_finalize),
+	(create_path), (calculate_bounds), (paint), (test),
+	(cr_vector_set_property), (cr_vector_get_property),
+	(cr_vector_init), (cr_vector_class_init), (cr_vector_get_type),
+	(cr_vector_new): new
+	* crcanvas/cr-vector.h: new
+
+2006-02-11 gibbs
+
+	- tag: release-0-2
+	- redesign to use combination of user and device coordinates during
+	invalidate cycle is complete.
+	- this is a simplified change-log
+	* crcanvas/cr-canvas.c: device+user coordinate invalidate.
+	* crcanvas/cr-item.c: passing device coordinates with user coords.
+	* crcanvas/cr-text.c: using PangoLayout now.
+	* crcanvas/cr-path.c: derived class for ellipse, rectangle, line.
+	paints any arbitrary cairo_path_t
+	* crcanvas/cr-ellipse.c: new
+	* crcanvas/cr-rectangle.c: new
+	* crcanvas/cr-panner.c: need to use before event to prevent items from
+	stealing the event
+	* crcanvas/cr-rotator.c: ''
+	* crcanvas/cr-zoomer.c: ''
+	* examples/custom-items.c: added zooming, scrolling, new items.
+	* unit-test/test-item.c: test for device coordinates
+	* unit-test/test-canvas.c: test for device coordinates
+
+2006-02-06  gibbs,
+
+	- switch to device coordinate reporting in addition to item coordinate.
+	There are problems, may need to make device coordinates reported via
+	five params.
+	* crcanvas/cr-canvas.c: (update), (quick_update), (repaint_revert),
+	(on_item_invalidated), (set_root), (on_expose): 
+	* crcanvas/cr-ellipse.c: (calculate_bounds):
+	* crcanvas/cr-item.c: (get_total_bounds), (in_bounds),
+	(invoke_test), (is_inside), (invoke_calculate_bounds),
+	(invoke_paint), (invalidated), (_remove), (report_old_bounds),
+	(report_new_bounds), (cr_item_class_init),
+	(cr_item_report_old_bounds), (cr_item_report_new_bounds),
+	(cr_item_get_bounds), (cr_item_get_device_bounds):
+	* crcanvas/cr-item.h:
+	* crcanvas/cr-line.c: (calculate_bounds):
+	* crcanvas/cr-marshal.list:
+	* crcanvas/cr-path.c: (cr_path_set_property),
+	(cr_path_get_property), (cr_path_init), (set_path_line_width),
+	(calculate_bounds), (paint), (cr_path_class_init):
+	* crcanvas/cr-path.h:
+	* crcanvas/cr-pixbuf.c: (paint), (calculate_bounds), (test),
+	(cr_pixbuf_new):
+	* crcanvas/cr-pixbuf.h:
+	* crcanvas/cr-rectangle.c: (calculate_bounds):
+	* crcanvas/cr-text.c: (get_device_extents), (get_item_extents),
+	(paint), (calculate_bounds), (cr_text_class_init):
+	* examples/custom-items.c: (add_pixbuf), (add_text), (add_ellipse),
+	(add_rectangle), (add_line), (main):
+	* examples/item-demo.c: (main):
+	* examples/view-demo.c: (setup_canvas):
+	* unit-test/test-canvas.c: (setup), (update_test_calculate_bounds),
+	(update_test_calculate_bounds_device), (TEST_NEW):
+	* unit-test/test-item.c: (ba_paint_count), (calculate_bounds),
+	(calculate_bounds2), (invalidate), (cr_test_item_init),
+	(cr_test_item_class_init), (setup), (TEST_NEW):  added test for device
+	coords
+
+2006-01-31  gibbs,
+
+	* README:
+	* crcanvas/TODO: notes on device coordinate problem
+	* crcanvas/cr-canvas.c: (update_adjustment_world), (update),
+	(quick_update), (repaint_revert), (on_item_request_update),
+	(on_item_invalidated), (on_expose), (maintain_center),
+	(cr_canvas_event), (on_adjustment_value_changed),
+	(cr_canvas_scroll_to), (cr_canvas_center_on),
+	(cr_canvas_center_scale), (cr_canvas_zoom),
+	(cr_canvas_queue_repaint): fixed several problems with repaint and
+	update logic, finished definition of viewport_changed signal.
+	* crcanvas/cr-canvas.h:
+	* crcanvas/cr-ellipse.c: (cr_ellipse_dispose),
+	(cr_ellipse_finalize), (create_path), (calculate_bounds),
+	(cr_ellipse_set_property), (cr_ellipse_get_property),
+	(cr_ellipse_init), (cr_ellipse_class_init), (cr_ellipse_get_type),
+	(cr_ellipse_new): new - path based item.
+	* crcanvas/cr-ellipse.h: new - path based item.
+	* crcanvas/cr-item.c: (cr_item_set_property), (cr_item_init),
+	(invoke_event), (invoke_paint), (after_paint), (grow_bounds),
+	(report_old_bounds), (report_new_bounds), (cr_item_construct),
+	(cr_item_new): fixed to correctly determine when bounds are zero sized.
+	Fixed problem calling calculate_bounds too often.  Added constructors.
+	* crcanvas/cr-item.h:
+	* crcanvas/cr-line.c: (cr_line_dispose), (points_to_path),
+	(calculate_bounds), (cr_line_set_property), (cr_line_get_property),
+	(cr_line_class_init), (cr_line_get_type), (cr_line_new): subclassed from
+	path
+	* crcanvas/cr-line.h:
+	* crcanvas/cr-panner.c: (pan), (on_canvas_event), (set_canvas): connect
+	to "before" part of signal.  canvas items were stealing the signal.
+	* crcanvas/cr-panner.h:
+	* crcanvas/cr-path.c: (cr_path_dispose), (cr_path_finalize),
+	(cr_path_set_property), (cr_path_get_property), (cr_path_init),
+	(set_color), (set_path_line_width), (calculate_bounds), (paint),
+	(test), (cr_path_class_init), (cr_path_get_type),
+	(cr_path_make_temp_cairo): base class for path based items.  This way
+	they all share the same properties.
+	* crcanvas/cr-path.h:
+	* crcanvas/cr-rectangle.c: (cr_rectangle_dispose),
+	(cr_rectangle_finalize), (create_path), (calculate_bounds),
+	(cr_rectangle_set_property), (cr_rectangle_get_property),
+	(cr_rectangle_init), (cr_rectangle_class_init),
+	(cr_rectangle_get_type), (cr_rectangle_new): new - path based item.
+	* crcanvas/cr-rectangle.h: new - path based item.
+	* crcanvas/cr-text.c: (cr_text_finalize), (cr_text_set_property),
+	(cr_text_get_property), (create_layout), (get_text_extents),
+	(paint), (calculate_bounds), (cr_text_init), (cr_text_class_init),
+	(cr_text_new):
+	* crcanvas/cr-text.h:
+	* crcanvas/cr-zoomer.c: (calculate_zoombox), (on_canvas_event),
+	(set_canvas), (activate), (deactivate): Use CrRectangle canvas item.
+	* crcanvas/cr-zoomer.h:
+	* examples/custom-items.c: (add_text), (add_ellipse),
+	(add_rectangle), (add_line), (main):
+	* examples/item-demo.c: (draw_ellipse):
+	* examples/view-demo.c: (setup_canvas):
+
+2006-01-23  gibbs
+
+	- added gtk-doc ref manual
+	- X/Y properties for cr-item
+	- change way invalidated is pushed up the item tree.
+	* Makefile.am: added doc
+	* README: project intro
+	* autogen.sh: gtk-doc
+	* configure.in: added doc/ref
+	* crcanvas/Makefile.am: fixed genmarshal trigger
+	* crcanvas/cr-canvas.c: (update), (fix_bounds),
+	(on_item_invalidated), (on_item_added), (on_item_removed),
+	(set_root), (set_viewport_idle), (cr_canvas_event),
+	(cr_canvas_class_init), (cr_canvas_set_scroll_region): fixed
+	documentation problems
+	* crcanvas/cr-canvas.h: fixed documentation problems
+	* crcanvas/cr-item.c: (cr_item_set_property),
+	(cr_item_get_property), (invalidated), (add), (remove),
+	(grow_bounds), (report_old_bounds), (report_new_bounds),
+	(cr_item_class_init): fixed documentation problems, added X,Y proerties
+	to simplify management of matrix translation, push invalidate using
+	phase.
+	* crcanvas/cr-item.h: copyright
+	* crcanvas/cr-line.c: copyright
+	* crcanvas/cr-line.h: copyright
+	* crcanvas/cr-marshal.list:
+	* crcanvas/cr-panner.c: (on_canvas_event):
+	* crcanvas/cr-panner.h:
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_set_property),
+	(cr_pixbuf_get_property), (get_corrected_coords),
+	(cr_pixbuf_class_init):
+	* crcanvas/cr-pixbuf.h:
+	* crcanvas/cr-rotator.c: (on_canvas_event):
+	* crcanvas/cr-rotator.h:
+	* crcanvas/cr-text.c: (cr_text_set_property),
+	(cr_text_get_property), (setup_text_extents), (cr_text_class_init):
+	* crcanvas/cr-text.h:
+	* crcanvas/cr-zoomer.c:
+	* crcanvas/cr-zoomer.h:
+	* doc/.cvsignore:
+	* doc/ref/.cvsignore:
+	* doc/ref/Makefile.am:
+	* doc/ref/crcanvas-docs.xml:
+	* doc/ref/crcanvas-sections.txt:
+	* doc/ref/crcanvas.types:
+	* examples/custom-items.c: (item_event), (add_text):
+	* examples/view-demo.c:
+	* unit-test/test-item.c: (invalidate):
+
+2006-01-18  gibbs,
+
+	tag: before-invalidate-redesign
+	* crcanvas/cr-item.c: (report_new_bounds), (invoke_paint): fix item
+	reference problem.
+	* crcanvas/cr-line.c: (test): reactivate
+	* examples/custom-items.c: (add_pixbuf), (add_text), (add_line),
+	(create_extra_view), (main): experiment with multi-scales.
+
+2006-01-17  gibbs,
+
+	* crcanvas/cr-canvas.c: (on_update_idle), (update), (fix_bounds),
+	(on_item_request_update), (on_item_invalidated),
+	(cr_canvas_set_property), (cr_canvas_get_property), (on_expose),
+	(auto_scale), (set_viewport_idle), (cr_canvas_class_init),
+	(cr_canvas_scroll_to), (cr_canvas_center_on),
+	(cr_canvas_set_repaint_mode), (cr_canvas_queue_repaint): repaint mode
+	for smoother scaling/panning
+	* crcanvas/cr-canvas.h: ''
+	* crcanvas/cr-item.c: (cr_item_set_property),
+	(cr_item_get_property), (invoke_test), (invoke_paint),
+	(cr_item_class_init), (cr_item_invoke_paint): repaint mode + avoid_test
+	* crcanvas/cr-item.h:
+	* crcanvas/cr-line.c: (cr_line_dispose), (cr_line_finalize),
+	(cr_line_set_property), (cr_line_get_property), (create_path),
+	(set_line_width), (calculate_bounds), (paint), (test),
+	(cr_line_class_init): do update inside calc bounds.
+	* crcanvas/cr-line.h:
+	* crcanvas/cr-panner.c: (pan): use repaint mode
+	* crcanvas/cr-rotator.c: (rotate_canvas), (on_canvas_event),
+	(set_canvas): roatate from viewport center
+	* crcanvas/cr-rotator.h:
+	* crcanvas/cr-text.c: (cr_text_finalize), (paint): fix finalize
+	* crcanvas/cr-types.c: (cr_points_ref), (cr_points_unref),
+	(cr_points_new), (cr_points_get_type): ref counting on points array
+	* crcanvas/cr-types.h:
+	* examples/custom-items.c: (add_line), (create_extra_view), (main):
+	* unit-test/test-group.c: (TEST_NEW):
+	* unit-test/test-item.c: (setup), (TEST_NEW):
+
+2006-01-11  gibbs,,,
+
+	Redesign to handle update requests.  Right now scrolling is not right.
+	* README: Design notes
+	* crcanvas/cr-canvas.c: (update_adjustments), (on_update_idle),
+	(on_item_request_update), (on_item_invalidated), (on_item_added),
+	(on_item_removed), (set_root), (cr_canvas_dispose),
+	(cr_canvas_init), (on_expose), (maintain_center), (auto_scale),
+	(map), (set_viewport_idle), (cr_canvas_event),
+	(cr_canvas_class_init), (get_size), (on_adjustment_value_changed),
+	(cr_canvas_scroll_to), (cr_canvas_center_on):
+	* crcanvas/cr-canvas.h:
+	* crcanvas/cr-item.c: (create_matrix), (destroy_matrix),
+	(invoke_test), (grow_bounds), (report_old_bounds),
+	(report_new_bounds), (item_event), (invoke_event), (event),
+	(is_inside), (invoke_paint), (before_paint), (after_paint),
+	(added), (removed), (add), (remove), (request_update),
+	(cr_item_class_init), (cr_item_invoke_paint),
+	(cr_item_invoke_test), (cr_item_invoke_event),
+	(cr_item_report_old_bounds), (cr_item_report_new_bounds),
+	(cr_item_request_update), (cr_item_cancel_matrix), (cr_item_add),
+	(cr_item_remove), (cr_item_bounds), (cr_item_hide):
+	* crcanvas/cr-item.h:
+	* crcanvas/cr-line.c: (cr_line_dispose), (create_path),
+	(calculate_bounds), (paint), (test), (cr_line_class_init):
+	* crcanvas/cr-line.h:
+	* crcanvas/cr-marshal.list:
+	* crcanvas/cr-pixbuf.c: (get_corrected_coords), (paint),
+	(calculate_bounds), (test), (cr_pixbuf_class_init):
+	* crcanvas/cr-pixbuf.h:
+	* crcanvas/cr-text.c: (setup_text_extents), (paint),
+	(calculate_bounds), (test), (cr_text_class_init):
+	* crcanvas/cr-text.h:
+	* crcanvas/cr-types.c: (cr_matrix_copy), (cr_matrix_get_type),
+	(cr_context_get_type):
+	* crcanvas/cr-types.h:
+	* examples/item-demo.c: (properties_free), (on_paint), (on_test),
+	(on_calculate_bounds), (add_item):
+	* unit-test/test-canvas.c: (update_test_calculate_bounds),
+	(update_test_paint), (setup_window), (on_test), (TEST_NEW):
+	* unit-test/test-group.c: (on_test), (setup), (need_update_count),
+	(add_count), (remove_count), (TEST_NEW):
+	* unit-test/test-item.c: (test_count), (calculate_bounds),
+	(invalidate), (setup), (TEST_NEW):
+
+2005-01-11 gibbs
+	tag: before-update-logic
+
+2005-12-19  gibbs,,,  <set EMAIL_ADDRESS environment variable>
+
+	* crcanvas/Makefile.am: new cr-types for boxed types
+	* crcanvas/cr-line.c: (cr_line_dispose), (cr_line_set_property),
+	(cr_line_get_property), (paint), (test), (cr_line_class_init):
+	* crcanvas/cr-line.h: added pattern property
+	* crcanvas/cr-marshal.list:
+	* crcanvas/cr-panner.c: (pan), (activate), (deactivate),
+	(on_canvas_event), (cr_panner_class_init), (cr_panner_activate),
+	(cr_panner_deactivate):
+	* crcanvas/cr-panner.h:
+	* crcanvas/cr-types.c: (cr_pattern_get_type):
+	* crcanvas/cr-types.h:
+	* crcanvas/cr-zoomer.c: (on_box_paint), (cr_zoomer_set_property),
+	(cr_zoomer_init):
+	* crcanvas/cr-zoomer.h:
+	* examples/custom-items.c: (add_text), (add_line):
+
+2005-12-12  gibbs,,,  <set EMAIL_ADDRESS environment variable>
+
+	* crcanvas/Makefile.am: moved panner/zoomer/rotator to lib
+	* crcanvas/cr-item.c: (cr_item_set_property),
+	(cr_item_get_property), (invoke_test), (invoke_paint), (add),
+	(remove), (cr_item_class_init), (cr_item_add), (cr_item_remove),
+	(cr_item_hide): added 'hide' property.  made group add/remove class
+	methods
+	* crcanvas/cr-item.h: ditto
+	* crcanvas/cr-line.c: (cr_line_set_property), (paint),
+	(cr_line_class_init): handle zero points, free mem, default width
+	* crcanvas/cr-panner.c: (pan_canvas), (on_canvas_event),
+	(set_canvas), (cr_panner_dispose), (cr_panner_finalize),
+	(cr_panner_init), (cr_panner_get_property),
+	(cr_panner_set_property), (cr_panner_class_init),
+	(cr_panner_get_type), (cr_panner_new), (cr_panner_activate),
+	(cr_panner_deactivate): moved
+	* crcanvas/cr-panner.h: moved
+	* crcanvas/cr-pixbuf.c: (paint): invoke parent for painting children.
+	* crcanvas/cr-rotator.c: (rotate_canvas), (on_canvas_event),
+	(set_canvas), (cr_rotator_dispose), (cr_rotator_finalize),
+	(cr_rotator_init), (cr_rotator_get_property),
+	(cr_rotator_set_property), (cr_rotator_class_init),
+	(cr_rotator_get_type), (cr_rotator_new), (cr_rotator_activate),
+	(cr_rotator_deactivate): moved
+	* crcanvas/cr-rotator.h: moved
+	* crcanvas/cr-text.c: (paint): invoke parent for painting children.
+	* crcanvas/cr-zoomer.c: (calculate_zoombox), (on_canvas_event),
+	(cr_zoomer_dispose), (cr_zoomer_finalize), (set_color),
+	(on_box_paint), (set_canvas), (cr_zoomer_get_property),
+	(cr_zoomer_set_property), (cr_zoomer_init), (activate),
+	(deactivate), (cr_zoomer_class_init), (cr_zoomer_get_type),
+	(cr_zoomer_new), (cr_zoomer_activate), (cr_zoomer_deactivate):
+	* crcanvas/cr-zoomer.h: moved
+	* examples/Makefile.am: moved rot/pan/zoom
+	* examples/bug.png: new
+	* examples/cr-panner.c: moved
+	* examples/cr-panner.h: moved
+	* examples/cr-rotator.c: moved
+	* examples/cr-rotator.h: moved
+	* examples/cr-zoomer.c: moved
+	* examples/cr-zoomer.h: moved
+	* examples/view-demo.c: (setup_controls): custom construct for zoom,..
+	* unit-test/test-item.c: (TEST_NEW): test for show/hide
+
+
+2005-12-06  gibbs,,,  <set EMAIL_ADDRESS environment variable>
+
+	* crcanvas/cr-item.c: (invoke_test): check matrix not inv
+	* crcanvas/cr-line.c: (cr_line_set_property),
+	(cr_line_get_property), (paint), (cr_line_class_init): pass ptr
+	* crcanvas/cr-line.h: pass ptr - don't know how to box it right
+	* crcanvas/cr-pixbuf.c: (paint), (test): fix scaleable test
+	* examples/custom-items.c: (item_event), (add_pixbuf):
+
+2005-12-05  gibbs,,,  <set EMAIL_ADDRESS environment variable>
+
+	- new custom items.
+	* crcanvas/Makefile.am: added line, text, pixbuf
+	* crcanvas/cr-item.c: (cr_item_bounds): removed old comments
+	* crcanvas/cr-line.c: (cr_line_dispose), (cr_line_finalize),
+	(cr_line_set_property), (cr_line_get_property), (cr_line_init),
+	(set_color), (reset_bounds), (grow_bounds), (paint), (bounds),
+	(test), (cr_line_class_init), (cr_line_get_type), (cr_points_copy),
+	(cr_points_free), (cr_points_get_type): new
+	* crcanvas/cr-line.h: new
+	* crcanvas/cr-pixbuf.c: (cr_pixbuf_dispose), (cr_pixbuf_finalize),
+	(read_func), (pixbuf_to_surf), (cr_pixbuf_set_property),
+	(cr_pixbuf_get_property), (paint), (bounds), (test),
+	(cr_pixbuf_init), (cr_pixbuf_class_init), (cr_pixbuf_get_type): new
+	* crcanvas/cr-pixbuf.h: new
+	* crcanvas/cr-text.c: (cr_text_dispose), (cr_text_finalize),
+	(cr_text_set_property), (cr_text_get_property), (paint), (bounds),
+	(test), (cr_text_init), (cr_text_class_init), (cr_text_get_type): new
+	* crcanvas/cr-text.h: new
+	* examples/Makefile.am: new demo
+	* examples/custom-items.c: (item_event), (add_pixbuf), (add_text),
+	(add_line), (on_zoom_in), (on_zoom_out), (main): new
+	* examples/item-demo.c: (add_item): memset properties
+
+2005-11-30  gibbs
+
+	* crcanvas/cr-canvas.c: (cr_canvas_finalize), (cr_canvas_init),
+	(cr_canvas_event): added pick _matrix to keep the cumulative
+	transformation
+	* crcanvas/cr-canvas.h: added pick_matrix
+	* crcanvas/cr-item.c: (cr_item_finalize), (invoke_test),
+	(set_event_coords), (invoke_event), (grow_bounds), (event),
+	(before_paint), (cr_item_class_init), (cr_item_test),
+	(cr_item_event), (cr_item_add), (cr_item_bounds), (cr_matrix_copy),
+	(cr_matrix_get_type): removed matrix_cum, added bounds method
+	* crcanvas/cr-item.h: removed matrix_cum, added bounds method
+	* crcanvas/cr-marshal.list: 
+	* examples/item-demo.c: (item_event), (on_test):
+	* unit-test/test-canvas.c: (on_test), (on_event), (TEST_NEW):
+	* unit-test/test-group.c: (setup), (TEST_NEW):
+	* unit-test/test-item.c: (test_count), (TEST_NEW):
+
+2005-11-28  gibbs
+
+	* crcanvas/Makefile.am: combined item+group
+	* crcanvas/cr-canvas.c: (cr_canvas_init), (apply_min_scale_factor),
+	(realize), (cr_canvas_class_init), (get_size),
+	(cr_canvas_set_scroll_region), (cr_canvas_scroll_to),
+	(cr_canvas_center_on), (cr_canvas_get_center),
+	(cr_canvas_center_scale), (cr_canvas_get_center_scale),
+	(cr_canvas_get_viewport), (cr_canvas_zoom),
+	(cr_canvas_set_max_scale_factor), (cr_canvas_set_min_scale_factor):
+	combined item+group, allow scale/trans ops before realize
+	* crcanvas/cr-canvas.h: combined item+group
+	* crcanvas/cr-group.c: removed
+	* crcanvas/cr-group.h: removed
+	* crcanvas/cr-item.c: (child_unref), (weak_unref),
+	(cr_item_dispose), (on_paint), (on_test), (cr_item_class_init),
+	(propagate_event), (cr_item_add), (cr_item_remove): combined item+group
+	* crcanvas/cr-item.h: combined item+group
+	* examples/cr-zoomer.c: (cr_zoomer_new): combined item+group
+	* examples/item-demo.c: (item_event), (add_item): combined item+group
+	* examples/view-demo.c: (main): combined item+group 
+	* unit-test/test-canvas.c: (setup_window), (TEST_NEW): test for scaling
+	before realize
+	* unit-test/test-group.c: (setup), (TEST_NEW): combined item+group
+
+2005-11-21   gibbs
+
+	* configure.in: remove optimization temp change
+	* crcanvas.pc.in: fixed it
+	* crcanvas/cr-canvas.c: (viewport_changed), (recenter_adjustments),
+	(on_expose), (apply_min_scale_factor), (size_allocate),
+	(on_viewport_idle), (set_viewport_idle), (cr_canvas_class_init),
+	(limit_scale), (on_adjustment_value_changed),
+	(cr_canvas_set_scroll_region), (cr_canvas_get_scroll_region),
+	(cr_canvas_scroll_to), (cr_canvas_center_on),
+	(cr_canvas_center_scale), (cr_canvas_get_center_scale),
+	(cr_canvas_set_viewport), (cr_canvas_get_viewport),
+	(cr_canvas_zoom), (cr_canvas_zoom_world),
+	(cr_canvas_set_max_scale_factor), (cr_canvas_set_min_scale_factor):
+	cleanup + new methods to support geoc
+	* crcanvas/cr-canvas.h: new methods
+	* crcanvas/cr-item.c: (cr_item_finalize): free matrix
+	* examples/cr-zoomer.c: gcc warning
+	* examples/view-demo.c: (draw), (paint), (on_zoom_in),
+	(on_zoom_out), (setup_canvas): new api for zoom
+	* unit-test/test-canvas.c: (TEST_NEW): new test for get_c_s
+	* unit-test/test-group.c: gcc warning
+	* unit-test/unit-test.h: gcc warning
+
+2005-07-11  gibbs
+
+	- Changes move to the 5.1 cairo/gtk 2.8 API
+	* configure.in: gtkcairo package eliminated
+	* crcanvas/cr-canvas.c: (on_expose), (realize),
+	(cr_canvas_class_init), (cr_canvas_get_type): api changes
+	* crcanvas/cr-canvas.h:
+	* crcanvas/cr-group.c: (item_unref), (weak_unref),
+	(cr_group_dispose), (cr_group_remove):
+	* crcanvas/cr-item.c: (create_matrix), (destroy_matrix),
+	(inverse_matrix), (before_paint):
+	* crcanvas/cr-item.h:
+	* examples/cr-zoomer.c: (on_box_paint):
+	* examples/item-demo.c: (draw), (on_paint), (on_test), (add_item):
+	* examples/view-demo.c: (paint):
+	* unit-test/test-canvas.c: (on_paint):
+	* unit-test/test-group.c: (TEST_NEW):
+	* unit-test/test-item.c: (setup), (teardown), (TEST_NEW):
+
+2005-02-28  gibbs
+
+	tag: rotation_rework
+	* README: todo list 
+	* crcanvas/cr-canvas.c: (update_adjustment_factor),
+	(update_adjustment_world), (update_adjustments),
+	(recenter_adjustment), (recenter_adjustments),
+	(cr_canvas_set_property), (cr_canvas_init), (on_paint),
+	(maintain_center), (calculate_scale_factors), (auto_scale),
+	(size_allocate), (cr_canvas_event), (on_adjustment_value_changed),
+	(setup_adjustment), (cr_canvas_set_hadjustment),
+	(cr_canvas_set_vadjustment), (cr_canvas_set_scroll_region),
+	(cr_canvas_set_scroll_factor), (cr_canvas_scroll_to),
+	(cr_canvas_get_scroll_offsets), (cr_canvas_center_on),
+	(cr_canvas_get_center), (cr_canvas_center_scale), (cr_canvas_zoom):
+	re-worked this to separate affine from widget.  rotations will now work
+	correctly.
+	* crcanvas/cr-canvas.h: saved last scroll positions
+	* crcanvas/cr-item.c: (cr_item_test), (cr_item_get_matrix),
+	(cr_item_get_inverse_matrix), (cr_item_cancel_matrix):
+	* crcanvas/cr-item.h:
+	* examples/Makefile.am:
+	* examples/cr-panner.c: (pan_canvas):
+	* examples/cr-zoomer.c: (on_box_paint), (on_canvas_event),
+	(cr_zoomer_activate): this needs to use device units to make a
+	horizontal box when the affine is rotated.
+	* examples/item-demo.c: (item_event), (main):
+	* examples/view-demo.c: (on_set_property), (setup_canvas),
+	(setup_controls):
+	* unit-test/test-canvas.c: (TEST_NEW):
+	* unit-test/test-item.c: (test_count), (cr_test_item_init),
+	(TEST_NEW):
+
+2005-02-16  gibbs
+
+	tag: before-scroll-device-units
+	Working, but ready to redesign canvas to support rotation.
+	* crcanvas/cr-canvas.c: (cr_canvas_init), (on_paint), (auto_scale),
+	(size_allocate), (cr_canvas_center_scale):
+	* crcanvas/cr-canvas.h:
+
+2005-02-07  gibbs
+
+	* crcanvas/cr-canvas.c: (on_paint), (auto_scale_aspect),
+	(cr_canvas_event), (cr_canvas_center_on): scale-aspect is messed up
+	* examples/Makefile.am: new zoomer/panner for demo
+	* examples/cr-panner.c: (cr_panner_dispose), (cr_panner_finalize),
+	(cr_panner_init), (cr_panner_class_init), (cr_panner_get_type),
+	(pan_canvas), (on_canvas_event), (cr_panner_new),
+	(cr_panner_activate), (cr_panner_deactivate): new
+	* examples/cr-panner.h: new
+	* examples/cr-zoomer.c: (cr_zoomer_dispose), (cr_zoomer_finalize),
+	(cr_zoomer_init), (cr_zoomer_class_init), (cr_zoomer_get_type),
+	(on_box_paint), (calculate_zoombox), (on_canvas_event),
+	(cr_zoomer_new), (cr_zoomer_activate), (cr_zoomer_deactivate): new
+	* examples/cr-zoomer.h: new
+	* examples/item-demo.c: (on_paint): use cairo_rectangle
+	* examples/view-demo.c: (paint), (on_center_selected), 
+	(on_center_clicked), (on_zoom_in), (on_zoom_out), (setup_canvas),
+	(setup_controls): made navigation buttons work.
+
+2005-02-01  gibbs
+
+	* .cvsignore: hide junk
+	* examples/.cvsignore:
+	* unit-test/.cvsignore:
+
+2005-02-01  gibbs
+
+	Events working, item-demo working.
+	* crcanvas/cr-canvas.c: (update_adjustment_factor),
+	(update_adjustment_world), (maintain_center), (cr_canvas_event): using
+	weak ref to handle case where item deleted between events
+	* crcanvas/cr-group.c: (item_unref), (cr_group_add):
+	* examples/item-demo.c: (item_event), (on_paint), (add_item):
+	* examples/view-demo.c: (on_canvas_event), (setup_canvas): 
+
+2005-01-31  gibbs
+
+
+	Events added - needs lots of work...
+	* crcanvas/cr-canvas.c: (maintain_center), (cr_canvas_event):
+	* crcanvas/cr-group.c: (cr_group_event), (cr_group_add),
+	(cr_group_remove):
+	* crcanvas/cr-item.c: (before_paint), (cr_item_test),
+	(cr_item_event), (cr_item_translate), (cr_item_scale),
+	(cr_item_rotate):
+	* crcanvas/cr-item.h:
+	* examples/Makefile.am:
+	* examples/item-demo.c: (properties_free), (get_color),
+	(item_event), (draw_rect), (draw_ellipse), (on_paint), (on_test),
+	(add_item), (main):
+	* unit-test/test-canvas.c: (on_test), (on_event), (TEST_NEW):
+
+2005-01-23  gibbs
+
+	Design of event mechanism - working on unit test...
+	* crcanvas/cr-canvas.c: (cr_canvas_event), (cr_canvas_class_init):
+	* crcanvas/cr-canvas.h:
+	* crcanvas/cr-item.c: (cr_item_test), (cr_item_event):
+	* unit-test/test-canvas.c: (on_test), (on_event), (TEST_NEW):
+
+2005-01-12  gibbs
+
+	refined test signal and event - preventing circular dependency between
+	group, item, canvas
+	* crcanvas/cr-canvas.c: (update_adjustment_factor), (on_paint),
+	(size_allocate), (cr_canvas_event), (cr_canvas_class_init),
+	(cr_canvas_adjustment_changed), (cr_canvas_scroll_to),
+	(cr_canvas_center_on), (cr_canvas_center_scale):
+	* crcanvas/cr-canvas.h:
+	* crcanvas/cr-group.c: (on_test), (cr_group_add),
+	(cr_group_remove):
+	* crcanvas/cr-item.c: (object_handled_accumulator),
+	(cr_item_class_init), (cr_item_test), (cr_item_event):
+	* crcanvas/cr-item.h:
+	* crcanvas/cr-marshal.list:
+	* examples/Makefile.am:
+	* examples/view-demo.c: (paint), (on_set_property),
+	(on_set_scroll_factor), (on_set_scroll_region), (setup_canvas),
+	(setup_controls), (main):
+	* unit-test/test-group.c: (on_test), (on_event), (setup),
+	(TEST_NEW):
+	* unit-test/test-item.c: (test_count):
+
+2004-12-28  gibbs
+
+	* crcanvas/cr-canvas.c: (update_adjustment_factor),
+	(update_adjustment_world), (cr_canvas_set_property),
+	(cr_canvas_get_property), (cr_canvas_init), (on_paint),
+	(auto_scale_aspect), (auto_scale), (size_allocate),
+	(cr_canvas_class_init), (cr_canvas_center_on),
+	(cr_canvas_center_scale), (cr_canvas_zoom): passing unit test
+	* crcanvas/cr-canvas.h: new funcs
+	* examples/view-demo.c: (on_set_property), (setup_widgets), (main): 
+	demo program to show off canvas settings.
+	* unit-test/test-canvas.c: (TEST_NEW):
+

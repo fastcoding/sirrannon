@@ -1,0 +1,39 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="RTSP-server" type="RTSP-server" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interface" type="string" val="" />
+		<param name="media" type="string" val="$1" />
+		<param name="port" type="int" val="5554" />
+		<gfx x="411.0" y="160.0" w="150.0" h="120.0" />
+	</component>
+
+	<component name="RTMP-server" type="RTMP-server" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interface" type="string" val="" />
+		<param name="media" type="string" val="$1" />
+		<param name="port" type="int" val="1935" />
+		<gfx x="629.0" y="161.0" w="150.0" h="120.0" />
+	</component>
+
+	<component name="HTTP-server" type="HTTP-server" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interface" type="string" val="" />
+		<param name="media" type="string" val="$1" />
+		<param name="port" type="int" val="8080" />
+		<gfx x="205.0" y="160.0" w="150.0" h="120.0" />
+	</component>
+
+	<component name="RTMPT-server" type="RTMPT-server" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interface" type="string" val="" />
+		<param name="media" type="string" val="$1" />
+		<param name="port" type="int" val="1937" />
+		<gfx x="859.0" y="167.0" w="150.0" h="120.0" />
+	</component>
+
+
+</config>

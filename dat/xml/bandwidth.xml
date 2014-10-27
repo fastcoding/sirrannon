@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="0" seed="0" simulation="1000">
+	<component name="window-scheduler" type="window-scheduler">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="delay" type="int" val="0"/>
+		<param name="buffer" type="int" val="1000"/>
+		<param name="absolute-delay" type="int" val="0"/>
+		<param name="pause" type="bool" val="false"/>
+		<param name="speed" type="double" val="1.0"/>
+		<param name="window" type="int" val="80"/>
+		<gfx h="75.0" r="0.0" w="163.0" x="760.673861386" y="215.431287129"/>
+		<param name="precise" type="bool" val="false"/>
+	</component>
+	<component name="sink" type="sink">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="count" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="1127.89465347" y="215.431287129"/>
+		<param name="terminate" type="bool" val="false"/>
+	</component>
+	<component name="statistics" type="statistics">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="interval" type="int" val="-1"/>
+		<param name="log" type="string" val="dat/misc/stat.txt"/>
+		<param name="label" type="string" val=""/>
+		<param name="append" type="bool" val="false"/>
+		<param name="draw" type="bool" val="False"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="941.74990099" y="215.5"/>
+		<param name="overhead" type="int" val="0"/>
+	</component>
+	<component name="ffmpeg-reader" type="ffmpeg-reader">
+		<param name="debug" type="bool" val="True"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="filename" type="string" val="$1"/>
+		<param name="loop" type="int" val="1"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="dts-start" type="int" val="1000"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="False"/>
+		<param name="add-parameter-sets" type="bool" val="true"/>
+		<param name="repeat-parameter-sets" type="bool" val="false"/>
+		<param name="mov-frame" type="bool" val="false"/>
+		<param name="skip-SEI" type="bool" val="false"/>
+		<param name="skip-AUD" type="bool" val="false"/>
+		<gfx h="92.0994059406" r="0.0" w="190.847920792" x="237.168118812" y="201.514653465"/>
+		<param name="min-ts" type="int" val="-1"/>
+		<param name="max-ts" type="int" val="-1"/>
+		<param name="extension" type="string" val=""/>
+	</component>
+	<route from="statistics" to="sink" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="window-scheduler" to="statistics" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<command binary="/home/arombaut/sirannon/build/src/sirannon" configuration="/home/arombaut/sirannon/dat/xml/bandwidth.xml" flags="-vv">
+		<arg pos="1" val="/home/arombaut/Zeticon/audio_only/browse_nometa.flv"/>
+	</command>
+	<component name="avc-classifier" type="avc-classifier">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="discard" type="bool" val="False"/>
+		<param name="sender-trace" type="string" val=""/>
+		<param name="receiver-trace" type="string" val=""/>
+		<param name="I" type="int" val="1"/>
+		<param name="SI" type="int" val="0"/>
+		<param name="EI" type="int" val="0"/>
+		<param name="I(B)" type="int" val="0"/>
+		<param name="I(C)" type="int" val="0"/>
+		<param name="P" type="int" val="0"/>
+		<param name="SP" type="int" val="0"/>
+		<param name="EP" type="int" val="0"/>
+		<param name="P(B)" type="int" val="0"/>
+		<param name="P(C)" type="int" val="0"/>
+		<param name="B" type="int" val="0"/>
+		<param name="EB" type="int" val="0"/>
+		<param name="B(B)" type="int" val="0"/>
+		<param name="B(C)" type="int" val="0"/>
+		<param name="E" type="int" val="0"/>
+		<param name="PPS" type="int" val="1"/>
+		<param name="SPS" type="int" val="1"/>
+		<param name="ESPS" type="int" val="0"/>
+		<param name="SEI" type="int" val="0"/>
+		<param name="default" type="int" val="1"/>
+		<gfx h="117.0" r="0.0" w="208.0" x="634.411774562" y="376.408677329"/>
+	</component>
+	<route from="avc-classifier" to="window-scheduler" xroute="101">
+		<gfx from="5" to="6"/>
+	</route>
+	<component name="discard" type="discard">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<gfx h="117.0" r="0.0" w="208.0" x="907.245445545" y="508.406336634"/>
+	</component>
+	<route from="avc-classifier" to="discard" xroute="100">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="ffmpeg-reader" to="window-scheduler" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+</config>

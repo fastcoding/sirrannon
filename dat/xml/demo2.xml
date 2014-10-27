@@ -1,0 +1,12 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="RTSP-server" type="RTSP-server" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="interface" type="string" val="" />
+		<param name="media" type="string" val="$1" />
+		<param name="port" type="int" val="$2" />
+		<gfx x="262.0" y="126.0" w="130.0" h="75.0" />
+	</component>
+
+
+</config>

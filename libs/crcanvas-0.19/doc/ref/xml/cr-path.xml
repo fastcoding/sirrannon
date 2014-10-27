@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrPath">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrPath.top_of_page">CrPath</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrPath</refname>
+<refpurpose>A canvas item capable of rendering a <link linkend="cairo-path-t"><type>cairo_path_t</type></link>.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrPath.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrPath-struct">CrPath</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-path-new">cr_path_new</link>                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-path-set-color">cr_path_set_color</link>                   (<link linkend="cairo-t">cairo_t</link> *c,
+                                                         <link linkend="guint">guint</link> rgba);
+<link linkend="void">void</link>                <link linkend="cr-path-setup-line">cr_path_setup_line</link>                  (<link linkend="CrPath">CrPath</link> *path,
+                                                         <link linkend="cairo-t">cairo_t</link> *c);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrPath.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----CrPath
+               +----<link linkend="CrLine">CrLine</link>
+               +----<link linkend="CrRectangle">CrRectangle</link>
+               +----<link linkend="CrEllipse">CrEllipse</link>
+               +----<link linkend="CrVector">CrVector</link>
+               +----<link linkend="CrArrow">CrArrow</link>
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrPath.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrPath--cap">cap</link>&quot;                      <link linkend="CrCap">CrCap</link>                 : Read / Write
+  &quot;<link linkend="CrPath--dash">dash</link>&quot;                     <link linkend="CrDash">CrDash</link>*               : Read / Write
+  &quot;<link linkend="CrPath--fill-color">fill-color</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrPath--fill-color-rgba">fill-color-rgba</link>&quot;          <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="CrPath--fill-rule">fill-rule</link>&quot;                <link linkend="CrFillRule">CrFillRule</link>            : Read / Write
+  &quot;<link linkend="CrPath--join">join</link>&quot;                     <link linkend="CrJoin">CrJoin</link>                : Read / Write
+  &quot;<link linkend="CrPath--line-scaleable">line-scaleable</link>&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPath--line-width">line-width</link>&quot;               <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrPath--line-width-use-y">line-width-use-y</link>&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPath--outline-color">outline-color</link>&quot;            <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrPath--outline-color-rgba">outline-color-rgba</link>&quot;       <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="CrPath--path">path</link>&quot;                     <link linkend="gpointer">gpointer</link>              : Read / Write
+  &quot;<link linkend="CrPath--pattern">pattern</link>&quot;                  <link linkend="CrPattern">CrPattern</link>*            : Read / Write
+  &quot;<link linkend="CrPath--pattern-scaleable">pattern-scaleable</link>&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrPath--test-fill">test-fill</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="CrPath.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="CrPath-make-path">make-path</link>&quot;                                      : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="CrPath.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This is the base class for canvas items that are drawn from the
+<link linkend="cairo-path-t"><type>cairo_path_t</type></link> such as <link linkend="CrEllipse"><type>CrEllipse</type></link>, <link linkend="CrRectangle"><type>CrRectangle</type></link>, and <link linkend="CrLine"><type>CrLine</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrPath.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrPath-struct" role="struct">
+<title>CrPath</title>
+<indexterm zone="CrPath-struct"><primary sortas="CrPath">CrPath</primary></indexterm><programlisting>typedef struct _CrPath CrPath;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-path-new" role="function">
+<title>cr_path_new ()</title>
+<indexterm zone="cr-path-new"><primary sortas="cr_path_new">cr_path_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_path_new                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience function to create a path item and add it to a canvas item
+parent group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to keep it around.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-path-set-color" role="function">
+<title>cr_path_set_color ()</title>
+<indexterm zone="cr-path-set-color"><primary sortas="cr_path_set_color">cr_path_set_color</primary></indexterm><programlisting><link linkend="void">void</link>                cr_path_set_color                   (<link linkend="cairo-t">cairo_t</link> *c,
+                                                         <link linkend="guint">guint</link> rgba);</programlisting>
+<para>
+A convenience function to set the rgba integer into the cairo 
+context.  It may be called by derived <link linkend="CrPath"><type>CrPath</type></link> inplementations.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> A cairo context to set the color into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rgba</parameter>&#160;:</term>
+<listitem><simpara> An integer representing RGBA as four characters.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-path-setup-line" role="function">
+<title>cr_path_setup_line ()</title>
+<indexterm zone="cr-path-setup-line"><primary sortas="cr_path_setup_line">cr_path_setup_line</primary></indexterm><programlisting><link linkend="void">void</link>                cr_path_setup_line                  (<link linkend="CrPath">CrPath</link> *path,
+                                                         <link linkend="cairo-t">cairo_t</link> *c);</programlisting>
+<para>
+A convenience function to set up the <link linkend="CrPath--line-width"><type>"line-width"</type></link>,
+<link linkend="CrPath--line-scaleable"><type>"line-scaleable"</type></link>, and <link linkend="CrPath--dash"><type>"dash"</type></link> properties into the cairo context.
+It may be called by derived implementations of <link linkend="CrPath"><type>CrPath</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&#160;:</term>
+<listitem><simpara> The path object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> The current cairo context.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrPath.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrPath--cap" role="property"><title>The <literal>&quot;cap&quot;</literal> property</title>
+<indexterm zone="CrPath--cap"><primary sortas="CrPath:cap">CrPath:cap</primary></indexterm><programlisting>  &quot;cap&quot;                      <link linkend="CrCap">CrCap</link>                 : Read / Write</programlisting>
+<para>The enumeration for the style of line endings.  See #cairo_line_cap_t for more information.</para><para>Default value: CAIRO_LINE_CAP_BUTT</para>
+</refsect2>
+<refsect2 id="CrPath--dash" role="property"><title>The <literal>&quot;dash&quot;</literal> property</title>
+<indexterm zone="CrPath--dash"><primary sortas="CrPath:dash">CrPath:dash</primary></indexterm><programlisting>  &quot;dash&quot;                     <link linkend="CrDash">CrDash</link>*               : Read / Write</programlisting>
+<para>a boxed array indicating the dash pattern to be used by Cairo.  See #cairo_set_dash for more information.</para></refsect2>
+<refsect2 id="CrPath--fill-color" role="property"><title>The <literal>&quot;fill-color&quot;</literal> property</title>
+<indexterm zone="CrPath--fill-color"><primary sortas="CrPath:fill-color">CrPath:fill-color</primary></indexterm><programlisting>  &quot;fill-color&quot;               <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A string color such as 'red', or '#123456' to be used to fill the path.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrPath--fill-color-rgba" role="property"><title>The <literal>&quot;fill-color-rgba&quot;</literal> property</title>
+<indexterm zone="CrPath--fill-color-rgba"><primary sortas="CrPath:fill-color-rgba">CrPath:fill-color-rgba</primary></indexterm><programlisting>  &quot;fill-color-rgba&quot;          <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>Region fill color, red,grn,blue,alpha.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrPath--fill-rule" role="property"><title>The <literal>&quot;fill-rule&quot;</literal> property</title>
+<indexterm zone="CrPath--fill-rule"><primary sortas="CrPath:fill-rule">CrPath:fill-rule</primary></indexterm><programlisting>  &quot;fill-rule&quot;                <link linkend="CrFillRule">CrFillRule</link>            : Read / Write</programlisting>
+<para>The enumeration used to determine how paths are filled.  See #cairo_fill_rule_t for more information.</para><para>Default value: CAIRO_FILL_RULE_WINDING</para>
+</refsect2>
+<refsect2 id="CrPath--join" role="property"><title>The <literal>&quot;join&quot;</literal> property</title>
+<indexterm zone="CrPath--join"><primary sortas="CrPath:join">CrPath:join</primary></indexterm><programlisting>  &quot;join&quot;                     <link linkend="CrJoin">CrJoin</link>                : Read / Write</programlisting>
+<para>The enumeration for determining how line segments are joined together.  See #cairo_line_join_t for more information.</para><para>Default value: CAIRO_LINE_JOIN_MITER</para>
+</refsect2>
+<refsect2 id="CrPath--line-scaleable" role="property"><title>The <literal>&quot;line-scaleable&quot;</literal> property</title>
+<indexterm zone="CrPath--line-scaleable"><primary sortas="CrPath:line-scaleable">CrPath:line-scaleable</primary></indexterm><programlisting>  &quot;line-scaleable&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If line width should be scaleable.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrPath--line-width" role="property"><title>The <literal>&quot;line-width&quot;</literal> property</title>
+<indexterm zone="CrPath--line-width"><primary sortas="CrPath:line-width">CrPath:line-width</primary></indexterm><programlisting>  &quot;line-width&quot;               <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Path line width in user units when #CrPath:line-scaleable  is TRUE.  When #CrPath:line-scaleable is FALSE this is  in device units.</para><para>Default value: 2</para>
+</refsect2>
+<refsect2 id="CrPath--line-width-use-y" role="property"><title>The <literal>&quot;line-width-use-y&quot;</literal> property</title>
+<indexterm zone="CrPath--line-width-use-y"><primary sortas="CrPath:line-width-use-y">CrPath:line-width-use-y</primary></indexterm><programlisting>  &quot;line-width-use-y&quot;         <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the Y axis should be used for determining the device coordinates for the line-width. This property only applies when line-scalable is FALSE, outline-color is set, and the canvas widget has  the maintain-aspect property set to FALSE. The default is to use the x-axis transformation to determine device line-width.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrPath--outline-color" role="property"><title>The <literal>&quot;outline-color&quot;</literal> property</title>
+<indexterm zone="CrPath--outline-color"><primary sortas="CrPath:outline-color">CrPath:outline-color</primary></indexterm><programlisting>  &quot;outline-color&quot;            <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A string color such as 'red', or '#123456' to be used to sroke the path.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrPath--outline-color-rgba" role="property"><title>The <literal>&quot;outline-color-rgba&quot;</literal> property</title>
+<indexterm zone="CrPath--outline-color-rgba"><primary sortas="CrPath:outline-color-rgba">CrPath:outline-color-rgba</primary></indexterm><programlisting>  &quot;outline-color-rgba&quot;       <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>Path color, red,grn,blue,alpha.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrPath--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
+<indexterm zone="CrPath--path"><primary sortas="CrPath:path">CrPath:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gpointer">gpointer</link>              : Read / Write</programlisting>
+<para>a cairo_path_t. On set the item owns it.  On get the item still owns it. This is exclusive with points.</para></refsect2>
+<refsect2 id="CrPath--pattern" role="property"><title>The <literal>&quot;pattern&quot;</literal> property</title>
+<indexterm zone="CrPath--pattern"><primary sortas="CrPath:pattern">CrPath:pattern</primary></indexterm><programlisting>  &quot;pattern&quot;                  <link linkend="CrPattern">CrPattern</link>*            : Read / Write</programlisting>
+<para>Cairo pattern to fill the path region.</para></refsect2>
+<refsect2 id="CrPath--pattern-scaleable" role="property"><title>The <literal>&quot;pattern-scaleable&quot;</literal> property</title>
+<indexterm zone="CrPath--pattern-scaleable"><primary sortas="CrPath:pattern-scaleable">CrPath:pattern-scaleable</primary></indexterm><programlisting>  &quot;pattern-scaleable&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If pattern should scale.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrPath--test-fill" role="property"><title>The <literal>&quot;test-fill&quot;</literal> property</title>
+<indexterm zone="CrPath--test-fill"><primary sortas="CrPath:test-fill">CrPath:test-fill</primary></indexterm><programlisting>  &quot;test-fill&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the fill area should be grabbable by the pointer  regardless of if it is filled.  The most common use for this is as an invisible child of a very small item that would be difficult to grab on its own.</para><para>Default value: FALSE</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="CrPath.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="CrPath-make-path" role="signal"><title>The <literal>&quot;make-path&quot;</literal> signal</title>
+<indexterm zone="CrPath-make-path"><primary sortas="CrPath::make-path">CrPath::make-path</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="CrPath">CrPath</link>    *path,
+                                                        <link linkend="CrContext">CrContext</link> *c,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+This signal is part of the calculate-bounds signal for path items.
+First the path is constructed, then the bounds are calculated.  By
+overriding this signal and not overriding calculate-bounds, it is
+possible to render the path here and allow the default handler to
+calculate the bounds.  The path will be copied from the cairo_t*.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> Cairo context with transformation set to match the current item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if the path from the cairo_t* should be used. FALSE to
+use whatever path was created previously if any.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

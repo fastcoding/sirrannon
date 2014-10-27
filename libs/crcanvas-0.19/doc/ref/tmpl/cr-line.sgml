@@ -1,0 +1,53 @@
+<!-- ##### SECTION Title ##### -->
+CrLine
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrLine ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrLine:array ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrLine:close ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrLine:points ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_line_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

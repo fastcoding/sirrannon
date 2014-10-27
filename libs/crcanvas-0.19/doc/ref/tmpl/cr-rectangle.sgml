@@ -1,0 +1,52 @@
+<!-- ##### SECTION Title ##### -->
+CrRectangle
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrRectangle ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrRectangle:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrRectangle:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_rectangle_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@width: 
+@height: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

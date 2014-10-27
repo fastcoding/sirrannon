@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrRectangle">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrRectangle.top_of_page">CrRectangle</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrRectangle</refname>
+<refpurpose>A simple rectangle canvas item.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrRectangle.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrRectangle-struct">CrRectangle</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-rectangle-new">cr_rectangle_new</link>                    (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> width,
+                                                         <link linkend="double">double</link> height,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrRectangle.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----<link linkend="CrPath">CrPath</link>
+               +----CrRectangle
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrRectangle.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrRectangle--height">height</link>&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrRectangle--width">width</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrRectangle.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This is a simple rectangle path.  <emphasis>Note:</emphasis> that the 
+<link linkend="CrItem--x"><type>"x"</type></link> and <link linkend="CrItem--y"><type>"y"</type></link> coordinates refer to the center of the 
+rectangle and the <link linkend="CrRectangle--width"><type>"width"</type></link> and <link linkend="CrRectangle--height"><type>"height"</type></link> properties
+are taken half to either side of the x, y position.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrRectangle.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrRectangle-struct" role="struct">
+<title>CrRectangle</title>
+<indexterm zone="CrRectangle-struct"><primary sortas="CrRectangle">CrRectangle</primary></indexterm><programlisting>typedef struct _CrRectangle CrRectangle;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-rectangle-new" role="function">
+<title>cr_rectangle_new ()</title>
+<indexterm zone="cr-rectangle-new"><primary sortas="cr_rectangle_new">cr_rectangle_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_rectangle_new                    (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         <link linkend="double">double</link> width,
+                                                         <link linkend="double">double</link> height,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience constructor for creating a rectangle and adding it to an item
+group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> Center X coordinate in item units
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> Center Y coordinate in item units
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&#160;:</term>
+<listitem><simpara> Width in item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&#160;:</term>
+<listitem><simpara> Height in item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrRectangle.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrRectangle--height" role="property"><title>The <literal>&quot;height&quot;</literal> property</title>
+<indexterm zone="CrRectangle--height"><primary sortas="CrRectangle:height">CrRectangle:height</primary></indexterm><programlisting>  &quot;height&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Height of rectangle in item units. Note this is half above #CrItem:y and half below #CrItem:y.</para><para>Default value: 2</para>
+</refsect2>
+<refsect2 id="CrRectangle--width" role="property"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="CrRectangle--width"><primary sortas="CrRectangle:width">CrRectangle:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Width of rectangle in item units. Note this is half to the left of #CrItem:x and half to the right of #CrItem:x.</para><para>Default value: 2</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

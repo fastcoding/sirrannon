@@ -1,0 +1,130 @@
+<!-- ##### SECTION Title ##### -->
+CrZoomer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrZoomer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL CrZoomer::activate ##### -->
+<para>
+
+</para>
+
+@crzoomer: the object which received the signal.
+
+<!-- ##### SIGNAL CrZoomer::deactivate ##### -->
+<para>
+
+</para>
+
+@crzoomer: the object which received the signal.
+
+<!-- ##### SIGNAL CrZoomer::select ##### -->
+<para>
+
+</para>
+
+@crzoomer: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@arg4: 
+@Returns: 
+
+<!-- ##### ARG CrZoomer:active ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:canvas ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:corner-to-corner ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:cursor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:fill-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:fill-color-rgba ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:line-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:maintain-aspect ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:outline-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrZoomer:outline-color-rgba ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_zoomer_new ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_zoomer_activate ##### -->
+<para>
+
+</para>
+
+@zoomer: 
+
+
+<!-- ##### FUNCTION cr_zoomer_deactivate ##### -->
+<para>
+
+</para>
+
+@zoomer: 
+
+

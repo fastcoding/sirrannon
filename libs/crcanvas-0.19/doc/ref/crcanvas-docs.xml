@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<book lang="en" id="crcanvas" xmlns:xi="http://www.w3.org/2003/XInclude"> 
+  <bookinfo>
+    <title>crcanvas: A GTK/Cairo Canvas Widget</title>
+    <releaseinfo>for crcanvas 0.17</releaseinfo>
+  </bookinfo>
+  <part>
+    <title>Major Differences from other GTK based canvases</title>
+    <para>
+            <orderedlist>
+                    <listitem>
+                            <para>
+
+The canvas widget has a built in scaling and panning model.  It provides
+property settings for "maintain center", "maintain aspect", "auto scale", and
+infinite scrolling.  Additionally it provides a complete set of zooming and
+scaling procedures.
+
+                            </para>
+
+                            <para>
+
+The intent of this widget is to allow more flexibility than the traditional
+GtkLayout.  The GtkLayout offers hook-ups for horizontal and vertical scrolling.
+The CrCanvas widget still supports the GtkAdjustment handles, but it's viewport
+coordinates are based on an Cairo affine transformation matrix, so it should be
+possible to design controls that are different from the usual scrollbars.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+It is  trivial to design custom canvas items.  In the simplest case for an
+item that is based on cairo_path_t, it is necessary only to define a
+"make_path"method from the CrPath.  A slightly more complicated use requires
+redefining methods from the CrItem for "paint", "calculate_bounds", and "test".
+Nothing more is required.  The methods need not be defined as part of a derived
+class, they can be defined as signal handlers connected to an instance of the
+base class.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+The circular dependency between the canvas widget and the canvas item has been
+eliminated.  The items are not aware of what type of device or how many devices
+to which they are rendering.  The items communicate up the tree via GObject
+signal emissions.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+Each canvas item can send invalidate signals on its item coordinate space,
+the device coordinate space, or a combination of both.  Some use cases for this
+feature include: A canvas item that has a label that does not change scale when
+the canvas is zoomed in,  or a plot that has an arrow pointing to an interesting
+feature.  When the canvas is zoomed in the feature gets bigger, but the arrow
+pointing to the feature does not.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+The canvas widget emits a "before paint" signal during its
+expose logic.  Using this signal to call a clipping or rejection technique can
+significantly improve performance when the canvas is zoomed-in.  It is 
+possible to request updates from any item during the "before paint" emission
+or just prior to the expose event without triggering multiple re-paints.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+A repaint mode allows for all items to be repainted regardless of which ones
+requested updates.  It avoids running the calculate bounds sequence.  This is
+useful when you need to continuously repaint for several cycles and want to
+avoid the cost of the canvas update loop until the repaint cycles are complete.
+The profiling I have done so far indicates this causes the repaint to occur
+15-20% faster when N-items > 1000.
+
+                            </para>
+                    </listitem>
+                    <listitem>
+                            <para>
+
+The CrBlit grouping item can, in some cases, significantly improve performance.
+It groups any arbitrary item tree into an offscreen memory surface.  The memory
+surface is then painted to the screen in a single operation. It should be used
+in cases where the CPU time needed to paint the item tree to the screen is
+greater than then frequency at which the tree needs to be repainted.
+
+                            </para>
+                    </listitem>
+
+            </orderedlist>
+    </para>
+  </part>				  
+
+  <chapter>
+    <title>Reference</title>
+    <xi:include href="xml/cr-item.xml"/>
+    <xi:include href="xml/cr-canvas.xml"/>
+    <xi:include href="xml/cr-text.xml"/>
+    <xi:include href="xml/cr-line.xml"/>
+    <xi:include href="xml/cr-pixbuf.xml"/>
+    <xi:include href="xml/cr-rectangle.xml"/>
+    <xi:include href="xml/cr-ellipse.xml"/>
+    <xi:include href="xml/cr-vector.xml"/>
+    <xi:include href="xml/cr-path.xml"/>
+    <xi:include href="xml/cr-arrow.xml"/>
+    <xi:include href="xml/cr-inverse.xml"/>
+    <xi:include href="xml/cr-blit.xml"/>
+    <xi:include href="xml/cr-rotator.xml"/>
+    <xi:include href="xml/cr-panner.xml"/>
+    <xi:include href="xml/cr-zoomer.xml"/>
+    <xi:include href="xml/cr-types.xml"/>
+  </chapter>
+
+</book>

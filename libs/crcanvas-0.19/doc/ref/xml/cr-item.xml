@@ -1,0 +1,858 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrItem">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrItem.top_of_page">CrItem</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrItem</refname>
+<refpurpose>The base class for all canvas items and groups.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrItem.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrItem-struct">CrItem</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-item-new">cr_item_new</link>                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="GType">GType</link> type,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-item-add">cr_item_add</link>                         (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child);
+<link linkend="void">void</link>                <link linkend="cr-item-remove">cr_item_remove</link>                      (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child);
+<link linkend="void">void</link>                <link linkend="cr-item-move">cr_item_move</link>                        (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="double">double</link> dx,
+                                                         <link linkend="double">double</link> dy);
+<link linkend="void">void</link>                <link linkend="cr-item-set-z-relative">cr_item_set_z_relative</link>              (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child,
+                                                         <link linkend="int">int</link> positions);
+<link linkend="void">void</link>                <link linkend="cr-item-set-z">cr_item_set_z</link>                       (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child,
+                                                         <link linkend="int">int</link> position);
+<link linkend="void">void</link>                <link linkend="cr-item-hide">cr_item_hide</link>                        (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="void">void</link>                <link linkend="cr-item-show">cr_item_show</link>                        (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="cairo-matrix-t">cairo_matrix_t</link> *    <link linkend="cr-item-get-matrix">cr_item_get_matrix</link>                  (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="cairo-matrix-t">cairo_matrix_t</link> *    <link linkend="cr-item-get-inverse-matrix">cr_item_get_inverse_matrix</link>          (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="void">void</link>                <link linkend="cr-item-cancel-matrix">cr_item_cancel_matrix</link>               (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="void">void</link>                <link linkend="cr-item-request-update">cr_item_request_update</link>              (<link linkend="CrItem">CrItem</link> *item);
+<link linkend="gboolean">gboolean</link>            <link linkend="cr-item-get-bounds">cr_item_get_bounds</link>                  (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="double">double</link> *x1,
+                                                         <link linkend="double">double</link> *y1,
+                                                         <link linkend="double">double</link> *x2,
+                                                         <link linkend="double">double</link> *y2);
+<link linkend="gboolean">gboolean</link>            <link linkend="cr-item-get-device-bounds">cr_item_get_device_bounds</link>           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="cr-item-calculate-bounds">cr_item_calculate_bounds</link>            (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrBounds">CrBounds</link> *bounds,
+                                                         <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device_bounds);
+<link linkend="void">void</link>                <link linkend="cr-item-invoke-paint">cr_item_invoke_paint</link>                (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all,
+                                                         <link linkend="double">double</link> x1,
+                                                         <link linkend="double">double</link> y1,
+                                                         <link linkend="double">double</link> x2,
+                                                         <link linkend="double">double</link> y2);
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-item-invoke-test">cr_item_invoke_test</link>                 (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *c,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y);
+<link linkend="gboolean">gboolean</link>            <link linkend="cr-item-find-child">cr_item_find_child</link>                  (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-matrix-t">cairo_matrix_t</link> *matrix,
+                                                         <link linkend="CrItem">CrItem</link> *child);
+<link linkend="void">void</link>                <link linkend="cr-item-report-old-bounds">cr_item_report_old_bounds</link>           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all);
+<link linkend="void">void</link>                <link linkend="cr-item-report-new-bounds">cr_item_report_new_bounds</link>           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all);
+<link linkend="gboolean">gboolean</link>            <link linkend="cr-item-invoke-event">cr_item_invoke_event</link>                (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="GdkEvent">GdkEvent</link> *event,
+                                                         <link linkend="cairo-matrix-t">cairo_matrix_t</link> *matrix,
+                                                         <link linkend="CrItem">CrItem</link> *pick_item);
+<link linkend="CrContext">CrContext</link> *         <link linkend="cr-item-make-temp-cairo">cr_item_make_temp_cairo</link>             (void);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrItem.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----CrItem
+         +----<link linkend="CrPath">CrPath</link>
+         +----<link linkend="CrInverse">CrInverse</link>
+         +----<link linkend="CrText">CrText</link>
+         +----<link linkend="CrPixbuf">CrPixbuf</link>
+         +----<link linkend="CrBlit">CrBlit</link>
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrItem.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrItem--avoid-test">avoid-test</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrItem--matrix">matrix</link>&quot;                   <link linkend="CrMatrix">CrMatrix</link>*             : Read / Write
+  &quot;<link linkend="CrItem--test-rectangle">test-rectangle</link>&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrItem--visible">visible</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrItem--x">x</link>&quot;                        <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrItem--y">y</link>&quot;                        <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="CrItem.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="CrItem-added">added</link>&quot;                                          : Run First
+  &quot;<link linkend="CrItem-calculate-bounds">calculate-bounds</link>&quot;                               : Run Last
+  &quot;<link linkend="CrItem-event">event</link>&quot;                                          : Run Last
+  &quot;<link linkend="CrItem-invalidate">invalidate</link>&quot;                                     : Run Last
+  &quot;<link linkend="CrItem-paint">paint</link>&quot;                                          : Run Last
+  &quot;<link linkend="CrItem-removed">removed</link>&quot;                                        : Run First
+  &quot;<link linkend="CrItem-request-update">request-update</link>&quot;                                 : Run Last
+  &quot;<link linkend="CrItem-test">test</link>&quot;                                           : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="CrItem.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The base class for all canvas items. This class can be used as a painting
+object, or as a grouping object, or as both.
+</para>
+<para>
+To use this as a painting object, connect to or redefine the <link linkend="CrItem-paint"><type>"paint"</type></link>
+and <link linkend="CrItem-calculate-bounds"><type>"calculate-bounds"</type></link> signals.
+</para>
+<para>
+To use it as a grouping object, call <link linkend="cr-item-add"><type>cr_item_add</type></link> and <link linkend="cr-item-remove"><type>cr_item_remove</type></link>.  To
+move the group around, make changes to its matrix (<link linkend="cr-item-get-matrix"><type>cr_item_get_matrix</type></link>) and
+call <link linkend="cr-item-request-update"><type>cr_item_request_update</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrItem.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrItem-struct" role="struct">
+<title>CrItem</title>
+<indexterm zone="CrItem-struct"><primary sortas="CrItem">CrItem</primary></indexterm><programlisting>typedef struct {
+        /*
+         * The list of child items may be accessed for reading directly.
+         * It should only be modified via the cr_item_add/remove methods.
+         */
+        GList *items;
+        CrBounds *bounds;
+        CrDeviceBounds *device;
+        cairo_matrix_t *matrix, *matrix_i, *matrix_p;
+        guint32 flags;
+} CrItem;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-item-new" role="function">
+<title>cr_item_new ()</title>
+<indexterm zone="cr-item-new"><primary sortas="cr_item_new">cr_item_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_item_new                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="GType">GType</link> type,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A factory method to create a new CrItem and add it to a group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The type of item to create.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created item. You must call g_object_ref if you intend to
+use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-add" role="function">
+<title>cr_item_add ()</title>
+<indexterm zone="cr-item-add"><primary sortas="cr_item_add">cr_item_add</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_add                         (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child);</programlisting>
+<para>
+The child item is added under management of the parent item such that the
+rendering (z-order) of the child will be more forward than the parent.  The
+parent will add a reference to the child.  The child can be unref'd by the 
+user after adding.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara> The parent item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&#160;:</term>
+<listitem><simpara> The child item.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-remove" role="function">
+<title>cr_item_remove ()</title>
+<indexterm zone="cr-item-remove"><primary sortas="cr_item_remove">cr_item_remove</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_remove                      (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child);</programlisting>
+<para>
+Removes and unref's child from the item's list or and sublist under item. The
+child need not be a direct descended of the parent item.  This means you can
+call this function with the canvas root item if necessary.  The tree will be
+searched until the child is found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&#160;:</term>
+<listitem><simpara> The child canvas item.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-move" role="function">
+<title>cr_item_move ()</title>
+<indexterm zone="cr-item-move"><primary sortas="cr_item_move">cr_item_move</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_move                        (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="double">double</link> dx,
+                                                         <link linkend="double">double</link> dy);</programlisting>
+<para>
+Moves the item to a position relative to where it is now.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dx</parameter>&#160;:</term>
+<listitem><simpara> The distance in item units to move in the x direction.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dy</parameter>&#160;:</term>
+<listitem><simpara> The distance in item units to move in the y direction.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-set-z-relative" role="function">
+<title>cr_item_set_z_relative ()</title>
+<indexterm zone="cr-item-set-z-relative"><primary sortas="cr_item_set_z_relative">cr_item_set_z_relative</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_set_z_relative              (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child,
+                                                         <link linkend="int">int</link> positions);</programlisting>
+<para>
+Moves the child item in height relative to its siblings by the number of
+places given in <parameter>positions</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara> The group holding the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&#160;:</term>
+<listitem><simpara> The item to move.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>positions</parameter>&#160;:</term>
+<listitem><simpara> Number positions to move by. Positive goes up.  Negative goes
+down.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-set-z" role="function">
+<title>cr_item_set_z ()</title>
+<indexterm zone="cr-item-set-z"><primary sortas="cr_item_set_z">cr_item_set_z</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_set_z                       (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrItem">CrItem</link> *child,
+                                                         <link linkend="int">int</link> position);</programlisting>
+<para>
+Sets the child item height relative to its siblings to be the absolute
+position given by <parameter>position</parameter>. Zero is the bottom, -1 is the top.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara> The group holding the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&#160;:</term>
+<listitem><simpara> The item to move.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>position</parameter>&#160;:</term>
+<listitem><simpara> Absolute position. Positive is places from the bottom.  
+Negative is places from the top.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-hide" role="function">
+<title>cr_item_hide ()</title>
+<indexterm zone="cr-item-hide"><primary sortas="cr_item_hide">cr_item_hide</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_hide                        (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Hides the item.  If the item is a parent, then all children will
+be hidden as well.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-show" role="function">
+<title>cr_item_show ()</title>
+<indexterm zone="cr-item-show"><primary sortas="cr_item_show">cr_item_show</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_show                        (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Shows the item.  If the item is a parent, then the children may or may not 
+be shown depending on their visible property.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-get-matrix" role="function">
+<title>cr_item_get_matrix ()</title>
+<indexterm zone="cr-item-get-matrix"><primary sortas="cr_item_get_matrix">cr_item_get_matrix</primary></indexterm><programlisting><link linkend="cairo-matrix-t">cairo_matrix_t</link> *    cr_item_get_matrix                  (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Creates an identity matrix if one does not exist.  
+Otherwise returns the current matrix. If you modify the matrix in any way,
+you must call request_update in order to see the results.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The canvas item transformation matrix.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-get-inverse-matrix" role="function">
+<title>cr_item_get_inverse_matrix ()</title>
+<indexterm zone="cr-item-get-inverse-matrix"><primary sortas="cr_item_get_inverse_matrix">cr_item_get_inverse_matrix</primary></indexterm><programlisting><link linkend="cairo-matrix-t">cairo_matrix_t</link> *    cr_item_get_inverse_matrix          (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Creates an identity matrix if one does not exist. Otherwise returns the
+current inverse matrix. If you modify the matrix in any way, you must call
+request_update in order to see the results.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The canvas item inverse transformation matrix.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-cancel-matrix" role="function">
+<title>cr_item_cancel_matrix ()</title>
+<indexterm zone="cr-item-cancel-matrix"><primary sortas="cr_item_cancel_matrix">cr_item_cancel_matrix</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_cancel_matrix               (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Removes any transformations from this canvas item and request an update if
+necessary.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-request-update" role="function">
+<title>cr_item_request_update ()</title>
+<indexterm zone="cr-item-request-update"><primary sortas="cr_item_request_update">cr_item_request_update</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_request_update              (<link linkend="CrItem">CrItem</link> *item);</programlisting>
+<para>
+Propagates request up through the canvas item tree, to let the canvas know
+that a screen refresh is required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-get-bounds" role="function">
+<title>cr_item_get_bounds ()</title>
+<indexterm zone="cr-item-get-bounds"><primary sortas="cr_item_get_bounds">cr_item_get_bounds</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cr_item_get_bounds                  (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="double">double</link> *x1,
+                                                         <link linkend="double">double</link> *y1,
+                                                         <link linkend="double">double</link> *x2,
+                                                         <link linkend="double">double</link> *y2);</programlisting>
+<para>
+The bounds are returned in the world coordinate system of item.
+Note that this routine will return the last set of bounds reported by the
+item during a canvas update.  If no updates have occurred then <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> is
+returned.  Use <link linkend="cr-item-calculate-bounds"><type>cr_item_calculate_bounds</type></link> if you need to know the bounds
+immediately.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x1</parameter>&#160;:</term>
+<listitem><simpara> Leftmost edge of the bounding box (return value).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&#160;:</term>
+<listitem><simpara> Upper edge of the bounding box (return value).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> Rightmost edge of the bounding box (return value).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> Lower edge of the bounding box (return value).
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> if the bounds are not available for this item.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-get-device-bounds" role="function">
+<title>cr_item_get_device_bounds ()</title>
+<indexterm zone="cr-item-get-device-bounds"><primary sortas="cr_item_get_device_bounds">cr_item_get_device_bounds</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cr_item_get_device_bounds           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device);</programlisting>
+<para>
+The device bounds report any space the item uses that is device based.
+This space is anchored to the item bounds reported by <link linkend="cr-item-get-bounds"><type>cr_item_get_bounds</type></link>.
+Note that this routine will return the last set of bounds reported by the
+item during a canvas update.  If no updates have occurred then <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> is
+returned.  Use <link linkend="cr-item-calculate-bounds"><type>cr_item_calculate_bounds</type></link> if you need to know the bounds
+immediately.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> A structure representing the items device-based boundaries (if any).
+If this return returns <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, the structure will be filled with the item's
+device based boundaries.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if this item has any device based space.  <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> if not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-calculate-bounds" role="function">
+<title>cr_item_calculate_bounds ()</title>
+<indexterm zone="cr-item-calculate-bounds"><primary sortas="cr_item_calculate_bounds">cr_item_calculate_bounds</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cr_item_calculate_bounds            (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="CrBounds">CrBounds</link> *bounds,
+                                                         <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device_bounds);</programlisting>
+<para>
+Run the <link linkend="CrItem-calculate-bounds"><type>"calculate_bounds"</type></link> bounds signal and virtual method on the
+item using a temporary cairo context and report the results.  The results are
+not retained by this object. This function
+is provided as a user convenience and is not run as part of normal canvas
+operation. The reason a user might want to call this is to know the bounds in
+advance of the first canvas update.  The <link linkend="cr-item-get-bounds"><type>cr_item_get_bounds</type></link> and
+<link linkend="cr-item-get-device-bounds"><type>cr_item_get_device_bounds</type></link> methods will return <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> unless the canvas has
+been updated at least once. The disadvantage to using this is that in some
+extreme cases the bounds reported by a temporary cairo context may differ
+from the bounds reported by the cairo context being used by the canvas
+device. So this routine really will give only an approximation of what the
+bounds will be when the item is rendered to the screen.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bounds</parameter>&#160;:</term>
+<listitem><simpara> Bounding box in item coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device_bounds</parameter>&#160;:</term>
+<listitem><simpara> A structure for specifying device coordinate boundaries (if
+any)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the the bounds are defined even if the are 0, 0, 0, 0.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-invoke-paint" role="function">
+<title>cr_item_invoke_paint ()</title>
+<indexterm zone="cr-item-invoke-paint"><primary sortas="cr_item_invoke_paint">cr_item_invoke_paint</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_invoke_paint                (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all,
+                                                         <link linkend="double">double</link> x1,
+                                                         <link linkend="double">double</link> y1,
+                                                         <link linkend="double">double</link> x2,
+                                                         <link linkend="double">double</link> y2);</programlisting>
+<para>
+This is normally called only by CrCanvas or CrItem.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ct</parameter>&#160;:</term>
+<listitem><simpara> cairo context to paint with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>all</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x1</parameter>&#160;:</term>
+<listitem><simpara> Left coord of the rectangle to be painted in pre-item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&#160;:</term>
+<listitem><simpara> Top coord of the rectangle to be painted in pre-item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> Right coord of the rectangle to be painted in pre-item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> Bottom coordinate of the rectangle to be painted in pre-item units.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-invoke-test" role="function">
+<title>cr_item_invoke_test ()</title>
+<indexterm zone="cr-item-invoke-test"><primary sortas="cr_item_invoke_test">cr_item_invoke_test</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_item_invoke_test                 (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *c,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y);</programlisting>
+<para>
+This is normally called only by CrCanvas or CrItem.  It is used to run the
+test method or emit a test signal on the derived canvas items.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> The cairo context with its transformation matrix set to reflect all
+transformations higher in the item tree.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The point to be tested in device coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The point to be tested in device coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The first canvas item in the z-order to test TRUE.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-find-child" role="function">
+<title>cr_item_find_child ()</title>
+<indexterm zone="cr-item-find-child"><primary sortas="cr_item_find_child">cr_item_find_child</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cr_item_find_child                  (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-matrix-t">cairo_matrix_t</link> *matrix,
+                                                         <link linkend="CrItem">CrItem</link> *child);</programlisting>
+<para>
+An Internal method.  This will search the item tree for a child item that 
+was previously found using invoke_test.  When the item is found the 
+cairo matrix will be set to reflect the transformation between
+this item and the found item.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>matrix</parameter>&#160;:</term>
+<listitem><simpara> A cairo_matrix_t that should be set to identity at the start of 
+the search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&#160;:</term>
+<listitem><simpara> The item to be found.  
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if the item was found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-report-old-bounds" role="function">
+<title>cr_item_report_old_bounds ()</title>
+<indexterm zone="cr-item-report-old-bounds"><primary sortas="cr_item_report_old_bounds">cr_item_report_old_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_report_old_bounds           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all);</programlisting>
+<para>
+This is normally called only by the canvas widget or canvas item.  It is used
+to report back invalidated regions to the canvas or device.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ct</parameter>&#160;:</term>
+<listitem><simpara> The cairo context transformed to be relative to the device coordinates
+for this item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>all</parameter>&#160;:</term>
+<listitem><simpara> Used to tell children to re-report theit bounds.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-report-new-bounds" role="function">
+<title>cr_item_report_new_bounds ()</title>
+<indexterm zone="cr-item-report-new-bounds"><primary sortas="cr_item_report_new_bounds">cr_item_report_new_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                cr_item_report_new_bounds           (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="cairo-t">cairo_t</link> *ct,
+                                                         <link linkend="gboolean">gboolean</link> all);</programlisting>
+<para>
+This is normally called only by the canvas widget or canvas item.  It is used
+to trigger calculate_bounds in derived canvas items and to report back
+invalidated regions to the canvas or device.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ct</parameter>&#160;:</term>
+<listitem><simpara> The cairo context transformed to be relative to the device coordinates
+for this item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>all</parameter>&#160;:</term>
+<listitem><simpara> Used to tell children to re-report theit bounds.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-invoke-event" role="function">
+<title>cr_item_invoke_event ()</title>
+<indexterm zone="cr-item-invoke-event"><primary sortas="cr_item_invoke_event">cr_item_invoke_event</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cr_item_invoke_event                (<link linkend="CrItem">CrItem</link> *item,
+                                                         <link linkend="GdkEvent">GdkEvent</link> *event,
+                                                         <link linkend="cairo-matrix-t">cairo_matrix_t</link> *matrix,
+                                                         <link linkend="CrItem">CrItem</link> *pick_item);</programlisting>
+<para>
+This is normally called only by the device. It is used to trigger the
+derived canvas item 'event' signal.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>event</parameter>&#160;:</term>
+<listitem><simpara> The event with coordinates in device units
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>matrix</parameter>&#160;:</term>
+<listitem><simpara> The cumulative matrix from device to this item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pick_item</parameter>&#160;:</term>
+<listitem><simpara> The item the cursor is on.  This may be different from item if
+the event is caught on a non-leaf node.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE to stop propagation of the event.  FALSE to continue.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-item-make-temp-cairo" role="function">
+<title>cr_item_make_temp_cairo ()</title>
+<indexterm zone="cr-item-make-temp-cairo"><primary sortas="cr_item_make_temp_cairo">cr_item_make_temp_cairo</primary></indexterm><programlisting><link linkend="CrContext">CrContext</link> *         cr_item_make_temp_cairo             (void);</programlisting>
+<para>
+A convenience procedure used by some implementations to create a path. In
+order to use this, the scale must set the scale to be roughly "ball-park" to
+the scale where the canvas item will be painted.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A cairo context. Call cairo_destroy on this reference when finished.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrItem.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrItem--avoid-test" role="property"><title>The <literal>&quot;avoid-test&quot;</literal> property</title>
+<indexterm zone="CrItem--avoid-test"><primary sortas="CrItem:avoid-test">CrItem:avoid-test</primary></indexterm><programlisting>  &quot;avoid-test&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Prevents item and children from being cursor tested.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrItem--matrix" role="property"><title>The <literal>&quot;matrix&quot;</literal> property</title>
+<indexterm zone="CrItem--matrix"><primary sortas="CrItem:matrix">CrItem:matrix</primary></indexterm><programlisting>  &quot;matrix&quot;                   <link linkend="CrMatrix">CrMatrix</link>*             : Read / Write</programlisting>
+<para>Cairo matrix used to transform this item.</para></refsect2>
+<refsect2 id="CrItem--test-rectangle" role="property"><title>The <literal>&quot;test-rectangle&quot;</literal> property</title>
+<indexterm zone="CrItem--test-rectangle"><primary sortas="CrItem:test-rectangle">CrItem:test-rectangle</primary></indexterm><programlisting>  &quot;test-rectangle&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If the point test routine should ignore any details about the item and just test the enclosing rectangle.  For CrPath based items the test-fill property may be more appropriate.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrItem--visible" role="property"><title>The <literal>&quot;visible&quot;</literal> property</title>
+<indexterm zone="CrItem--visible"><primary sortas="CrItem:visible">CrItem:visible</primary></indexterm><programlisting>  &quot;visible&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Whether the item is visible.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrItem--x" role="property"><title>The <literal>&quot;x&quot;</literal> property</title>
+<indexterm zone="CrItem--x"><primary sortas="CrItem:x">CrItem:x</primary></indexterm><programlisting>  &quot;x&quot;                        <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The matrix translation in the x direction in item units.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrItem--y" role="property"><title>The <literal>&quot;y&quot;</literal> property</title>
+<indexterm zone="CrItem--y"><primary sortas="CrItem:y">CrItem:y</primary></indexterm><programlisting>  &quot;y&quot;                        <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The matrix translation in the y direction in item units.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="CrItem.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="CrItem-added" role="signal"><title>The <literal>&quot;added&quot;</literal> signal</title>
+<indexterm zone="CrItem-added"><primary sortas="CrItem::added">CrItem::added</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrItem">CrItem</link>  *critem,
+                                                        <link linkend="CrItem">CrItem</link>  *arg1,
+                                                        <link linkend="gpointer">gpointer</link> user_data)      : Run First</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>critem</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-calculate-bounds" role="signal"><title>The <literal>&quot;calculate-bounds&quot;</literal> signal</title>
+<indexterm zone="CrItem-calculate-bounds"><primary sortas="CrItem::calculate-bounds">CrItem::calculate-bounds</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="CrItem">CrItem</link>         *item,
+                                                        <link linkend="CrContext">CrContext</link>      *c,
+                                                        <link linkend="CrBounds">CrBounds</link>       *bounds,
+                                                        <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)      : Run Last</programlisting>
+<para>
+Defining this method is optional but strongly recommended.  If it is
+not provided, then the device (canvas widget) must be run in repaint
+mode or else this item won't be painted. In most cases the
+<link linkend="device"><type>device</type></link> can be ignored.  If some portion of the item is tied
+to device space then the anchor should be filled to reflect what part
+of the item bounding box the device bounding box should be measured
+from.  An anchor to a corner means the device space is measured from
+that corner.  An anchor to a center means the device space is
+measured to either side of the item unit bounding box.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> Cairo context with transformation set to match the current item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bounds</parameter>&#160;:</term>
+<listitem><simpara> Bounding box in item coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> A structure for specifying device coordinate
+boundaries (if any)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the the bounds are defined even if the are 0, 0, 0,
+0.  Any implementation of this method should always return <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-event" role="signal"><title>The <literal>&quot;event&quot;</literal> signal</title>
+<indexterm zone="CrItem-event"><primary sortas="CrItem::event">CrItem::event</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="CrItem">CrItem</link>   *item,
+                                                        <link linkend="GdkEvent">GdkEvent</link> *event,
+                                                        <link linkend="CrMatrix">CrMatrix</link> *matrix,
+                                                        <link linkend="CrItem">CrItem</link>   *pick_item,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run Last</programlisting>
+<para>
+In most cases applications will connect to this signal.
+This method need only be defined if your canvas item has some type of
+pointer behavior.  If test is not defined, this method will never be
+called.
+</para>
+<para>
+Since release 0.11, the coordinates returned in the event structure
+represent the current user coordinates for the item being signaled.
+The typical way to use the event signal is to connect to the item
+which is to be manipulated.  During the button press save initial
+event coordinates.  During the motion event manipulate the item by
+comparing the event structure coordinates against the saved off
+initial coordinates.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>event</parameter>&#160;:</term>
+<listitem><simpara> Gdk Event structure with coordinates in item units.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>matrix</parameter>&#160;:</term>
+<listitem><simpara> Use this only if you want to get back to device coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pick_item</parameter>&#160;:</term>
+<listitem><simpara> Actual item the cursor is on.  The can sometimes be
+different from item if the event is caught on a non-leaf node.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> to stop the event.  <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> to allow the event to
+propagate to other items higher in the tree.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-invalidate" role="signal"><title>The <literal>&quot;invalidate&quot;</literal> signal</title>
+<indexterm zone="CrItem-invalidate"><primary sortas="CrItem::invalidate">CrItem::invalidate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrItem">CrItem</link>         *item,
+                                                        <link linkend="gint">gint</link>            mask,
+                                                        <link linkend="gdouble">gdouble</link>         x1,
+                                                        <link linkend="gdouble">gdouble</link>         y1,
+                                                        <link linkend="gdouble">gdouble</link>         x2,
+                                                        <link linkend="gdouble">gdouble</link>         y2,
+                                                        <link linkend="CrDeviceBounds">CrDeviceBounds</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)      : Run Last</programlisting>
+<para>
+This is an internal method. The invalidate signal is propagated up
+through the hierarchy so that multiple devices (canvases) may
+receive this signal in their respective coordinate systems.  The anchor and
+device width and heights (if any) must be added when the invalidate signal
+reaches its final destination.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mask</parameter>&#160;:</term>
+<listitem><simpara>  Some combination of INVALIDATE_OLD, INVALIDATE_NEW, and 
+INVALIDATE_UPDATE
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x1</parameter>&#160;:</term>
+<listitem><simpara> Leftmost bound.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&#160;:</term>
+<listitem><simpara> Rightmost bound.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> Rightmost bound.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> Bottommost bound.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> A structure for specifying device coordinate boundaries (if any).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-paint" role="signal"><title>The <literal>&quot;paint&quot;</literal> signal</title>
+<indexterm zone="CrItem-paint"><primary sortas="CrItem::paint">CrItem::paint</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrItem">CrItem</link>    *item,
+                                                        <link linkend="CrContext">CrContext</link> *c,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+Item implementations should override this and use it to draw to 
+the cairo surface.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> The cairo context used to draw the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-removed" role="signal"><title>The <literal>&quot;removed&quot;</literal> signal</title>
+<indexterm zone="CrItem-removed"><primary sortas="CrItem::removed">CrItem::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrItem">CrItem</link>  *critem,
+                                                        <link linkend="CrItem">CrItem</link>  *arg1,
+                                                        <link linkend="gpointer">gpointer</link> user_data)      : Run First</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>critem</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-request-update" role="signal"><title>The <literal>&quot;request-update&quot;</literal> signal</title>
+<indexterm zone="CrItem-request-update"><primary sortas="CrItem::request-update">CrItem::request-update</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrItem">CrItem</link>  *critem,
+                                                        <link linkend="gpointer">gpointer</link> user_data)      : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>critem</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrItem-test" role="signal"><title>The <literal>&quot;test&quot;</literal> signal</title>
+<indexterm zone="CrItem-test"><primary sortas="CrItem::test">CrItem::test</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link>*             user_function                      (<link linkend="CrItem">CrItem</link>    *item,
+                                                        <link linkend="CrContext">CrContext</link> *c,
+                                                        <link linkend="gdouble">gdouble</link>    x,
+                                                        <link linkend="gdouble">gdouble</link>    y,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+This signal is optional.  If you don't need interaction
+with the pointing device, then there is no need to provide it.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&#160;:</term>
+<listitem><simpara> Cairo context with tranformation set to match the current item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The coordinate in the item's user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The coordinate in the item's user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

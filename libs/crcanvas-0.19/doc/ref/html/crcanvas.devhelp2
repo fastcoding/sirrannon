@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="crcanvas: A GTK/Cairo Canvas Widget" link="index.html" author="" name="crcanvas" version="2" language="c">
+  <chapters>
+    <sub name="Major Differences from other GTK based canvases" link="pt01.html"/>
+    <sub name="Reference" link="ch01.html">
+      <sub name="CrItem" link="CrItem.html"/>
+      <sub name="CrCanvas" link="CrCanvas.html"/>
+      <sub name="CrText" link="CrText.html"/>
+      <sub name="CrLine" link="CrLine.html"/>
+      <sub name="CrPixbuf" link="CrPixbuf.html"/>
+      <sub name="CrRectangle" link="CrRectangle.html"/>
+      <sub name="CrEllipse" link="CrEllipse.html"/>
+      <sub name="CrVector" link="CrVector.html"/>
+      <sub name="CrPath" link="CrPath.html"/>
+      <sub name="CrArrow" link="CrArrow.html"/>
+      <sub name="CrInverse" link="CrInverse.html"/>
+      <sub name="CrBlit" link="CrBlit.html"/>
+      <sub name="CrRotator" link="CrRotator.html"/>
+      <sub name="CrPanner" link="CrPanner.html"/>
+      <sub name="CrZoomer" link="CrZoomer.html"/>
+      <sub name="cr-types" link="crcanvas-cr-types.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <keyword type="struct" name="CrItem" link="CrItem.html#CrItem-struct"/>
+    <keyword type="function" name="cr_item_new ()" link="CrItem.html#cr-item-new"/>
+    <keyword type="function" name="cr_item_add ()" link="CrItem.html#cr-item-add"/>
+    <keyword type="function" name="cr_item_remove ()" link="CrItem.html#cr-item-remove"/>
+    <keyword type="function" name="cr_item_move ()" link="CrItem.html#cr-item-move"/>
+    <keyword type="function" name="cr_item_set_z_relative ()" link="CrItem.html#cr-item-set-z-relative"/>
+    <keyword type="function" name="cr_item_set_z ()" link="CrItem.html#cr-item-set-z"/>
+    <keyword type="function" name="cr_item_hide ()" link="CrItem.html#cr-item-hide"/>
+    <keyword type="function" name="cr_item_show ()" link="CrItem.html#cr-item-show"/>
+    <keyword type="function" name="cr_item_get_matrix ()" link="CrItem.html#cr-item-get-matrix"/>
+    <keyword type="function" name="cr_item_get_inverse_matrix ()" link="CrItem.html#cr-item-get-inverse-matrix"/>
+    <keyword type="function" name="cr_item_cancel_matrix ()" link="CrItem.html#cr-item-cancel-matrix"/>
+    <keyword type="function" name="cr_item_request_update ()" link="CrItem.html#cr-item-request-update"/>
+    <keyword type="function" name="cr_item_get_bounds ()" link="CrItem.html#cr-item-get-bounds"/>
+    <keyword type="function" name="cr_item_get_device_bounds ()" link="CrItem.html#cr-item-get-device-bounds"/>
+    <keyword type="function" name="cr_item_calculate_bounds ()" link="CrItem.html#cr-item-calculate-bounds"/>
+    <keyword type="function" name="cr_item_invoke_paint ()" link="CrItem.html#cr-item-invoke-paint"/>
+    <keyword type="function" name="cr_item_invoke_test ()" link="CrItem.html#cr-item-invoke-test"/>
+    <keyword type="function" name="cr_item_find_child ()" link="CrItem.html#cr-item-find-child"/>
+    <keyword type="function" name="cr_item_report_old_bounds ()" link="CrItem.html#cr-item-report-old-bounds"/>
+    <keyword type="function" name="cr_item_report_new_bounds ()" link="CrItem.html#cr-item-report-new-bounds"/>
+    <keyword type="function" name="cr_item_invoke_event ()" link="CrItem.html#cr-item-invoke-event"/>
+    <keyword type="function" name="cr_item_make_temp_cairo ()" link="CrItem.html#cr-item-make-temp-cairo"/>
+    <keyword type="property" name="The &quot;avoid-test&quot; property" link="CrItem.html#CrItem--avoid-test"/>
+    <keyword type="property" name="The &quot;matrix&quot; property" link="CrItem.html#CrItem--matrix"/>
+    <keyword type="property" name="The &quot;test-rectangle&quot; property" link="CrItem.html#CrItem--test-rectangle"/>
+    <keyword type="property" name="The &quot;visible&quot; property" link="CrItem.html#CrItem--visible"/>
+    <keyword type="property" name="The &quot;x&quot; property" link="CrItem.html#CrItem--x"/>
+    <keyword type="property" name="The &quot;y&quot; property" link="CrItem.html#CrItem--y"/>
+    <keyword type="signal" name="The &quot;added&quot; signal" link="CrItem.html#CrItem-added"/>
+    <keyword type="signal" name="The &quot;calculate-bounds&quot; signal" link="CrItem.html#CrItem-calculate-bounds"/>
+    <keyword type="signal" name="The &quot;event&quot; signal" link="CrItem.html#CrItem-event"/>
+    <keyword type="signal" name="The &quot;invalidate&quot; signal" link="CrItem.html#CrItem-invalidate"/>
+    <keyword type="signal" name="The &quot;paint&quot; signal" link="CrItem.html#CrItem-paint"/>
+    <keyword type="signal" name="The &quot;removed&quot; signal" link="CrItem.html#CrItem-removed"/>
+    <keyword type="signal" name="The &quot;request-update&quot; signal" link="CrItem.html#CrItem-request-update"/>
+    <keyword type="signal" name="The &quot;test&quot; signal" link="CrItem.html#CrItem-test"/>
+    <keyword type="struct" name="CrCanvas" link="CrCanvas.html#CrCanvas-struct"/>
+    <keyword type="function" name="cr_canvas_new ()" link="CrCanvas.html#cr-canvas-new"/>
+    <keyword type="function" name="cr_canvas_set_scroll_region ()" link="CrCanvas.html#cr-canvas-set-scroll-region"/>
+    <keyword type="function" name="cr_canvas_get_scroll_region ()" link="CrCanvas.html#cr-canvas-get-scroll-region"/>
+    <keyword type="function" name="cr_canvas_set_scroll_factor ()" link="CrCanvas.html#cr-canvas-set-scroll-factor"/>
+    <keyword type="function" name="cr_canvas_scroll_to ()" link="CrCanvas.html#cr-canvas-scroll-to"/>
+    <keyword type="function" name="cr_canvas_get_scroll_offsets ()" link="CrCanvas.html#cr-canvas-get-scroll-offsets"/>
+    <keyword type="function" name="cr_canvas_center_on ()" link="CrCanvas.html#cr-canvas-center-on"/>
+    <keyword type="function" name="cr_canvas_get_center ()" link="CrCanvas.html#cr-canvas-get-center"/>
+    <keyword type="function" name="cr_canvas_center_scale ()" link="CrCanvas.html#cr-canvas-center-scale"/>
+    <keyword type="function" name="cr_canvas_get_center_scale ()" link="CrCanvas.html#cr-canvas-get-center-scale"/>
+    <keyword type="function" name="cr_canvas_set_viewport ()" link="CrCanvas.html#cr-canvas-set-viewport"/>
+    <keyword type="function" name="cr_canvas_get_viewport ()" link="CrCanvas.html#cr-canvas-get-viewport"/>
+    <keyword type="function" name="cr_canvas_zoom ()" link="CrCanvas.html#cr-canvas-zoom"/>
+    <keyword type="function" name="cr_canvas_zoom_world ()" link="CrCanvas.html#cr-canvas-zoom-world"/>
+    <keyword type="function" name="cr_canvas_set_repaint_mode ()" link="CrCanvas.html#cr-canvas-set-repaint-mode"/>
+    <keyword type="function" name="cr_canvas_queue_repaint ()" link="CrCanvas.html#cr-canvas-queue-repaint"/>
+    <keyword type="function" name="cr_canvas_set_max_scale_factor ()" link="CrCanvas.html#cr-canvas-set-max-scale-factor"/>
+    <keyword type="function" name="cr_canvas_set_min_scale_factor ()" link="CrCanvas.html#cr-canvas-set-min-scale-factor"/>
+    <keyword type="function" name="cr_canvas_set_vadjustment ()" link="CrCanvas.html#cr-canvas-set-vadjustment"/>
+    <keyword type="function" name="cr_canvas_set_hadjustment ()" link="CrCanvas.html#cr-canvas-set-hadjustment"/>
+    <keyword type="property" name="The &quot;auto-scale&quot; property" link="CrCanvas.html#CrCanvas--auto-scale"/>
+    <keyword type="property" name="The &quot;hadjustment&quot; property" link="CrCanvas.html#CrCanvas--hadjustment"/>
+    <keyword type="property" name="The &quot;maintain-aspect&quot; property" link="CrCanvas.html#CrCanvas--maintain-aspect"/>
+    <keyword type="property" name="The &quot;maintain-center&quot; property" link="CrCanvas.html#CrCanvas--maintain-center"/>
+    <keyword type="property" name="The &quot;pick-item&quot; property" link="CrCanvas.html#CrCanvas--pick-item"/>
+    <keyword type="property" name="The &quot;repaint-mode&quot; property" link="CrCanvas.html#CrCanvas--repaint-mode"/>
+    <keyword type="property" name="The &quot;repaint-on-scroll&quot; property" link="CrCanvas.html#CrCanvas--repaint-on-scroll"/>
+    <keyword type="property" name="The &quot;root&quot; property" link="CrCanvas.html#CrCanvas--root"/>
+    <keyword type="property" name="The &quot;show-less&quot; property" link="CrCanvas.html#CrCanvas--show-less"/>
+    <keyword type="property" name="The &quot;vadjustment&quot; property" link="CrCanvas.html#CrCanvas--vadjustment"/>
+    <keyword type="signal" name="The &quot;before-paint&quot; signal" link="CrCanvas.html#CrCanvas-before-paint"/>
+    <keyword type="signal" name="The &quot;scroll-region-changed&quot; signal" link="CrCanvas.html#CrCanvas-scroll-region-changed"/>
+    <keyword type="signal" name="The &quot;set-scroll-adjustments&quot; signal" link="CrCanvas.html#CrCanvas-set-scroll-adjustments"/>
+    <keyword type="struct" name="CrText" link="CrText.html#CrText-struct"/>
+    <keyword type="function" name="cr_text_new ()" link="CrText.html#cr-text-new"/>
+    <keyword type="property" name="The &quot;anchor&quot; property" link="CrText.html#CrText--anchor"/>
+    <keyword type="property" name="The &quot;fill-color&quot; property" link="CrText.html#CrText--fill-color"/>
+    <keyword type="property" name="The &quot;fill-color-rgba&quot; property" link="CrText.html#CrText--fill-color-rgba"/>
+    <keyword type="property" name="The &quot;font&quot; property" link="CrText.html#CrText--font"/>
+    <keyword type="property" name="The &quot;scaleable&quot; property" link="CrText.html#CrText--scaleable"/>
+    <keyword type="property" name="The &quot;text&quot; property" link="CrText.html#CrText--text"/>
+    <keyword type="property" name="The &quot;use-markup&quot; property" link="CrText.html#CrText--use-markup"/>
+    <keyword type="property" name="The &quot;width&quot; property" link="CrText.html#CrText--width"/>
+    <keyword type="property" name="The &quot;x-offset&quot; property" link="CrText.html#CrText--x-offset"/>
+    <keyword type="property" name="The &quot;y-offset&quot; property" link="CrText.html#CrText--y-offset"/>
+    <keyword type="struct" name="CrLine" link="CrLine.html#CrLine-struct"/>
+    <keyword type="function" name="cr_line_new ()" link="CrLine.html#cr-line-new"/>
+    <keyword type="property" name="The &quot;array&quot; property" link="CrLine.html#CrLine--array"/>
+    <keyword type="property" name="The &quot;close&quot; property" link="CrLine.html#CrLine--close"/>
+    <keyword type="property" name="The &quot;points&quot; property" link="CrLine.html#CrLine--points"/>
+    <keyword type="struct" name="CrPixbuf" link="CrPixbuf.html#CrPixbuf-struct"/>
+    <keyword type="function" name="cr_pixbuf_new ()" link="CrPixbuf.html#cr-pixbuf-new"/>
+    <keyword type="property" name="The &quot;anchor&quot; property" link="CrPixbuf.html#CrPixbuf--anchor"/>
+    <keyword type="property" name="The &quot;height&quot; property" link="CrPixbuf.html#CrPixbuf--height"/>
+    <keyword type="property" name="The &quot;pattern&quot; property" link="CrPixbuf.html#CrPixbuf--pattern"/>
+    <keyword type="property" name="The &quot;pixbuf&quot; property" link="CrPixbuf.html#CrPixbuf--pixbuf"/>
+    <keyword type="property" name="The &quot;png&quot; property" link="CrPixbuf.html#CrPixbuf--png"/>
+    <keyword type="property" name="The &quot;scaleable&quot; property" link="CrPixbuf.html#CrPixbuf--scaleable"/>
+    <keyword type="property" name="The &quot;surface&quot; property" link="CrPixbuf.html#CrPixbuf--surface"/>
+    <keyword type="property" name="The &quot;test-fill&quot; property" link="CrPixbuf.html#CrPixbuf--test-fill"/>
+    <keyword type="property" name="The &quot;width&quot; property" link="CrPixbuf.html#CrPixbuf--width"/>
+    <keyword type="property" name="The &quot;x-offset&quot; property" link="CrPixbuf.html#CrPixbuf--x-offset"/>
+    <keyword type="property" name="The &quot;y-offset&quot; property" link="CrPixbuf.html#CrPixbuf--y-offset"/>
+    <keyword type="struct" name="CrRectangle" link="CrRectangle.html#CrRectangle-struct"/>
+    <keyword type="function" name="cr_rectangle_new ()" link="CrRectangle.html#cr-rectangle-new"/>
+    <keyword type="property" name="The &quot;height&quot; property" link="CrRectangle.html#CrRectangle--height"/>
+    <keyword type="property" name="The &quot;width&quot; property" link="CrRectangle.html#CrRectangle--width"/>
+    <keyword type="struct" name="CrEllipse" link="CrEllipse.html#CrEllipse-struct"/>
+    <keyword type="function" name="cr_ellipse_new ()" link="CrEllipse.html#cr-ellipse-new"/>
+    <keyword type="property" name="The &quot;height&quot; property" link="CrEllipse.html#CrEllipse--height"/>
+    <keyword type="property" name="The &quot;orientation&quot; property" link="CrEllipse.html#CrEllipse--orientation"/>
+    <keyword type="property" name="The &quot;width&quot; property" link="CrEllipse.html#CrEllipse--width"/>
+    <keyword type="struct" name="CrVector" link="CrVector.html#CrVector-struct"/>
+    <keyword type="function" name="cr_vector_new ()" link="CrVector.html#cr-vector-new"/>
+    <keyword type="property" name="The &quot;end-scaleable&quot; property" link="CrVector.html#CrVector--end-scaleable"/>
+    <keyword type="property" name="The &quot;x2&quot; property" link="CrVector.html#CrVector--x2"/>
+    <keyword type="property" name="The &quot;y2&quot; property" link="CrVector.html#CrVector--y2"/>
+    <keyword type="struct" name="CrPath" link="CrPath.html#CrPath-struct"/>
+    <keyword type="function" name="cr_path_new ()" link="CrPath.html#cr-path-new"/>
+    <keyword type="function" name="cr_path_set_color ()" link="CrPath.html#cr-path-set-color"/>
+    <keyword type="function" name="cr_path_setup_line ()" link="CrPath.html#cr-path-setup-line"/>
+    <keyword type="property" name="The &quot;cap&quot; property" link="CrPath.html#CrPath--cap"/>
+    <keyword type="property" name="The &quot;dash&quot; property" link="CrPath.html#CrPath--dash"/>
+    <keyword type="property" name="The &quot;fill-color&quot; property" link="CrPath.html#CrPath--fill-color"/>
+    <keyword type="property" name="The &quot;fill-color-rgba&quot; property" link="CrPath.html#CrPath--fill-color-rgba"/>
+    <keyword type="property" name="The &quot;fill-rule&quot; property" link="CrPath.html#CrPath--fill-rule"/>
+    <keyword type="property" name="The &quot;join&quot; property" link="CrPath.html#CrPath--join"/>
+    <keyword type="property" name="The &quot;line-scaleable&quot; property" link="CrPath.html#CrPath--line-scaleable"/>
+    <keyword type="property" name="The &quot;line-width&quot; property" link="CrPath.html#CrPath--line-width"/>
+    <keyword type="property" name="The &quot;line-width-use-y&quot; property" link="CrPath.html#CrPath--line-width-use-y"/>
+    <keyword type="property" name="The &quot;outline-color&quot; property" link="CrPath.html#CrPath--outline-color"/>
+    <keyword type="property" name="The &quot;outline-color-rgba&quot; property" link="CrPath.html#CrPath--outline-color-rgba"/>
+    <keyword type="property" name="The &quot;path&quot; property" link="CrPath.html#CrPath--path"/>
+    <keyword type="property" name="The &quot;pattern&quot; property" link="CrPath.html#CrPath--pattern"/>
+    <keyword type="property" name="The &quot;pattern-scaleable&quot; property" link="CrPath.html#CrPath--pattern-scaleable"/>
+    <keyword type="property" name="The &quot;test-fill&quot; property" link="CrPath.html#CrPath--test-fill"/>
+    <keyword type="signal" name="The &quot;make-path&quot; signal" link="CrPath.html#CrPath-make-path"/>
+    <keyword type="struct" name="CrArrow" link="CrArrow.html#CrArrow-struct"/>
+    <keyword type="function" name="cr_arrow_new ()" link="CrArrow.html#cr-arrow-new"/>
+    <keyword type="function" name="cr_arrow_connect_parent ()" link="CrArrow.html#cr-arrow-connect-parent"/>
+    <keyword type="property" name="The &quot;angle&quot; property" link="CrArrow.html#CrArrow--angle"/>
+    <keyword type="property" name="The &quot;depth&quot; property" link="CrArrow.html#CrArrow--depth"/>
+    <keyword type="property" name="The &quot;fatness&quot; property" link="CrArrow.html#CrArrow--fatness"/>
+    <keyword type="property" name="The &quot;length&quot; property" link="CrArrow.html#CrArrow--length"/>
+    <keyword type="property" name="The &quot;point-id&quot; property" link="CrArrow.html#CrArrow--point-id"/>
+    <keyword type="property" name="The &quot;scaleable&quot; property" link="CrArrow.html#CrArrow--scaleable"/>
+    <keyword type="property" name="The &quot;x-offset&quot; property" link="CrArrow.html#CrArrow--x-offset"/>
+    <keyword type="property" name="The &quot;y-offset&quot; property" link="CrArrow.html#CrArrow--y-offset"/>
+    <keyword type="struct" name="CrInverse" link="CrInverse.html#CrInverse-struct"/>
+    <keyword type="function" name="cr_inverse_new ()" link="CrInverse.html#cr-inverse-new"/>
+    <keyword type="property" name="The &quot;preserve-rotation&quot; property" link="CrInverse.html#CrInverse--preserve-rotation"/>
+    <keyword type="property" name="The &quot;preserve-scale&quot; property" link="CrInverse.html#CrInverse--preserve-scale"/>
+    <keyword type="struct" name="CrBlit" link="CrBlit.html#CrBlit-struct"/>
+    <keyword type="function" name="cr_blit_new ()" link="CrBlit.html#cr-blit-new"/>
+    <keyword type="property" name="The &quot;canvas&quot; property" link="CrBlit.html#CrBlit--canvas"/>
+    <keyword type="property" name="The &quot;device-height&quot; property" link="CrBlit.html#CrBlit--device-height"/>
+    <keyword type="property" name="The &quot;device-width&quot; property" link="CrBlit.html#CrBlit--device-width"/>
+    <keyword type="property" name="The &quot;scale-factor&quot; property" link="CrBlit.html#CrBlit--scale-factor"/>
+    <keyword type="property" name="The &quot;test-image&quot; property" link="CrBlit.html#CrBlit--test-image"/>
+    <keyword type="struct" name="CrRotator" link="CrRotator.html#CrRotator-struct"/>
+    <keyword type="function" name="cr_rotator_new ()" link="CrRotator.html#cr-rotator-new"/>
+    <keyword type="function" name="cr_rotator_activate ()" link="CrRotator.html#cr-rotator-activate"/>
+    <keyword type="function" name="cr_rotator_deactivate ()" link="CrRotator.html#cr-rotator-deactivate"/>
+    <keyword type="property" name="The &quot;active&quot; property" link="CrRotator.html#CrRotator--active"/>
+    <keyword type="property" name="The &quot;canvas&quot; property" link="CrRotator.html#CrRotator--canvas"/>
+    <keyword type="property" name="The &quot;cursor&quot; property" link="CrRotator.html#CrRotator--cursor"/>
+    <keyword type="struct" name="CrPanner" link="CrPanner.html#CrPanner-struct"/>
+    <keyword type="function" name="cr_panner_new ()" link="CrPanner.html#cr-panner-new"/>
+    <keyword type="function" name="cr_panner_activate ()" link="CrPanner.html#cr-panner-activate"/>
+    <keyword type="function" name="cr_panner_deactivate ()" link="CrPanner.html#cr-panner-deactivate"/>
+    <keyword type="property" name="The &quot;active&quot; property" link="CrPanner.html#CrPanner--active"/>
+    <keyword type="property" name="The &quot;button&quot; property" link="CrPanner.html#CrPanner--button"/>
+    <keyword type="property" name="The &quot;canvas&quot; property" link="CrPanner.html#CrPanner--canvas"/>
+    <keyword type="property" name="The &quot;cursor&quot; property" link="CrPanner.html#CrPanner--cursor"/>
+    <keyword type="property" name="The &quot;item&quot; property" link="CrPanner.html#CrPanner--item"/>
+    <keyword type="signal" name="The &quot;activate&quot; signal" link="CrPanner.html#CrPanner-activate"/>
+    <keyword type="signal" name="The &quot;deactivate&quot; signal" link="CrPanner.html#CrPanner-deactivate"/>
+    <keyword type="signal" name="The &quot;pan&quot; signal" link="CrPanner.html#CrPanner-pan"/>
+    <keyword type="struct" name="CrZoomer" link="CrZoomer.html#CrZoomer-struct"/>
+    <keyword type="function" name="cr_zoomer_new ()" link="CrZoomer.html#cr-zoomer-new"/>
+    <keyword type="function" name="cr_zoomer_activate ()" link="CrZoomer.html#cr-zoomer-activate"/>
+    <keyword type="function" name="cr_zoomer_deactivate ()" link="CrZoomer.html#cr-zoomer-deactivate"/>
+    <keyword type="property" name="The &quot;active&quot; property" link="CrZoomer.html#CrZoomer--active"/>
+    <keyword type="property" name="The &quot;canvas&quot; property" link="CrZoomer.html#CrZoomer--canvas"/>
+    <keyword type="property" name="The &quot;corner-to-corner&quot; property" link="CrZoomer.html#CrZoomer--corner-to-corner"/>
+    <keyword type="property" name="The &quot;cursor&quot; property" link="CrZoomer.html#CrZoomer--cursor"/>
+    <keyword type="property" name="The &quot;fill-color&quot; property" link="CrZoomer.html#CrZoomer--fill-color"/>
+    <keyword type="property" name="The &quot;fill-color-rgba&quot; property" link="CrZoomer.html#CrZoomer--fill-color-rgba"/>
+    <keyword type="property" name="The &quot;line-width&quot; property" link="CrZoomer.html#CrZoomer--line-width"/>
+    <keyword type="property" name="The &quot;maintain-aspect&quot; property" link="CrZoomer.html#CrZoomer--maintain-aspect"/>
+    <keyword type="property" name="The &quot;outline-color&quot; property" link="CrZoomer.html#CrZoomer--outline-color"/>
+    <keyword type="property" name="The &quot;outline-color-rgba&quot; property" link="CrZoomer.html#CrZoomer--outline-color-rgba"/>
+    <keyword type="signal" name="The &quot;activate&quot; signal" link="CrZoomer.html#CrZoomer-activate"/>
+    <keyword type="signal" name="The &quot;deactivate&quot; signal" link="CrZoomer.html#CrZoomer-deactivate"/>
+    <keyword type="signal" name="The &quot;select&quot; signal" link="CrZoomer.html#CrZoomer-select"/>
+    <keyword type="macro" name="CR_TYPE_POINTS" link="crcanvas-cr-types.html#CR-TYPE-POINTS--CAPS"/>
+    <keyword type="struct" name="CrPoints" link="crcanvas-cr-types.html#CrPoints"/>
+    <keyword type="function" name="cr_points_new ()" link="crcanvas-cr-types.html#cr-points-new"/>
+    <keyword type="function" name="cr_points_get_type ()" link="crcanvas-cr-types.html#cr-points-get-type"/>
+    <keyword type="function" name="cr_points_ref ()" link="crcanvas-cr-types.html#cr-points-ref"/>
+    <keyword type="function" name="cr_points_unref ()" link="crcanvas-cr-types.html#cr-points-unref"/>
+    <keyword type="macro" name="CR_TYPE_BOUNDS" link="crcanvas-cr-types.html#CR-TYPE-BOUNDS--CAPS"/>
+    <keyword type="struct" name="CrBounds" link="crcanvas-cr-types.html#CrBounds"/>
+    <keyword type="function" name="cr_bounds_new ()" link="crcanvas-cr-types.html#cr-bounds-new"/>
+    <keyword type="function" name="cr_bounds_get_type ()" link="crcanvas-cr-types.html#cr-bounds-get-type"/>
+    <keyword type="function" name="cr_bounds_ref ()" link="crcanvas-cr-types.html#cr-bounds-ref"/>
+    <keyword type="function" name="cr_bounds_unref ()" link="crcanvas-cr-types.html#cr-bounds-unref"/>
+    <keyword type="macro" name="CR_TYPE_DEVICE_BOUNDS" link="crcanvas-cr-types.html#CR-TYPE-DEVICE-BOUNDS--CAPS"/>
+    <keyword type="struct" name="CrDeviceBounds" link="crcanvas-cr-types.html#CrDeviceBounds"/>
+    <keyword type="function" name="cr_device_bounds_new ()" link="crcanvas-cr-types.html#cr-device-bounds-new"/>
+    <keyword type="function" name="cr_device_bounds_get_type ()" link="crcanvas-cr-types.html#cr-device-bounds-get-type"/>
+    <keyword type="function" name="cr_device_bounds_ref ()" link="crcanvas-cr-types.html#cr-device-bounds-ref"/>
+    <keyword type="function" name="cr_device_bounds_unref ()" link="crcanvas-cr-types.html#cr-device-bounds-unref"/>
+    <keyword type="macro" name="CR_TYPE_PATTERN" link="crcanvas-cr-types.html#CR-TYPE-PATTERN--CAPS"/>
+    <keyword type="function" name="cr_pattern_get_type ()" link="crcanvas-cr-types.html#cr-pattern-get-type"/>
+    <keyword type="typedef" name="CrPattern" link="crcanvas-cr-types.html#CrPattern"/>
+    <keyword type="macro" name="CR_TYPE_SURFACE" link="crcanvas-cr-types.html#CR-TYPE-SURFACE--CAPS"/>
+    <keyword type="function" name="cr_surface_get_type ()" link="crcanvas-cr-types.html#cr-surface-get-type"/>
+    <keyword type="typedef" name="CrSurface" link="crcanvas-cr-types.html#CrSurface"/>
+    <keyword type="macro" name="CR_TYPE_MATRIX" link="crcanvas-cr-types.html#CR-TYPE-MATRIX--CAPS"/>
+    <keyword type="typedef" name="CrMatrix" link="crcanvas-cr-types.html#CrMatrix"/>
+    <keyword type="function" name="cr_matrix_get_type ()" link="crcanvas-cr-types.html#cr-matrix-get-type"/>
+    <keyword type="macro" name="CR_TYPE_CONTEXT" link="crcanvas-cr-types.html#CR-TYPE-CONTEXT--CAPS"/>
+    <keyword type="typedef" name="CrContext" link="crcanvas-cr-types.html#CrContext"/>
+    <keyword type="function" name="cr_context_get_type ()" link="crcanvas-cr-types.html#cr-context-get-type"/>
+  </functions>
+</book>

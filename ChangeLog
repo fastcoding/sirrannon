@@ -1,0 +1,105 @@
+December 2011:
+	* Release of sirannon-1.0
+	* Update ffmpeg to version 0.9
+	* Updated jrtplib to version 3.9.1
+	* Bugfix for boost-filesystem
+	* Introduction of the new GUI
+	* Improved transcoders, especially audio transcoders that now correctly works codecs of different sample sizes
+	* Bugfix for FFMPEG-multiplexer
+	* Bugfix fo
+
+June 2011:
+	* Release of sirannon-0.8	
+
+May 2010:
+	* Release of sirannon-0.6.10
+	* Bugfix when using multiple commandline arguments for one parameter in the XML configuration (e.g. destination: "$1:$2")
+	* New component fixed-classifier which drops packets, frames or slice based on a list of indices. 
+
+April 2011:
+	* Release of sirannon-0.6.9
+	* Bugfix for ffmpeg-reader when calculating the increment in certain cases
+	* Bugfix for Gilbert-classifier under Windows
+	* Updated rtp-transmitter with a new option "force-sequence-number" that enables it to show gaps when packet loss is introduced with a classifier.
+	* Updated ffmpeg library to version 0.6.9
+
+March 2011:
+	* Bugfix when writing 32 bit patterns using the class OBits
+	* Release of sirannon-0.6.8
+	* Bugfix for AVC packetizer and SVC/MVC
+	* Bugfix for bootstrap when building ffmpeg
+	* Bugfix for sprop-parameter-sets in SDP for H264
+	* Added support for H.264/MVC
+	* Refined the port manager so generated ports are unique across multiple (parallell) instances of sirannon 
+	* Release of sirannon-0.6.7
+	* Added RTP/RTSP server side support for AMR-NB, AMR-WB, AC3
+
+February 2011:
+	* Release of sirannon-0.6.6
+	* PCAP-writer is no longer BETA version
+	* ProxyStreamer no longer forcibly removes SEI and AUD NALs
+	* Bugfix in the component time-out
+	* Bugfix in the parsing of SPS NAL units
+	* Release of sirannon-0.6.5
+	* Transport stream packets contain a sampled a 90kHz version of the PCR in the field DTS
+	* Updated the manual with example URLs
+	
+January 2011:
+	* Upgraded avc-reader so it enlarges the read buffer if it encounters a too large NAL unit (typically occurs for HD movies)
+
+December 2010:
+	* Release of sirannon-0.6.4
+	* Bugfix for PTSs in raw MPEG2 streams.
+	* Bugfix for libvpx under Unix.
+	* Updated ffmpeg library to version 0.6.1, removal of ffmpeg-webM
+	* Removal of custom libs/libvpx in favor of debian package libvpx-dev
+
+November 2010:
+	* Release of sirannon-0.6.3
+	* Bugfix for the mpeg4 audio profile in ADTS headers
+	* Bugfix for the mingw32 build running under WindowsXP specifically (mingw packages updated on the website)
+	* Release of sirannon-0.6.2
+	* AVC-reader now supports Acces Unit Delimiters.
+	* Bugfix for the PTS repair mechanism in ffmpeg-reader.
+	* Bugfix for the profile bits in the MPEG4 audio ADTS header.
+	* Transport streams now destinguish between MP1A and MP2A in the PMT (before both were declared as MP2A).
+
+October 2010:
+	* Release of sirannon-0.6.1
+	* New component PCAP-writer in beta version.
+	* New configure option(--enable-library) that will build a library version of sirannon
+	* Bugfix for random_access_indicator in Transport Stream headers
+	* Release of sirannon-0.6.0
+	* Upgraded PES-packetizer: PES-packets can be generated with a dynamic packet length, 
+	PES-packetizers can insert AUDs when missing
+	* Bugfix for MP4V over RTP
+	* Bugfix for RTP on sirannon-mingw32 and sirannon-mingw64
+	
+September 2010:
+	* Added new options --enable-local and --enable-private to configure. Enable local will compile
+	all files found in src/Local.
+	* Bootstrap has been rewritten in python and is moved to python/boostrap.py
+	* Added support for Apple Live HTTP Streaming
+	
+August 2010:
+	* Added support for cross compilation on Unix to Windows 32 and 64 bit.
+	
+July 2010:
+	* Release of sirannon-0.5.0
+	* Added ffmpeg (again) and libpvx to libs/	
+	
+June 2010:
+	* Introduced HTTP-server, HTTP-client
+
+May 2010:
+	* Restructured RTSP-server, RTSP-session, removed live555 from libs/
+	* Introduced RTMPT-server
+	* Introduced RTSP-client, RTMP-client, RTMPT-client
+	* Introduced RTSP-proxy, RTMP-proxy, RTMPT-proxy
+
+March 2010:
+	* Restructured source tree and removed all autotool generated files (*.in, configure)
+
+January 2010:
+	* New name: Sirannon
+	* Removed ffmpeg from libs/ in favor of a locally preinstalled version (ffmpeg-dev)

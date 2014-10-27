@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrLine</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrText.html" title="CrText">
+<link rel="next" href="CrPixbuf.html" title="CrPixbuf">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrText.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrPixbuf.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrLine.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrLine.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrLine.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrLine.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrLine">
+<a name="CrLine"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrLine.top_of_page"></a>CrLine</span></h2>
+<p>CrLine — A polygon or polyline canvas item.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrLine.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrLine.html#CrLine-struct" title="CrLine">CrLine</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrLine.html#cr-line-new" title="cr_line_new ()">cr_line_new</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrLine.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----<a class="link" href="CrPath.html" title="CrPath">CrPath</a>
+               +----CrLine
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrLine.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrLine.html#CrLine--array" title='The "array" property'>array</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Write
+  "<a class="link" href="CrLine.html#CrLine--close" title='The "close" property'>close</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrLine.html#CrLine--points" title='The "points" property'>points</a>"                   <a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a>*             : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrLine.description"></a><h2>Description</h2>
+<p>
+This canvas item can render polygons or polylines.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrLine.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrLine">
+<a name="CrLine-struct"></a><h3>CrLine</h3>
+<pre class="programlisting">typedef struct _CrLine CrLine;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_line_new ()">
+<a name="cr-line-new"></a><h3>cr_line_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_line_new                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience function to create a polyline and add it to a canvas item
+parent group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call
+g_object_ref if you intend to keep it around.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrLine.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "array" property'>
+<a name="CrLine--array"></a><h3>The <code class="literal">"array"</code> property</h3>
+<pre class="programlisting">  "array"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Write</pre>
+<p>an array of doubleprecision x,y values. item takes ownership.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "close" property'>
+<a name="CrLine--close"></a><h3>The <code class="literal">"close"</code> property</h3>
+<pre class="programlisting">  "close"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>True, if it is a polygon.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "points" property'>
+<a name="CrLine--points"></a><h3>The <code class="literal">"points"</code> property</h3>
+<pre class="programlisting">  "points"                   <a class="link" href="crcanvas-cr-types.html#CrPoints" title="CrPoints">CrPoints</a>*             : Read / Write</pre>
+<p>a boxed array of double precision x,y values.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

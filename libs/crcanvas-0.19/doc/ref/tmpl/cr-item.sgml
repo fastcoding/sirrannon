@@ -1,0 +1,362 @@
+<!-- ##### SECTION Title ##### -->
+CrItem
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrItem ##### -->
+<para>
+
+</para>
+
+@items: 
+@bounds: 
+@device: 
+@matrix: 
+@matrix_i: 
+@matrix_p: 
+@flags: 
+
+<!-- ##### SIGNAL CrItem::added ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL CrItem::calculate-bounds ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### SIGNAL CrItem::event ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@event: 
+@arg1: 
+@arg2: 
+@Returns: 
+
+<!-- ##### SIGNAL CrItem::invalidate ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@arg4: 
+@arg5: 
+@arg6: 
+
+<!-- ##### SIGNAL CrItem::paint ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL CrItem::removed ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL CrItem::request-update ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+
+<!-- ##### SIGNAL CrItem::test ##### -->
+<para>
+
+</para>
+
+@critem: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### ARG CrItem:avoid-test ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrItem:matrix ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrItem:test-rectangle ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrItem:visible ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrItem:x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrItem:y ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_item_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@type: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_add ##### -->
+<para>
+
+</para>
+
+@item: 
+@child: 
+
+
+<!-- ##### FUNCTION cr_item_remove ##### -->
+<para>
+
+</para>
+
+@item: 
+@child: 
+
+
+<!-- ##### FUNCTION cr_item_move ##### -->
+<para>
+
+</para>
+
+@item: 
+@dx: 
+@dy: 
+
+
+<!-- ##### FUNCTION cr_item_set_z_relative ##### -->
+<para>
+
+</para>
+
+@item: 
+@child: 
+@positions: 
+
+
+<!-- ##### FUNCTION cr_item_set_z ##### -->
+<para>
+
+</para>
+
+@item: 
+@child: 
+@position: 
+
+
+<!-- ##### FUNCTION cr_item_hide ##### -->
+<para>
+
+</para>
+
+@item: 
+
+
+<!-- ##### FUNCTION cr_item_show ##### -->
+<para>
+
+</para>
+
+@item: 
+
+
+<!-- ##### FUNCTION cr_item_get_matrix ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_get_inverse_matrix ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_cancel_matrix ##### -->
+<para>
+
+</para>
+
+@item: 
+
+
+<!-- ##### FUNCTION cr_item_request_update ##### -->
+<para>
+
+</para>
+
+@item: 
+
+
+<!-- ##### FUNCTION cr_item_get_bounds ##### -->
+<para>
+
+</para>
+
+@item: 
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_get_device_bounds ##### -->
+<para>
+
+</para>
+
+@item: 
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_calculate_bounds ##### -->
+<para>
+
+</para>
+
+@item: 
+@bounds: 
+@device_bounds: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_invoke_paint ##### -->
+<para>
+
+</para>
+
+@item: 
+@ct: 
+@all: 
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+
+
+<!-- ##### FUNCTION cr_item_invoke_test ##### -->
+<para>
+
+</para>
+
+@item: 
+@c: 
+@x: 
+@y: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_find_child ##### -->
+<para>
+
+</para>
+
+@item: 
+@matrix: 
+@child: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_report_old_bounds ##### -->
+<para>
+
+</para>
+
+@item: 
+@ct: 
+@all: 
+
+
+<!-- ##### FUNCTION cr_item_report_new_bounds ##### -->
+<para>
+
+</para>
+
+@item: 
+@ct: 
+@all: 
+
+
+<!-- ##### FUNCTION cr_item_invoke_event ##### -->
+<para>
+
+</para>
+
+@item: 
+@event: 
+@matrix: 
+@pick_item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_item_make_temp_cairo ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

@@ -1,0 +1,742 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrCanvas">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrCanvas.top_of_page">CrCanvas</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrCanvas</refname>
+<refpurpose>A <link linkend="GtkWidget"><type>GtkWidget</type></link> used to paint a tree of <link linkend="CrItem"><type>CrItem</type></link> objects.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrCanvas.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrCanvas-struct">CrCanvas</link>;
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="cr-canvas-new">cr_canvas_new</link>                       (const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-scroll-region">cr_canvas_set_scroll_region</link>         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> scroll_x1,
+                                                         <link linkend="gdouble">gdouble</link> scroll_y1,
+                                                         <link linkend="gdouble">gdouble</link> scroll_x2,
+                                                         <link linkend="gdouble">gdouble</link> scroll_y2);
+<link linkend="void">void</link>                <link linkend="cr-canvas-get-scroll-region">cr_canvas_get_scroll_region</link>         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_x1,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_y1,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_x2,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_y2);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-scroll-factor">cr_canvas_set_scroll_factor</link>         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> scroll_factor_x,
+                                                         <link linkend="double">double</link> scroll_factor_y);
+<link linkend="void">void</link>                <link linkend="cr-canvas-scroll-to">cr_canvas_scroll_to</link>                 (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y);
+<link linkend="void">void</link>                <link linkend="cr-canvas-get-scroll-offsets">cr_canvas_get_scroll_offsets</link>        (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x,
+                                                         <link linkend="gdouble">gdouble</link> *y);
+<link linkend="void">void</link>                <link linkend="cr-canvas-center-on">cr_canvas_center_on</link>                 (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y);
+<link linkend="void">void</link>                <link linkend="cr-canvas-get-center">cr_canvas_get_center</link>                (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x,
+                                                         <link linkend="gdouble">gdouble</link> *y);
+<link linkend="void">void</link>                <link linkend="cr-canvas-center-scale">cr_canvas_center_scale</link>              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y,
+                                                         <link linkend="gdouble">gdouble</link> w,
+                                                         <link linkend="gdouble">gdouble</link> h);
+<link linkend="void">void</link>                <link linkend="cr-canvas-get-center-scale">cr_canvas_get_center_scale</link>          (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *cx,
+                                                         <link linkend="gdouble">gdouble</link> *cy,
+                                                         <link linkend="gdouble">gdouble</link> *w,
+                                                         <link linkend="gdouble">gdouble</link> *h);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-viewport">cr_canvas_set_viewport</link>              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x1,
+                                                         <link linkend="gdouble">gdouble</link> y1,
+                                                         <link linkend="gdouble">gdouble</link> x2,
+                                                         <link linkend="gdouble">gdouble</link> y2);
+<link linkend="void">void</link>                <link linkend="cr-canvas-get-viewport">cr_canvas_get_viewport</link>              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x1,
+                                                         <link linkend="gdouble">gdouble</link> *y1,
+                                                         <link linkend="gdouble">gdouble</link> *x2,
+                                                         <link linkend="gdouble">gdouble</link> *y2);
+<link linkend="void">void</link>                <link linkend="cr-canvas-zoom">cr_canvas_zoom</link>                      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x_factor,
+                                                         <link linkend="gdouble">gdouble</link> y_factor);
+<link linkend="void">void</link>                <link linkend="cr-canvas-zoom-world">cr_canvas_zoom_world</link>                (<link linkend="CrCanvas">CrCanvas</link> *canvas);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-repaint-mode">cr_canvas_set_repaint_mode</link>          (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gboolean">gboolean</link> on);
+<link linkend="void">void</link>                <link linkend="cr-canvas-queue-repaint">cr_canvas_queue_repaint</link>             (<link linkend="CrCanvas">CrCanvas</link> *canvas);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-max-scale-factor">cr_canvas_set_max_scale_factor</link>      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> x_factor,
+                                                         <link linkend="double">double</link> y_factor);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-min-scale-factor">cr_canvas_set_min_scale_factor</link>      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> x_factor,
+                                                         <link linkend="double">double</link> y_factor);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-vadjustment">cr_canvas_set_vadjustment</link>           (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="GtkAdjustment">GtkAdjustment</link> *adjustment);
+<link linkend="void">void</link>                <link linkend="cr-canvas-set-hadjustment">cr_canvas_set_hadjustment</link>           (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="GtkAdjustment">GtkAdjustment</link> *adjustment);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrCanvas.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----CrCanvas
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrCanvas.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+CrCanvas implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="CrCanvas.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrCanvas--auto-scale">auto-scale</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--hadjustment">hadjustment</link>&quot;              <link linkend="GtkAdjustment">GtkAdjustment</link>*        : Read / Write
+  &quot;<link linkend="CrCanvas--maintain-aspect">maintain-aspect</link>&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--maintain-center">maintain-center</link>&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--pick-item">pick-item</link>&quot;                <link linkend="CrItem">CrItem</link>*               : Read
+  &quot;<link linkend="CrCanvas--repaint-mode">repaint-mode</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--repaint-on-scroll">repaint-on-scroll</link>&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--root">root</link>&quot;                     <link linkend="CrItem">CrItem</link>*               : Read / Write
+  &quot;<link linkend="CrCanvas--show-less">show-less</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrCanvas--vadjustment">vadjustment</link>&quot;              <link linkend="GtkAdjustment">GtkAdjustment</link>*        : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="CrCanvas.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="CrCanvas-before-paint">before-paint</link>&quot;                                   : Run First
+  &quot;<link linkend="CrCanvas-scroll-region-changed">scroll-region-changed</link>&quot;                          : Run First
+  &quot;<link linkend="CrCanvas-set-scroll-adjustments">set-scroll-adjustments</link>&quot;                         : Run Last / Action
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="CrCanvas.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="GtkWidget"><type>GtkWidget</type></link> that is used as a drawing device for a tree for <link linkend="CrItem"><type>CrItem</type></link> objects.
+The CrCanvas widget has comprehensive zooming, scaling, and viewable region
+methods and properties.  All region transformations are stored in the
+canvas's root <link linkend="CrItem"><type>CrItem</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrCanvas.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrCanvas-struct" role="struct">
+<title>CrCanvas</title>
+<indexterm zone="CrCanvas-struct"><primary sortas="CrCanvas">CrCanvas</primary></indexterm><programlisting>typedef struct {
+        guint32 flags;
+} CrCanvas;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-canvas-new" role="function">
+<title>cr_canvas_new ()</title>
+<indexterm zone="cr-canvas-new"><primary sortas="cr_canvas_new">cr_canvas_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         cr_canvas_new                       (const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience routine to create the canvas widget and set its properties in
+one call.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara> A list of object argument name/value pairs, NULL-terminated
+used to set the canvas widget properties.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created canvas widget cast to a GtkWidget type.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-scroll-region" role="function">
+<title>cr_canvas_set_scroll_region ()</title>
+<indexterm zone="cr-canvas-set-scroll-region"><primary sortas="cr_canvas_set_scroll_region">cr_canvas_set_scroll_region</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_scroll_region         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> scroll_x1,
+                                                         <link linkend="gdouble">gdouble</link> scroll_y1,
+                                                         <link linkend="gdouble">gdouble</link> scroll_x2,
+                                                         <link linkend="gdouble">gdouble</link> scroll_y2);</programlisting>
+<para>
+Sets the canvas to a finite "world".  The scrollbars or adjustments will not
+allow the canvas to scroll outside the input boundaries.  The world to screen
+coordinate conversions are defined by the matrix held within the root group
+item.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_x1</parameter>&#160;:</term>
+<listitem><simpara> The leftmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_y1</parameter>&#160;:</term>
+<listitem><simpara> The topmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_x2</parameter>&#160;:</term>
+<listitem><simpara> The rightmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_y2</parameter>&#160;:</term>
+<listitem><simpara> The bottomost world boundary as defined by the root matrix.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-get-scroll-region" role="function">
+<title>cr_canvas_get_scroll_region ()</title>
+<indexterm zone="cr-canvas-get-scroll-region"><primary sortas="cr_canvas_get_scroll_region">cr_canvas_get_scroll_region</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_get_scroll_region         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_x1,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_y1,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_x2,
+                                                         <link linkend="gdouble">gdouble</link> *scroll_y2);</programlisting>
+<para>
+Gets the current scrolling area of the canvas.  If the canvas is in 'infinite
+world' mode, this region will change often.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_x1</parameter>&#160;:</term>
+<listitem><simpara> The leftmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_y1</parameter>&#160;:</term>
+<listitem><simpara> The topmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_x2</parameter>&#160;:</term>
+<listitem><simpara> The rightmost world boundary as defined by the root group matrix.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_y2</parameter>&#160;:</term>
+<listitem><simpara> The bottomost world boundary as defined by the root matrix.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-scroll-factor" role="function">
+<title>cr_canvas_set_scroll_factor ()</title>
+<indexterm zone="cr-canvas-set-scroll-factor"><primary sortas="cr_canvas_set_scroll_factor">cr_canvas_set_scroll_factor</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_scroll_factor         (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> scroll_factor_x,
+                                                         <link linkend="double">double</link> scroll_factor_y);</programlisting>
+<para>
+This tells the canvas to assume that the world boundaries are infinite, but
+that scrolling should be arbitrarily limited to a factor of the displayed
+viewport size. i.e. a factor of 2 would allow a viewport showing a 100 unit
+range to be scrolled over a 200 unit range. This call causes the canvas to be
+in no way dependent on any setting in the root group item.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_factor_x</parameter>&#160;:</term>
+<listitem><simpara> A multiplier for how much additional width scrolling.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>scroll_factor_y</parameter>&#160;:</term>
+<listitem><simpara> A multiplier for how much additional height scrolling.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-scroll-to" role="function">
+<title>cr_canvas_scroll_to ()</title>
+<indexterm zone="cr-canvas-scroll-to"><primary sortas="cr_canvas_scroll_to">cr_canvas_scroll_to</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_scroll_to                 (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y);</programlisting>
+<para>
+Places the given coordinate in the upper left corner of the current viewport.
+Coordinates are expected to be in user space and are translated to device
+space using the root group matrix.  If finite world scrolling is used, it may
+be impossible to set the center to the requested coordinate.  If infinite
+world scrolling is used the scroll area will be adjusted such that the
+requested center is also the center of the scroll region. This function is
+typically used with a document model when the 'auto_scale' and
+'maintain_center' properties are disabled.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The x coordinate for the left border
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The y coordinate for the upper border
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-get-scroll-offsets" role="function">
+<title>cr_canvas_get_scroll_offsets ()</title>
+<indexterm zone="cr-canvas-get-scroll-offsets"><primary sortas="cr_canvas_get_scroll_offsets">cr_canvas_get_scroll_offsets</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_get_scroll_offsets        (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x,
+                                                         <link linkend="gdouble">gdouble</link> *y);</programlisting>
+<para>
+A convenience function to get the upper leftmost canvas coordinate in root
+group units.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The x coordinate of the left border
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The y coordinate of the upper border
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-center-on" role="function">
+<title>cr_canvas_center_on ()</title>
+<indexterm zone="cr-canvas-center-on"><primary sortas="cr_canvas_center_on">cr_canvas_center_on</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_center_on                 (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y);</programlisting>
+<para>
+Places the given coordinate in the center of the current viewport.
+Coordinates are expected to be in user space and are translated to device
+space using the root group matrix.  If finite world scrolling is used, it may
+be impossible to set the center to the requested coordinate.  If infinite
+world scrolling is used the scroll area will be adjusted such that the
+requested center is also the center of the scroll region. This function is
+typically used when the 'auto_scale' or 'maintain_center' properties are set.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The x coordinate to set center to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The y coordinate to set center to.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-get-center" role="function">
+<title>cr_canvas_get_center ()</title>
+<indexterm zone="cr-canvas-get-center"><primary sortas="cr_canvas_get_center">cr_canvas_get_center</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_get_center                (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x,
+                                                         <link linkend="gdouble">gdouble</link> *y);</programlisting>
+<para>
+Convenience function to get the center point of the viewport in root group
+coordinates.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The x coordinate of the center.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The y coordinate of the center.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-center-scale" role="function">
+<title>cr_canvas_center_scale ()</title>
+<indexterm zone="cr-canvas-center-scale"><primary sortas="cr_canvas_center_scale">cr_canvas_center_scale</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_center_scale              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x,
+                                                         <link linkend="gdouble">gdouble</link> y,
+                                                         <link linkend="gdouble">gdouble</link> w,
+                                                         <link linkend="gdouble">gdouble</link> h);</programlisting>
+<para>
+Centers and scales the canvas in one call.  If a finite world scrolling is
+used, it may be impossible to honor this request.  If infinite world
+scrolling is used the scrollable area will be adjusted such that the
+requested center is now the center of the scroll area. If the maintain_aspect
+property is TRUE, the scale request will be honored such that an equal to or
+larger area will be shown in the viewport.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> The center x coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> The center y coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>w</parameter>&#160;:</term>
+<listitem><simpara> The requested width in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>h</parameter>&#160;:</term>
+<listitem><simpara> The requested height in user space.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-get-center-scale" role="function">
+<title>cr_canvas_get_center_scale ()</title>
+<indexterm zone="cr-canvas-get-center-scale"><primary sortas="cr_canvas_get_center_scale">cr_canvas_get_center_scale</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_get_center_scale          (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *cx,
+                                                         <link linkend="gdouble">gdouble</link> *cy,
+                                                         <link linkend="gdouble">gdouble</link> *w,
+                                                         <link linkend="gdouble">gdouble</link> *h);</programlisting>
+<para>
+Passes back the center and width and height in user space.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cx</parameter>&#160;:</term>
+<listitem><simpara> The center x coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cy</parameter>&#160;:</term>
+<listitem><simpara> The center y coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>w</parameter>&#160;:</term>
+<listitem><simpara> The width in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>h</parameter>&#160;:</term>
+<listitem><simpara> The height in user space.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-viewport" role="function">
+<title>cr_canvas_set_viewport ()</title>
+<indexterm zone="cr-canvas-set-viewport"><primary sortas="cr_canvas_set_viewport">cr_canvas_set_viewport</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_viewport              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x1,
+                                                         <link linkend="gdouble">gdouble</link> y1,
+                                                         <link linkend="gdouble">gdouble</link> x2,
+                                                         <link linkend="gdouble">gdouble</link> y2);</programlisting>
+<para>
+A simple wrapper around cr_canvas_center_scale.  This procedure attempts to
+set the canvas viewport to honor the coordinates provided.  If necessary, the
+canvas will be re-centeredand re-scaled.  If a finite world scrolling is
+used, it may be impossible to honor this request.  If infinite world
+scrolling is used the scrollable area will be adjusted such that the
+requested center is now the center of the scroll area. If the maintain_aspect
+property is TRUE, the scale request will be honored such that an equal to or
+larger area will be shown in the viewport.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x1</parameter>&#160;:</term>
+<listitem><simpara> The leftmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&#160;:</term>
+<listitem><simpara> The topmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> The rightmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> The bottommost coordinate in user space.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-get-viewport" role="function">
+<title>cr_canvas_get_viewport ()</title>
+<indexterm zone="cr-canvas-get-viewport"><primary sortas="cr_canvas_get_viewport">cr_canvas_get_viewport</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_get_viewport              (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> *x1,
+                                                         <link linkend="gdouble">gdouble</link> *y1,
+                                                         <link linkend="gdouble">gdouble</link> *x2,
+                                                         <link linkend="gdouble">gdouble</link> *y2);</programlisting>
+<para>
+The four corners of the current viewport in user space.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x1</parameter>&#160;:</term>
+<listitem><simpara> The leftmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&#160;:</term>
+<listitem><simpara> The topmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&#160;:</term>
+<listitem><simpara> The rightmost coordinate in user space.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&#160;:</term>
+<listitem><simpara> The bottommost coordinate in user space.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-zoom" role="function">
+<title>cr_canvas_zoom ()</title>
+<indexterm zone="cr-canvas-zoom"><primary sortas="cr_canvas_zoom">cr_canvas_zoom</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_zoom                      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gdouble">gdouble</link> x_factor,
+                                                         <link linkend="gdouble">gdouble</link> y_factor);</programlisting>
+<para>
+Zooms the viewable area of the canvas in or out.  Values greater than 1 zoom
+in, less than 1 zoom out. If the auto_scale or maintain_center properties are
+set, the viewport will be zoomed about the current center point, otherwise
+the viewport will be zoomed from upper left to lower right such that the
+upper left user coordinate is maintained. For a canvas where the
+maintain_aspect property is set, only the x_factor is used.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_factor</parameter>&#160;:</term>
+<listitem><simpara> The zoom factor by which to reduce/increase the viewable area.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_factor</parameter>&#160;:</term>
+<listitem><simpara> The zoom factor by which to reduce/increase the viewable area.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-zoom-world" role="function">
+<title>cr_canvas_zoom_world ()</title>
+<indexterm zone="cr-canvas-zoom-world"><primary sortas="cr_canvas_zoom_world">cr_canvas_zoom_world</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_zoom_world                (<link linkend="CrCanvas">CrCanvas</link> *canvas);</programlisting>
+<para>
+Causes the canvas scale to zoom-out to show its maximum extents (or whole
+world).  The maximum extents are determined as follows: (1) If finite world
+model (set_scroll_region), then such coordinates are used to define the new
+viewport.  (2) If infinite world model and the min_scale_factor has been
+defined, then this is used.  (3) Else the canvas is zoomed by the current
+scroll_factor.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-repaint-mode" role="function">
+<title>cr_canvas_set_repaint_mode ()</title>
+<indexterm zone="cr-canvas-set-repaint-mode"><primary sortas="cr_canvas_set_repaint_mode">cr_canvas_set_repaint_mode</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_repaint_mode          (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="gboolean">gboolean</link> on);</programlisting>
+<para>
+Changes the canvas redraw model from invalidate to repaint.  In the repaint
+model, the canvas redraws all items regardless of how many requested to be
+redrawn.  This is useful when implementing scaling tools which would require
+all of the items to be redrawn for each update.  It reduces the processing
+load slightly by preventing the canvas from running its invalidate loop. It
+may also be useful for implemenations that wish to implement a periodic
+screen refresh.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>on</parameter>&#160;:</term>
+<listitem><simpara> TRUE use repaint mode, FALSE to use default invalidate mode.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-queue-repaint" role="function">
+<title>cr_canvas_queue_repaint ()</title>
+<indexterm zone="cr-canvas-queue-repaint"><primary sortas="cr_canvas_queue_repaint">cr_canvas_queue_repaint</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_queue_repaint             (<link linkend="CrCanvas">CrCanvas</link> *canvas);</programlisting>
+<para>
+Queues all items in the canvas to be repainted. This avoids running the
+canvas update loop until after the redraw is complete.  This is useful when
+you need to continuously repaint for several cycles and want to avoid the
+cost of the canvas update loop until the repaint cycles are complete.
+Calling the routine is the same setting canvas repaint mode on and then
+switching it off at the first G_PRIORITY_LOW idle event.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-max-scale-factor" role="function">
+<title>cr_canvas_set_max_scale_factor ()</title>
+<indexterm zone="cr-canvas-set-max-scale-factor"><primary sortas="cr_canvas_set_max_scale_factor">cr_canvas_set_max_scale_factor</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_max_scale_factor      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> x_factor,
+                                                         <link linkend="double">double</link> y_factor);</programlisting>
+<para>
+Defines the closest zoom-in scale allowed.  This is used to prevent the
+underlying rendering routines from doing crazy things when a user presses a
+zoom-in button too many times.  Example: For a 100x100 pixel
+window, values of 4,4 would allow the user to zoom in to show no less than
+25x25 world coordinates.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_factor</parameter>&#160;:</term>
+<listitem><simpara> Defines the pixel per world coordinate factor.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_factor</parameter>&#160;:</term>
+<listitem><simpara> Defines the pixel per world coordinate factor. Ignored if
+             maintain_aspect is true.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-min-scale-factor" role="function">
+<title>cr_canvas_set_min_scale_factor ()</title>
+<indexterm zone="cr-canvas-set-min-scale-factor"><primary sortas="cr_canvas_set_min_scale_factor">cr_canvas_set_min_scale_factor</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_min_scale_factor      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="double">double</link> x_factor,
+                                                         <link linkend="double">double</link> y_factor);</programlisting>
+<para>
+Defines the farthest zoom-out scale allowed.  Example: For a 100x100 pixel
+window, values of 0.25, 0.25 would allow the user to zoom out to show no more
+than 400x400 world coordinates.  In infinite world mode, this routine can be
+used to limit the maximum amount of the world view that can be rendered to
+There is no need to ever call this function if you use the finite world model
+by calling set_scroll_region.  It will automatically be called whenever the
+canvas is resized.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_factor</parameter>&#160;:</term>
+<listitem><simpara> Defines the pixel per world coordinate factor.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_factor</parameter>&#160;:</term>
+<listitem><simpara> Defines the pixel per world coordinate factor. Ignored if
+             maintain_aspect is true.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-vadjustment" role="function">
+<title>cr_canvas_set_vadjustment ()</title>
+<indexterm zone="cr-canvas-set-vadjustment"><primary sortas="cr_canvas_set_vadjustment">cr_canvas_set_vadjustment</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_vadjustment           (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="GtkAdjustment">GtkAdjustment</link> *adjustment);</programlisting>
+<para>
+Sets the vertical scroll adjustment for the layout.
+</para>
+<para>
+See <link linkend="GtkScrolledWindow"><type>GtkScrolledWindow</type></link>, <link linkend="GtkScrollbar"><type>GtkScrollbar</type></link>, <link linkend="GtkAdjustment"><type>GtkAdjustment</type></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="CrCanvas"><type>CrCanvas</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>adjustment</parameter>&#160;:</term>
+<listitem><simpara> new scroll adjustment
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-canvas-set-hadjustment" role="function">
+<title>cr_canvas_set_hadjustment ()</title>
+<indexterm zone="cr-canvas-set-hadjustment"><primary sortas="cr_canvas_set_hadjustment">cr_canvas_set_hadjustment</primary></indexterm><programlisting><link linkend="void">void</link>                cr_canvas_set_hadjustment           (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         <link linkend="GtkAdjustment">GtkAdjustment</link> *adjustment);</programlisting>
+<para>
+Sets the horizontal scroll adjustment for the layout.
+</para>
+<para>
+See <link linkend="GtkScrolledWindow"><type>GtkScrolledWindow</type></link>, <link linkend="GtkScrollbar"><type>GtkScrollbar</type></link>, <link linkend="GtkAdjustment"><type>GtkAdjustment</type></link> for details.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="CrCanvas"><type>CrCanvas</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>adjustment</parameter>&#160;:</term>
+<listitem><simpara> new scroll adjustment
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrCanvas.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrCanvas--auto-scale" role="property"><title>The <literal>&quot;auto-scale&quot;</literal> property</title>
+<indexterm zone="CrCanvas--auto-scale"><primary sortas="CrCanvas:auto-scale">CrCanvas:auto-scale</primary></indexterm><programlisting>  &quot;auto-scale&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Present viewport contents are retained on resize. This means items will be zoomed in or out depending on how the window changes.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrCanvas--hadjustment" role="property"><title>The <literal>&quot;hadjustment&quot;</literal> property</title>
+<indexterm zone="CrCanvas--hadjustment"><primary sortas="CrCanvas:hadjustment">CrCanvas:hadjustment</primary></indexterm><programlisting>  &quot;hadjustment&quot;              <link linkend="GtkAdjustment">GtkAdjustment</link>*        : Read / Write</programlisting>
+<para>The GtkAdjustment for the horizontal position.</para></refsect2>
+<refsect2 id="CrCanvas--maintain-aspect" role="property"><title>The <literal>&quot;maintain-aspect&quot;</literal> property</title>
+<indexterm zone="CrCanvas--maintain-aspect"><primary sortas="CrCanvas:maintain-aspect">CrCanvas:maintain-aspect</primary></indexterm><programlisting>  &quot;maintain-aspect&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Aspect ratio is maintained on resize andzooming events.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrCanvas--maintain-center" role="property"><title>The <literal>&quot;maintain-center&quot;</literal> property</title>
+<indexterm zone="CrCanvas--maintain-center"><primary sortas="CrCanvas:maintain-center">CrCanvas:maintain-center</primary></indexterm><programlisting>  &quot;maintain-center&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>World center point remains on resize.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrCanvas--pick-item" role="property"><title>The <literal>&quot;pick-item&quot;</literal> property</title>
+<indexterm zone="CrCanvas--pick-item"><primary sortas="CrCanvas:pick-item">CrCanvas:pick-item</primary></indexterm><programlisting>  &quot;pick-item&quot;                <link linkend="CrItem">CrItem</link>*               : Read</programlisting>
+<para>The lowest item in the tree presently receiving cursor events.</para></refsect2>
+<refsect2 id="CrCanvas--repaint-mode" role="property"><title>The <literal>&quot;repaint-mode&quot;</literal> property</title>
+<indexterm zone="CrCanvas--repaint-mode"><primary sortas="CrCanvas:repaint-mode">CrCanvas:repaint-mode</primary></indexterm><programlisting>  &quot;repaint-mode&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Canvas repaints all items on each update.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrCanvas--repaint-on-scroll" role="property"><title>The <literal>&quot;repaint-on-scroll&quot;</literal> property</title>
+<indexterm zone="CrCanvas--repaint-on-scroll"><primary sortas="CrCanvas:repaint-on-scroll">CrCanvas:repaint-on-scroll</primary></indexterm><programlisting>  &quot;repaint-on-scroll&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Repaint the whole canvas when the scrollbar is moved. Default behavior is to move the previously painted area,  This changes the default behavior to repaint  the whole canvas instead. This is needed for the use case where something on the canvas will be changed immediately as a result of the scroll action.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrCanvas--root" role="property"><title>The <literal>&quot;root&quot;</literal> property</title>
+<indexterm zone="CrCanvas--root"><primary sortas="CrCanvas:root">CrCanvas:root</primary></indexterm><programlisting>  &quot;root&quot;                     <link linkend="CrItem">CrItem</link>*               : Read / Write</programlisting>
+<para>The root canvas item for this widget.</para></refsect2>
+<refsect2 id="CrCanvas--show-less" role="property"><title>The <literal>&quot;show-less&quot;</literal> property</title>
+<indexterm zone="CrCanvas--show-less"><primary sortas="CrCanvas:show-less">CrCanvas:show-less</primary></indexterm><programlisting>  &quot;show-less&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Whether to show more area or less area on a viewport resize when the aspect ratio changes.  This only has an effect when both auto-scale and maintain-aspect are set.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrCanvas--vadjustment" role="property"><title>The <literal>&quot;vadjustment&quot;</literal> property</title>
+<indexterm zone="CrCanvas--vadjustment"><primary sortas="CrCanvas:vadjustment">CrCanvas:vadjustment</primary></indexterm><programlisting>  &quot;vadjustment&quot;              <link linkend="GtkAdjustment">GtkAdjustment</link>*        : Read / Write</programlisting>
+<para>The GtkAdjustment for the vertical position.</para></refsect2>
+</refsect1>
+
+<refsect1 id="CrCanvas.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="CrCanvas-before-paint" role="signal"><title>The <literal>&quot;before-paint&quot;</literal> signal</title>
+<indexterm zone="CrCanvas-before-paint"><primary sortas="CrCanvas::before-paint">CrCanvas::before-paint</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrCanvas">CrCanvas</link>  *canvas,
+                                                        <link linkend="CrContext">CrContext</link> *cr,
+                                                        <link linkend="gboolean">gboolean</link>   viewport_changed,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)             : Run First</programlisting>
+<para>
+This signal is emitted from the expose event of the canvas.  It can
+be used to request additional updates or to take specific action
+resulting from a change to the viewport.  The viewport may change as
+a result of a scrolling action or as a result of a scroll_to or
+center-on call. The viewport_changed flag will be FALSE if there
+was no change to the viewport since the last paint.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cr</parameter>&#160;:</term>
+<listitem><simpara> cairo context for the canvas window.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>viewport_changed</parameter>&#160;:</term>
+<listitem><simpara> TRUE if the viewport has changed since the last
+paint.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrCanvas-scroll-region-changed" role="signal"><title>The <literal>&quot;scroll-region-changed&quot;</literal> signal</title>
+<indexterm zone="CrCanvas-scroll-region-changed"><primary sortas="CrCanvas::scroll-region-changed">CrCanvas::scroll-region-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                        <link linkend="gpointer">gpointer</link>  user_data)      : Run First</programlisting>
+<para>
+This signal is emitted whenever the canvas scrolling
+region is manually or automatically modified.  In the finite world
+model it is emitted only when cr_canvas_set_scroll_region is
+called external.  In the infinite world model, it is emitted 
+more frequently whenever the scrollbars are automatically re-centered
+or as a result of calling cr_canvas_set_scroll_factor externally.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="CrCanvas-set-scroll-adjustments" role="signal"><title>The <literal>&quot;set-scroll-adjustments&quot;</literal> signal</title>
+<indexterm zone="CrCanvas-set-scroll-adjustments"><primary sortas="CrCanvas::set-scroll-adjustments">CrCanvas::set-scroll-adjustments</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="CrCanvas">CrCanvas</link>      *crcanvas,
+                                                        <link linkend="GtkAdjustment">GtkAdjustment</link> *arg1,
+                                                        <link linkend="GtkAdjustment">GtkAdjustment</link> *arg2,
+                                                        <link linkend="gpointer">gpointer</link>       user_data)      : Run Last / Action</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>crcanvas</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg2</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

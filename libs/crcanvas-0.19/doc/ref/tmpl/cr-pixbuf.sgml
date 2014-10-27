@@ -1,0 +1,95 @@
+<!-- ##### SECTION Title ##### -->
+CrPixbuf
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrPixbuf ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrPixbuf:anchor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:pattern ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:pixbuf ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:png ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:surface ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:test-fill ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:x-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPixbuf:y-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_pixbuf_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrText">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrText.top_of_page">CrText</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrText</refname>
+<refpurpose>A text canvas item that uses <link linkend="PangoLayout"><type>PangoLayout</type></link>.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrText.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrText-struct">CrText</link>;
+<link linkend="CrItem">CrItem</link> *            <link linkend="cr-text-new">cr_text_new</link>                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         const <link linkend="char">char</link> *text,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrText.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="CrItem">CrItem</link>
+         +----CrText
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrText.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrText--anchor">anchor</link>&quot;                   <link linkend="GtkAnchorType">GtkAnchorType</link>         : Read / Write
+  &quot;<link linkend="CrText--fill-color">fill-color</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrText--fill-color-rgba">fill-color-rgba</link>&quot;          <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="CrText--font">font</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrText--scaleable">scaleable</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrText--text">text</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="CrText--use-markup">use-markup</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrText--width">width</link>&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrText--x-offset">x-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="CrText--y-offset">y-offset</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrText.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This canvas item can render <link linkend="PangoLayout"><type>PangoLayout</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrText.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrText-struct" role="struct">
+<title>CrText</title>
+<indexterm zone="CrText-struct"><primary sortas="CrText">CrText</primary></indexterm><programlisting>typedef struct _CrText CrText;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-text-new" role="function">
+<title>cr_text_new ()</title>
+<indexterm zone="cr-text-new"><primary sortas="cr_text_new">cr_text_new</primary></indexterm><programlisting><link linkend="CrItem">CrItem</link> *            cr_text_new                         (<link linkend="CrItem">CrItem</link> *parent,
+                                                         <link linkend="double">double</link> x,
+                                                         <link linkend="double">double</link> y,
+                                                         const <link linkend="char">char</link> *text,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A convenience constructor for creating an text string and adding it to 
+an item group in one step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara> The parent canvas item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&#160;:</term>
+<listitem><simpara> X position of the text.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&#160;:</term>
+<listitem><simpara> Y position of the text.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&#160;:</term>
+<listitem><simpara> The text string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrText.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrText--anchor" role="property"><title>The <literal>&quot;anchor&quot;</literal> property</title>
+<indexterm zone="CrText--anchor"><primary sortas="CrText:anchor">CrText:anchor</primary></indexterm><programlisting>  &quot;anchor&quot;                   <link linkend="GtkAnchorType">GtkAnchorType</link>         : Read / Write</programlisting>
+<para>The part of the text that is referenced to the item's x, y coordinates.</para><para>Default value: GTK_ANCHOR_NORTH_WEST</para>
+</refsect2>
+<refsect2 id="CrText--fill-color" role="property"><title>The <literal>&quot;fill-color&quot;</literal> property</title>
+<indexterm zone="CrText--fill-color"><primary sortas="CrText:fill-color">CrText:fill-color</primary></indexterm><programlisting>  &quot;fill-color&quot;               <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A string color such as 'red', or '#123456'.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrText--fill-color-rgba" role="property"><title>The <literal>&quot;fill-color-rgba&quot;</literal> property</title>
+<indexterm zone="CrText--fill-color-rgba"><primary sortas="CrText:fill-color-rgba">CrText:fill-color-rgba</primary></indexterm><programlisting>  &quot;fill-color-rgba&quot;          <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>Text color, red,grn,blue,alpha.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrText--font" role="property"><title>The <literal>&quot;font&quot;</literal> property</title>
+<indexterm zone="CrText--font"><primary sortas="CrText:font">CrText:font</primary></indexterm><programlisting>  &quot;font&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>A pango font description string of the form [FAMILY-LIST] [STYLE-OPTIONS] [SIZE].</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrText--scaleable" role="property"><title>The <literal>&quot;scaleable&quot;</literal> property</title>
+<indexterm zone="CrText--scaleable"><primary sortas="CrText:scaleable">CrText:scaleable</primary></indexterm><programlisting>  &quot;scaleable&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>When True the size  of the text is in item units.  When False, the size is in device/pixel units.  This effects x/y_offset as well.  See also @CrInverse for another way to achieve the same effect.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="CrText--text" role="property"><title>The <literal>&quot;text&quot;</literal> property</title>
+<indexterm zone="CrText--text"><primary sortas="CrText:text">CrText:text</primary></indexterm><programlisting>  &quot;text&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>The text to be drawn.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="CrText--use-markup" role="property"><title>The <literal>&quot;use-markup&quot;</literal> property</title>
+<indexterm zone="CrText--use-markup"><primary sortas="CrText:use-markup">CrText:use-markup</primary></indexterm><programlisting>  &quot;use-markup&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If html style markup language should be used.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrText--width" role="property"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="CrText--width"><primary sortas="CrText:width">CrText:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>Width before line-wrap.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrText--x-offset" role="property"><title>The <literal>&quot;x-offset&quot;</literal> property</title>
+<indexterm zone="CrText--x-offset"><primary sortas="CrText:x-offset">CrText:x-offset</primary></indexterm><programlisting>  &quot;x-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="CrText--y-offset" role="property"><title>The <literal>&quot;y-offset&quot;</literal> property</title>
+<indexterm zone="CrText--y-offset"><primary sortas="CrText:y-offset">CrText:y-offset</primary></indexterm><programlisting>  &quot;y-offset&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>A device offset from the item's anchor position.  Only used when scaleable=FALSE.</para><para>Default value: 0</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

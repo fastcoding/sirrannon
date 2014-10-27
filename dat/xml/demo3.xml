@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="0" seed="0" simulation="1000">
+	<component name="ffmpeg-reader" type="ffmpeg-reader">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="filename" type="string" val="$1"/>
+		<param name="loop" type="int" val="1"/>
+		<param name="video-route" type="int" val="100"/>
+		<param name="audio-route" type="int" val="200"/>
+		<param name="dts-start" type="int" val="1000"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="seek" type="int" val="0"/>
+		<param name="add-parameter-sets" type="bool" val="true"/>
+		<param name="repeat-parameter-sets" type="bool" val="true"/>
+		<param name="mov-frame" type="bool" val="false"/>
+		<param name="sdp" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="105.0" y="137.5"/>
+		<param name="skip-SEI" type="bool" val="false"/>
+		<param name="fix-PTS" type="bool" val="false"/>
+		<param name="skip-AUD" type="bool" val="false"/>
+	</component>
+	<component name="frame-classifier" type="frame-classifier">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="discard" type="bool" val="false"/>
+		<param name="sender-trace" type="string" val=""/>
+		<param name="receiver-trace" type="string" val=""/>
+		<param name="I" type="int" val="1"/>
+		<param name="B" type="int" val="2"/>
+		<param name="P" type="int" val="2"/>
+		<param name="default" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="472.0" y="272.5"/>
+	</component>
+	<component name="random-classifier-I" type="random-classifier">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="discard" type="bool" val="true"/>
+		<param name="sender-trace" type="string" val=""/>
+		<param name="receiver-trace" type="string" val=""/>
+		<param name="P(loss)" type="double" val="$3"/>
+		<param name="xroute" type="int" val="1"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="332.0" y="413.5"/>
+	</component>
+	<component name="random-classifier-BP" type="random-classifier">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="discard" type="bool" val="true"/>
+		<param name="sender-trace" type="string" val=""/>
+		<param name="receiver-trace" type="string" val=""/>
+		<param name="P(loss)" type="double" val="$4"/>
+		<param name="xroute" type="int" val="1"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="610.0" y="412.5"/>
+	</component>
+	<component name="sirannon-packetizer" type="sirannon-packetizer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="tracefile" type="string" val=""/>
+		<param name="trace-pts" type="bool" val="false"/>
+		<param name="mtu" type="int" val="1500"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="472.0" y="137.5"/>
+	</component>
+	<component name="sirannon-unpacketizer" type="sirannon-unpacketizer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="mtu" type="int" val="1500"/>
+		<param name="recover-frame" type="bool" val="true"/>
+		<param name="error-on-less" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="472.0" y="549.5"/>
+	</component>
+	<component name="basic-writer" type="basic-writer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="filename" type="string" val="$2"/>
+		<param name="flush" type="bool" val="false"/>
+		<param name="fragmented" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="472.0" y="706.5"/>
+	</component>
+	<component name="sink" type="sink">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="video-mode" type="bool" val="true"/>
+		<param name="audio-mode" type="bool" val="false"/>
+		<param name="count" type="int" val="0"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="701.0" y="706.5"/>
+	</component>
+	<component name="frame-analyzer" type="frame-analyzer">
+		<param name="debug" type="bool" val="false"/>
+		<param name="thread" type="bool" val="false"/>
+		<gfx h="75.0" r="0.0" w="130.0" x="284.0" y="137.5"/>
+	</component>
+	<route from="frame-classifier" to="random-classifier-BP" xroute="102">
+		<gfx from="5" to="4"/>
+	</route>
+	<route from="frame-classifier" to="random-classifier-I" xroute="101">
+		<gfx from="7" to="4"/>
+	</route>
+	<route from="random-classifier-I" to="sirannon-unpacketizer" xroute="0">
+		<gfx from="6" to="7"/>
+	</route>
+	<route from="random-classifier-BP" to="sirannon-unpacketizer" xroute="0">
+		<gfx from="6" to="5"/>
+	</route>
+	<route from="sirannon-packetizer" to="frame-classifier" xroute="0">
+		<gfx from="6" to="4"/>
+	</route>
+	<route from="sirannon-unpacketizer" to="basic-writer" xroute="0">
+		<gfx from="6" to="4"/>
+	</route>
+	<route from="basic-writer" to="sink" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="ffmpeg-reader" to="frame-analyzer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="frame-analyzer" to="sirannon-packetizer" xroute="0">
+		<gfx from="5" to="7"/>
+	</route>
+	<route from="frame-classifier" to="sirannon-unpacketizer" xroute="100">
+		<gfx from="6" to="4"/>
+	</route>
+</config>

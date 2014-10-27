@@ -1,0 +1,102 @@
+<!-- ##### SECTION Title ##### -->
+CrPanner
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrPanner ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL CrPanner::activate ##### -->
+<para>
+
+</para>
+
+@crpanner: the object which received the signal.
+
+<!-- ##### SIGNAL CrPanner::deactivate ##### -->
+<para>
+
+</para>
+
+@crpanner: the object which received the signal.
+
+<!-- ##### SIGNAL CrPanner::pan ##### -->
+<para>
+
+</para>
+
+@crpanner: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### ARG CrPanner:active ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPanner:button ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPanner:canvas ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPanner:cursor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPanner:item ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_panner_new ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_panner_activate ##### -->
+<para>
+
+</para>
+
+@panner: 
+
+
+<!-- ##### FUNCTION cr_panner_deactivate ##### -->
+<para>
+
+</para>
+
+@panner: 
+
+

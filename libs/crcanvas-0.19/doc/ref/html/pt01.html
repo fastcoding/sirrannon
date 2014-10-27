@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Part I. Major Differences from other GTK based canvases</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="prev" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="next" href="ch01.html" title="Reference">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="index.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="ch01.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="part" title="Part I. Major Differences from other GTK based canvases">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="id447674"></a>Part I. Major Differences from other GTK based canvases</h1></div></div></div>
+<p>
+            </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+<p>
+
+The canvas widget has a built in scaling and panning model.  It provides
+property settings for "maintain center", "maintain aspect", "auto scale", and
+infinite scrolling.  Additionally it provides a complete set of zooming and
+scaling procedures.
+
+                            </p>
+<p>
+
+The intent of this widget is to allow more flexibility than the traditional
+GtkLayout.  The GtkLayout offers hook-ups for horizontal and vertical scrolling.
+The CrCanvas widget still supports the GtkAdjustment handles, but it's viewport
+coordinates are based on an Cairo affine transformation matrix, so it should be
+possible to design controls that are different from the usual scrollbars.
+
+                            </p>
+</li>
+<li class="listitem"><p>
+
+It is  trivial to design custom canvas items.  In the simplest case for an
+item that is based on cairo_path_t, it is necessary only to define a
+"make_path"method from the CrPath.  A slightly more complicated use requires
+redefining methods from the CrItem for "paint", "calculate_bounds", and "test".
+Nothing more is required.  The methods need not be defined as part of a derived
+class, they can be defined as signal handlers connected to an instance of the
+base class.
+
+                            </p></li>
+<li class="listitem"><p>
+
+The circular dependency between the canvas widget and the canvas item has been
+eliminated.  The items are not aware of what type of device or how many devices
+to which they are rendering.  The items communicate up the tree via GObject
+signal emissions.
+
+                            </p></li>
+<li class="listitem"><p>
+
+Each canvas item can send invalidate signals on its item coordinate space,
+the device coordinate space, or a combination of both.  Some use cases for this
+feature include: A canvas item that has a label that does not change scale when
+the canvas is zoomed in,  or a plot that has an arrow pointing to an interesting
+feature.  When the canvas is zoomed in the feature gets bigger, but the arrow
+pointing to the feature does not.
+
+                            </p></li>
+<li class="listitem"><p>
+
+The canvas widget emits a "before paint" signal during its
+expose logic.  Using this signal to call a clipping or rejection technique can
+significantly improve performance when the canvas is zoomed-in.  It is 
+possible to request updates from any item during the "before paint" emission
+or just prior to the expose event without triggering multiple re-paints.
+
+                            </p></li>
+<li class="listitem"><p>
+
+A repaint mode allows for all items to be repainted regardless of which ones
+requested updates.  It avoids running the calculate bounds sequence.  This is
+useful when you need to continuously repaint for several cycles and want to
+avoid the cost of the canvas update loop until the repaint cycles are complete.
+The profiling I have done so far indicates this causes the repaint to occur
+15-20% faster when N-items &gt; 1000.
+
+                            </p></li>
+<li class="listitem"><p>
+
+The CrBlit grouping item can, in some cases, significantly improve performance.
+It groups any arbitrary item tree into an offscreen memory surface.  The memory
+surface is then painted to the screen in a single operation. It should be used
+in cases where the CPU time needed to paint the item tree to the screen is
+greater than then frequency at which the tree needs to be repainted.
+
+                            </p></li>
+</ol></div>
+<p>
+    </p>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

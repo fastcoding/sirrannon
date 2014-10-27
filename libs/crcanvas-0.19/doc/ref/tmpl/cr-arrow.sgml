@@ -1,0 +1,88 @@
+<!-- ##### SECTION Title ##### -->
+CrArrow
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrArrow ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrArrow:angle ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:depth ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:fatness ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:length ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:point-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:x-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrArrow:y-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_arrow_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@point_id: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_arrow_connect_parent ##### -->
+<para>
+
+</para>
+
+@arrow: 
+@parent: 
+
+

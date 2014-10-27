@@ -1,0 +1,465 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{amsfonts}
+\usepackage[top=3cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+
+\begin{document}
+%Title
+\begin{titlepage}
+\begin{center}
+% Organization
+\textsc{\LARGE University of Ghent}\\[1.5cm] 
+\textsc{\LARGE IBCN}\\[0.5cm]
+\vfill  
+% Title
+\rule{\linewidth}{0.5mm}\\[0.5cm]
+{ \huge \bfseries SIRANNON 1.0.0:}\\[0.5cm] 
+{ \huge \bfseries MODULAR MULTIMEDIA}\\[0.5cm] 
+{ \huge \bfseries STREAMING}\\[0.5cm] 
+\rule{\linewidth}{0.5mm}\\[0.5cm]
+ 
+% Author
+ \large Alexis \textsc{Rombaut} 
+\vfill
+ 
+% Date
+{\large \today}
+ 
+\end{center} 
+\end{titlepage}
+
+% TOC
+% \pagenumbering{roman}
+% \setcounter{page}{1} 
+\pagenumbering{arabic}
+\setcounter{page}{2} 
+\tableofcontents
+\listoffigures
+
+% Main
+\newpage
+\chapter{Introduction}
+Sirannon is a flexible and modular media server, client and proxy. It distinguishes itself by providing a modularity that manifests itself in how the user controls and configures the streamer. Each configuration describes graph of components, each handling basic video operations such as reading frames, packetizing frames and transmitting packets. The streamer handles both video and audio, something left out in many experimental streamers. Finally, the program supports variety of protocols such as RTP, RTSP, RTMP and HTTP. Jump to chapter \ref{chap:installation} if you immediately want to start installing the sirannon. The latest stable version is always available on \url{http://sirannon.atlantis.ugent.be}. The latest addition is a brand new GUI featuring graph drawing, XML editing and console execution for multiple configurations using tabs.
+%\terms{Design, Experimentation}
+%\keywords{Streaming, Modular, Multimedia, Open source}
+
+\chapter{Fact Sheet}
+\section{Supported Codecs}
+\begin{itemize}
+	\item MPEG1 Video \& Audio
+	\item MPEG2 Video \& Audio
+	\item MPEG4 Video \& Audio
+	\item H264 AVC \& SVC
+	\item VP6, VP8/WEBM
+	\item Vorbis
+	\item AC3
+	\item AMR-NB, AMR-WB
+\end{itemize}
+
+\section{Supported Containers}
+Note, even if the sirannon supports a container, it still needs to support the codecs within the container.
+\begin{itemize}
+\item AVI
+\item MOV/MP4/F4V
+\item FLV
+\item WEBM
+\item MPEG2 (MPEG2 Program Streams)
+\item TS (MPEG2 Transport Streams)
+\item RAW (containing any of the supported codecs)
+\end{itemize}
+
+\section{Supported Protocols}
+Sirannon can be both server and client for the following protocols:
+\begin{itemize}
+\item RTSP/RTP/UDP
+\item RTMP/TCP
+\item RTMPT/HTTP
+\item HTTP
+\item RTP/UDP
+\item UDP
+\item TCP
+\item Apple Live HTTP Streaming
+\end{itemize}
+
+\chapter{Media Server}
+\section{Universal Server - Universal Client - Protocol translation}
+The strongest feature is the combination of universal server (RTSP, HTTP, RTMP, RTMPT) and universal client (RTSP, HTTP, RTMPT, RTMPT). This combination gives \textit{Sirannnon} the ability to transcode one protocol to another in real-time, dynamically and for many users. For example a request of the form 
+\\\texttt{rtmp://mysirannon.com/RTSP-proxy/www.tv-world.net/content/AJaXo93cdW.mov} in a Flash Player will make it connect to a Sirannon server that will in its turn connect to the fictional site \texttt{www.tv-world.net} using RTSP, request the stream and in real-time change to protocol and packetization to sent it to the client using RTMP. The following table provides the supported protocol translations.
+
+\begin{small}\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline To -- From & File & RTMP & RTMPT & HTTP & RTSP \\ 
+\hline File & $\surd$ & $\surd$ & $\surd$ & $\surd$  & $\surd$ \\ 
+\hline RTMP & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\ 
+\hline RTMPT & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\ 
+\hline HTTP & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\ 
+\hline RTSP & $\surd$ & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\
+\hline 
+\end{tabular} 
+\end{center}\end{small}
+
+\subsection{Connecting to the media server}
+You can run Sirannon as media server (HTTP, RTMP, RTMPT, RTSP) by placing content in the folder "dat/media" and running:
+\newline\texttt{sirannon dat/xml/media-server-std.xml dat/media}\newline\newline
+All requests to the Sirannon media server are of the form:
+$$url ::= <protocol> "://" <server> "/" <application> "/" <request>$$
+$$request ::= <server> "/" <application> "/" <request> | <file>$$\newline
+When using the application FILE or HTTP, the request is a path to a file:
+$$rtmp://sirannon.atlantis.ugent.be/FILE/flash/example.flv$$
+$$http://sirannon.atlantis.ugent.be/HTTP/mp4/example.mp4$$\newline
+When using the Sirannon server as proxy for another protocol the applications are: RTMP-proxy, RTMPT-proxy, RTSP-proxy and HTTP-proxy. In this case request contains the server, application and file to request:
+$$http://localhost/RTMP-proxy/vod01.netdna.com/play/vod/demo.flowplayer/metacafe.flv$$\newline
+
+\subsection{Media Server URL Examples}
+\subsubsection{HTTP}
+$$"http://" <server> "/" <HTTP|FILE@CONTAINER> "/" <file>$$\newline
+$$http://sirannon.atlantis.ugent.be/HTTP/demo.mov$$
+$$http://sirannon.atlantis.ugent.be/FILE@FLV/mysequence.mkv$$
+
+\subsubsection{Apple Live HTTP}
+\begin{itemize}
+\item The short form
+$$"http://" <server> "/APPLE/" <file>$$\newline
+$$http://sirannon.atlantis.ugent.be/APPLE/demo.mov$$
+
+\item The long form
+$$"http://" <server> "/M3U/" <server> "/FILE@TS/" <file>$$\newline
+$$http://sirannon.atlantis.ugent.be/M3U/sirannon.atlantis.ugent.be/FILE@TS/demo.mov$$
+\end{itemize}
+
+\subsubsection{RTMP}
+$$"rtmp://" <server> "/FILE/" <file>$$\newline
+$$rtmp://sirannon.atlantis.ugent.be/FILE/mysequence.mov$$
+
+\subsubsection{RTMPT}
+$$"rtmpt://" <server> "/FILE/" <file>$$\newline
+$$rtmpt://sirannon.atlantis.ugent.be/FILE/mysequence.mov$$
+
+\subsubsection{RTSP}
+$$"rtsp://" <server> "/FILE/" <file>$$\newline
+$$rtsp://sirannon.atlantis.ugent.be/FILE/mysequence.mov$$
+
+\chapter{Installation}
+\label{chap:installation}
+Refer to the README in the distribution for the documentation about the compiling sirannon.
+\newpage
+
+\chapter{Tutorial}
+\section{Introduction}
+This chapter describes how to construct, using the user interface, a basic streaming solution. Chapter \ref{chap:ex} describes several examples of streaming solutions without directly specifying the construction in the user interface. The following will create a basic streamer for streaming a trailer from Apple using RTP. The output from the user interface is an XML configuration file. The next chapter describes how to run the sirannon with this configuration file.
+\newpage
+
+\section{Exploring the user interface}
+Launch the user interface by running:
+\texttt{sirannon.py}
+The user interface will launch and present itself in five tabs: Construct, Draw, XML, Run and Library. This tutorial will focus on the Draw and Run tab. Initially the draw area is empty and should look like in figure \ref{fig:6}. Many of the functions available in the menu bar such as \textit{save}, \textit{quit}, \textit{undo}, \textellipsis are self-explanatory. 
+\begin{figure}[!ht]
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{./images/ui01.png}
+	\caption{the user interface}
+	\label{fig:6}
+\end{center}
+\end{figure}
+\newpage
+
+\section{Creating your first component}
+In order to open the trailer, a reader component is needed. The \textit{ffmpeg-reader} component provides access to the Quicktime container. Let us create this component now. Right-click anywhere in the work area or click on the button 'New' in the toolbar. A menu will appear with the different categories of components. Select \textit{reader}, \textit{ffmpeg-reader}. A new component will appear as seen in \ref{fig:7}. If you left click inside the new component, in the right of the screen an overview of the parameters of the component appears. These parameters are set at sensible defaults, we only need to fill out the \textit{filename} of the trailer. After filling out the \textit{filename}, the result should look as in figure \ref{fig:8}.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui02.png}
+	\caption{creating the first component (a)}
+	\label{fig:7}
+\end{figure}
+\end{center}
+\newpage
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui03.png}
+	\caption{creating the first component (b)}
+	\label{fig:8}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Creating your second component}
+The component \textit{ffmpeg-reader} creates packets containing video and audio frames. However, such frames are too large to be sent directly on the network: they have to be packetized into smaller packets. Now let us create the second component. Right-click in the empty work area and select \textit{packetizers}, \textit{PES-packetizer} in the menu. Change the name of the component to \textit{PES-packetizer-video} by clicking on the button next to "name" in the properties area in the right of the screen. Drag this new component to a fitting place, as shown in figure \ref{fig:9}.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui04.png}
+	\caption{creating the second component}
+	\label{fig:9}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Connecting your components}
+The two components need to be connected with each other. When you left-drag from inside one of the blue squares of a component, you will start drawing a line. Left-drag from inside the component \textit{ffmeg-reader} and release the mouse inside one of the blue squares of the component \textit{avc-packetizer}. The connection between the two components is now made and the configuration should now look as in figure \ref{fig:10}.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui05.png}
+	\caption{connecting the two components}
+	\label{fig:10}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Creating and connecting your third component}
+\label{sec:route}
+The \textit{PES-packetizer-video} component will only process video frames. We need a similar packetizer for audio frames. Let us create a third component \textit{PES-packetizer-audio}, found as \textit{packetizer}, \textit{PES-packetizer} in the menu. Change the name of the component to \textit{PES-packetizer-audio}. Connect \textit{ffmpeg-reader} with \textit{PES-packetizer-audio}. No parameters have to be changed for this component either. The result should be as in figure \ref{fig:11}. How can the component \textit{ffmpeg-reader} know on which connection to send packets, since video frames should be sent to \textit{AVC-packetizer} and audio frames to \textit{MP4-packetizer}? In the sirannon each packet is tagged with a number called \textit{xroute}. If you look at the parameters from \textit{ffmpeg-reader}, notice the parameters \textit{video-route} and \textit{audio-route}. Using the default settings, video packets will be tagged with \textit{xroute} $100$ and audio packets with \textit{xroute} $200$. Left click anywhere on connection between \textit{ffmpeg-reader} and \textit{AVC-packetizer}. In the properties area in right of the screen the parameter xroute appears. Since we want to sent only video packets over connection, fill out the value $100$. By default the \textit{xroute} is $0$, meaning all packets are accepted on this connection. If a packet can take multiple paths, for example if multiple connections share the same \textit{xroute} value, a separate copy will be sent over each of those connections. Now left-click on the connection between \textit{ffmpeg-reader} and \textit{MP4-packetizer} and fill out the value $200$, causing audio packets to be sent over this connection.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui06.png}
+	\caption{creating the third component}
+	\label{fig:11}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Creating a transport stream}
+If we want to send the trailer over a single connection we need to multiplex the trailer into an MPEG2 Transport Stream. Create new component \textit{TS-multiplexer} by selecting \textit{multiplexer}, \textit{TS-multiplexer} from the menu. Connect both packetizers with this new component. The result should look in figure \ref{fig:99}. If you made a mistake, you can always undo using CTRL-Z or selecting undo in the menu.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui99.png}
+	\caption{multiplexing the packets}
+	\label{fig:99}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Scheduling the packets}
+We need a scheduler to add real-time behavior: it stores packets in a buffer and releases them at the correct time. Create a scheduler by selecting \textit{schedulers}, \textit{frame-scheduler} from the menu. Figure \ref{fig:12} shows the intended result. If your draw area becomes too small you can always zoom out by clicking the appropriate button in the toolbar.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui07.png}
+	\caption{scheduling the packets}
+	\label{fig:12}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Transmitting the packets}
+The frames are ready now for transmission: they are packetized in sufficiently small packets, multiplexed into an MPEG2 transport stream and scheduled at the correct time. Let us create an RTP-transmitter. Select \textit{transmitter}, \textit{RTP-transmitter} from the component menu and connect the scheduler with the new transmitter. We have to fill out the source port and destination address. In the properties area for the parameter \textit{port} fill out the value 5000 and for the parameter \textit{client} fill out $127.0.0.1:1234$. Also set the parameter \textit{debug} to \textit{true} for this component. Figure \ref{fig:13} shows the result. 
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui08.png}
+	\caption{transmitting the packets}
+	\label{fig:13}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Finalizing the chain}
+In order to close the sirannon after streaming the sequence, we should place a special block called \textit{sink} at the end of the chain. After the last packet of the sequence has passed through this sink, it terminates the program gracefully. Select \textit{system}, \textit{sink} from the component menu and make a connection form the transmitter to this sink. The result should look as in figure \ref{fig:14}. Zoom out or use best fit if the drawing area is too small.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui09.png}
+	\caption{finalizing the chain}
+	\label{fig:14}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Saving and Executing your the configuration}
+Now that the configuration is complete, we can save it. In the menu bar under \textit{File} use either \textit{Save} or \textit{Save as} or press \textit{CTRL-S}. We can now run sirannon using the tab "Run". A new tab should appear that looks like in figure \ref{fig:98}.
+If the GUI finds the binary it should appear as first item of the command line options. Under Unix you should have compiled and installed the sirannon binary if you wish to continue. If you installed the binary in a different location you can always select that location.
+
+We do not need to fill out the configuration, when you press play the GUI will automatically using the current configuration unless you overwrite it.
+
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui98.png}
+	\caption{the "Run" tab}
+	\label{fig:98}
+\end{figure}
+\end{center}
+\newpage
+
+Press the large \textit{Play} button. The console window expands and shows the output of the sirannon process. If you filled out an incorrect container for the ffmpeg-reader, sirannon should fail with an error like \texttt{Unhandled RuntimeError: core.ffmpeg-reader: Could not open file(iTrailer.mov)}. If you do not have a sample video at hand you can always download the demo containers from \url{http://sirannon.atlantis.ugent.be/files/demo.tar.bz2}. Bear in mind that for MPEG2 Transport Streams only MPEG video and audio codecs are supported. If you created everything correctly output should appear in the console as in figure \ref{fig:97}.
+
+Once the console is running you can open for example VLC Media Player. Under \textit{Media}, select \textit{Open Network Stream}. Fill out \texttt{rtp://@:1234} as URL. VLC should now start playing the video. \textbf{CAVEAT:} If your sequence uses H.264/AVC, VLC will not have critical information that was transmitted by streamer before VLC launched. You will need to press \textit{Stop} followed by \textit{Play} to fix it. To prevent this behaviour you can set the parameter \textit{repeat-parameter-sets} to \textit{true} for the component \textit{ffmpeg-reader}.
+
+Now the video should be playing as in figure \ref{fig:96}. If it is not working, go over the following check list.
+\begin{itemize}
+\item Press \textit{Stop} followed by \textit{Play}
+\item Is parameter \textit{destination} for \textit{RTP-transmitter} set to \textit{127.0.0.1:1234}?
+\item Does the console show an error such as \texttt{Could not open file} or \texttt{Unsupported codec}?
+\end{itemize}
+
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui97.png}
+	\caption{the console output}
+	\label{fig:97}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ui96.png}
+	\caption{VLC receiving and playing the stream}
+	\label{fig:96}
+\end{figure}
+\end{center}
+\newpage
+
+\chapter{Execution}
+\label{chap:exe}
+\section{Internal view}
+We shortly describe here the internal view of the sirannon in order to understand the parameters in the next section. The basic operation of the sirannon is single threaded. The execution consists of a series of cycles with each cycle aiming to process one frame. The real duration of such a cycle, for example 2ms, is often much lower than the duration of one frame, typically 40ms. The process can sleep during the difference, lowering the CPU load considerably.
+
+\section{Execution parameters} 
+Let us introduce three execution parameters. To modify these parameters in the user interface for a configuration, go in the menu bar to \textit{Settings}, \textit{Settings}. These parameters are specific for each configuration.
+\begin{enumerate}
+\item\textbf{quantum}: in milliseconds, defines the minimum time to process one frame. If processing of a frame took less than this quantum, the process sleeps during the difference, lowering the CPU load. If you match this quantum with the duration of each frame, you get a working performance with minimal CPU load. For example a stream with 25 frames per second or 40 ms per frame, can be streamed using less than 1\% CPU using a quantum of 40ms. If the quantum is set at 0, the process never sleeps, producing very accurate timing (order 1 ms) at the cost of 100\% CPU utilization. default: 0
+
+\item\textbf{simulation}: in microseconds, if this value is greater than 0 the sirannon runs in simulated time. Each cycle the simulated time is increased with this value. This has the advantage of providing arbitrary time precision and possibly faster execution at the cost of losing the real time behavior. For example the simulation of streaming an HD/H264 stream using simulation steps of $40000\mu s$, can be run in $2s$ instead of $40s$ in real time. When \textit{simulation} is defined, the parameter \textit{quantum} is ignored. default: 0
+
+\item\textbf{seed}: if this value is greater than 0, it provides the seed for the random numbers in the sirannon. If the value is 0, the current time is used as seed. default: 0
+\end{enumerate}
+
+\section{Command line parameters}
+In order to use the configuration files without having to edit them when using differnt content, component parameters (not execution parameters!) can be entered in the form of \$1, \$2, \$3\textellipsis The symbol \$\textit{n} will be replaced by the $n^{th}$ command line parameter after the configuration file (see next section). Use the symbol \$\$ to circumvent this interpretation and represent the character "\$".
+
+\section{Usage}
+\begin{verbatim}
+sirannon [-cvbh] [-q=NUM[ns|us|ms|s]] [-s=NUM[ns|us|ms|s]] [-r=NUM] FILE [ARG-1] ... [ARG-n]
+Run the program with FILE as configuration.
+
+Options:
+  -h       Help information
+  -b       Build information
+  -c       Overview of components
+  -v       Verbose, use up to 4 v's to increase the level
+  -q=NUM   Quantum in milliseconds
+  -s=NUM   Simulation in milliseconds
+  -r=NUM   Seed for the random number generator
+
+Arguments:
+  ARG-1    Replace any occurrence of "$1" in FILE with ARG-1
+  ARG-2    Replace any occurrence of "$2" in FILE with ARG-2
+  ARG-NUM  Replace any occurrence of "$NUM" in FILE with ARG-NUM\end{verbatim}
+
+\subsection{Example 1}
+\texttt{sirannon -v -q=5 avc-streamer.xml gladiator.avi 127.0.0.1:5000}\newline
+In this example we run the configuration file "\textit{avc-streamer.xml}" with two command line parameters: the video file name and destination address. These command line parameters will replace the symbols \$1 and \$2 entered in the configuration file. In addition we set the quantum to 5 ms and print debug messages from toggled components.
+
+\subsection{Example 2}
+\texttt{sirannon -b -c}\newline
+Prints the build information and the available components. Since no xml file is specified, the program end instantly.
+
+
+\chapter{Examples}
+\label{chap:ex}
+The basics of the sirannon were explained in the previous chapters. By using examples, we will demonstrate the many possibilities of the sirannon. In contrast with the tutorial, we will not explain how to construct the configuration in the user interface but we will focus instead on describing the function and structure of different configurations. Sometimes we will refer to specific parameters of components. For a detailed description of the components and a full list of available parameters, refer to the next chapter. The distribution of Sirannon contains for each example the corresponding XML file.
+
+\section{Example 1: a basic streamer}
+Let us start with a basic example, even simpler than the tutorial: a basic AVC streamer. Figure \ref{fig:ex:1} shows the schematic. It contains the four basic components: a reader, a packetizer, a scheduler and a transmitter, connected in a chain.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex01.png}
+	\caption{a basic streamer}
+	\label{fig:ex:1}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 2: a basic receiver}
+The stream sent by the basic streamer can be received by a media player, but the sirannon also can act as a receiver. Hence, the sirannon is more than just a streamer. Figure \ref{fig:ex:3} shows this receiver. The receiver has four components like the basic streamer, performing the reverse operation: a receiver, a scheduler, an unpacketizer and a writer. Received packets are unpacketized into the original frames and those are written back to a file. The scheduler avoid problems such as UDP reordering or duplication. However, the RTP protocol should circumvent these problems, making the scheduler superfluous in this example.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex03.png}
+	\caption{a basic receiver}
+	\label{fig:ex:3}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 3: differentiated streaming}
+\label{sec:diff}
+This example modifies the structure of the basic streamer from example 1 in order to stream over multiple connections. Figure \ref{fig:ex:2} shows the result. Instead of having one \textit{rtp-transmitter}, we now have three. We also add a \textit{frame-classifier} to differentiate the I, P and B frames. The sirannon allows forks in the schematic using a simple routing mechanism based on a label \textit{xroute} per packet. The reader gives each packet an initial \textit{xroute} of 100. A classifier increases the \textit{xroute}\ with a fixed value for each classification. In this example, \textit{frame-classifier} has three parameters I, P and B with values 1, 2 and 3 respectively, producing packets with \textit{xroutes} 101, 102 and 103. The connections between \textit{frame-classifier} and \textit{rtp-transmitter 1, 2 and 3} use \textit{xroutes} 101, 102 and 103 respectively to split the stream. Section \ref{sec:route} also explains this routing system.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex02.png}
+	\caption{a differentiated streamer}
+	\label{fig:ex:2}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 4: proxy}
+A differentiated stream cannot be played by standard players such as VLC or Quicktime, because it only accepts one connection for video, not three for example. The sirannon can function as a proxy, converting a differentiated stream into a single stream. Such stream can then be received by standard players. Figure \ref{fig:ex:4} shows the schematic. The function consists of three types of components: three receivers, a scheduler and a transmitter. The packets from the three \textit{rtp-receivers} pass through the scheduler. In this setting, the scheduler is anything but superfluous since the three connections are unsynchronized. The scheduler restores the original order. It uses additional information included by the transmitters in the RTP header extension since the sequence numbers and time stamps from the RTP connections are insufficient to restore the original order. It also gives the merged stream the correct time behavior, so that the \textit{rtp-transmitter} can send the merged stream. This merged stream is then received by a standard player.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex04.png}
+	\caption{a proxy}
+	\label{fig:ex:4}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 5: a packet loss generator}
+The sirannon can also run as an offline tool. Figure \ref{fig:ex:5} shows the schematic to introduce packet loss, with a different percentage for each type of frame. The frames are read and packetized by \textit{avc-reader} and \textit{avc-packetizer}. The \textit{frame-classifier} splits the stream into I, P and B packets. For each of these types there is different component \textit{random-classifier 1, 2} or \textit{3} with its specific packet loss. The damage streams are merged and unpacketized by \textit{avc-unpacketizer} and the resulting frames (some of the original frames are lost) are written by the component \textit{writer}.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex05.png}
+	\caption{a packet loss generator}
+	\label{fig:ex:5}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 6: using transport streams}
+The sirannon supports MPEG2 transport streams, widely used in digital television. It multiplexes video, audio and meta-data into one stream that we can send over one connection, as opposed to the default RTP mode where each video, audio or meta-data substream has its own RTP session. Figure \ref{fig:ex:6} shows the configuration. It does not differ that much from the basic streamer. \textit{ffmpeg-reader} opens a Quicktime file containing both video and audio frames and  \textit{xroute} is set at 100 and 200 respectively for video and audio by the reader. Two packetizers create generic PES packets for video and audio respectively. The component \textit{ts-mutliplexer} multiplexes these packets into one transport stream. The two remaining components schedule and transmit the transport stream packets.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex06.png}
+	\caption{using transport streams}
+	\label{fig:ex:6}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 7: using and constructing blocks}
+Let us create a simulator to test the behavior of a buffer. Block components allows us to group several component into one component, allowing more readable and parameterized configurations. Figure \ref{fig:ex:7a} shows a \textit{qmatch-buffer} component and three \textit{block} components. Each \textit{block} components uses a configuration file that reads and packetizes a sequence. Figure \ref{fig:ex:7b} shows this configuration. This looks similar to the basic streamer example but it has at the end of the chain an \textit{out} component which sends packets to the surrounding configuration (figure \ref{fig:ex:7a}). In order to obtains precise timing results, we run the sirannon in simulation mode with a simulation step of 1000 $\mu s$.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex07a.png}
+	\caption{simulating a buffer}
+	\label{fig:ex:7a}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex07b.png}
+	\caption{streamer contained in the block}
+	\label{fig:ex:7b}
+\end{figure}
+\end{center}
+\newpage
+
+\section{Example 8: massive simulation}
+Using blocks we can create massive simulators of for example 18 different streams, as shown in figure \ref{fig:ex:8}.
+\begin{center}
+\begin{figure}[!ht]
+	\includegraphics[width=1.0\textwidth]{./images/ex08.png}
+	\caption{a massive simulator}
+	\label{fig:ex:8}
+\end{figure}
+\end{center}
+\newpage
+
+\chapter{Extending sirannon}
+In the source tree \texttt{src/Misc/Example.cpp} describes a good commented example about writing your own component. Place any new sources you create in the folder \texttt{src/Local} and add the flag \texttt{--enable-local} to \texttt{configure}. When adding new sources, rerun \texttt{configure --enable-local}.
+
+\chapter{Components}
+\label{chap:components}
+
+Components can have two special parameters:
+\begin{itemize}
+\item bool \textbf{debug}: if true, the component prints debug information, requires verbose level one or higher (use -v in the command line), default: false
+\item bool \textbf{thread}: if true, run the component in a separate thread, default: false 
+\end{itemize}
+\newpage
+\include{doc-gen}
+
+\end{document}

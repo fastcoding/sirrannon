@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrInverse</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrArrow.html" title="CrArrow">
+<link rel="next" href="CrBlit.html" title="CrBlit">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrArrow.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrBlit.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrInverse.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrInverse.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrInverse.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrInverse.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrInverse">
+<a name="CrInverse"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrInverse.top_of_page"></a>CrInverse</span></h2>
+<p>CrInverse — An item group that reverses a transformation higher up in
+the item tree.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrInverse.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrInverse.html#CrInverse-struct" title="CrInverse">CrInverse</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrInverse.html#cr-inverse-new" title="cr_inverse_new ()">cr_inverse_new</a>                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrInverse.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----CrInverse
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrInverse.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrInverse.html#CrInverse--preserve-rotation" title='The "preserve-rotation" property'>preserve-rotation</a>"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrInverse.html#CrInverse--preserve-scale" title='The "preserve-scale" property'>preserve-scale</a>"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrInverse.description"></a><h2>Description</h2>
+<p>
+This group can be used to reverse the cumulative scale and rotational effects
+of all affine transformations higher than it in the item tree.  It will
+always anchor the group to the x and y property settings according to the
+current transformation matrix.  Once the anchor is established, it will then
+optionally reverse the effects of scaling, rotation, or both.
+</p>
+<p>
+The typical use case for <a class="link" href="CrInverse.html" title="CrInverse"><span class="type">CrInverse</span></a> is for annotating a feature on a plot or
+diagram.  As the feature is scaled or rotated, the annotation stays at the
+same scale and or rotation. Another way to produce this same effect is to use
+the 'scaleable' properties on <a class="link" href="CrText.html" title="CrText"><span class="type">CrText</span></a>, <a class="link" href="CrVector.html" title="CrVector"><span class="type">CrVector</span></a>, and <a class="link" href="CrPixbuf.html" title="CrPixbuf"><span class="type">CrPixbuf</span></a>.
+</p>
+<p>
+<span class="emphasis"><em>Warning</em></span> this item will not function properly when
+implemented concurrently on multiple views unless transformations formed
+above it are the same in each view.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrInverse.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrInverse">
+<a name="CrInverse-struct"></a><h3>CrInverse</h3>
+<pre class="programlisting">typedef struct _CrInverse CrInverse;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_inverse_new ()">
+<a name="cr-inverse-new"></a><h3>cr_inverse_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_inverse_new                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         double x,
+                                                         double y,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience constructor for creating an inverse group and adding it to 
+an item group in one step.  The X and Y coordinates will mark the anchor
+point in the item space of the parent group.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X position of the group.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y position of the group.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call g_object_ref if you
+intend to use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrInverse.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "preserve-rotation" property'>
+<a name="CrInverse--preserve-rotation"></a><h3>The <code class="literal">"preserve-rotation"</code> property</h3>
+<pre class="programlisting">  "preserve-rotation"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>The rotation from the parent is not altered.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "preserve-scale" property'>
+<a name="CrInverse--preserve-scale"></a><h3>The <code class="literal">"preserve-scale"</code> property</h3>
+<pre class="programlisting">  "preserve-scale"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>The scaling from the parent is not altered.</p>
+<p>Default value: FALSE</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

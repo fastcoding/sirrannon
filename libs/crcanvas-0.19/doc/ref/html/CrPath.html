@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrPath</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrVector.html" title="CrVector">
+<link rel="next" href="CrArrow.html" title="CrArrow">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrVector.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrArrow.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrPath.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrPath.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrPath.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrPath.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#CrPath.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrPath">
+<a name="CrPath"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrPath.top_of_page"></a>CrPath</span></h2>
+<p>CrPath — A canvas item capable of rendering a <a
+href="/usr/share/gtk-doc/html/cairo/cairo-paths.html#cairo-path-t"
+><span class="type">cairo_path_t</span></a>.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrPath.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrPath.html#CrPath-struct" title="CrPath">CrPath</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrPath.html#cr-path-new" title="cr_path_new ()">cr_path_new</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrPath.html#cr-path-set-color" title="cr_path_set_color ()">cr_path_set_color</a>                   (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a> rgba);
+void                <a class="link" href="CrPath.html#cr-path-setup-line" title="cr_path_setup_line ()">cr_path_setup_line</a>                  (<a class="link" href="CrPath.html" title="CrPath">CrPath</a> *path,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrPath.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----CrPath
+               +----<a class="link" href="CrLine.html" title="CrLine">CrLine</a>
+               +----<a class="link" href="CrRectangle.html" title="CrRectangle">CrRectangle</a>
+               +----<a class="link" href="CrEllipse.html" title="CrEllipse">CrEllipse</a>
+               +----<a class="link" href="CrVector.html" title="CrVector">CrVector</a>
+               +----<a class="link" href="CrArrow.html" title="CrArrow">CrArrow</a>
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrPath.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrPath.html#CrPath--cap" title='The "cap" property'>cap</a>"                      CrCap                 : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--dash" title='The "dash" property'>dash</a>"                     CrDash*               : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--fill-color" title='The "fill-color" property'>fill-color</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--fill-color-rgba" title='The "fill-color-rgba" property'>fill-color-rgba</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--fill-rule" title='The "fill-rule" property'>fill-rule</a>"                CrFillRule            : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--join" title='The "join" property'>join</a>"                     CrJoin                : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--line-scaleable" title='The "line-scaleable" property'>line-scaleable</a>"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--line-width" title='The "line-width" property'>line-width</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--line-width-use-y" title='The "line-width-use-y" property'>line-width-use-y</a>"         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--outline-color" title='The "outline-color" property'>outline-color</a>"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--outline-color-rgba" title='The "outline-color-rgba" property'>outline-color-rgba</a>"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--path" title='The "path" property'>path</a>"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--pattern" title='The "pattern" property'>pattern</a>"                  <a class="link" href="crcanvas-cr-types.html#CrPattern" title="CrPattern">CrPattern</a>*            : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--pattern-scaleable" title='The "pattern-scaleable" property'>pattern-scaleable</a>"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrPath.html#CrPath--test-fill" title='The "test-fill" property'>test-fill</a>"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="CrPath.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrPath.html#CrPath-make-path" title='The "make-path" signal'>make-path</a>"                                      : Run Last
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrPath.description"></a><h2>Description</h2>
+<p>
+This is the base class for canvas items that are drawn from the
+<a
+href="/usr/share/gtk-doc/html/cairo/cairo-paths.html#cairo-path-t"
+><span class="type">cairo_path_t</span></a> such as <a class="link" href="CrEllipse.html" title="CrEllipse"><span class="type">CrEllipse</span></a>, <a class="link" href="CrRectangle.html" title="CrRectangle"><span class="type">CrRectangle</span></a>, and <a class="link" href="CrLine.html" title="CrLine"><span class="type">CrLine</span></a>.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrPath.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrPath">
+<a name="CrPath-struct"></a><h3>CrPath</h3>
+<pre class="programlisting">typedef struct _CrPath CrPath;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_path_new ()">
+<a name="cr-path-new"></a><h3>cr_path_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_path_new                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience function to create a path item and add it to a canvas item
+parent group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call
+g_object_ref if you intend to keep it around.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_path_set_color ()">
+<a name="cr-path-set-color"></a><h3>cr_path_set_color ()</h3>
+<pre class="programlisting">void                cr_path_set_color                   (<a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a> rgba);</pre>
+<p>
+A convenience function to set the rgba integer into the cairo 
+context.  It may be called by derived <a class="link" href="CrPath.html" title="CrPath"><span class="type">CrPath</span></a> inplementations.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> A cairo context to set the color into.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rgba</code></em> :</span></p></td>
+<td> An integer representing RGBA as four characters.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_path_setup_line ()">
+<a name="cr-path-setup-line"></a><h3>cr_path_setup_line ()</h3>
+<pre class="programlisting">void                cr_path_setup_line                  (<a class="link" href="CrPath.html" title="CrPath">CrPath</a> *path,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c);</pre>
+<p>
+A convenience function to set up the <a class="link" href="CrPath.html#CrPath--line-width" title='The "line-width" property'><span class="type">"line-width"</span></a>,
+<a class="link" href="CrPath.html#CrPath--line-scaleable" title='The "line-scaleable" property'><span class="type">"line-scaleable"</span></a>, and <a class="link" href="CrPath.html#CrPath--dash" title='The "dash" property'><span class="type">"dash"</span></a> properties into the cairo context.
+It may be called by derived implementations of <a class="link" href="CrPath.html" title="CrPath"><span class="type">CrPath</span></a>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td> The path object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> The current cairo context.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrPath.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "cap" property'>
+<a name="CrPath--cap"></a><h3>The <code class="literal">"cap"</code> property</h3>
+<pre class="programlisting">  "cap"                      CrCap                 : Read / Write</pre>
+<p>The enumeration for the style of line endings.  See #cairo_line_cap_t for more information.</p>
+<p>Default value: CAIRO_LINE_CAP_BUTT</p>
+</div>
+<hr>
+<div class="refsect2" title='The "dash" property'>
+<a name="CrPath--dash"></a><h3>The <code class="literal">"dash"</code> property</h3>
+<pre class="programlisting">  "dash"                     CrDash*               : Read / Write</pre>
+<p>a boxed array indicating the dash pattern to be used by Cairo.  See #cairo_set_dash for more information.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color" property'>
+<a name="CrPath--fill-color"></a><h3>The <code class="literal">"fill-color"</code> property</h3>
+<pre class="programlisting">  "fill-color"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A string color such as 'red', or '#123456' to be used to fill the path.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-color-rgba" property'>
+<a name="CrPath--fill-color-rgba"></a><h3>The <code class="literal">"fill-color-rgba"</code> property</h3>
+<pre class="programlisting">  "fill-color-rgba"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Region fill color, red,grn,blue,alpha.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fill-rule" property'>
+<a name="CrPath--fill-rule"></a><h3>The <code class="literal">"fill-rule"</code> property</h3>
+<pre class="programlisting">  "fill-rule"                CrFillRule            : Read / Write</pre>
+<p>The enumeration used to determine how paths are filled.  See #cairo_fill_rule_t for more information.</p>
+<p>Default value: CAIRO_FILL_RULE_WINDING</p>
+</div>
+<hr>
+<div class="refsect2" title='The "join" property'>
+<a name="CrPath--join"></a><h3>The <code class="literal">"join"</code> property</h3>
+<pre class="programlisting">  "join"                     CrJoin                : Read / Write</pre>
+<p>The enumeration for determining how line segments are joined together.  See #cairo_line_join_t for more information.</p>
+<p>Default value: CAIRO_LINE_JOIN_MITER</p>
+</div>
+<hr>
+<div class="refsect2" title='The "line-scaleable" property'>
+<a name="CrPath--line-scaleable"></a><h3>The <code class="literal">"line-scaleable"</code> property</h3>
+<pre class="programlisting">  "line-scaleable"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If line width should be scaleable.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "line-width" property'>
+<a name="CrPath--line-width"></a><h3>The <code class="literal">"line-width"</code> property</h3>
+<pre class="programlisting">  "line-width"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>Path line width in user units when #CrPath:line-scaleable  is TRUE.  When #CrPath:line-scaleable is FALSE this is  in device units.</p>
+<p>Default value: 2</p>
+</div>
+<hr>
+<div class="refsect2" title='The "line-width-use-y" property'>
+<a name="CrPath--line-width-use-y"></a><h3>The <code class="literal">"line-width-use-y"</code> property</h3>
+<pre class="programlisting">  "line-width-use-y"         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the Y axis should be used for determining the device coordinates for the line-width. This property only applies when line-scalable is FALSE, outline-color is set, and the canvas widget has  the maintain-aspect property set to FALSE. The default is to use the x-axis transformation to determine device line-width.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "outline-color" property'>
+<a name="CrPath--outline-color"></a><h3>The <code class="literal">"outline-color"</code> property</h3>
+<pre class="programlisting">  "outline-color"            <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>A string color such as 'red', or '#123456' to be used to sroke the path.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "outline-color-rgba" property'>
+<a name="CrPath--outline-color-rgba"></a><h3>The <code class="literal">"outline-color-rgba"</code> property</h3>
+<pre class="programlisting">  "outline-color-rgba"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Path color, red,grn,blue,alpha.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "path" property'>
+<a name="CrPath--path"></a><h3>The <code class="literal">"path"</code> property</h3>
+<pre class="programlisting">  "path"                     <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write</pre>
+<p>a cairo_path_t. On set the item owns it.  On get the item still owns it. This is exclusive with points.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "pattern" property'>
+<a name="CrPath--pattern"></a><h3>The <code class="literal">"pattern"</code> property</h3>
+<pre class="programlisting">  "pattern"                  <a class="link" href="crcanvas-cr-types.html#CrPattern" title="CrPattern">CrPattern</a>*            : Read / Write</pre>
+<p>Cairo pattern to fill the path region.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "pattern-scaleable" property'>
+<a name="CrPath--pattern-scaleable"></a><h3>The <code class="literal">"pattern-scaleable"</code> property</h3>
+<pre class="programlisting">  "pattern-scaleable"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If pattern should scale.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "test-fill" property'>
+<a name="CrPath--test-fill"></a><h3>The <code class="literal">"test-fill"</code> property</h3>
+<pre class="programlisting">  "test-fill"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the fill area should be grabbable by the pointer  regardless of if it is filled.  The most common use for this is as an invisible child of a very small item that would be difficult to grab on its own.</p>
+<p>Default value: FALSE</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="CrPath.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "make-path" signal'>
+<a name="CrPath-make-path"></a><h3>The <code class="literal">"make-path"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="CrPath.html" title="CrPath">CrPath</a>    *path,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *c,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)      : Run Last</pre>
+<p>
+This signal is part of the calculate-bounds signal for path items.
+First the path is constructed, then the bounds are calculated.  By
+overriding this signal and not overriding calculate-bounds, it is
+possible to render the path here and allow the default handler to
+calculate the bounds.  The path will be copied from the cairo_t*.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> Cairo context with transformation set to match the current item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the path from the cairo_t* should be used. FALSE to
+use whatever path was created previously if any.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

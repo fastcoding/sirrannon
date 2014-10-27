@@ -1,0 +1,115 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="ffmpeg-reader" type="ffmpeg-reader" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$1" />
+		<param name="loop" type="int" val="-1" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="dts-start" type="int" val="1000" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="false" />
+		<param name="seek" type="int" val="0" />
+		<param name="add-parameter-sets" type="bool" val="true" />
+		<param name="repeat-parameter-sets" type="bool" val="false" />
+		<param name="mov-frame" type="bool" val="false" />
+		<param name="sdp" type="bool" val="false" />
+		<gfx x="67.0" y="146.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="avc-packetizer" type="avc-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="aggregate" type="bool" val="false" />
+		<gfx x="283.0" y="146.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-scheduler" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1000" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<gfx x="498.0" y="146.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-transmitter 1" type="rtp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="4000" />
+		<param name="destination" type="string" val="127.0.0.1:5000" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicastTTL" type="int" val="-1" />
+		<param name="pts" type="bool" val="false" />
+		<param name="payload" type="int" val="-1" />
+		<param name="tracefile" type="string" val="" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="910.0" y="11.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="frame-classifier" type="frame-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="false" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="I" type="int" val="0" />
+		<param name="B" type="int" val="1" />
+		<param name="P" type="int" val="2" />
+		<param name="default" type="int" val="0" />
+		<gfx x="708.0" y="146.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-transmitter 2" type="rtp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="40002" />
+		<param name="destination" type="string" val="127.0.0.1:5002" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicastTTL" type="int" val="-1" />
+		<param name="pts" type="bool" val="false" />
+		<param name="payload" type="int" val="-1" />
+		<param name="tracefile" type="string" val="" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="911.0" y="146.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-transmitter 3" type="rtp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="4004" />
+		<param name="destination" type="string" val="127.0.0.1:5004" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicastTTL" type="int" val="-1" />
+		<param name="pts" type="bool" val="false" />
+		<param name="payload" type="int" val="-1" />
+		<param name="tracefile" type="string" val="" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="918.0" y="280.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="ffmpeg-reader" to="avc-packetizer" xroute="0"/>
+
+	<route from="avc-packetizer" to="basic-scheduler" xroute="0"/>
+
+	<route from="basic-scheduler" to="frame-classifier" xroute="0"/>
+
+	<route from="frame-classifier" to="rtp-transmitter 2" xroute="101"/>
+
+	<route from="frame-classifier" to="rtp-transmitter 1" xroute="100"/>
+
+	<route from="frame-classifier" to="rtp-transmitter 3" xroute="102"/>
+
+</config>

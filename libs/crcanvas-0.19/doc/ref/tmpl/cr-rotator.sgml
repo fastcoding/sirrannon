@@ -1,0 +1,69 @@
+<!-- ##### SECTION Title ##### -->
+CrRotator
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrRotator ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrRotator:active ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrRotator:canvas ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrRotator:cursor ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_rotator_new ##### -->
+<para>
+
+</para>
+
+@canvas: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_rotator_activate ##### -->
+<para>
+
+</para>
+
+@panner: 
+
+
+<!-- ##### FUNCTION cr_rotator_deactivate ##### -->
+<para>
+
+</para>
+
+@rotator: 
+
+

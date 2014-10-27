@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="crcanvas: A GTK/Cairo Canvas Widget" link="index.html" author="" name="crcanvas">
+  <chapters>
+    <sub name="Major Differences from other GTK based canvases" link="pt01.html"/>
+    <sub name="Reference" link="ch01.html">
+      <sub name="CrItem" link="CrItem.html"/>
+      <sub name="CrCanvas" link="CrCanvas.html"/>
+      <sub name="CrText" link="CrText.html"/>
+      <sub name="CrLine" link="CrLine.html"/>
+      <sub name="CrPixbuf" link="CrPixbuf.html"/>
+      <sub name="CrRectangle" link="CrRectangle.html"/>
+      <sub name="CrEllipse" link="CrEllipse.html"/>
+      <sub name="CrVector" link="CrVector.html"/>
+      <sub name="CrPath" link="CrPath.html"/>
+      <sub name="CrArrow" link="CrArrow.html"/>
+      <sub name="CrInverse" link="CrInverse.html"/>
+      <sub name="CrBlit" link="CrBlit.html"/>
+      <sub name="CrRotator" link="CrRotator.html"/>
+      <sub name="CrPanner" link="CrPanner.html"/>
+      <sub name="CrZoomer" link="CrZoomer.html"/>
+      <sub name="cr-types" link="crcanvas-cr-types.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <function name="CrItem" link="CrItem.html#CrItem-struct"/>
+    <function name="cr_item_new ()" link="CrItem.html#cr-item-new"/>
+    <function name="cr_item_add ()" link="CrItem.html#cr-item-add"/>
+    <function name="cr_item_remove ()" link="CrItem.html#cr-item-remove"/>
+    <function name="cr_item_move ()" link="CrItem.html#cr-item-move"/>
+    <function name="cr_item_set_z_relative ()" link="CrItem.html#cr-item-set-z-relative"/>
+    <function name="cr_item_set_z ()" link="CrItem.html#cr-item-set-z"/>
+    <function name="cr_item_hide ()" link="CrItem.html#cr-item-hide"/>
+    <function name="cr_item_show ()" link="CrItem.html#cr-item-show"/>
+    <function name="cr_item_get_matrix ()" link="CrItem.html#cr-item-get-matrix"/>
+    <function name="cr_item_get_inverse_matrix ()" link="CrItem.html#cr-item-get-inverse-matrix"/>
+    <function name="cr_item_cancel_matrix ()" link="CrItem.html#cr-item-cancel-matrix"/>
+    <function name="cr_item_request_update ()" link="CrItem.html#cr-item-request-update"/>
+    <function name="cr_item_get_bounds ()" link="CrItem.html#cr-item-get-bounds"/>
+    <function name="cr_item_get_device_bounds ()" link="CrItem.html#cr-item-get-device-bounds"/>
+    <function name="cr_item_calculate_bounds ()" link="CrItem.html#cr-item-calculate-bounds"/>
+    <function name="cr_item_invoke_paint ()" link="CrItem.html#cr-item-invoke-paint"/>
+    <function name="cr_item_invoke_test ()" link="CrItem.html#cr-item-invoke-test"/>
+    <function name="cr_item_find_child ()" link="CrItem.html#cr-item-find-child"/>
+    <function name="cr_item_report_old_bounds ()" link="CrItem.html#cr-item-report-old-bounds"/>
+    <function name="cr_item_report_new_bounds ()" link="CrItem.html#cr-item-report-new-bounds"/>
+    <function name="cr_item_invoke_event ()" link="CrItem.html#cr-item-invoke-event"/>
+    <function name="cr_item_make_temp_cairo ()" link="CrItem.html#cr-item-make-temp-cairo"/>
+    <function name="The &quot;avoid-test&quot; property" link="CrItem.html#CrItem--avoid-test"/>
+    <function name="The &quot;matrix&quot; property" link="CrItem.html#CrItem--matrix"/>
+    <function name="The &quot;test-rectangle&quot; property" link="CrItem.html#CrItem--test-rectangle"/>
+    <function name="The &quot;visible&quot; property" link="CrItem.html#CrItem--visible"/>
+    <function name="The &quot;x&quot; property" link="CrItem.html#CrItem--x"/>
+    <function name="The &quot;y&quot; property" link="CrItem.html#CrItem--y"/>
+    <function name="The &quot;added&quot; signal" link="CrItem.html#CrItem-added"/>
+    <function name="The &quot;calculate-bounds&quot; signal" link="CrItem.html#CrItem-calculate-bounds"/>
+    <function name="The &quot;event&quot; signal" link="CrItem.html#CrItem-event"/>
+    <function name="The &quot;invalidate&quot; signal" link="CrItem.html#CrItem-invalidate"/>
+    <function name="The &quot;paint&quot; signal" link="CrItem.html#CrItem-paint"/>
+    <function name="The &quot;removed&quot; signal" link="CrItem.html#CrItem-removed"/>
+    <function name="The &quot;request-update&quot; signal" link="CrItem.html#CrItem-request-update"/>
+    <function name="The &quot;test&quot; signal" link="CrItem.html#CrItem-test"/>
+    <function name="CrCanvas" link="CrCanvas.html#CrCanvas-struct"/>
+    <function name="cr_canvas_new ()" link="CrCanvas.html#cr-canvas-new"/>
+    <function name="cr_canvas_set_scroll_region ()" link="CrCanvas.html#cr-canvas-set-scroll-region"/>
+    <function name="cr_canvas_get_scroll_region ()" link="CrCanvas.html#cr-canvas-get-scroll-region"/>
+    <function name="cr_canvas_set_scroll_factor ()" link="CrCanvas.html#cr-canvas-set-scroll-factor"/>
+    <function name="cr_canvas_scroll_to ()" link="CrCanvas.html#cr-canvas-scroll-to"/>
+    <function name="cr_canvas_get_scroll_offsets ()" link="CrCanvas.html#cr-canvas-get-scroll-offsets"/>
+    <function name="cr_canvas_center_on ()" link="CrCanvas.html#cr-canvas-center-on"/>
+    <function name="cr_canvas_get_center ()" link="CrCanvas.html#cr-canvas-get-center"/>
+    <function name="cr_canvas_center_scale ()" link="CrCanvas.html#cr-canvas-center-scale"/>
+    <function name="cr_canvas_get_center_scale ()" link="CrCanvas.html#cr-canvas-get-center-scale"/>
+    <function name="cr_canvas_set_viewport ()" link="CrCanvas.html#cr-canvas-set-viewport"/>
+    <function name="cr_canvas_get_viewport ()" link="CrCanvas.html#cr-canvas-get-viewport"/>
+    <function name="cr_canvas_zoom ()" link="CrCanvas.html#cr-canvas-zoom"/>
+    <function name="cr_canvas_zoom_world ()" link="CrCanvas.html#cr-canvas-zoom-world"/>
+    <function name="cr_canvas_set_repaint_mode ()" link="CrCanvas.html#cr-canvas-set-repaint-mode"/>
+    <function name="cr_canvas_queue_repaint ()" link="CrCanvas.html#cr-canvas-queue-repaint"/>
+    <function name="cr_canvas_set_max_scale_factor ()" link="CrCanvas.html#cr-canvas-set-max-scale-factor"/>
+    <function name="cr_canvas_set_min_scale_factor ()" link="CrCanvas.html#cr-canvas-set-min-scale-factor"/>
+    <function name="cr_canvas_set_vadjustment ()" link="CrCanvas.html#cr-canvas-set-vadjustment"/>
+    <function name="cr_canvas_set_hadjustment ()" link="CrCanvas.html#cr-canvas-set-hadjustment"/>
+    <function name="The &quot;auto-scale&quot; property" link="CrCanvas.html#CrCanvas--auto-scale"/>
+    <function name="The &quot;hadjustment&quot; property" link="CrCanvas.html#CrCanvas--hadjustment"/>
+    <function name="The &quot;maintain-aspect&quot; property" link="CrCanvas.html#CrCanvas--maintain-aspect"/>
+    <function name="The &quot;maintain-center&quot; property" link="CrCanvas.html#CrCanvas--maintain-center"/>
+    <function name="The &quot;pick-item&quot; property" link="CrCanvas.html#CrCanvas--pick-item"/>
+    <function name="The &quot;repaint-mode&quot; property" link="CrCanvas.html#CrCanvas--repaint-mode"/>
+    <function name="The &quot;repaint-on-scroll&quot; property" link="CrCanvas.html#CrCanvas--repaint-on-scroll"/>
+    <function name="The &quot;root&quot; property" link="CrCanvas.html#CrCanvas--root"/>
+    <function name="The &quot;show-less&quot; property" link="CrCanvas.html#CrCanvas--show-less"/>
+    <function name="The &quot;vadjustment&quot; property" link="CrCanvas.html#CrCanvas--vadjustment"/>
+    <function name="The &quot;before-paint&quot; signal" link="CrCanvas.html#CrCanvas-before-paint"/>
+    <function name="The &quot;scroll-region-changed&quot; signal" link="CrCanvas.html#CrCanvas-scroll-region-changed"/>
+    <function name="The &quot;set-scroll-adjustments&quot; signal" link="CrCanvas.html#CrCanvas-set-scroll-adjustments"/>
+    <function name="CrText" link="CrText.html#CrText-struct"/>
+    <function name="cr_text_new ()" link="CrText.html#cr-text-new"/>
+    <function name="The &quot;anchor&quot; property" link="CrText.html#CrText--anchor"/>
+    <function name="The &quot;fill-color&quot; property" link="CrText.html#CrText--fill-color"/>
+    <function name="The &quot;fill-color-rgba&quot; property" link="CrText.html#CrText--fill-color-rgba"/>
+    <function name="The &quot;font&quot; property" link="CrText.html#CrText--font"/>
+    <function name="The &quot;scaleable&quot; property" link="CrText.html#CrText--scaleable"/>
+    <function name="The &quot;text&quot; property" link="CrText.html#CrText--text"/>
+    <function name="The &quot;use-markup&quot; property" link="CrText.html#CrText--use-markup"/>
+    <function name="The &quot;width&quot; property" link="CrText.html#CrText--width"/>
+    <function name="The &quot;x-offset&quot; property" link="CrText.html#CrText--x-offset"/>
+    <function name="The &quot;y-offset&quot; property" link="CrText.html#CrText--y-offset"/>
+    <function name="CrLine" link="CrLine.html#CrLine-struct"/>
+    <function name="cr_line_new ()" link="CrLine.html#cr-line-new"/>
+    <function name="The &quot;array&quot; property" link="CrLine.html#CrLine--array"/>
+    <function name="The &quot;close&quot; property" link="CrLine.html#CrLine--close"/>
+    <function name="The &quot;points&quot; property" link="CrLine.html#CrLine--points"/>
+    <function name="CrPixbuf" link="CrPixbuf.html#CrPixbuf-struct"/>
+    <function name="cr_pixbuf_new ()" link="CrPixbuf.html#cr-pixbuf-new"/>
+    <function name="The &quot;anchor&quot; property" link="CrPixbuf.html#CrPixbuf--anchor"/>
+    <function name="The &quot;height&quot; property" link="CrPixbuf.html#CrPixbuf--height"/>
+    <function name="The &quot;pattern&quot; property" link="CrPixbuf.html#CrPixbuf--pattern"/>
+    <function name="The &quot;pixbuf&quot; property" link="CrPixbuf.html#CrPixbuf--pixbuf"/>
+    <function name="The &quot;png&quot; property" link="CrPixbuf.html#CrPixbuf--png"/>
+    <function name="The &quot;scaleable&quot; property" link="CrPixbuf.html#CrPixbuf--scaleable"/>
+    <function name="The &quot;surface&quot; property" link="CrPixbuf.html#CrPixbuf--surface"/>
+    <function name="The &quot;test-fill&quot; property" link="CrPixbuf.html#CrPixbuf--test-fill"/>
+    <function name="The &quot;width&quot; property" link="CrPixbuf.html#CrPixbuf--width"/>
+    <function name="The &quot;x-offset&quot; property" link="CrPixbuf.html#CrPixbuf--x-offset"/>
+    <function name="The &quot;y-offset&quot; property" link="CrPixbuf.html#CrPixbuf--y-offset"/>
+    <function name="CrRectangle" link="CrRectangle.html#CrRectangle-struct"/>
+    <function name="cr_rectangle_new ()" link="CrRectangle.html#cr-rectangle-new"/>
+    <function name="The &quot;height&quot; property" link="CrRectangle.html#CrRectangle--height"/>
+    <function name="The &quot;width&quot; property" link="CrRectangle.html#CrRectangle--width"/>
+    <function name="CrEllipse" link="CrEllipse.html#CrEllipse-struct"/>
+    <function name="cr_ellipse_new ()" link="CrEllipse.html#cr-ellipse-new"/>
+    <function name="The &quot;height&quot; property" link="CrEllipse.html#CrEllipse--height"/>
+    <function name="The &quot;orientation&quot; property" link="CrEllipse.html#CrEllipse--orientation"/>
+    <function name="The &quot;width&quot; property" link="CrEllipse.html#CrEllipse--width"/>
+    <function name="CrVector" link="CrVector.html#CrVector-struct"/>
+    <function name="cr_vector_new ()" link="CrVector.html#cr-vector-new"/>
+    <function name="The &quot;end-scaleable&quot; property" link="CrVector.html#CrVector--end-scaleable"/>
+    <function name="The &quot;x2&quot; property" link="CrVector.html#CrVector--x2"/>
+    <function name="The &quot;y2&quot; property" link="CrVector.html#CrVector--y2"/>
+    <function name="CrPath" link="CrPath.html#CrPath-struct"/>
+    <function name="cr_path_new ()" link="CrPath.html#cr-path-new"/>
+    <function name="cr_path_set_color ()" link="CrPath.html#cr-path-set-color"/>
+    <function name="cr_path_setup_line ()" link="CrPath.html#cr-path-setup-line"/>
+    <function name="The &quot;cap&quot; property" link="CrPath.html#CrPath--cap"/>
+    <function name="The &quot;dash&quot; property" link="CrPath.html#CrPath--dash"/>
+    <function name="The &quot;fill-color&quot; property" link="CrPath.html#CrPath--fill-color"/>
+    <function name="The &quot;fill-color-rgba&quot; property" link="CrPath.html#CrPath--fill-color-rgba"/>
+    <function name="The &quot;fill-rule&quot; property" link="CrPath.html#CrPath--fill-rule"/>
+    <function name="The &quot;join&quot; property" link="CrPath.html#CrPath--join"/>
+    <function name="The &quot;line-scaleable&quot; property" link="CrPath.html#CrPath--line-scaleable"/>
+    <function name="The &quot;line-width&quot; property" link="CrPath.html#CrPath--line-width"/>
+    <function name="The &quot;line-width-use-y&quot; property" link="CrPath.html#CrPath--line-width-use-y"/>
+    <function name="The &quot;outline-color&quot; property" link="CrPath.html#CrPath--outline-color"/>
+    <function name="The &quot;outline-color-rgba&quot; property" link="CrPath.html#CrPath--outline-color-rgba"/>
+    <function name="The &quot;path&quot; property" link="CrPath.html#CrPath--path"/>
+    <function name="The &quot;pattern&quot; property" link="CrPath.html#CrPath--pattern"/>
+    <function name="The &quot;pattern-scaleable&quot; property" link="CrPath.html#CrPath--pattern-scaleable"/>
+    <function name="The &quot;test-fill&quot; property" link="CrPath.html#CrPath--test-fill"/>
+    <function name="The &quot;make-path&quot; signal" link="CrPath.html#CrPath-make-path"/>
+    <function name="CrArrow" link="CrArrow.html#CrArrow-struct"/>
+    <function name="cr_arrow_new ()" link="CrArrow.html#cr-arrow-new"/>
+    <function name="cr_arrow_connect_parent ()" link="CrArrow.html#cr-arrow-connect-parent"/>
+    <function name="The &quot;angle&quot; property" link="CrArrow.html#CrArrow--angle"/>
+    <function name="The &quot;depth&quot; property" link="CrArrow.html#CrArrow--depth"/>
+    <function name="The &quot;fatness&quot; property" link="CrArrow.html#CrArrow--fatness"/>
+    <function name="The &quot;length&quot; property" link="CrArrow.html#CrArrow--length"/>
+    <function name="The &quot;point-id&quot; property" link="CrArrow.html#CrArrow--point-id"/>
+    <function name="The &quot;scaleable&quot; property" link="CrArrow.html#CrArrow--scaleable"/>
+    <function name="The &quot;x-offset&quot; property" link="CrArrow.html#CrArrow--x-offset"/>
+    <function name="The &quot;y-offset&quot; property" link="CrArrow.html#CrArrow--y-offset"/>
+    <function name="CrInverse" link="CrInverse.html#CrInverse-struct"/>
+    <function name="cr_inverse_new ()" link="CrInverse.html#cr-inverse-new"/>
+    <function name="The &quot;preserve-rotation&quot; property" link="CrInverse.html#CrInverse--preserve-rotation"/>
+    <function name="The &quot;preserve-scale&quot; property" link="CrInverse.html#CrInverse--preserve-scale"/>
+    <function name="CrBlit" link="CrBlit.html#CrBlit-struct"/>
+    <function name="cr_blit_new ()" link="CrBlit.html#cr-blit-new"/>
+    <function name="The &quot;canvas&quot; property" link="CrBlit.html#CrBlit--canvas"/>
+    <function name="The &quot;device-height&quot; property" link="CrBlit.html#CrBlit--device-height"/>
+    <function name="The &quot;device-width&quot; property" link="CrBlit.html#CrBlit--device-width"/>
+    <function name="The &quot;scale-factor&quot; property" link="CrBlit.html#CrBlit--scale-factor"/>
+    <function name="The &quot;test-image&quot; property" link="CrBlit.html#CrBlit--test-image"/>
+    <function name="CrRotator" link="CrRotator.html#CrRotator-struct"/>
+    <function name="cr_rotator_new ()" link="CrRotator.html#cr-rotator-new"/>
+    <function name="cr_rotator_activate ()" link="CrRotator.html#cr-rotator-activate"/>
+    <function name="cr_rotator_deactivate ()" link="CrRotator.html#cr-rotator-deactivate"/>
+    <function name="The &quot;active&quot; property" link="CrRotator.html#CrRotator--active"/>
+    <function name="The &quot;canvas&quot; property" link="CrRotator.html#CrRotator--canvas"/>
+    <function name="The &quot;cursor&quot; property" link="CrRotator.html#CrRotator--cursor"/>
+    <function name="CrPanner" link="CrPanner.html#CrPanner-struct"/>
+    <function name="cr_panner_new ()" link="CrPanner.html#cr-panner-new"/>
+    <function name="cr_panner_activate ()" link="CrPanner.html#cr-panner-activate"/>
+    <function name="cr_panner_deactivate ()" link="CrPanner.html#cr-panner-deactivate"/>
+    <function name="The &quot;active&quot; property" link="CrPanner.html#CrPanner--active"/>
+    <function name="The &quot;button&quot; property" link="CrPanner.html#CrPanner--button"/>
+    <function name="The &quot;canvas&quot; property" link="CrPanner.html#CrPanner--canvas"/>
+    <function name="The &quot;cursor&quot; property" link="CrPanner.html#CrPanner--cursor"/>
+    <function name="The &quot;item&quot; property" link="CrPanner.html#CrPanner--item"/>
+    <function name="The &quot;activate&quot; signal" link="CrPanner.html#CrPanner-activate"/>
+    <function name="The &quot;deactivate&quot; signal" link="CrPanner.html#CrPanner-deactivate"/>
+    <function name="The &quot;pan&quot; signal" link="CrPanner.html#CrPanner-pan"/>
+    <function name="CrZoomer" link="CrZoomer.html#CrZoomer-struct"/>
+    <function name="cr_zoomer_new ()" link="CrZoomer.html#cr-zoomer-new"/>
+    <function name="cr_zoomer_activate ()" link="CrZoomer.html#cr-zoomer-activate"/>
+    <function name="cr_zoomer_deactivate ()" link="CrZoomer.html#cr-zoomer-deactivate"/>
+    <function name="The &quot;active&quot; property" link="CrZoomer.html#CrZoomer--active"/>
+    <function name="The &quot;canvas&quot; property" link="CrZoomer.html#CrZoomer--canvas"/>
+    <function name="The &quot;corner-to-corner&quot; property" link="CrZoomer.html#CrZoomer--corner-to-corner"/>
+    <function name="The &quot;cursor&quot; property" link="CrZoomer.html#CrZoomer--cursor"/>
+    <function name="The &quot;fill-color&quot; property" link="CrZoomer.html#CrZoomer--fill-color"/>
+    <function name="The &quot;fill-color-rgba&quot; property" link="CrZoomer.html#CrZoomer--fill-color-rgba"/>
+    <function name="The &quot;line-width&quot; property" link="CrZoomer.html#CrZoomer--line-width"/>
+    <function name="The &quot;maintain-aspect&quot; property" link="CrZoomer.html#CrZoomer--maintain-aspect"/>
+    <function name="The &quot;outline-color&quot; property" link="CrZoomer.html#CrZoomer--outline-color"/>
+    <function name="The &quot;outline-color-rgba&quot; property" link="CrZoomer.html#CrZoomer--outline-color-rgba"/>
+    <function name="The &quot;activate&quot; signal" link="CrZoomer.html#CrZoomer-activate"/>
+    <function name="The &quot;deactivate&quot; signal" link="CrZoomer.html#CrZoomer-deactivate"/>
+    <function name="The &quot;select&quot; signal" link="CrZoomer.html#CrZoomer-select"/>
+    <function name="CR_TYPE_POINTS" link="crcanvas-cr-types.html#CR-TYPE-POINTS--CAPS"/>
+    <function name="CrPoints" link="crcanvas-cr-types.html#CrPoints"/>
+    <function name="cr_points_new ()" link="crcanvas-cr-types.html#cr-points-new"/>
+    <function name="cr_points_get_type ()" link="crcanvas-cr-types.html#cr-points-get-type"/>
+    <function name="cr_points_ref ()" link="crcanvas-cr-types.html#cr-points-ref"/>
+    <function name="cr_points_unref ()" link="crcanvas-cr-types.html#cr-points-unref"/>
+    <function name="CR_TYPE_BOUNDS" link="crcanvas-cr-types.html#CR-TYPE-BOUNDS--CAPS"/>
+    <function name="CrBounds" link="crcanvas-cr-types.html#CrBounds"/>
+    <function name="cr_bounds_new ()" link="crcanvas-cr-types.html#cr-bounds-new"/>
+    <function name="cr_bounds_get_type ()" link="crcanvas-cr-types.html#cr-bounds-get-type"/>
+    <function name="cr_bounds_ref ()" link="crcanvas-cr-types.html#cr-bounds-ref"/>
+    <function name="cr_bounds_unref ()" link="crcanvas-cr-types.html#cr-bounds-unref"/>
+    <function name="CR_TYPE_DEVICE_BOUNDS" link="crcanvas-cr-types.html#CR-TYPE-DEVICE-BOUNDS--CAPS"/>
+    <function name="CrDeviceBounds" link="crcanvas-cr-types.html#CrDeviceBounds"/>
+    <function name="cr_device_bounds_new ()" link="crcanvas-cr-types.html#cr-device-bounds-new"/>
+    <function name="cr_device_bounds_get_type ()" link="crcanvas-cr-types.html#cr-device-bounds-get-type"/>
+    <function name="cr_device_bounds_ref ()" link="crcanvas-cr-types.html#cr-device-bounds-ref"/>
+    <function name="cr_device_bounds_unref ()" link="crcanvas-cr-types.html#cr-device-bounds-unref"/>
+    <function name="CR_TYPE_PATTERN" link="crcanvas-cr-types.html#CR-TYPE-PATTERN--CAPS"/>
+    <function name="cr_pattern_get_type ()" link="crcanvas-cr-types.html#cr-pattern-get-type"/>
+    <function name="CrPattern" link="crcanvas-cr-types.html#CrPattern"/>
+    <function name="CR_TYPE_SURFACE" link="crcanvas-cr-types.html#CR-TYPE-SURFACE--CAPS"/>
+    <function name="cr_surface_get_type ()" link="crcanvas-cr-types.html#cr-surface-get-type"/>
+    <function name="CrSurface" link="crcanvas-cr-types.html#CrSurface"/>
+    <function name="CR_TYPE_MATRIX" link="crcanvas-cr-types.html#CR-TYPE-MATRIX--CAPS"/>
+    <function name="CrMatrix" link="crcanvas-cr-types.html#CrMatrix"/>
+    <function name="cr_matrix_get_type ()" link="crcanvas-cr-types.html#cr-matrix-get-type"/>
+    <function name="CR_TYPE_CONTEXT" link="crcanvas-cr-types.html#CR-TYPE-CONTEXT--CAPS"/>
+    <function name="CrContext" link="crcanvas-cr-types.html#CrContext"/>
+    <function name="cr_context_get_type ()" link="crcanvas-cr-types.html#cr-context-get-type"/>
+  </functions>
+</book>

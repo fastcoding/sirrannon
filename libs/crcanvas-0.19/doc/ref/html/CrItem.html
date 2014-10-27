@@ -1,0 +1,1429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrItem</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="ch01.html" title="Reference">
+<link rel="next" href="CrCanvas.html" title="CrCanvas">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrCanvas.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrItem.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrItem.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrItem.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrItem.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#CrItem.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrItem">
+<a name="CrItem"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrItem.top_of_page"></a>CrItem</span></h2>
+<p>CrItem — The base class for all canvas items and groups.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrItem.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrItem.html#CrItem-struct" title="CrItem">CrItem</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrItem.html#cr-item-new" title="cr_item_new ()">cr_item_new</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrItem.html#cr-item-add" title="cr_item_add ()">cr_item_add</a>                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);
+void                <a class="link" href="CrItem.html#cr-item-remove" title="cr_item_remove ()">cr_item_remove</a>                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);
+void                <a class="link" href="CrItem.html#cr-item-move" title="cr_item_move ()">cr_item_move</a>                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         double dx,
+                                                         double dy);
+void                <a class="link" href="CrItem.html#cr-item-set-z-relative" title="cr_item_set_z_relative ()">cr_item_set_z_relative</a>              (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child,
+                                                         int positions);
+void                <a class="link" href="CrItem.html#cr-item-set-z" title="cr_item_set_z ()">cr_item_set_z</a>                       (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child,
+                                                         int position);
+void                <a class="link" href="CrItem.html#cr-item-hide" title="cr_item_hide ()">cr_item_hide</a>                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+void                <a class="link" href="CrItem.html#cr-item-show" title="cr_item_show ()">cr_item_show</a>                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+<a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *    <a class="link" href="CrItem.html#cr-item-get-matrix" title="cr_item_get_matrix ()">cr_item_get_matrix</a>                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+<a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *    <a class="link" href="CrItem.html#cr-item-get-inverse-matrix" title="cr_item_get_inverse_matrix ()">cr_item_get_inverse_matrix</a>          (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+void                <a class="link" href="CrItem.html#cr-item-cancel-matrix" title="cr_item_cancel_matrix ()">cr_item_cancel_matrix</a>               (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+void                <a class="link" href="CrItem.html#cr-item-request-update" title="cr_item_request_update ()">cr_item_request_update</a>              (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="CrItem.html#cr-item-get-bounds" title="cr_item_get_bounds ()">cr_item_get_bounds</a>                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         double *x1,
+                                                         double *y1,
+                                                         double *x2,
+                                                         double *y2);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="CrItem.html#cr-item-get-device-bounds" title="cr_item_get_device_bounds ()">cr_item_get_device_bounds</a>           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="CrItem.html#cr-item-calculate-bounds" title="cr_item_calculate_bounds ()">cr_item_calculate_bounds</a>            (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *bounds,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device_bounds);
+void                <a class="link" href="CrItem.html#cr-item-invoke-paint" title="cr_item_invoke_paint ()">cr_item_invoke_paint</a>                (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all,
+                                                         double x1,
+                                                         double y1,
+                                                         double x2,
+                                                         double y2);
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrItem.html#cr-item-invoke-test" title="cr_item_invoke_test ()">cr_item_invoke_test</a>                 (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c,
+                                                         double x,
+                                                         double y);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="CrItem.html#cr-item-find-child" title="cr_item_find_child ()">cr_item_find_child</a>                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *matrix,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);
+void                <a class="link" href="CrItem.html#cr-item-report-old-bounds" title="cr_item_report_old_bounds ()">cr_item_report_old_bounds</a>           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all);
+void                <a class="link" href="CrItem.html#cr-item-report-new-bounds" title="cr_item_report_new_bounds ()">cr_item_report_new_bounds</a>           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="CrItem.html#cr-item-invoke-event" title="cr_item_invoke_event ()">cr_item_invoke_event</a>                (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="http://library.gnome.org/devel/gdk/unstable/gdk-Event-Structures.html#GdkEvent"
+>GdkEvent</a> *event,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *matrix,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *pick_item);
+<a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *         <a class="link" href="CrItem.html#cr-item-make-temp-cairo" title="cr_item_make_temp_cairo ()">cr_item_make_temp_cairo</a>             (void);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrItem.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----CrItem
+         +----<a class="link" href="CrPath.html" title="CrPath">CrPath</a>
+         +----<a class="link" href="CrInverse.html" title="CrInverse">CrInverse</a>
+         +----<a class="link" href="CrText.html" title="CrText">CrText</a>
+         +----<a class="link" href="CrPixbuf.html" title="CrPixbuf">CrPixbuf</a>
+         +----<a class="link" href="CrBlit.html" title="CrBlit">CrBlit</a>
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrItem.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrItem.html#CrItem--avoid-test" title='The "avoid-test" property'>avoid-test</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrItem.html#CrItem--matrix" title='The "matrix" property'>matrix</a>"                   <a class="link" href="crcanvas-cr-types.html#CrMatrix" title="CrMatrix">CrMatrix</a>*             : Read / Write
+  "<a class="link" href="CrItem.html#CrItem--test-rectangle" title='The "test-rectangle" property'>test-rectangle</a>"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrItem.html#CrItem--visible" title='The "visible" property'>visible</a>"                  <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrItem.html#CrItem--x" title='The "x" property'>x</a>"                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrItem.html#CrItem--y" title='The "y" property'>y</a>"                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="CrItem.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrItem.html#CrItem-added" title='The "added" signal'>added</a>"                                          : Run First
+  "<a class="link" href="CrItem.html#CrItem-calculate-bounds" title='The "calculate-bounds" signal'>calculate-bounds</a>"                               : Run Last
+  "<a class="link" href="CrItem.html#CrItem-event" title='The "event" signal'>event</a>"                                          : Run Last
+  "<a class="link" href="CrItem.html#CrItem-invalidate" title='The "invalidate" signal'>invalidate</a>"                                     : Run Last
+  "<a class="link" href="CrItem.html#CrItem-paint" title='The "paint" signal'>paint</a>"                                          : Run Last
+  "<a class="link" href="CrItem.html#CrItem-removed" title='The "removed" signal'>removed</a>"                                        : Run First
+  "<a class="link" href="CrItem.html#CrItem-request-update" title='The "request-update" signal'>request-update</a>"                                 : Run Last
+  "<a class="link" href="CrItem.html#CrItem-test" title='The "test" signal'>test</a>"                                           : Run Last
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrItem.description"></a><h2>Description</h2>
+<p>
+The base class for all canvas items. This class can be used as a painting
+object, or as a grouping object, or as both.
+</p>
+<p>
+To use this as a painting object, connect to or redefine the <a class="link" href="CrItem.html#CrItem-paint" title='The "paint" signal'><span class="type">"paint"</span></a>
+and <a class="link" href="CrItem.html#CrItem-calculate-bounds" title='The "calculate-bounds" signal'><span class="type">"calculate-bounds"</span></a> signals.
+</p>
+<p>
+To use it as a grouping object, call <a class="link" href="CrItem.html#cr-item-add" title="cr_item_add ()"><span class="type">cr_item_add</span></a> and <a class="link" href="CrItem.html#cr-item-remove" title="cr_item_remove ()"><span class="type">cr_item_remove</span></a>.  To
+move the group around, make changes to its matrix (<a class="link" href="CrItem.html#cr-item-get-matrix" title="cr_item_get_matrix ()"><span class="type">cr_item_get_matrix</span></a>) and
+call <a class="link" href="CrItem.html#cr-item-request-update" title="cr_item_request_update ()"><span class="type">cr_item_request_update</span></a>.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrItem.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrItem">
+<a name="CrItem-struct"></a><h3>CrItem</h3>
+<pre class="programlisting">typedef struct {
+        /*
+         * The list of child items may be accessed for reading directly.
+         * It should only be modified via the cr_item_add/remove methods.
+         */
+        GList *items;
+        CrBounds *bounds;
+        CrDeviceBounds *device;
+        cairo_matrix_t *matrix, *matrix_i, *matrix_p;
+        guint32 flags;
+} CrItem;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_new ()">
+<a name="cr-item-new"></a><h3>cr_item_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_item_new                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GType"
+>GType</a> type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A factory method to create a new CrItem and add it to a group in one step.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td> The type of item to create.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The newly created item. You must call g_object_ref if you intend to
+use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_add ()">
+<a name="cr-item-add"></a><h3>cr_item_add ()</h3>
+<pre class="programlisting">void                cr_item_add                         (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);</pre>
+<p>
+The child item is added under management of the parent item such that the
+rendering (z-order) of the child will be more forward than the parent.  The
+parent will add a reference to the child.  The child can be unref'd by the 
+user after adding.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td> The parent item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> The child item.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_remove ()">
+<a name="cr-item-remove"></a><h3>cr_item_remove ()</h3>
+<pre class="programlisting">void                cr_item_remove                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);</pre>
+<p>
+Removes and unref's child from the item's list or and sublist under item. The
+child need not be a direct descended of the parent item.  This means you can
+call this function with the canvas root item if necessary.  The tree will be
+searched until the child is found.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td> The parent canvas item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> The child canvas item.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_move ()">
+<a name="cr-item-move"></a><h3>cr_item_move ()</h3>
+<pre class="programlisting">void                cr_item_move                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         double dx,
+                                                         double dy);</pre>
+<p>
+Moves the item to a position relative to where it is now.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dx</code></em> :</span></p></td>
+<td> The distance in item units to move in the x direction.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dy</code></em> :</span></p></td>
+<td> The distance in item units to move in the y direction.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_set_z_relative ()">
+<a name="cr-item-set-z-relative"></a><h3>cr_item_set_z_relative ()</h3>
+<pre class="programlisting">void                cr_item_set_z_relative              (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child,
+                                                         int positions);</pre>
+<p>
+Moves the child item in height relative to its siblings by the number of
+places given in <em class="parameter"><code>positions</code></em>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td> The group holding the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> The item to move.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>positions</code></em> :</span></p></td>
+<td> Number positions to move by. Positive goes up.  Negative goes
+down.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_set_z ()">
+<a name="cr-item-set-z"></a><h3>cr_item_set_z ()</h3>
+<pre class="programlisting">void                cr_item_set_z                       (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child,
+                                                         int position);</pre>
+<p>
+Sets the child item height relative to its siblings to be the absolute
+position given by <em class="parameter"><code>position</code></em>. Zero is the bottom, -1 is the top.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td> The group holding the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> The item to move.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
+<td> Absolute position. Positive is places from the bottom.  
+Negative is places from the top.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_hide ()">
+<a name="cr-item-hide"></a><h3>cr_item_hide ()</h3>
+<pre class="programlisting">void                cr_item_hide                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Hides the item.  If the item is a parent, then all children will
+be hidden as well.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_show ()">
+<a name="cr-item-show"></a><h3>cr_item_show ()</h3>
+<pre class="programlisting">void                cr_item_show                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Shows the item.  If the item is a parent, then the children may or may not 
+be shown depending on their visible property.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_get_matrix ()">
+<a name="cr-item-get-matrix"></a><h3>cr_item_get_matrix ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *    cr_item_get_matrix                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Creates an identity matrix if one does not exist.  
+Otherwise returns the current matrix. If you modify the matrix in any way,
+you must call request_update in order to see the results.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The canvas item transformation matrix.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_get_inverse_matrix ()">
+<a name="cr-item-get-inverse-matrix"></a><h3>cr_item_get_inverse_matrix ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *    cr_item_get_inverse_matrix          (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Creates an identity matrix if one does not exist. Otherwise returns the
+current inverse matrix. If you modify the matrix in any way, you must call
+request_update in order to see the results.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The canvas item inverse transformation matrix.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_cancel_matrix ()">
+<a name="cr-item-cancel-matrix"></a><h3>cr_item_cancel_matrix ()</h3>
+<pre class="programlisting">void                cr_item_cancel_matrix               (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Removes any transformations from this canvas item and request an update if
+necessary.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_request_update ()">
+<a name="cr-item-request-update"></a><h3>cr_item_request_update ()</h3>
+<pre class="programlisting">void                cr_item_request_update              (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item);</pre>
+<p>
+Propagates request up through the canvas item tree, to let the canvas know
+that a screen refresh is required.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_get_bounds ()">
+<a name="cr-item-get-bounds"></a><h3>cr_item_get_bounds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cr_item_get_bounds                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         double *x1,
+                                                         double *y1,
+                                                         double *x2,
+                                                         double *y2);</pre>
+<p>
+The bounds are returned in the world coordinate system of item.
+Note that this routine will return the last set of bounds reported by the
+item during a canvas update.  If no updates have occurred then <code class="literal">FALSE</code> is
+returned.  Use <a class="link" href="CrItem.html#cr-item-calculate-bounds" title="cr_item_calculate_bounds ()"><span class="type">cr_item_calculate_bounds</span></a> if you need to know the bounds
+immediately.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> Leftmost edge of the bounding box (return value).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Upper edge of the bounding box (return value).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> Rightmost edge of the bounding box (return value).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Lower edge of the bounding box (return value).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">FALSE</code> if the bounds are not available for this item.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_get_device_bounds ()">
+<a name="cr-item-get-device-bounds"></a><h3>cr_item_get_device_bounds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cr_item_get_device_bounds           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device);</pre>
+<p>
+The device bounds report any space the item uses that is device based.
+This space is anchored to the item bounds reported by <a class="link" href="CrItem.html#cr-item-get-bounds" title="cr_item_get_bounds ()"><span class="type">cr_item_get_bounds</span></a>.
+Note that this routine will return the last set of bounds reported by the
+item during a canvas update.  If no updates have occurred then <code class="literal">FALSE</code> is
+returned.  Use <a class="link" href="CrItem.html#cr-item-calculate-bounds" title="cr_item_calculate_bounds ()"><span class="type">cr_item_calculate_bounds</span></a> if you need to know the bounds
+immediately.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td> A structure representing the items device-based boundaries (if any).
+If this return returns <code class="literal">TRUE</code>, the structure will be filled with the item's
+device based boundaries.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if this item has any device based space.  <code class="literal">FALSE</code> if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_calculate_bounds ()">
+<a name="cr-item-calculate-bounds"></a><h3>cr_item_calculate_bounds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cr_item_calculate_bounds            (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a> *bounds,
+                                                         <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device_bounds);</pre>
+<p>
+Run the <a class="link" href="CrItem.html#CrItem-calculate-bounds" title='The "calculate-bounds" signal'><span class="type">"calculate_bounds"</span></a> bounds signal and virtual method on the
+item using a temporary cairo context and report the results.  The results are
+not retained by this object. This function
+is provided as a user convenience and is not run as part of normal canvas
+operation. The reason a user might want to call this is to know the bounds in
+advance of the first canvas update.  The <a class="link" href="CrItem.html#cr-item-get-bounds" title="cr_item_get_bounds ()"><span class="type">cr_item_get_bounds</span></a> and
+<a class="link" href="CrItem.html#cr-item-get-device-bounds" title="cr_item_get_device_bounds ()"><span class="type">cr_item_get_device_bounds</span></a> methods will return <code class="literal">FALSE</code> unless the canvas has
+been updated at least once. The disadvantage to using this is that in some
+extreme cases the bounds reported by a temporary cairo context may differ
+from the bounds reported by the cairo context being used by the canvas
+device. So this routine really will give only an approximation of what the
+bounds will be when the item is rendered to the screen.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bounds</code></em> :</span></p></td>
+<td> Bounding box in item coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device_bounds</code></em> :</span></p></td>
+<td> A structure for specifying device coordinate boundaries (if
+any)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the the bounds are defined even if the are 0, 0, 0, 0.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_invoke_paint ()">
+<a name="cr-item-invoke-paint"></a><h3>cr_item_invoke_paint ()</h3>
+<pre class="programlisting">void                cr_item_invoke_paint                (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all,
+                                                         double x1,
+                                                         double y1,
+                                                         double x2,
+                                                         double y2);</pre>
+<p>
+This is normally called only by CrCanvas or CrItem.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ct</code></em> :</span></p></td>
+<td> cairo context to paint with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>all</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> Left coord of the rectangle to be painted in pre-item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Top coord of the rectangle to be painted in pre-item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> Right coord of the rectangle to be painted in pre-item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Bottom coordinate of the rectangle to be painted in pre-item units.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_invoke_test ()">
+<a name="cr-item-invoke-test"></a><h3>cr_item_invoke_test ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_item_invoke_test                 (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *c,
+                                                         double x,
+                                                         double y);</pre>
+<p>
+This is normally called only by CrCanvas or CrItem.  It is used to run the
+test method or emit a test signal on the derived canvas items.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> The cairo context with its transformation matrix set to reflect all
+transformations higher in the item tree.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The point to be tested in device coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The point to be tested in device coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The first canvas item in the z-order to test TRUE.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_find_child ()">
+<a name="cr-item-find-child"></a><h3>cr_item_find_child ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cr_item_find_child                  (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *matrix,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *child);</pre>
+<p>
+An Internal method.  This will search the item tree for a child item that 
+was previously found using invoke_test.  When the item is found the 
+cairo matrix will be set to reflect the transformation between
+this item and the found item.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>matrix</code></em> :</span></p></td>
+<td> A cairo_matrix_t that should be set to identity at the start of 
+the search.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> The item to be found.  
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the item was found.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_report_old_bounds ()">
+<a name="cr-item-report-old-bounds"></a><h3>cr_item_report_old_bounds ()</h3>
+<pre class="programlisting">void                cr_item_report_old_bounds           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all);</pre>
+<p>
+This is normally called only by the canvas widget or canvas item.  It is used
+to report back invalidated regions to the canvas or device.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ct</code></em> :</span></p></td>
+<td> The cairo context transformed to be relative to the device coordinates
+for this item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>all</code></em> :</span></p></td>
+<td> Used to tell children to re-report theit bounds.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_report_new_bounds ()">
+<a name="cr-item-report-new-bounds"></a><h3>cr_item_report_new_bounds ()</h3>
+<pre class="programlisting">void                cr_item_report_new_bounds           (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-context.html#cairo-t"
+>cairo_t</a> *ct,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> all);</pre>
+<p>
+This is normally called only by the canvas widget or canvas item.  It is used
+to trigger calculate_bounds in derived canvas items and to report back
+invalidated regions to the canvas or device.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ct</code></em> :</span></p></td>
+<td> The cairo context transformed to be relative to the device coordinates
+for this item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>all</code></em> :</span></p></td>
+<td> Used to tell children to re-report theit bounds.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_invoke_event ()">
+<a name="cr-item-invoke-event"></a><h3>cr_item_invoke_event ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cr_item_invoke_event                (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *item,
+                                                         <a
+href="http://library.gnome.org/devel/gdk/unstable/gdk-Event-Structures.html#GdkEvent"
+>GdkEvent</a> *event,
+                                                         <a
+href="/usr/share/gtk-doc/html/cairo/cairo-matrix.html#cairo-matrix-t"
+>cairo_matrix_t</a> *matrix,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *pick_item);</pre>
+<p>
+This is normally called only by the device. It is used to trigger the
+derived canvas item 'event' signal.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td> The event with coordinates in device units
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>matrix</code></em> :</span></p></td>
+<td> The cumulative matrix from device to this item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pick_item</code></em> :</span></p></td>
+<td> The item the cursor is on.  This may be different from item if
+the event is caught on a non-leaf node.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE to stop propagation of the event.  FALSE to continue.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_item_make_temp_cairo ()">
+<a name="cr-item-make-temp-cairo"></a><h3>cr_item_make_temp_cairo ()</h3>
+<pre class="programlisting"><a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *         cr_item_make_temp_cairo             (void);</pre>
+<p>
+A convenience procedure used by some implementations to create a path. In
+order to use this, the scale must set the scale to be roughly "ball-park" to
+the scale where the canvas item will be painted.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A cairo context. Call cairo_destroy on this reference when finished.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrItem.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "avoid-test" property'>
+<a name="CrItem--avoid-test"></a><h3>The <code class="literal">"avoid-test"</code> property</h3>
+<pre class="programlisting">  "avoid-test"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Prevents item and children from being cursor tested.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "matrix" property'>
+<a name="CrItem--matrix"></a><h3>The <code class="literal">"matrix"</code> property</h3>
+<pre class="programlisting">  "matrix"                   <a class="link" href="crcanvas-cr-types.html#CrMatrix" title="CrMatrix">CrMatrix</a>*             : Read / Write</pre>
+<p>Cairo matrix used to transform this item.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "test-rectangle" property'>
+<a name="CrItem--test-rectangle"></a><h3>The <code class="literal">"test-rectangle"</code> property</h3>
+<pre class="programlisting">  "test-rectangle"           <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the point test routine should ignore any details about the item and just test the enclosing rectangle.  For CrPath based items the test-fill property may be more appropriate.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "visible" property'>
+<a name="CrItem--visible"></a><h3>The <code class="literal">"visible"</code> property</h3>
+<pre class="programlisting">  "visible"                  <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Whether the item is visible.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "x" property'>
+<a name="CrItem--x"></a><h3>The <code class="literal">"x"</code> property</h3>
+<pre class="programlisting">  "x"                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The matrix translation in the x direction in item units.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "y" property'>
+<a name="CrItem--y"></a><h3>The <code class="literal">"y"</code> property</h3>
+<pre class="programlisting">  "y"                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The matrix translation in the y direction in item units.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="CrItem.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "added" signal'>
+<a name="CrItem-added"></a><h3>The <code class="literal">"added"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>  *critem,
+                                                        <a class="link" href="CrItem.html" title="CrItem">CrItem</a>  *arg1,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data)      : Run First</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>critem</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arg1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "calculate-bounds" signal'>
+<a name="CrItem-calculate-bounds"></a><h3>The <code class="literal">"calculate-bounds"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>         *item,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a>      *c,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrBounds" title="CrBounds">CrBounds</a>       *bounds,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>        user_data)      : Run Last</pre>
+<p>
+Defining this method is optional but strongly recommended.  If it is
+not provided, then the device (canvas widget) must be run in repaint
+mode or else this item won't be painted. In most cases the
+<span class="type">device</span> can be ignored.  If some portion of the item is tied
+to device space then the anchor should be filled to reflect what part
+of the item bounding box the device bounding box should be measured
+from.  An anchor to a corner means the device space is measured from
+that corner.  An anchor to a center means the device space is
+measured to either side of the item unit bounding box.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> Cairo context with transformation set to match the current item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bounds</code></em> :</span></p></td>
+<td> Bounding box in item coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td> A structure for specifying device coordinate
+boundaries (if any)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the the bounds are defined even if the are 0, 0, 0,
+0.  Any implementation of this method should always return <code class="literal">TRUE</code>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "event" signal'>
+<a name="CrItem-event"></a><h3>The <code class="literal">"event"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>   *item,
+                                                        <a
+href="http://library.gnome.org/devel/gdk/unstable/gdk-Event-Structures.html#GdkEvent"
+>GdkEvent</a> *event,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrMatrix" title="CrMatrix">CrMatrix</a> *matrix,
+                                                        <a class="link" href="CrItem.html" title="CrItem">CrItem</a>   *pick_item,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>  user_data)      : Run Last</pre>
+<p>
+In most cases applications will connect to this signal.
+This method need only be defined if your canvas item has some type of
+pointer behavior.  If test is not defined, this method will never be
+called.
+</p>
+<p>
+Since release 0.11, the coordinates returned in the event structure
+represent the current user coordinates for the item being signaled.
+The typical way to use the event signal is to connect to the item
+which is to be manipulated.  During the button press save initial
+event coordinates.  During the motion event manipulate the item by
+comparing the event structure coordinates against the saved off
+initial coordinates.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td> Gdk Event structure with coordinates in item units.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>matrix</code></em> :</span></p></td>
+<td> Use this only if you want to get back to device coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pick_item</code></em> :</span></p></td>
+<td> Actual item the cursor is on.  The can sometimes be
+different from item if the event is caught on a non-leaf node.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> to stop the event.  <code class="literal">FALSE</code> to allow the event to
+propagate to other items higher in the tree.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "invalidate" signal'>
+<a name="CrItem-invalidate"></a><h3>The <code class="literal">"invalidate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>         *item,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>            mask,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>         x1,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>         y1,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>         x2,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>         y2,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrDeviceBounds" title="CrDeviceBounds">CrDeviceBounds</a> *device,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>        user_data)      : Run Last</pre>
+<p>
+This is an internal method. The invalidate signal is propagated up
+through the hierarchy so that multiple devices (canvases) may
+receive this signal in their respective coordinate systems.  The anchor and
+device width and heights (if any) must be added when the invalidate signal
+reaches its final destination.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mask</code></em> :</span></p></td>
+<td>  Some combination of INVALIDATE_OLD, INVALIDATE_NEW, and 
+INVALIDATE_UPDATE
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> Leftmost bound.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Rightmost bound.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> Rightmost bound.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Bottommost bound.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td> A structure for specifying device coordinate boundaries (if any).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "paint" signal'>
+<a name="CrItem-paint"></a><h3>The <code class="literal">"paint"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>    *item,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *c,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)      : Run Last</pre>
+<p>
+Item implementations should override this and use it to draw to 
+the cairo surface.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> The cairo context used to draw the item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "removed" signal'>
+<a name="CrItem-removed"></a><h3>The <code class="literal">"removed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>  *critem,
+                                                        <a class="link" href="CrItem.html" title="CrItem">CrItem</a>  *arg1,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data)      : Run First</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>critem</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arg1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "request-update" signal'>
+<a name="CrItem-request-update"></a><h3>The <code class="literal">"request-update"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>  *critem,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data)      : Run Last</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>critem</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "test" signal'>
+<a name="CrItem-test"></a><h3>The <code class="literal">"test"</code> signal</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a>*             user_function                      (<a class="link" href="CrItem.html" title="CrItem">CrItem</a>    *item,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *c,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>    x,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>    y,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)      : Run Last</pre>
+<p>
+This signal is optional.  If you don't need interaction
+with the pointing device, then there is no need to provide it.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em> :</span></p></td>
+<td> Cairo context with tranformation set to match the current item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The coordinate in the item's user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The coordinate in the item's user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

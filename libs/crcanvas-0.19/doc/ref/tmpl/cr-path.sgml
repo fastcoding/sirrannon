@@ -1,0 +1,140 @@
+<!-- ##### SECTION Title ##### -->
+CrPath
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrPath ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL CrPath::make-path ##### -->
+<para>
+
+</para>
+
+@crpath: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### ARG CrPath:cap ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:dash ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:fill-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:fill-color-rgba ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:fill-rule ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:join ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:line-scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:line-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:line-width-use-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:outline-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:outline-color-rgba ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:path ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:pattern ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:pattern-scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrPath:test-fill ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_path_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cr_path_set_color ##### -->
+<para>
+
+</para>
+
+@c: 
+@rgba: 
+
+
+<!-- ##### FUNCTION cr_path_setup_line ##### -->
+<para>
+
+</para>
+
+@path: 
+@c: 
+
+

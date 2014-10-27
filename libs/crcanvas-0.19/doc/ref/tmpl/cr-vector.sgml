@@ -1,0 +1,57 @@
+<!-- ##### SECTION Title ##### -->
+CrVector
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrVector ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrVector:end-scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrVector:x2 ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrVector:y2 ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_vector_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@x2: 
+@y2: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

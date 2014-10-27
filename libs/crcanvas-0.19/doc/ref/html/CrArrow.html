@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrArrow</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrPath.html" title="CrPath">
+<link rel="next" href="CrInverse.html" title="CrInverse">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrPath.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrInverse.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrArrow.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrArrow.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrArrow.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrArrow.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrArrow">
+<a name="CrArrow"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrArrow.top_of_page"></a>CrArrow</span></h2>
+<p>CrArrow — An arrowhead that can be used to cap a line segment.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrArrow.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrArrow.html#CrArrow-struct" title="CrArrow">CrArrow</a>;
+<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            <a class="link" href="CrArrow.html#cr-arrow-new" title="cr_arrow_new ()">cr_arrow_new</a>                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         int point_id,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrArrow.html#cr-arrow-connect-parent" title="cr_arrow_connect_parent ()">cr_arrow_connect_parent</a>             (<a class="link" href="CrArrow.html" title="CrArrow">CrArrow</a> *arrow,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrArrow.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="CrItem.html" title="CrItem">CrItem</a>
+         +----<a class="link" href="CrPath.html" title="CrPath">CrPath</a>
+               +----CrArrow
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrArrow.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrArrow.html#CrArrow--angle" title='The "angle" property'>angle</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--depth" title='The "depth" property'>depth</a>"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--fatness" title='The "fatness" property'>fatness</a>"                  <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--length" title='The "length" property'>length</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--point-id" title='The "point-id" property'>point-id</a>"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--scaleable" title='The "scaleable" property'>scaleable</a>"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--x-offset" title='The "x-offset" property'>x-offset</a>"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="CrArrow.html#CrArrow--y-offset" title='The "y-offset" property'>y-offset</a>"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrArrow.description"></a><h2>Description</h2>
+<p>
+The arrow is typically used at the start or end of a line, but can be used
+independently or part of some other arrangement.  The <a class="link" href="CrArrow.html#cr-arrow-new" title="cr_arrow_new ()"><span class="type">cr_arrow_new</span></a>
+convenience constructor will automatically place the arrow on a point of the
+line segment if it is called with <a class="link" href="CrVector.html" title="CrVector"><span class="type">CrVector</span></a> or <a class="link" href="CrLine.html" title="CrLine"><span class="type">CrLine</span></a> as a parent group.
+</p>
+<p>
+When the convenience constructor <a class="link" href="CrArrow.html#cr-arrow-new" title="cr_arrow_new ()"><span class="type">cr_arrow_new</span></a> is used the <a class="link" href="CrArrow.html#CrArrow--angle" title='The "angle" property'><span class="type">"angle"</span></a>,
+<a class="link" href="CrArrow.html#CrArrow--scaleable" title='The "scaleable" property'><span class="type">"scaleable"</span></a>, <a class="link" href="CrArrow.html#CrArrow--x-offset" title='The "x-offset" property'><span class="type">"x_offset"</span></a>, <a class="link" href="CrArrow.html#CrArrow--y-offset" title='The "y-offset" property'><span class="type">"y_offset"</span></a>, <a class="link" href="CrItem.html#CrItem--x" title='The "x" property'><span class="type">"x"</span></a>, and
+<a class="link" href="CrItem.html#CrItem--y" title='The "y" property'><span class="type">"y"</span></a> properties are set and updated automatically.  When the arrow used
+in some other way, these properties need to be set-up by the user.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrArrow.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrArrow">
+<a name="CrArrow-struct"></a><h3>CrArrow</h3>
+<pre class="programlisting">typedef struct _CrArrow CrArrow;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_arrow_new ()">
+<a name="cr-arrow-new"></a><h3>cr_arrow_new ()</h3>
+<pre class="programlisting"><a class="link" href="CrItem.html" title="CrItem">CrItem</a> *            cr_arrow_new                        (<a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent,
+                                                         int point_id,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience function to create an arrow-head and add it to a canvas
+item parent group in one step. If the item is added to a <em class="parameter"><code>CrVector</code></em> or a
+<em class="parameter"><code>CrLine</code></em> parent, then most set-up will be taken care of automatically by this
+constructor.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> The parent item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>point_id</code></em> :</span></p></td>
+<td> Negative values count from the back and point toward the end.
+Positive values count from the front and point toward the beginning.  Use 0
+for a 'start' arrow and -1 for an 'end' arrow. This is only valid when
+parented to a <a class="link" href="CrLine.html" title="CrLine"><span class="type">CrLine</span></a> or <a class="link" href="CrVector.html" title="CrVector"><span class="type">CrVector</span></a> item.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A reference to a new CrItem.  You must call
+g_object_ref if you intend to use this reference outside the local scope.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_arrow_connect_parent ()">
+<a name="cr-arrow-connect-parent"></a><h3>cr_arrow_connect_parent ()</h3>
+<pre class="programlisting">void                cr_arrow_connect_parent             (<a class="link" href="CrArrow.html" title="CrArrow">CrArrow</a> *arrow,
+                                                         <a class="link" href="CrItem.html" title="CrItem">CrItem</a> *parent);</pre>
+<p>
+Connects the arrow to a parent line or vector so it can automatically 
+align itself.  Normally, when using the C convenience constructor
+<a class="link" href="CrArrow.html#cr-arrow-new" title="cr_arrow_new ()"><span class="type">cr_arrow_new</span></a>, it is not necessary to call this. The routine is here for 
+language bindings or where <em class="parameter"><code>g_object_new</code></em> is used.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arrow</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> Parent item.  Should be a <a class="link" href="CrLine.html" title="CrLine"><span class="type">CrLine</span></a> or <a class="link" href="CrVector.html" title="CrVector"><span class="type">CrVector</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrArrow.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "angle" property'>
+<a name="CrArrow--angle"></a><h3>The <code class="literal">"angle"</code> property</h3>
+<pre class="programlisting">  "angle"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The angle in radians to which the arrow points.  Zero points East.  Positive angles increase CW. When parented to #CrLine or  #CrVector, this property will be set automatically.</p>
+<p>Allowed values: [-3.14159,6.28319]</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "depth" property'>
+<a name="CrArrow--depth"></a><h3>The <code class="literal">"depth"</code> property</h3>
+<pre class="programlisting">  "depth"                    <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>The concaveness or convexness if negative.</p>
+<p>Default value: 3</p>
+</div>
+<hr>
+<div class="refsect2" title='The "fatness" property'>
+<a name="CrArrow--fatness"></a><h3>The <code class="literal">"fatness"</code> property</h3>
+<pre class="programlisting">  "fatness"                  <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>How wide measured perpendicular to the pointing direction.</p>
+<p>Default value: 7</p>
+</div>
+<hr>
+<div class="refsect2" title='The "length" property'>
+<a name="CrArrow--length"></a><h3>The <code class="literal">"length"</code> property</h3>
+<pre class="programlisting">  "length"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>How long from the tip to the end along the direction it is pointing.</p>
+<p>Default value: 14</p>
+</div>
+<hr>
+<div class="refsect2" title='The "point-id" property'>
+<a name="CrArrow--point-id"></a><h3>The <code class="literal">"point-id"</code> property</h3>
+<pre class="programlisting">  "point-id"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>Negative values count from the back and point toward  the end.  Positive values count from the front and  point toward the beginning.  Use 0 for a 'start' arrow and -1 for an 'end' arrow.  This is only valid when parented to a #CrLine or #CrVector item.</p>
+<p>Allowed values: &gt;= -2147483647</p>
+<p>Default value: -1</p>
+</div>
+<hr>
+<div class="refsect2" title='The "scaleable" property'>
+<a name="CrArrow--scaleable"></a><h3>The <code class="literal">"scaleable"</code> property</h3>
+<pre class="programlisting">  "scaleable"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If the arrow should scale to conform to item units.  Setting this to FALSE will cause the arrow to always be the same size.  When using the arrow with #CrLine or #CrVector, this will be set automatically to conform to the 'line-scaleable' property. See also #CrInverse for another way to achieve ths same effect.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "x-offset" property'>
+<a name="CrArrow--x-offset"></a><h3>The <code class="literal">"x-offset"</code> property</h3>
+<pre class="programlisting">  "x-offset"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>A device offset from the arrow's point.  Only used when scaleable=FALSE.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" title='The "y-offset" property'>
+<a name="CrArrow--y-offset"></a><h3>The <code class="literal">"y-offset"</code> property</h3>
+<pre class="programlisting">  "y-offset"                 <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>A device offset from the arrow's point.  Only used when scaleable=FALSE.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

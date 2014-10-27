@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: crcanvas
+Description: A very simple cairo canvas implementation
+Requires: gtk+-2.0
+Version: 0.19
+Libs: -L${libdir} -lcrcanvas
+Cflags: -I${includedir}/crcanvas
+

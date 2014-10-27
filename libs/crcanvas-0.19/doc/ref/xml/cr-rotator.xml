@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="CrRotator">
+<refmeta>
+<refentrytitle role="top_of_page" id="CrRotator.top_of_page">CrRotator</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CRCANVAS Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CrRotator</refname>
+<refpurpose>A object for setting up mouse rotation on a <link linkend="CrCanvas"><type>CrCanvas</type></link>
+widget.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="CrRotator.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="CrRotator-struct">CrRotator</link>;
+<link linkend="CrRotator">CrRotator</link> *         <link linkend="cr-rotator-new">cr_rotator_new</link>                      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="cr-rotator-activate">cr_rotator_activate</link>                 (<link linkend="CrRotator">CrRotator</link> *panner);
+<link linkend="void">void</link>                <link linkend="cr-rotator-deactivate">cr_rotator_deactivate</link>               (<link linkend="CrRotator">CrRotator</link> *rotator);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="CrRotator.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----CrRotator
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="CrRotator.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="CrRotator--active">active</link>&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="CrRotator--canvas">canvas</link>&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write
+  &quot;<link linkend="CrRotator--cursor">cursor</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="CrRotator.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="CrRotator.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CrRotator-struct" role="struct">
+<title>CrRotator</title>
+<indexterm zone="CrRotator-struct"><primary sortas="CrRotator">CrRotator</primary></indexterm><programlisting>typedef struct _CrRotator CrRotator;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="cr-rotator-new" role="function">
+<title>cr_rotator_new ()</title>
+<indexterm zone="cr-rotator-new"><primary sortas="cr_rotator_new">cr_rotator_new</primary></indexterm><programlisting><link linkend="CrRotator">CrRotator</link> *         cr_rotator_new                      (<link linkend="CrCanvas">CrCanvas</link> *canvas,
+                                                         const <link linkend="gchar">gchar</link> *first_arg_name,
+                                                         ...);</programlisting>
+<para>
+A factory method to create a new CrRotator and connect it to a canvas in one
+step.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>canvas</parameter>&#160;:</term>
+<listitem><simpara> The canvas device that this panner will be used with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_arg_name</parameter>&#160;:</term>
+<listitem><simpara> A list of object argument name/value pairs, NULL-terminated,
+used to configure the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created CrRotator object.  
+
+Unlike with the constructors for CrItem implementations, you own the returned
+reference.  You should call g_object_unref when you are finished with this
+object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-rotator-activate" role="function">
+<title>cr_rotator_activate ()</title>
+<indexterm zone="cr-rotator-activate"><primary sortas="cr_rotator_activate">cr_rotator_activate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_rotator_activate                 (<link linkend="CrRotator">CrRotator</link> *panner);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>panner</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cr-rotator-deactivate" role="function">
+<title>cr_rotator_deactivate ()</title>
+<indexterm zone="cr-rotator-deactivate"><primary sortas="cr_rotator_deactivate">cr_rotator_deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                cr_rotator_deactivate               (<link linkend="CrRotator">CrRotator</link> *rotator);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotator</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="CrRotator.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="CrRotator--active" role="property"><title>The <literal>&quot;active&quot;</literal> property</title>
+<indexterm zone="CrRotator--active"><primary sortas="CrRotator:active">CrRotator:active</primary></indexterm><programlisting>  &quot;active&quot;                   <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Active/Deactivate the rotator object or check the activation status.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="CrRotator--canvas" role="property"><title>The <literal>&quot;canvas&quot;</literal> property</title>
+<indexterm zone="CrRotator--canvas"><primary sortas="CrRotator:canvas">CrRotator:canvas</primary></indexterm><programlisting>  &quot;canvas&quot;                   <link linkend="CrCanvas">CrCanvas</link>*             : Read / Write</programlisting>
+<para>Reference to CrCanvas widget.</para></refsect2>
+<refsect2 id="CrRotator--cursor" role="property"><title>The <literal>&quot;cursor&quot;</literal> property</title>
+<indexterm zone="CrRotator--cursor"><primary sortas="CrRotator:cursor">CrRotator:cursor</primary></indexterm><programlisting>  &quot;cursor&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>GDK Cursor to use when rotator is selected.</para><para>Allowed values: [0,153]</para>
+<para>Default value: 50</para>
+</refsect2>
+</refsect1>
+
+
+
+
+</refentry>

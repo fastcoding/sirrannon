@@ -1,0 +1,151 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="ffmpeg-reader" type="ffmpeg-reader" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="filename" type="string" val="$1" />
+		<param name="loop" type="int" val="1" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="dts-start" type="int" val="1000" />
+		<param name="video-mode" type="bool" val="true" />
+		<param name="audio-mode" type="bool" val="true" />
+		<param name="seek" type="int" val="0" />
+		<param name="add-parameter-sets" type="bool" val="true" />
+		<param name="repeat-parameter-sets" type="bool" val="true" />
+		<param name="mov-frame" type="bool" val="false" />
+		<param name="skip-SEI" type="bool" val="false" />
+		<param name="skip-AUD" type="bool" val="false" />
+		<param name="fix-PTS" type="bool" val="false" />
+		<gfx x="26.0" y="252.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="pes-packetizer 1" type="pes-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="delta" type="int" val="0" />
+		<param name="insert-AUD" type="bool" val="false" />
+		<param name="aggregate-audio" type="bool" val="false" />
+		<param name="zero-length" type="bool" val="false" />
+		<gfx x="351.0" y="111.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="ts-multiplexer" type="ts-multiplexer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1000" />
+		<param name="streams" type="int" val="-1" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="aggregate" type="bool" val="false" />
+		<param name="shape" type="int" val="200" />
+		<param name="pcr-delay" type="int" val="400" />
+		<param name="mux-rate" type="int" val="-1" />
+		<param name="continuous-timestamps" type="bool" val="true" />
+		<param name="interleave" type="bool" val="true" />
+		<param name="psi-on-key" type="bool" val="false" />
+		<gfx x="476.0" y="255.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-scheduler" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1000" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<param name="precise" type="bool" val="false" />
+		<gfx x="648.0" y="255.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-transmitter" type="rtp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="4004" />
+		<param name="destination" type="string" val="$2:5004" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicast-TTL" type="int" val="-1" />
+		<param name="pts" type="bool" val="false" />
+		<param name="payload" type="int" val="-1" />
+		<param name="tracefile" type="string" val="" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="force-sequence-number" type="bool" val="false" />
+		<gfx x="1016.0" y="254.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="udp-transmitter" type="udp-transmitter" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="4100" />
+		<param name="destination" type="string" val="$2:5100" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicast-TTL" type="int" val="-1" />
+		<gfx x="1013.0" y="83.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="tcp-transmitter" type="tcp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="4006" />
+		<param name="destination" type="string" val="$2:5006" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="true" />
+		<param name="multicast-TTL" type="int" val="-1" />
+		<param name="connect" type="bool" val="true" />
+		<gfx x="1010.0" y="431.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="pes-packetizer 2" type="pes-packetizer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="tracefile" type="string" val="" />
+		<param name="trace-pts" type="bool" val="false" />
+		<param name="delta" type="int" val="0" />
+		<param name="insert-AUD" type="bool" val="false" />
+		<param name="aggregate-audio" type="bool" val="false" />
+		<param name="zero-length" type="bool" val="false" />
+		<gfx x="343.0" y="391.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="frame-analyzer" type="frame-analyzer" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<gfx x="180.0" y="111.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="random-classifier" type="random-classifier" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="discard" type="bool" val="false" />
+		<param name="sender-trace" type="string" val="" />
+		<param name="receiver-trace" type="string" val="" />
+		<param name="P(loss)" type="double" val="0.5" />
+		<param name="xroute" type="int" val="1" />
+		<gfx x="825.0" y="342.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="pes-packetizer 1" to="ts-multiplexer" xroute="0"/>
+
+	<route from="basic-scheduler" to="udp-transmitter" xroute="200"/>
+
+	<route from="ffmpeg-reader" to="pes-packetizer 2" xroute="200"/>
+
+	<route from="pes-packetizer 2" to="ts-multiplexer" xroute="0"/>
+
+	<route from="ffmpeg-reader" to="frame-analyzer" xroute="100"/>
+
+	<route from="frame-analyzer" to="pes-packetizer 1" xroute="0"/>
+
+	<route from="ts-multiplexer" to="basic-scheduler" xroute="0"/>
+
+	<route from="basic-scheduler" to="random-classifier" xroute="100"/>
+
+	<route from="random-classifier" to="rtp-transmitter" xroute="101"/>
+
+	<route from="random-classifier" to="tcp-transmitter" xroute="100"/>
+
+</config>

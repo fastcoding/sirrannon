@@ -1,0 +1,871 @@
+;; vim: syntax=scheme shiftwidth=2 softtabstop=2 tabstop=2 
+;; -*- scheme -*-
+; object definitions ...
+(define-object Canvas
+  (in-module "Cr")
+  (parent "GtkWidget")
+  (c-name "CrCanvas")
+  (gtype-id "CR_TYPE_CANVAS")
+  (fields
+    '("CrItem*" "root")
+  )
+)
+
+(define-object Item
+  (in-module "Cr")
+  (parent "GObject")
+  (c-name "CrItem")
+  (gtype-id "CR_TYPE_ITEM")
+  (fields
+    '("GList*" "items")
+    '("cairo_matrix_t*" "matrix")
+  )
+)
+
+(define-object Inverse
+  (in-module "Cr")
+  (parent "CrItem")
+  (c-name "CrInverse")
+  (gtype-id "CR_TYPE_INVERSE")
+)
+
+(define-object Panner
+  (in-module "Cr")
+  (parent "GObject")
+  (c-name "CrPanner")
+  (gtype-id "CR_TYPE_PANNER")
+)
+
+(define-object Path
+  (in-module "Cr")
+  (parent "CrItem")
+  (c-name "CrPath")
+  (gtype-id "CR_TYPE_PATH")
+)
+
+(define-object Line
+  (in-module "Cr")
+  (parent "CrPath")
+  (c-name "CrLine")
+  (gtype-id "CR_TYPE_LINE")
+)
+
+(define-object Ellipse
+  (in-module "Cr")
+  (parent "CrPath")
+  (c-name "CrEllipse")
+  (gtype-id "CR_TYPE_ELLIPSE")
+)
+
+(define-object Arrow
+  (in-module "Cr")
+  (parent "CrPath")
+  (c-name "CrArrow")
+  (gtype-id "CR_TYPE_ARROW")
+)
+
+(define-object Pixbuf
+  (in-module "Cr")
+  (parent "CrItem")
+  (c-name "CrPixbuf")
+  (gtype-id "CR_TYPE_PIXBUF")
+)
+
+(define-object Rectangle
+  (in-module "Cr")
+  (parent "CrPath")
+  (c-name "CrRectangle")
+  (gtype-id "CR_TYPE_RECTANGLE")
+)
+
+(define-object Rotator
+  (in-module "Cr")
+  (parent "GObject")
+  (c-name "CrRotator")
+  (gtype-id "CR_TYPE_ROTATOR")
+)
+
+(define-object Text
+  (in-module "Cr")
+  (parent "CrItem")
+  (c-name "CrText")
+  (gtype-id "CR_TYPE_TEXT")
+)
+
+(define-object Vector
+  (in-module "Cr")
+  (parent "CrPath")
+  (c-name "CrVector")
+  (gtype-id "CR_TYPE_VECTOR")
+)
+
+(define-object Zoomer
+  (in-module "Cr")
+  (parent "GObject")
+  (c-name "CrZoomer")
+  (gtype-id "CR_TYPE_ZOOMER")
+  (fields
+    ("CrItem*" "box")
+  )
+)
+
+(define-object Blit
+  (in-module "Cr")
+  (parent "CrItem")
+  (c-name "CrBlit")
+  (gtype-id "CR_TYPE_BLIT")
+)
+
+;; Enumerations and flags ...
+
+
+;; From cr-arrow.h
+
+(define-function cr_arrow_get_type
+  (c-name "cr_arrow_get_type")
+  (return-type "GType")
+)
+
+(define-method connect_parent
+  (of-object "CrArrow")
+  (c-name "cr_arrow_connect_parent")
+  (return-type "none")
+  (parameters
+    '("CrItem*" "parent")
+  )
+)
+
+
+;; From cr-canvas.h
+
+(define-function cr_canvas_new
+  (c-name "cr_canvas_new")
+  (is-constructor-of "CrCanvas")
+  (return-type "CrCanvas*")
+  (properties
+    '("root" (optional))
+    '("repaint_mode" (optional))
+    '("maintain_center" (optional))
+    '("maintain_aspect" (optional))
+    '("auto_scale" (optional))
+    '("show_less" (optional))
+    '("hadjustment" (optional))
+    '("vadjustment" (optional))
+    '("user_data" (optional))
+    '("name" (optional))
+    '("parent" (optional))
+    '("width_request" (optional))
+    '("height_request" (optional))
+    '("visible" (optional))
+    '("sensitive" (optional))
+    '("app_paintable" (optional))
+    '("can_focus" (optional))
+    '("has_focus" (optional))
+    '("is_focus" (optional))
+    '("can_default" (optional))
+    '("has_default" (optional))
+    '("receives_default" (optional))
+    '("composite_child" (optional))
+    '("style" (optional))
+    '("events" (optional))
+    '("extension_events" (optional))
+    '("no_show_all" (optional))
+  )
+)
+
+(define-method set_vadjustment
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_vadjustment")
+  (return-type "none")
+  (parameters
+    '("GtkAdjustment*" "adjustment")
+  )
+)
+
+(define-method set_hadjustment
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_hadjustment")
+  (return-type "none")
+  (parameters
+    '("GtkAdjustment*" "adjustment")
+  )
+)
+
+(define-method set_scroll_region
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_scroll_region")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scroll_x1")
+    '("gdouble" "scroll_y1")
+    '("gdouble" "scroll_x2")
+    '("gdouble" "scroll_y2")
+  )
+)
+
+(define-method get_scroll_region
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_get_scroll_region")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "scroll_x1")
+    '("gdouble*" "scroll_y1")
+    '("gdouble*" "scroll_x2")
+    '("gdouble*" "scroll_y2")
+  )
+)
+
+(define-method set_scroll_factor
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_scroll_factor")
+  (return-type "none")
+  (parameters
+    '("double" "scroll_factor_x")
+    '("double" "scroll_factor_y")
+  )
+)
+
+(define-method scroll_to
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_scroll_to")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x")
+    '("gdouble" "y")
+  )
+)
+
+(define-method get_scroll_offsets
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_get_scroll_offsets")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+  )
+)
+
+(define-method center_on
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_center_on")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x")
+    '("gdouble" "y")
+  )
+)
+
+(define-method get_center
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_get_center")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x")
+    '("gdouble*" "y")
+  )
+)
+
+(define-method center_scale
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_center_scale")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x")
+    '("gdouble" "y")
+    '("gdouble" "w")
+    '("gdouble" "h")
+  )
+)
+
+(define-method get_center_scale
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_get_center_scale")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "cx")
+    '("gdouble*" "cy")
+    '("gdouble*" "w")
+    '("gdouble*" "h")
+  )
+)
+
+(define-method set_viewport
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_viewport")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x1")
+    '("gdouble" "y1")
+    '("gdouble" "x2")
+    '("gdouble" "y2")
+  )
+)
+
+(define-method get_viewport
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_get_viewport")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x1")
+    '("gdouble*" "y1")
+    '("gdouble*" "x2")
+    '("gdouble*" "y2")
+  )
+)
+
+(define-method zoom
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_zoom")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x_factor")
+    '("gdouble" "y_factor")
+  )
+)
+
+(define-method zoom_world
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_zoom_world")
+  (return-type "none")
+)
+
+(define-method set_max_scale_factor
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_max_scale_factor")
+  (return-type "none")
+  (parameters
+    '("double" "x_factor")
+    '("double" "y_factor")
+  )
+)
+
+(define-method set_min_scale_factor
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_min_scale_factor")
+  (return-type "none")
+  (parameters
+    '("double" "x_factor")
+    '("double" "y_factor")
+  )
+)
+
+(define-method set_repaint_mode
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_set_repaint_mode")
+  (return-type "none")
+  (parameters
+    '("gboolean" "on")
+  )
+)
+
+(define-method queue_repaint
+  (of-object "CrCanvas")
+  (c-name "cr_canvas_queue_repaint")
+  (return-type "none")
+)
+
+(define-function cr_canvas_get_type
+  (c-name "cr_canvas_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From cr-ellipse.h
+
+(define-function cr_ellipse_get_type
+  (c-name "cr_ellipse_get_type")
+  (return-type "GType")
+)
+
+
+;; From cr-inverse.h
+
+(define-function cr_inverse_get_type
+  (c-name "cr_inverse_get_type")
+  (return-type "GType")
+)
+
+;; From cr-item.h
+
+(define-method invoke_paint
+  (of-object "CrItem")
+  (c-name "cr_item_invoke_paint")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "ct")
+    '("gboolean" "all")
+    '("double" "x1")
+    '("double" "y1")
+    '("double" "x2")
+    '("double" "y2")
+  )
+)
+
+(define-method invoke_test
+  (of-object "CrItem")
+  (c-name "cr_item_invoke_test")
+  (return-type "CrItem*")
+  (parameters
+    '("cairo_t*" "c")
+    '("double" "x")
+    '("double" "y")
+  )
+)
+
+(define-method report_old_bounds
+  (of-object "CrItem")
+  (c-name "cr_item_report_old_bounds")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "ct")
+    '("gboolean" "all")
+  )
+)
+
+(define-method report_new_bounds
+  (of-object "CrItem")
+  (c-name "cr_item_report_new_bounds")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "ct")
+    '("gboolean" "all")
+  )
+)
+
+(define-method calculate_bounds
+  (of-object "CrItem")
+  (c-name "cr_item_calculate_bounds")
+  (return-type "gboolean")
+  (parameters
+    '("CrBounds*" "bounds")
+    '("CrDeviceBounds*" "device_bounds")
+  )
+)
+
+(define-method invoke_event
+  (of-object "CrItem")
+  (c-name "cr_item_invoke_event")
+  (return-type "gboolean")
+  (parameters
+    '("GdkEvent*" "event")
+    '("cairo_matrix_t*" "matrix")
+    '("CrItem*" "pick_item")
+  )
+)
+
+(define-method get_bounds
+  (of-object "CrItem")
+  (c-name "cr_item_get_bounds")
+  (return-type "gboolean")
+  (parameters
+    '("double*" "x1")
+    '("double*" "y1")
+    '("double*" "x2")
+    '("double*" "y2")
+  )
+)
+
+(define-method get_device_bounds
+  (of-object "CrItem")
+  (c-name "cr_item_get_device_bounds")
+  (return-type "gboolean")
+  (parameters
+    '("CrDeviceBounds*" "device")
+  )
+)
+
+(define-method request_update
+  (of-object "CrItem")
+  (c-name "cr_item_request_update")
+  (return-type "none")
+)
+
+(define-method get_inverse_matrix
+  (of-object "CrItem")
+  (c-name "cr_item_get_inverse_matrix")
+  (return-type "cairo_matrix_t*")
+)
+
+(define-method cancel_matrix
+  (of-object "CrItem")
+  (c-name "cr_item_cancel_matrix")
+  (return-type "none")
+)
+
+(define-method add
+  (of-object "CrItem")
+  (c-name "cr_item_add")
+  (return-type "none")
+  (parameters
+    '("CrItem*" "child")
+  )
+)
+
+(define-method remove
+  (of-object "CrItem")
+  (c-name "cr_item_remove")
+  (return-type "none")
+  (parameters
+    '("CrItem*" "child")
+  )
+)
+
+(define-method hide
+  (of-object "CrItem")
+  (c-name "cr_item_hide")
+  (return-type "none")
+)
+
+(define-method show
+  (of-object "CrItem")
+  (c-name "cr_item_show")
+  (return-type "none")
+)
+
+(define-method move
+  (of-object "CrItem")
+  (c-name "cr_item_move")
+  (return-type "none")
+  (parameters
+    '("double" "dx")
+    '("double" "dy")
+  )
+)
+
+(define-method set_z_relative
+  (of-object "CrItem")
+  (c-name "cr_item_set_z_relative")
+  (return-type "none")
+  (parameters
+    '("CrItem*" "child")
+    '("int" "positions")
+  )
+)
+
+(define-method set_z
+  (of-object "CrItem")
+  (c-name "cr_item_set_z")
+  (return-type "none")
+  (parameters
+    '("CrItem*" "child")
+    '("int" "position")
+  )
+)
+
+(define-method set
+  (of-object "CrItem")
+  (c-name "cr_item_set")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "first_arg_name")
+  )
+  (varargs #t)
+)
+
+(define-function cr_item_get_type
+  (c-name "cr_item_get_type")
+  (return-type "GType")
+)
+
+(define-virtual paint
+  (of-object "CrItem")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "c")
+  )
+)
+
+(define-virtual calculate_bounds
+  (of-object "CrItem")
+  (return-type "gboolean")
+  (parameters
+    '("cairo_t*" "c")
+    '("CrBounds*" "bounds")
+    '("CrDeviceBounds*" "device_bounds")
+  )
+)
+
+(define-virtual test
+  (of-object "CrItem")
+  (return-type "CrItem*")
+  (parameters
+    '("cairo_t*" "c")
+    '("double" "x")
+    '("double" "y")
+  )
+)
+
+(define-function make_temp_cairo
+  (c-name "cr_item_make_temp_cairo")
+  (return-type "CrContext*")
+)
+
+
+;; From cr-line.h
+
+(define-function cr_line_get_type
+  (c-name "cr_line_get_type")
+  (return-type "GType")
+)
+
+
+;; From cr-panner.h
+
+(define-function cr_panner_get_type
+  (c-name "cr_panner_get_type")
+  (return-type "GType")
+)
+
+(define-method activate
+  (of-object "CrPanner")
+  (c-name "cr_panner_activate")
+  (return-type "none")
+)
+
+(define-method deactivate
+  (of-object "CrPanner")
+  (c-name "cr_panner_deactivate")
+  (return-type "none")
+)
+
+;; From cr-path.h
+
+(define-function cr_path_get_type
+  (c-name "cr_path_get_type")
+  (return-type "GType")
+)
+
+(define-function set_color
+  (c-name "cr_path_set_color")
+  (return-type "none")
+  (parameters
+    '("CrContext*" "c")
+    '("guint" "rgba")
+  )
+)
+
+(define-method setup_line
+  (of-object "CrPath")
+  (c-name "cr_path_setup_line")
+  (return-type "none")
+  (parameters
+    '("CrContext*" "c")
+  )
+)
+
+
+
+;; From cr-pixbuf.h
+
+(define-function cr_pixbuf_get_type
+  (c-name "cr_pixbuf_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From cr-rectangle.h
+
+(define-function cr_rectangle_get_type
+  (c-name "cr_rectangle_get_type")
+  (return-type "GType")
+)
+
+;; From cr-rotator.h
+
+(define-function cr_rotator_get_type
+  (c-name "cr_rotator_get_type")
+  (return-type "GType")
+)
+
+(define-method activate
+  (of-object "CrRotator")
+  (c-name "cr_rotator_activate")
+  (return-type "none")
+)
+
+(define-method deactivate
+  (of-object "CrRotator")
+  (c-name "cr_rotator_deactivate")
+  (return-type "none")
+)
+
+
+
+;; From cr-text.h
+
+(define-function cr_text_get_type
+  (c-name "cr_text_get_type")
+  (return-type "GType")
+)
+
+
+;; From cr-types.h
+
+(define-function cr_points_get_type
+  (c-name "cr_points_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_points_new
+  (c-name "cr_points_new")
+  (is-constructor-of "CrPoints")
+  (return-type "CrPoints*")
+)
+
+(define-boxed Bounds
+  (c-name "CrBounds")
+  (gtype-id "CR_TYPE_BOUNDS")
+  (fields
+    '("double" "x1")
+    '("double" "y1")
+    '("double" "x2")
+    '("double" "y2")
+  )
+)
+
+(define-function cr_bounds_get_type
+  (c-name "cr_bounds_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_bounds_new
+  (c-name "cr_bounds_new")
+  (is-constructor-of "CrBounds")
+  (return-type "CrBounds*")
+  (parameters
+  )
+)
+
+(define-method unref
+  (of-object "CrBounds")
+  (c-name "cr_bounds_unref")
+  (return-type "none")
+)
+
+(define-function cr_bounds_ref
+  (c-name "cr_bounds_ref")
+  (return-type "CrBounds*")
+  (parameters
+  )
+)
+
+(define-boxed DeviceBounds
+  (c-name "CrDeviceBounds")
+  (gtype-id "CR_TYPE_DEVICE_BOUNDS")
+  (fields
+    '("double" "x1")
+    '("double" "y1")
+    '("double" "x2")
+    '("double" "y2")
+    '("GtkAnchorType" "anchor")
+  )
+)
+
+(define-function cr_device_bounds_get_type
+  (c-name "cr_device_bounds_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_device_bounds_new
+  (c-name "cr_device_bounds_new")
+  (is-constructor-of "CrDeviceBounds")
+  (return-type "CrDeviceBounds*")
+  (parameters
+  )
+)
+
+(define-method unref
+  (of-object "CrDeviceBounds")
+  (c-name "cr_device_bounds_unref")
+  (return-type "none")
+)
+
+(define-function cr_device_bounds_ref
+  (c-name "cr_device_bounds_ref")
+  (return-type "CrDeviceBounds*")
+  (parameters
+  )
+)
+
+(define-function cr_pattern_get_type
+  (c-name "cr_pattern_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function cr_matrix_get_type
+  (c-name "cr_matrix_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_context_get_type
+  (c-name "cr_context_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_dash_get_type
+  (c-name "cr_dash_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_dash_new
+  (c-name "cr_dash_new")
+  (is-constructor-of "CrDash")
+  (return-type "CrDash*")
+)
+
+(define-boxed Dash
+  (c-name "CrDash")
+  (gtype-id "CR_TYPE_DASH")
+  (fields
+    '("GList*" "dashes")
+    '("double" "offset")
+  )
+)
+
+(define-function cr_cap_get_type
+  (c-name "cr_cap_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_fill_rule_get_type
+  (c-name "cr_fill_rule_get_type")
+  (return-type "GType")
+)
+
+(define-function cr_join_get_type
+  (c-name "cr_join_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From cr-vector.h
+
+(define-function cr_vector_get_type
+  (c-name "cr_vector_get_type")
+  (return-type "GType")
+)
+
+;; From cr-zoomer.h
+
+(define-function cr_zoomer_get_type
+  (c-name "cr_zoomer_get_type")
+  (return-type "GType")
+)
+
+(define-method activate
+  (of-object "CrZoomer")
+  (c-name "cr_zoomer_activate")
+  (return-type "none")
+)
+
+(define-method deactivate
+  (of-object "CrZoomer")
+  (c-name "cr_zoomer_deactivate")
+  (return-type "none")
+)
+

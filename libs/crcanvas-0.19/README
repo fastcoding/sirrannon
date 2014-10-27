@@ -1,0 +1,62 @@
+NOTES:
+
+use inverse matrix to go from device to user
+use matrix to convert from user to device coordinates.
+
+BUGS: 
+
+CrText does not properly support multiple views when the scaleable property is
+TRUE and the zoom scale varies between the views.  See occasional remnants when
+draggin in the examples/customitems demo for an example of this case.  This is
+because the CrText canvas items keeps a single bounding rectangle for all views,
+but the Pango Layout does not guarantee that fonts will scale linearly.
+
+
+
+MAJOR DIFFERENCES FROM OTHER GTK BASED CANVASES:
+
+1. The canvas widget has a built in scaling and panning model.  It provides
+property settings for "maintain center", "maintain aspect", "auto scale", and
+infinite scrolling.  Additionally it provides a complete set of zooming and
+scaling procedures.
+
+The intent of this widget is to allow more flexibility than the traditional
+GtkLayout.  The GtkLayout offers hook-ups for horizontal and vertical scrolling.
+The CrCanvas widget still supports the GtkAdjustment handles, but it's viewport
+coordinates are based on an Cairo affine transformation matrix, so it should be
+possible to design controls that are different from the usual scrollbars.
+
+2.  It is  trivial to design custom canvas items.  In the simplest case for an
+item that is based on cairo_path_t, it is necessary only to define a "make_path"
+method from the CrPath.  A slightly more complicated use requires
+redefining methods from the CrItem for "paint", "calculate_bounds", and "test".
+Nothing more is required.  The methods need not be defined as part of a derived
+class, they can be defined as signal handlers connected to an instance of the 
+base class.
+
+3.  The circular dependency between the canvas widget and the canvas item has
+been eliminated.  The items are not aware of what type of device or how many
+devices to which they are rendering.  The items communicate up the tree
+via GObject signal emissions.
+
+4.  Each canvas item can send invalidate signals on its item coordinate space,
+the device coordinate space, or a combination of both.  Some use cases for this
+feature include: A canvas item that has a label that does not change scale when
+the canvas is zoomed in,  or a plot that has an arrow pointing to an interesting
+feature.  When the canvas is zoomed in the feature gets bigger, but the arrow
+pointing to the feature does not.
+
+5.  The canvas widget emits a "before paint" signal during its
+expose logic.  Using this signal to call a clipping or rejection technique can
+significantly improve performance when the canvas is zoomed-in.  It is 
+possible to request updates from any item during the "before paint" emission
+or just prior to the expose event without triggering multiple re-paints.
+
+6.  A repaint mode allows for all items to be repainted regardless of which ones
+requested updates.  It avoids running the calculate bounds sequence.  This is
+useful when you need to continuously repaint for several cycles and want to
+avoid the cost of the canvas update loop until the repaint cycles are complete.
+The profiling I have done so far indicates this causes the repaint to occur
+15-20% faster when N-items > 1000.
+
+

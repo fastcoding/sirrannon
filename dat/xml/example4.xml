@@ -1,0 +1,83 @@
+<config quantum="40000" simulation="0" seed="0">
+	<component name="rtp-receiver 1" type="rtp-receiver" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="5000" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="buffer" type="int" val="8388608" />
+		<param name="extension" type="bool" val="false" />
+		<param name="multicast" type="bool" val="false" />
+		<param name="multicast-server" type="string" val="" />
+		<param name="tracefile" type="string" val="" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="128.0" y="32.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="basic-scheduler" type="basic-scheduler" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="delay" type="int" val="1000" />
+		<param name="buffer" type="int" val="1000" />
+		<param name="absolute-delay" type="int" val="0" />
+		<param name="pause" type="bool" val="false" />
+		<param name="speed" type="double" val="1.0" />
+		<gfx x="280.0" y="189.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-receiver 2" type="rtp-receiver" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="5002" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="buffer" type="int" val="8388608" />
+		<param name="extension" type="bool" val="false" />
+		<param name="multicast" type="bool" val="false" />
+		<param name="multicast-server" type="string" val="" />
+		<param name="tracefile" type="string" val="" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="75.0" y="189.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-receiver 3" type="rtp-receiver" >
+		<param name="debug" type="bool" val="false" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="5004" />
+		<param name="video-route" type="int" val="100" />
+		<param name="audio-route" type="int" val="200" />
+		<param name="buffer" type="int" val="8388608" />
+		<param name="extension" type="bool" val="false" />
+		<param name="multicast" type="bool" val="false" />
+		<param name="multicast-server" type="string" val="" />
+		<param name="tracefile" type="string" val="" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="141.0" y="346.0" w="130.0" h="75.0" />
+	</component>
+
+	<component name="rtp-transmitter" type="rtp-transmitter" >
+		<param name="debug" type="bool" val="true" />
+		<param name="thread" type="bool" val="false" />
+		<param name="port" type="int" val="6000" />
+		<param name="destination" type="string" val="127.0.0.1:6000" />
+		<param name="buffer" type="int" val="0" />
+		<param name="extension" type="bool" val="false" />
+		<param name="multicastTTL" type="int" val="-1" />
+		<param name="pts" type="bool" val="false" />
+		<param name="payload" type="int" val="-1" />
+		<param name="tracefile" type="string" val="" />
+		<param name="mtu" type="int" val="1500" />
+		<param name="hash-file" type="string" val="" />
+		<gfx x="506.0" y="189.0" w="130.0" h="75.0" />
+	</component>
+
+
+	<route from="rtp-receiver 1" to="basic-scheduler" xroute="0"/>
+
+	<route from="rtp-receiver 2" to="basic-scheduler" xroute="0"/>
+
+	<route from="rtp-receiver 3" to="basic-scheduler" xroute="0"/>
+
+	<route from="basic-scheduler" to="rtp-transmitter" xroute="0"/>
+
+</config>

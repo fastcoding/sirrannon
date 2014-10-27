@@ -1,0 +1,1306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrCanvas</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="crcanvas: A GTK/Cairo Canvas Widget">
+<link rel="up" href="ch01.html" title="Reference">
+<link rel="prev" href="CrItem.html" title="CrItem">
+<link rel="next" href="CrText.html" title="CrText">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="pt01.html" title="Part I. Major Differences from other GTK based canvases">
+<link rel="chapter" href="ch01.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="CrItem.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">crcanvas: A GTK/Cairo Canvas Widget</th>
+<td><a accesskey="n" href="CrText.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#CrCanvas.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#CrCanvas.description" class="shortcut">Description</a>
+                 | 
+                <a href="#CrCanvas.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#CrCanvas.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                 | 
+                <a href="#CrCanvas.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#CrCanvas.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="CrCanvas">
+<a name="CrCanvas"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="CrCanvas.top_of_page"></a>CrCanvas</span></h2>
+<p>CrCanvas — A <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+><span class="type">GtkWidget</span></a> used to paint a tree of <a class="link" href="CrItem.html" title="CrItem"><span class="type">CrItem</span></a> objects.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="CrCanvas.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="CrCanvas.html#CrCanvas-struct" title="CrCanvas">CrCanvas</a>;
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="CrCanvas.html#cr-canvas-new" title="cr_canvas_new ()">cr_canvas_new</a>                       (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-scroll-region" title="cr_canvas_set_scroll_region ()">cr_canvas_set_scroll_region</a>         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_y2);
+void                <a class="link" href="CrCanvas.html#cr-canvas-get-scroll-region" title="cr_canvas_get_scroll_region ()">cr_canvas_get_scroll_region</a>         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_y2);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-scroll-factor" title="cr_canvas_set_scroll_factor ()">cr_canvas_set_scroll_factor</a>         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double scroll_factor_x,
+                                                         double scroll_factor_y);
+void                <a class="link" href="CrCanvas.html#cr-canvas-scroll-to" title="cr_canvas_scroll_to ()">cr_canvas_scroll_to</a>                 (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y);
+void                <a class="link" href="CrCanvas.html#cr-canvas-get-scroll-offsets" title="cr_canvas_get_scroll_offsets ()">cr_canvas_get_scroll_offsets</a>        (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y);
+void                <a class="link" href="CrCanvas.html#cr-canvas-center-on" title="cr_canvas_center_on ()">cr_canvas_center_on</a>                 (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y);
+void                <a class="link" href="CrCanvas.html#cr-canvas-get-center" title="cr_canvas_get_center ()">cr_canvas_get_center</a>                (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y);
+void                <a class="link" href="CrCanvas.html#cr-canvas-center-scale" title="cr_canvas_center_scale ()">cr_canvas_center_scale</a>              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> w,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> h);
+void                <a class="link" href="CrCanvas.html#cr-canvas-get-center-scale" title="cr_canvas_get_center_scale ()">cr_canvas_get_center_scale</a>          (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *cx,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *cy,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *w,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *h);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-viewport" title="cr_canvas_set_viewport ()">cr_canvas_set_viewport</a>              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y2);
+void                <a class="link" href="CrCanvas.html#cr-canvas-get-viewport" title="cr_canvas_get_viewport ()">cr_canvas_get_viewport</a>              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y2);
+void                <a class="link" href="CrCanvas.html#cr-canvas-zoom" title="cr_canvas_zoom ()">cr_canvas_zoom</a>                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_factor,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_factor);
+void                <a class="link" href="CrCanvas.html#cr-canvas-zoom-world" title="cr_canvas_zoom_world ()">cr_canvas_zoom_world</a>                (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-repaint-mode" title="cr_canvas_set_repaint_mode ()">cr_canvas_set_repaint_mode</a>          (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> on);
+void                <a class="link" href="CrCanvas.html#cr-canvas-queue-repaint" title="cr_canvas_queue_repaint ()">cr_canvas_queue_repaint</a>             (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-max-scale-factor" title="cr_canvas_set_max_scale_factor ()">cr_canvas_set_max_scale_factor</a>      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double x_factor,
+                                                         double y_factor);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-min-scale-factor" title="cr_canvas_set_min_scale_factor ()">cr_canvas_set_min_scale_factor</a>      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double x_factor,
+                                                         double y_factor);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-vadjustment" title="cr_canvas_set_vadjustment ()">cr_canvas_set_vadjustment</a>           (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *adjustment);
+void                <a class="link" href="CrCanvas.html#cr-canvas-set-hadjustment" title="cr_canvas_set_hadjustment ()">cr_canvas_set_hadjustment</a>           (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *adjustment);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="CrCanvas.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkObject.html"
+>GtkObject</a>
+               +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a>
+                     +----CrCanvas
+</pre>
+</div>
+<div class="refsect1" title="Implemented Interfaces">
+<a name="CrCanvas.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+CrCanvas implements
+ AtkImplementorIface and  <a
+href="http://library.gnome.org/devel/gtk/unstable/gtk-gtkbuildable.html#GtkBuildable"
+>GtkBuildable</a>.</p>
+</div>
+<div class="refsect1" title="Properties">
+<a name="CrCanvas.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrCanvas.html#CrCanvas--auto-scale" title='The "auto-scale" property'>auto-scale</a>"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--hadjustment" title='The "hadjustment" property'>hadjustment</a>"              <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a>*        : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--maintain-aspect" title='The "maintain-aspect" property'>maintain-aspect</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--maintain-center" title='The "maintain-center" property'>maintain-center</a>"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--pick-item" title='The "pick-item" property'>pick-item</a>"                <a class="link" href="CrItem.html" title="CrItem">CrItem</a>*               : Read
+  "<a class="link" href="CrCanvas.html#CrCanvas--repaint-mode" title='The "repaint-mode" property'>repaint-mode</a>"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--repaint-on-scroll" title='The "repaint-on-scroll" property'>repaint-on-scroll</a>"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--root" title='The "root" property'>root</a>"                     <a class="link" href="CrItem.html" title="CrItem">CrItem</a>*               : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--show-less" title='The "show-less" property'>show-less</a>"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="CrCanvas.html#CrCanvas--vadjustment" title='The "vadjustment" property'>vadjustment</a>"              <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a>*        : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="CrCanvas.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="CrCanvas.html#CrCanvas-before-paint" title='The "before-paint" signal'>before-paint</a>"                                   : Run First
+  "<a class="link" href="CrCanvas.html#CrCanvas-scroll-region-changed" title='The "scroll-region-changed" signal'>scroll-region-changed</a>"                          : Run First
+  "<a class="link" href="CrCanvas.html#CrCanvas-set-scroll-adjustments" title='The "set-scroll-adjustments" signal'>set-scroll-adjustments</a>"                         : Run Last / Action
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="CrCanvas.description"></a><h2>Description</h2>
+<p>
+A <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+><span class="type">GtkWidget</span></a> that is used as a drawing device for a tree for <a class="link" href="CrItem.html" title="CrItem"><span class="type">CrItem</span></a> objects.
+The CrCanvas widget has comprehensive zooming, scaling, and viewable region
+methods and properties.  All region transformations are stored in the
+canvas's root <a class="link" href="CrItem.html" title="CrItem"><span class="type">CrItem</span></a>.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="CrCanvas.details"></a><h2>Details</h2>
+<div class="refsect2" title="CrCanvas">
+<a name="CrCanvas-struct"></a><h3>CrCanvas</h3>
+<pre class="programlisting">typedef struct {
+        guint32 flags;
+} CrCanvas;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_new ()">
+<a name="cr-canvas-new"></a><h3>cr_canvas_new ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         cr_canvas_new                       (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *first_arg_name,
+                                                         ...);</pre>
+<p>
+A convenience routine to create the canvas widget and set its properties in
+one call.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_arg_name</code></em> :</span></p></td>
+<td> A list of object argument name/value pairs, NULL-terminated
+used to set the canvas widget properties.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The newly created canvas widget cast to a GtkWidget type.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_scroll_region ()">
+<a name="cr-canvas-set-scroll-region"></a><h3>cr_canvas_set_scroll_region ()</h3>
+<pre class="programlisting">void                cr_canvas_set_scroll_region         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> scroll_y2);</pre>
+<p>
+Sets the canvas to a finite "world".  The scrollbars or adjustments will not
+allow the canvas to scroll outside the input boundaries.  The world to screen
+coordinate conversions are defined by the matrix held within the root group
+item.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_x1</code></em> :</span></p></td>
+<td> The leftmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_y1</code></em> :</span></p></td>
+<td> The topmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_x2</code></em> :</span></p></td>
+<td> The rightmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_y2</code></em> :</span></p></td>
+<td> The bottomost world boundary as defined by the root matrix.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_get_scroll_region ()">
+<a name="cr-canvas-get-scroll-region"></a><h3>cr_canvas_get_scroll_region ()</h3>
+<pre class="programlisting">void                cr_canvas_get_scroll_region         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *scroll_y2);</pre>
+<p>
+Gets the current scrolling area of the canvas.  If the canvas is in 'infinite
+world' mode, this region will change often.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_x1</code></em> :</span></p></td>
+<td> The leftmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_y1</code></em> :</span></p></td>
+<td> The topmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_x2</code></em> :</span></p></td>
+<td> The rightmost world boundary as defined by the root group matrix.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_y2</code></em> :</span></p></td>
+<td> The bottomost world boundary as defined by the root matrix.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_scroll_factor ()">
+<a name="cr-canvas-set-scroll-factor"></a><h3>cr_canvas_set_scroll_factor ()</h3>
+<pre class="programlisting">void                cr_canvas_set_scroll_factor         (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double scroll_factor_x,
+                                                         double scroll_factor_y);</pre>
+<p>
+This tells the canvas to assume that the world boundaries are infinite, but
+that scrolling should be arbitrarily limited to a factor of the displayed
+viewport size. i.e. a factor of 2 would allow a viewport showing a 100 unit
+range to be scrolled over a 200 unit range. This call causes the canvas to be
+in no way dependent on any setting in the root group item.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_factor_x</code></em> :</span></p></td>
+<td> A multiplier for how much additional width scrolling.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scroll_factor_y</code></em> :</span></p></td>
+<td> A multiplier for how much additional height scrolling.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_scroll_to ()">
+<a name="cr-canvas-scroll-to"></a><h3>cr_canvas_scroll_to ()</h3>
+<pre class="programlisting">void                cr_canvas_scroll_to                 (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y);</pre>
+<p>
+Places the given coordinate in the upper left corner of the current viewport.
+Coordinates are expected to be in user space and are translated to device
+space using the root group matrix.  If finite world scrolling is used, it may
+be impossible to set the center to the requested coordinate.  If infinite
+world scrolling is used the scroll area will be adjusted such that the
+requested center is also the center of the scroll region. This function is
+typically used with a document model when the 'auto_scale' and
+'maintain_center' properties are disabled.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The x coordinate for the left border
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The y coordinate for the upper border
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_get_scroll_offsets ()">
+<a name="cr-canvas-get-scroll-offsets"></a><h3>cr_canvas_get_scroll_offsets ()</h3>
+<pre class="programlisting">void                cr_canvas_get_scroll_offsets        (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y);</pre>
+<p>
+A convenience function to get the upper leftmost canvas coordinate in root
+group units.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The x coordinate of the left border
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The y coordinate of the upper border
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_center_on ()">
+<a name="cr-canvas-center-on"></a><h3>cr_canvas_center_on ()</h3>
+<pre class="programlisting">void                cr_canvas_center_on                 (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y);</pre>
+<p>
+Places the given coordinate in the center of the current viewport.
+Coordinates are expected to be in user space and are translated to device
+space using the root group matrix.  If finite world scrolling is used, it may
+be impossible to set the center to the requested coordinate.  If infinite
+world scrolling is used the scroll area will be adjusted such that the
+requested center is also the center of the scroll region. This function is
+typically used when the 'auto_scale' or 'maintain_center' properties are set.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The x coordinate to set center to.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The y coordinate to set center to.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_get_center ()">
+<a name="cr-canvas-get-center"></a><h3>cr_canvas_get_center ()</h3>
+<pre class="programlisting">void                cr_canvas_get_center                (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y);</pre>
+<p>
+Convenience function to get the center point of the viewport in root group
+coordinates.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The x coordinate of the center.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The y coordinate of the center.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_center_scale ()">
+<a name="cr-canvas-center-scale"></a><h3>cr_canvas_center_scale ()</h3>
+<pre class="programlisting">void                cr_canvas_center_scale              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> w,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> h);</pre>
+<p>
+Centers and scales the canvas in one call.  If a finite world scrolling is
+used, it may be impossible to honor this request.  If infinite world
+scrolling is used the scrollable area will be adjusted such that the
+requested center is now the center of the scroll area. If the maintain_aspect
+property is TRUE, the scale request will be honored such that an equal to or
+larger area will be shown in the viewport.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The center x coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> The center y coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>w</code></em> :</span></p></td>
+<td> The requested width in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>h</code></em> :</span></p></td>
+<td> The requested height in user space.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_get_center_scale ()">
+<a name="cr-canvas-get-center-scale"></a><h3>cr_canvas_get_center_scale ()</h3>
+<pre class="programlisting">void                cr_canvas_get_center_scale          (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *cx,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *cy,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *w,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *h);</pre>
+<p>
+Passes back the center and width and height in user space.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cx</code></em> :</span></p></td>
+<td> The center x coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cy</code></em> :</span></p></td>
+<td> The center y coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>w</code></em> :</span></p></td>
+<td> The width in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>h</code></em> :</span></p></td>
+<td> The height in user space.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_viewport ()">
+<a name="cr-canvas-set-viewport"></a><h3>cr_canvas_set_viewport ()</h3>
+<pre class="programlisting">void                cr_canvas_set_viewport              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y2);</pre>
+<p>
+A simple wrapper around cr_canvas_center_scale.  This procedure attempts to
+set the canvas viewport to honor the coordinates provided.  If necessary, the
+canvas will be re-centeredand re-scaled.  If a finite world scrolling is
+used, it may be impossible to honor this request.  If infinite world
+scrolling is used the scrollable area will be adjusted such that the
+requested center is now the center of the scroll area. If the maintain_aspect
+property is TRUE, the scale request will be honored such that an equal to or
+larger area will be shown in the viewport.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> The leftmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> The topmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> The rightmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> The bottommost coordinate in user space.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_get_viewport ()">
+<a name="cr-canvas-get-viewport"></a><h3>cr_canvas_get_viewport ()</h3>
+<pre class="programlisting">void                cr_canvas_get_viewport              (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y1,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x2,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y2);</pre>
+<p>
+The four corners of the current viewport in user space.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> The leftmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> The topmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> The rightmost coordinate in user space.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> The bottommost coordinate in user space.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_zoom ()">
+<a name="cr-canvas-zoom"></a><h3>cr_canvas_zoom ()</h3>
+<pre class="programlisting">void                cr_canvas_zoom                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_factor,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_factor);</pre>
+<p>
+Zooms the viewable area of the canvas in or out.  Values greater than 1 zoom
+in, less than 1 zoom out. If the auto_scale or maintain_center properties are
+set, the viewport will be zoomed about the current center point, otherwise
+the viewport will be zoomed from upper left to lower right such that the
+upper left user coordinate is maintained. For a canvas where the
+maintain_aspect property is set, only the x_factor is used.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_factor</code></em> :</span></p></td>
+<td> The zoom factor by which to reduce/increase the viewable area.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_factor</code></em> :</span></p></td>
+<td> The zoom factor by which to reduce/increase the viewable area.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_zoom_world ()">
+<a name="cr-canvas-zoom-world"></a><h3>cr_canvas_zoom_world ()</h3>
+<pre class="programlisting">void                cr_canvas_zoom_world                (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas);</pre>
+<p>
+Causes the canvas scale to zoom-out to show its maximum extents (or whole
+world).  The maximum extents are determined as follows: (1) If finite world
+model (set_scroll_region), then such coordinates are used to define the new
+viewport.  (2) If infinite world model and the min_scale_factor has been
+defined, then this is used.  (3) Else the canvas is zoomed by the current
+scroll_factor.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_repaint_mode ()">
+<a name="cr-canvas-set-repaint-mode"></a><h3>cr_canvas_set_repaint_mode ()</h3>
+<pre class="programlisting">void                cr_canvas_set_repaint_mode          (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> on);</pre>
+<p>
+Changes the canvas redraw model from invalidate to repaint.  In the repaint
+model, the canvas redraws all items regardless of how many requested to be
+redrawn.  This is useful when implementing scaling tools which would require
+all of the items to be redrawn for each update.  It reduces the processing
+load slightly by preventing the canvas from running its invalidate loop. It
+may also be useful for implemenations that wish to implement a periodic
+screen refresh.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>on</code></em> :</span></p></td>
+<td> TRUE use repaint mode, FALSE to use default invalidate mode.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_queue_repaint ()">
+<a name="cr-canvas-queue-repaint"></a><h3>cr_canvas_queue_repaint ()</h3>
+<pre class="programlisting">void                cr_canvas_queue_repaint             (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas);</pre>
+<p>
+Queues all items in the canvas to be repainted. This avoids running the
+canvas update loop until after the redraw is complete.  This is useful when
+you need to continuously repaint for several cycles and want to avoid the
+cost of the canvas update loop until the repaint cycles are complete.
+Calling the routine is the same setting canvas repaint mode on and then
+switching it off at the first G_PRIORITY_LOW idle event.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_max_scale_factor ()">
+<a name="cr-canvas-set-max-scale-factor"></a><h3>cr_canvas_set_max_scale_factor ()</h3>
+<pre class="programlisting">void                cr_canvas_set_max_scale_factor      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double x_factor,
+                                                         double y_factor);</pre>
+<p>
+Defines the closest zoom-in scale allowed.  This is used to prevent the
+underlying rendering routines from doing crazy things when a user presses a
+zoom-in button too many times.  Example: For a 100x100 pixel
+window, values of 4,4 would allow the user to zoom in to show no less than
+25x25 world coordinates.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_factor</code></em> :</span></p></td>
+<td> Defines the pixel per world coordinate factor.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_factor</code></em> :</span></p></td>
+<td> Defines the pixel per world coordinate factor. Ignored if
+             maintain_aspect is true.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_min_scale_factor ()">
+<a name="cr-canvas-set-min-scale-factor"></a><h3>cr_canvas_set_min_scale_factor ()</h3>
+<pre class="programlisting">void                cr_canvas_set_min_scale_factor      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         double x_factor,
+                                                         double y_factor);</pre>
+<p>
+Defines the farthest zoom-out scale allowed.  Example: For a 100x100 pixel
+window, values of 0.25, 0.25 would allow the user to zoom out to show no more
+than 400x400 world coordinates.  In infinite world mode, this routine can be
+used to limit the maximum amount of the world view that can be rendered to
+There is no need to ever call this function if you use the finite world model
+by calling set_scroll_region.  It will automatically be called whenever the
+canvas is resized.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_factor</code></em> :</span></p></td>
+<td> Defines the pixel per world coordinate factor.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_factor</code></em> :</span></p></td>
+<td> Defines the pixel per world coordinate factor. Ignored if
+             maintain_aspect is true.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_vadjustment ()">
+<a name="cr-canvas-set-vadjustment"></a><h3>cr_canvas_set_vadjustment ()</h3>
+<pre class="programlisting">void                cr_canvas_set_vadjustment           (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *adjustment);</pre>
+<p>
+Sets the vertical scroll adjustment for the layout.
+</p>
+<p>
+See <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkScrolledWindow.html"
+><span class="type">GtkScrolledWindow</span></a>, <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkScrollbar.html"
+><span class="type">GtkScrollbar</span></a>, <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+><span class="type">GtkAdjustment</span></a> for details.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td> a <a class="link" href="CrCanvas.html" title="CrCanvas"><span class="type">CrCanvas</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>adjustment</code></em> :</span></p></td>
+<td> new scroll adjustment
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="cr_canvas_set_hadjustment ()">
+<a name="cr-canvas-set-hadjustment"></a><h3>cr_canvas_set_hadjustment ()</h3>
+<pre class="programlisting">void                cr_canvas_set_hadjustment           (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *adjustment);</pre>
+<p>
+Sets the horizontal scroll adjustment for the layout.
+</p>
+<p>
+See <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkScrolledWindow.html"
+><span class="type">GtkScrolledWindow</span></a>, <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkScrollbar.html"
+><span class="type">GtkScrollbar</span></a>, <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+><span class="type">GtkAdjustment</span></a> for details.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td> a <a class="link" href="CrCanvas.html" title="CrCanvas"><span class="type">CrCanvas</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>adjustment</code></em> :</span></p></td>
+<td> new scroll adjustment
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="CrCanvas.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "auto-scale" property'>
+<a name="CrCanvas--auto-scale"></a><h3>The <code class="literal">"auto-scale"</code> property</h3>
+<pre class="programlisting">  "auto-scale"               <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Present viewport contents are retained on resize. This means items will be zoomed in or out depending on how the window changes.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "hadjustment" property'>
+<a name="CrCanvas--hadjustment"></a><h3>The <code class="literal">"hadjustment"</code> property</h3>
+<pre class="programlisting">  "hadjustment"              <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a>*        : Read / Write</pre>
+<p>The GtkAdjustment for the horizontal position.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "maintain-aspect" property'>
+<a name="CrCanvas--maintain-aspect"></a><h3>The <code class="literal">"maintain-aspect"</code> property</h3>
+<pre class="programlisting">  "maintain-aspect"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Aspect ratio is maintained on resize andzooming events.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "maintain-center" property'>
+<a name="CrCanvas--maintain-center"></a><h3>The <code class="literal">"maintain-center"</code> property</h3>
+<pre class="programlisting">  "maintain-center"          <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>World center point remains on resize.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "pick-item" property'>
+<a name="CrCanvas--pick-item"></a><h3>The <code class="literal">"pick-item"</code> property</h3>
+<pre class="programlisting">  "pick-item"                <a class="link" href="CrItem.html" title="CrItem">CrItem</a>*               : Read</pre>
+<p>The lowest item in the tree presently receiving cursor events.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "repaint-mode" property'>
+<a name="CrCanvas--repaint-mode"></a><h3>The <code class="literal">"repaint-mode"</code> property</h3>
+<pre class="programlisting">  "repaint-mode"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Canvas repaints all items on each update.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "repaint-on-scroll" property'>
+<a name="CrCanvas--repaint-on-scroll"></a><h3>The <code class="literal">"repaint-on-scroll"</code> property</h3>
+<pre class="programlisting">  "repaint-on-scroll"        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Repaint the whole canvas when the scrollbar is moved. Default behavior is to move the previously painted area,  This changes the default behavior to repaint  the whole canvas instead. This is needed for the use case where something on the canvas will be changed immediately as a result of the scroll action.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "root" property'>
+<a name="CrCanvas--root"></a><h3>The <code class="literal">"root"</code> property</h3>
+<pre class="programlisting">  "root"                     <a class="link" href="CrItem.html" title="CrItem">CrItem</a>*               : Read / Write</pre>
+<p>The root canvas item for this widget.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "show-less" property'>
+<a name="CrCanvas--show-less"></a><h3>The <code class="literal">"show-less"</code> property</h3>
+<pre class="programlisting">  "show-less"                <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Whether to show more area or less area on a viewport resize when the aspect ratio changes.  This only has an effect when both auto-scale and maintain-aspect are set.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" title='The "vadjustment" property'>
+<a name="CrCanvas--vadjustment"></a><h3>The <code class="literal">"vadjustment"</code> property</h3>
+<pre class="programlisting">  "vadjustment"              <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a>*        : Read / Write</pre>
+<p>The GtkAdjustment for the vertical position.</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="CrCanvas.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "before-paint" signal'>
+<a name="CrCanvas-before-paint"></a><h3>The <code class="literal">"before-paint"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>  *canvas,
+                                                        <a class="link" href="crcanvas-cr-types.html#CrContext" title="CrContext">CrContext</a> *cr,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>   viewport_changed,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)             : Run First</pre>
+<p>
+This signal is emitted from the expose event of the canvas.  It can
+be used to request additional updates or to take specific action
+resulting from a change to the viewport.  The viewport may change as
+a result of a scrolling action or as a result of a scroll_to or
+center-on call. The viewport_changed flag will be FALSE if there
+was no change to the viewport since the last paint.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cr</code></em> :</span></p></td>
+<td> cairo context for the canvas window.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>viewport_changed</code></em> :</span></p></td>
+<td> TRUE if the viewport has changed since the last
+paint.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "scroll-region-changed" signal'>
+<a name="CrCanvas-scroll-region-changed"></a><h3>The <code class="literal">"scroll-region-changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a> *canvas,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>  user_data)      : Run First</pre>
+<p>
+This signal is emitted whenever the canvas scrolling
+region is manually or automatically modified.  In the finite world
+model it is emitted only when cr_canvas_set_scroll_region is
+called external.  In the infinite world model, it is emitted 
+more frequently whenever the scrollbars are automatically re-centered
+or as a result of calling cr_canvas_set_scroll_factor externally.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>canvas</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "set-scroll-adjustments" signal'>
+<a name="CrCanvas-set-scroll-adjustments"></a><h3>The <code class="literal">"set-scroll-adjustments"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="CrCanvas.html" title="CrCanvas">CrCanvas</a>      *crcanvas,
+                                                        <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *arg1,
+                                                        <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAdjustment.html"
+>GtkAdjustment</a> *arg2,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>       user_data)      : Run Last / Action</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>crcanvas</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arg1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arg2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

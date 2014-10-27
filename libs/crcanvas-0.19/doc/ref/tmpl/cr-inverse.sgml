@@ -1,0 +1,50 @@
+<!-- ##### SECTION Title ##### -->
+CrInverse
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrInverse ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrInverse:preserve-rotation ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrInverse:preserve-scale ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_inverse_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

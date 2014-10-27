@@ -1,0 +1,91 @@
+<!-- ##### SECTION Title ##### -->
+CrText
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CrText ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG CrText:anchor ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:fill-color ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:fill-color-rgba ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:font ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:scaleable ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:text ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:use-markup ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:x-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG CrText:y-offset ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION cr_text_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@x: 
+@y: 
+@text: 
+@first_arg_name: 
+@Varargs: 
+@Returns: 
+
+

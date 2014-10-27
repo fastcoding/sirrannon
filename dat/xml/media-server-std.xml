@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config quantum="40000" seed="0" simulation="0">
+	<component name="RTSP-server" type="RTSP-server">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="interface" type="string" val=""/>
+		<param name="media" type="string" val="dat/media"/>
+		<param name="port" type="int" val="554"/>
+		<gfx h="120.0" r="0.0" w="150.0" x="486.0" y="220.0"/>
+	</component>
+	<component name="RTMP-server" type="RTMP-server">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="interface" type="string" val=""/>
+		<param name="media" type="string" val="dat/media"/>
+		<param name="port" type="int" val="1935"/>
+		<gfx h="120.0" r="0.0" w="150.0" x="704.0" y="221.0"/>
+	</component>
+	<component name="HTTP-server" type="HTTP-server">
+		<param name="debug" type="bool" val="true"/>
+		<param name="thread" type="bool" val="false"/>
+		<param name="interface" type="string" val=""/>
+		<param name="media" type="string" val="dat/media"/>
+		<param name="port" type="int" val="80"/>
+		<gfx h="120.0" r="0.0" w="150.0" x="280.0" y="220.0"/>
+	</component>
+	<command binary="/usr/local/bin/sirannon" configuration="/home/arombaut/sirannon/dat/xml/media-server-std.xml" flags="-vv"/>
+</config>
